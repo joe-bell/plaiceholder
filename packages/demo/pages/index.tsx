@@ -32,6 +32,8 @@ const Index: React.FC<DemoProps> = ({ imgHash, imgSrc }) => (
     </section>
 
     <a href="https://instagram.com/joebell">
+      {/* For the sake of legibility, this example uses inline styles, but don't
+      do this in production */}
       <div style={{ position: "relative" }}>
         <BlurhashCanvas
           hash={imgHash}
