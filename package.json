@@ -2,7 +2,7 @@
   "private": true,
   "name": "root",
   "scripts": {
-    "build": "lerna run build",
+    "prepare": "lerna run build",
     "clean": "lerna run clean",
     "commit": "git-cz"
   },

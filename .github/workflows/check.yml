@@ -28,5 +28,4 @@ jobs:
       - run: yarn install --frozen-lockfile
         env:
           CI: true
-      - run: yarn build
       # - run: yarn prettier . --check
