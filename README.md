@@ -209,7 +209,7 @@ In it's current state, `next-placeholder` only supports local images (added to `
 [blurhash]: https://blurha.sh/
 [react-blurhash]: https://github.com/woltapp/react-blurhash
 [next/image]: https://nextjs.org/docs/basic-features/image-optimization
-[demo]: https://next-blurhash.joebell.co.uk
+[demo]: https://next-placeholder.joebell.co.uk
 
 ## Acknowledgements
 
