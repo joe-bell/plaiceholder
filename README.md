@@ -21,12 +21,13 @@
 ## Table of Contents
 
 1. [Setup](#setup)
+   1. [BlurHash](#blurhash)
+   2. [Base64](#base64)
 2. [FAQs](#faqs)
 
 ## Setup
 
-- [Base64](#base64)
-- [BlurHash](#blurhash)
+Choose your own adventure: [BlurHash](#blurhash) or [Base64](#base64)…
 
 ### BlurHash
 
