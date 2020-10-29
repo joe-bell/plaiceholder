@@ -8,7 +8,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "clean": "rimraf .next"
+    "clean": "rimraf .next",
+    "build:vercel": "yarn workspace next-placeholder build && yarn workspace next-blurhash build && yarn workspace demo build"
   },
   "dependencies": {
     "next": "10.0.0",
