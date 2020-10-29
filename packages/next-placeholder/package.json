@@ -1,0 +1,43 @@
+{
+  "name": "next-placeholder",
+  "version": "0.1.0",
+  "description": "Roll-you-own placeholders for Next.js images",
+  "author": "Joe Bell <joe@joebell.co.uk>",
+  "license": "MIT",
+  "source": "src/index.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "microbundle --no-compress --tsconfig tsconfig.json --external sharp",
+    "dev": "yarn build -- watch",
+    "clean": "rimraf {dist,.rts2*}"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joe-bell/next-placeholder.git"
+  },
+  "keywords": [
+    "next.js",
+    "next/image",
+    "placeholder",
+    "next-placeholder"
+  ],
+  "bugs": {
+    "url": "https://github.com/joe-bell/next-placeholder/issues"
+  },
+  "homepage": "https://github.com/joe-bell/next-placeholder#readme",
+  "dependencies": {
+    "blurhash": "1.1.3"
+  },
+  "devDependencies": {
+    "next": "10.0.0"
+  },
+  "peerDependencies": {
+    "next": ">= 10.0.0"
+  }
+}
