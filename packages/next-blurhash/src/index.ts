@@ -3,20 +3,19 @@ import fs from "fs";
 import path from "path";
 import { promisify } from "util";
 import { encode } from "blurhash";
+import { validateImagePath, NextPlaceholderImagePath } from "next-placeholder";
 
-export const getStaticBlurhash = async (imgPath: string): Promise<string> => {
-  if (imgPath.startsWith("http")) {
-    throw new Error("Sorry, remote images aren't supported just yet");
-  }
+export type NextBlurhash = string;
 
-  if (!imgPath.startsWith("/")) {
-    throw new Error(
-      `Failed to parse \"${imgPath}\", relative images must start with a leading slash`
-    );
-  }
+export interface GetBlurhash {
+  (imagePath: NextPlaceholderImagePath): Promise<NextBlurhash>;
+}
+
+export const getBlurhash: GetBlurhash = async (imagePath) => {
+  validateImagePath(imagePath);
 
   const imageFile = await promisify(fs.readFile)(
-    path.join("./public/", imgPath)
+    path.join("./public/", imagePath)
   );
 
   const transform = new Promise<string>((resolve, reject) => {

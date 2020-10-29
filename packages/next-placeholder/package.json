@@ -1,7 +1,7 @@
 {
-  "name": "next-blurhash",
+  "name": "next-placeholder",
   "version": "0.1.0",
-  "description": "Roll-you-own BlurHash placeholders for Next.js images",
+  "description": "Roll-you-own placeholders for Next.js images",
   "author": "Joe Bell <joe@joebell.co.uk>",
   "license": "MIT",
   "source": "src/index.ts",
@@ -24,7 +24,6 @@
   "keywords": [
     "next.js",
     "next/image",
-    "blurhash",
     "placeholder",
     "next-placeholder"
   ],
@@ -33,15 +32,12 @@
   },
   "homepage": "https://github.com/joe-bell/next-placeholder#readme",
   "dependencies": {
-    "blurhash": "1.1.3",
-    "next-placeholder": "^0.1.0"
+    "blurhash": "1.1.3"
   },
   "devDependencies": {
-    "next": "10.0.0",
-    "react-blurhash": "0.1.3"
+    "next": "10.0.0"
   },
   "peerDependencies": {
-    "next": ">= 10.0.0",
-    "react-blurhash": ">= 0.1.3"
+    "next": ">= 10.0.0"
   }
 }

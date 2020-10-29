@@ -1,42 +1,91 @@
 import * as React from "react";
 import { GetStaticProps } from "next";
-import { getStaticBlurhash } from "next-blurhash";
+import { getBase64 } from "next-placeholder";
+import { getBlurhash } from "next-blurhash";
 import { BlurhashCanvas } from "react-blurhash";
 import Image from "next/image";
 
-type DemoProps = Record<"imgHash" | "imgSrc", string>;
+type DemoProps = {
+  img: Record<"alt" | "href" | "title" | "base64" | "hash" | "src", string>;
+};
 
 export const getStaticProps: GetStaticProps<DemoProps> = async () => {
-  const imgSrc = "/keila-joa.jpg";
-  const imgHash = await getStaticBlurhash(imgSrc);
+  const src = "/keila-joa.jpg";
+  const base64 = await getBase64(src);
+  const hash = await getBlurhash(src);
 
   return {
     props: {
-      imgHash,
-      imgSrc,
+      img: {
+        alt: "Keila Joa, Estonia.",
+        href: "https://instagram.com/joebell",
+        src,
+        base64,
+        hash,
+        title: "© Joe Bell",
+      },
     },
   };
 };
 
-const Index: React.FC<DemoProps> = ({ imgHash, imgSrc }) => (
-  <main className="max-w-4xl mx-auto px-4 mt-6 pb-6 text-gray-800">
-    <h1 className="font-bold text-4xl text-center">next-blurhash</h1>
+const Index: React.FC<DemoProps> = ({ img }) => (
+  <main className=" max-w-4xl mx-auto px-4 mt-6 pb-20 text-gray-800">
+    <h1 className="font-bold text-4xl">next-placeholder</h1>
 
-    <section className="text-center mx-auto mt-2 pb-6">
+    <p className="mt-3">
       <a
-        className="text-blue-700 hover:underline"
+        className="text-xl text-blue-700 hover:underline"
         href="https://github.com/joe-bell/next-blurhash"
       >
         See the README
       </a>
-    </section>
+    </p>
 
-    <a href="https://instagram.com/joebell">
+    <h3 className="font-mono text-2xl mt-6">getBase64(&lt;image-path&gt;)</h3>
+
+    <a className="block mt-4" href={img.href}>
+      {/* For the sake of legibility, this example uses inline styles, but don't
+      do this in production */}
+      <div style={{ position: "relative", overflow: "hidden" }}>
+        <img
+          aria-hidden="true"
+          alt=""
+          src={img.base64}
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "center",
+            filter: "blur(2rem)",
+            transform: "scale(1.2)",
+          }}
+        />
+        <Image
+          alt={img.alt}
+          title={img.title}
+          src={img.src}
+          width={4032}
+          height={3024}
+        />
+      </div>
+    </a>
+
+    <hr className="mt-8" />
+
+    <h2 className="font-bold text-3xl mt-6">next-blurhash</h2>
+    <h3 className="font-mono text-2xl mt-4">getBlurhash(&lt;image-path&gt;)</h3>
+
+    <a className="block mt-4" href={img.href}>
       {/* For the sake of legibility, this example uses inline styles, but don't
       do this in production */}
       <div style={{ position: "relative" }}>
         <BlurhashCanvas
-          hash={imgHash}
+          hash={img.hash}
           width={32}
           height={32}
           punch={1}
@@ -50,7 +99,13 @@ const Index: React.FC<DemoProps> = ({ imgHash, imgSrc }) => (
             height: "100%",
           }}
         />
-        <Image src={imgSrc} width={4032} height={3024} />
+        <Image
+          alt={img.alt}
+          title={img.title}
+          src={img.src}
+          width={4032}
+          height={3024}
+        />
       </div>
     </a>
   </main>
