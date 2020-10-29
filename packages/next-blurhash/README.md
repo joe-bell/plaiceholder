@@ -1,1 +1,1 @@
-[See main README](https://github.com/joe-bell/next-blurhash)
+[See main README](https://github.com/joe-bell/next-placeholder)

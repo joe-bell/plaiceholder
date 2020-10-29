@@ -1,7 +1,7 @@
 {
   "name": "next-blurhash",
   "version": "0.1.0",
-  "description": "Create BlurHash strings in Next.js getStaticProps",
+  "description": "Roll-you-own BlurHash placeholders for Next.js images",
   "author": "Joe Bell <joe@joebell.co.uk>",
   "license": "MIT",
   "source": "src/index.ts",
@@ -19,19 +19,22 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/joe-bell/next-blurhash.git"
+    "url": "git+https://github.com/joe-bell/next-placeholder.git"
   },
   "keywords": [
     "next.js",
     "next/image",
-    "blurhash"
+    "blurhash",
+    "placeholder",
+    "next-placeholder"
   ],
   "bugs": {
-    "url": "https://github.com/joe-bell/next-blurhash/issues"
+    "url": "https://github.com/joe-bell/next-placeholder/issues"
   },
-  "homepage": "https://github.com/joe-bell/next-blurhash#readme",
+  "homepage": "https://github.com/joe-bell/next-placeholder#readme",
   "dependencies": {
-    "blurhash": "1.1.3"
+    "blurhash": "1.1.3",
+    "next-placeholder": "^0.1.0"
   },
   "devDependencies": {
     "next": "10.0.0",
