@@ -12,6 +12,7 @@
     "build:vercel": "yarn workspace next-placeholder build && yarn workspace next-blurhash build && yarn build"
   },
   "dependencies": {
+    "@joebell/cx": "0.1.0",
     "next": "10.0.0",
     "next-blurhash": "^0.2.0",
     "next-placeholder": "^0.2.0",

@@ -1331,6 +1331,11 @@
   resolved "https://registry.yarnpkg.com/@hapi/hoek/-/hoek-9.1.0.tgz#6c9eafc78c1529248f8f4d92b0799a712b6052c6"
   integrity sha512-i9YbZPN3QgfighY/1X1Pu118VUz2Fmmhd6b2n0/O8YVgGGfw0FbUYoA97k7FkpGJ+pLCFEDLUmAPPV4D1kpeFw==
 
+"@joebell/cx@0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@joebell/cx/-/cx-0.1.0.tgz#6c051e5e0f198628058bcc3ef03709ed1774ad83"
+  integrity sha512-jEnMWRw0sHhB7KB0+jb1sIJyfk+t54DPxojesWiiV6rf8ynNfBPr+k3lPgLkxZCv0w2tUPOEWloscm1pqILh6A==
+
 "@lerna/add@3.21.0":
   version "3.21.0"
   resolved "https://registry.yarnpkg.com/@lerna/add/-/add-3.21.0.tgz#27007bde71cc7b0a2969ab3c2f0ae41578b4577b"

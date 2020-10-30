@@ -1,22 +1,35 @@
-# next-placeholder
+<h1 align="center">next-placeholder</h1>
 
-> **Roll-you-own placeholders for Next.js images 🖼**
->
-> Designed to work with [Next.js 10 Image Optimization][next/image]
->
-> ---
->
+<p align="center">
+  <strong>Roll-you-own placeholders for Next.js images 🖼</strong>
+</p>
+<p align="center">
+  Designed to work with <a href="https://nextjs.org/docs/basic-features/image-optimization">Next.js 10 Image Optimization</a>.
+</p>
+
+<p align="center">
+  <a href="https://www.npmjs.com/package/next-placeholder">
+    <img alt="NPM Version" src="https://badgen.net/npm/v/next-placeholder" />
+  </a>
+  <a href="https://badgen.net/npm/types/next-placeholder">
+    <img alt="Types Included" src="https://badgen.net/npm/types/next-placeholder" />
+  </a>
+  <a href="https://badgen.net/github/license/joe-bell/next-placeholder">
+    <img alt="MIT License" src="https://badgen.net/github/license/joe-bell/next-placeholder" />
+  </a>
+  <a href="https://www.npmjs.com/package/next-placeholder">
+    <img alt="NPM Downloads" src="https://badgen.net/npm/dm/next-placeholder" />
+  </a>
+</p>
+
+<br/>
+
 > Choose-your-own approach:  
 > [**Base64**](#base64) or [**BlurHash**](#blurhash)
 >
 > ---
 >
 > [**See the demo ↗** ][demo]
-
-![NPM Version](https://badgen.net/npm/v/next-placeholder)
-![Types Included](https://badgen.net/npm/types/next-placeholder)
-![License](https://badgen.net/github/license/joe-bell/next-placeholder)
-![NPM Downloads](https://badgen.net/npm/dm/next-placeholder)
 
 ## Table of Contents
 
