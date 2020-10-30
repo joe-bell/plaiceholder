@@ -1,4 +1,4 @@
-import { cx } from "@/styles";
+import { cx } from "../styles";
 
 export interface IconProps extends React.FC<JSX.IntrinsicElements["svg"]> {}
 

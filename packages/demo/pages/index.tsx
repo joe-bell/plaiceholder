@@ -4,8 +4,8 @@ import { getBase64 } from "next-placeholder";
 import { getBlurhash } from "next-blurhash";
 import { BlurhashCanvas } from "react-blurhash";
 import Image from "next/image";
-import { IconGitHub, IconTwitter } from "@/components/icons";
-import { cx } from "@/styles";
+import { IconGitHub, IconTwitter } from "../components/icons";
+import { cx } from "../styles";
 
 type DemoProps = {
   external: Record<"github" | "twitter", string>;
