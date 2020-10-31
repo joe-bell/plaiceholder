@@ -1,0 +1,41 @@
+{
+  "name": "@plaiceholder/blurhash",
+  "version": "0.2.0",
+  "description": "Roll-you-own Blurhash placeholders.",
+  "author": "Joe Bell <joe@joebell.co.uk>",
+  "license": "MIT",
+  "source": "src/index.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "microbundle --no-compress --tsconfig tsconfig.json --external sharp",
+    "dev": "yarn build -- watch",
+    "clean": "rimraf {dist,.rts2*}"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joe-bell/plaiceholder.git"
+  },
+  "keywords": [
+    "lqip",
+    "placeholder",
+    "plaiceholder",
+    "blurhash"
+  ],
+  "bugs": {
+    "url": "https://github.com/joe-bell/plaiceholder/issues"
+  },
+  "homepage": "https://github.com/joe-bell/plaiceholder#readme",
+  "dependencies": {
+    "@plaiceholder/core": "^0.2.0",
+    "blurhash": "1.1.3"
+  },
+  "peerDependencies": {
+    "sharp": ">= 0.26.2"
+  }
+}

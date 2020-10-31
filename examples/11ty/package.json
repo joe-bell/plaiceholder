@@ -1,0 +1,21 @@
+{
+  "private": "true",
+  "name": "example-with-11ty",
+  "version": "0.2.0",
+  "author": "Joe Bell <joe@joebell.co.uk>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "yarn build --serve --port=5000",
+    "build": "eleventy --input=src",
+    "clean": "rimraf _site",
+    "vercel": "yarn --cwd ../../ prepare && yarn build"
+  },
+  "devDependencies": {
+    "@plaiceholder/base64": "^0.2.0",
+    "@plaiceholder/css": "^0.2.0",
+    "@plaiceholder/svg": "^0.2.0",
+    "@11ty/eleventy": "0.11.1",
+    "clean-css": "4.2.3",
+    "serve": "11.3.2"
+  }
+}

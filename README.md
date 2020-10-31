@@ -1,42 +1,84 @@
-<h1 align="center">next-placeholder</h1>
-
 <p align="center">
-  <strong>Roll-you-own placeholders for Next.js images 🖼</strong>
-</p>
-<p align="center">
-  Designed to work with <a href="https://nextjs.org/docs/basic-features/image-optimization">Next.js 10 Image Optimization</a>.
+  <img alt="Plaiceholder" src=".github/assets/logo.jpg" />
 </p>
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/next-placeholder">
-    <img alt="NPM Version" src="https://badgen.net/npm/v/next-placeholder" />
+  <strong>Roll-you-own low-quality image placeholders 🖼</strong>
+</p>
+<p align="center">
+  Includes plugins for Next.js (to compliment the latest <a href="https://nextjs.org/docs/basic-features/image-optimization">Image Optimization</a> features).
+</p>
+
+<p align="center">
+  <strong>
+    <a href="https://plaiceholder.co">
+      Sponsors get access to premium features ✨
+    </a>
+  </strong>
+</p>
+
+<p align="center">
+  <a href="https://www.npmjs.com/package/@plaiceholder/core">
+    <img alt="NPM Version" src="https://badgen.net/npm/v/@plaiceholder/core" />
   </a>
-  <a href="https://badgen.net/npm/types/next-placeholder">
-    <img alt="Types Included" src="https://badgen.net/npm/types/next-placeholder" />
+  <a href="https://badgen.net/npm/types/@plaiceholder/core">
+    <img alt="Types Included" src="https://badgen.net/npm/types/@plaiceholder/core" />
   </a>
-  <a href="https://badgen.net/github/license/joe-bell/next-placeholder">
-    <img alt="MIT License" src="https://badgen.net/github/license/joe-bell/next-placeholder" />
+  <a href="https://badgen.net/github/license/joe-bell/plaiceholder">
+    <img alt="MIT License" src="https://badgen.net/github/license/joe-bell/plaiceholder" />
   </a>
-  <a href="https://www.npmjs.com/package/next-placeholder">
-    <img alt="NPM Downloads" src="https://badgen.net/npm/dm/next-placeholder" />
+  <a href="https://www.npmjs.com/package/@plaiceholder/core">
+    <img alt="NPM Downloads" src="https://badgen.net/npm/dm/@plaiceholder/core" />
   </a>
 </p>
 
 <br/>
 
-> Choose-your-own approach:  
-> [**Base64**](#base64) or [**BlurHash**](#blurhash)
->
-> ---
->
-> [**See the demo ↗** ][demo]
-
 ## Table of Contents
 
+1. [Introduction](#introduction)
 1. [Setup](#setup)
+
+   1. [Gradient](#gradient)
+   1. [SVG](#svg)
+   1. [Base64](#base64)
    1. [BlurHash](#blurhash)
-   2. [Base64](#base64)
-2. [FAQs](#faqs)
+
+1. [Plugins](#plugins)
+   1. [Next.js](#next.js)
+1. [Examples](#examples)
+1. [FAQs](#faqs)
+
+## Introduction
+
+"Plaiceholder" is a collection of **Node.js** helpers for creating low quality image placeholders, with 4 approaches to choose from:
+
+1.  **Gradient** <small>(unique to Plaiceholder)</small>
+
+    Converts a specified image into a low-res placeholder, outputted as a set of `linear-gradient`s.
+
+    **Pros:** Fast `DOMContentLoaded` and `LCP`  
+    **Cons:** ? (Still figuring out)
+
+2.  **SVG**  
+    Converts a specified image into a low-res placeholder, outputted as an SVG.
+
+    **Pros:** Fast `DOMContentLoaded` and `LCP`  
+    **Cons:** ? (Still figuring out)
+
+3.  **Base64**  
+    Converts a specified image into a low-res image, encoded as Base64 string.
+
+    **Pros:** Fast `DOMContentLoaded` and `LCP`  
+    **Cons:** ? (Still figuring out)
+
+4.  **Blurhash**  
+    Converts a specified image into a low-res image, encoded as Blurhash string.
+
+    **Pros:** Lightweight, fast `DOMContentLoaded` and `LCP`  
+    **Cons:** As it uses `canvas`, it's not ideal to use Blurhash for above-the-fold content.
+
+It's still worth taking any pros/cons with a grain of salt; as more consumers use Plaiceholder and provide their feedback, it will help determine the fastest option.
 
 ## Setup
 
@@ -214,11 +256,16 @@ We'll then apply the string to an `<img>` element (hidden from screen-readers) a
 
 ## FAQs
 
+- [Why have you misspelled "placeholder"?](#why-have-you-misspelled-placeholder)
 - [What about remote images?](#what-about-remote-images)
 
-### What about remote images?
+### Why have you misspelled "placeholder"?
 
-In it's current state, `next-placeholder` only supports local images (added to `public`). PRs to add support for remote images are welcomed ❤️.
+A [Plaice](https://en.wikipedia.org/wiki/European_plaice) is a flat fish that lays stationary on the sea-bed, much like an image placehol… actually this is bullshit, all the other good names were taken.
+
+### What about remote images in Next.js?
+
+In it's current state, `@plaiceholder/next` only supports local images (added to `public`). PRs to add support for remote images are welcomed ❤️.
 
 [blurhash]: https://blurha.sh/
 [react-blurhash]: https://github.com/woltapp/react-blurhash
@@ -228,3 +275,7 @@ In it's current state, `next-placeholder` only supports local images (added to `
 ## Acknowledgements
 
 - [BlurHash][blurhash] by **Wolt**
+
+## Copyright
+
+- Plaice Image - © Public Domain. American plaice, _[Hippoglossoides platessoides](https://commons.wikimedia.org/wiki/Hippoglossoides_platessoides)_. From plate 107 of Oceanic Ichthyology by G. Brown Goode and Tarleton H. Bean, published 1896.

@@ -2,12 +2,13 @@
   "private": true,
   "name": "root",
   "scripts": {
-    "prepare": "lerna run build --scope='next-*'",
+    "prepare": "lerna run build --scope='@plaiceholder/*'",
     "clean": "lerna run clean",
     "commit": "git-cz"
   },
   "workspaces": [
     "docs",
+    "examples/*",
     "packages/*"
   ],
   "config": {
@@ -26,6 +27,7 @@
   "devDependencies": {
     "@types/node": "14.11.2",
     "@types/react": "16.9.50",
+    "@types/sharp": "0.26.0",
     "commitizen": "4.2.1",
     "cz-conventional-changelog": "3.3.0",
     "husky": "4.3.0",
@@ -34,6 +36,8 @@
     "microbundle": "0.12.4",
     "prettier": "2.1.2",
     "rimraf": "3.0.2",
+    "sharp": "0.26.2",
+    "ts-node": "9.0.0",
     "typescript": "4.0.3"
   }
 }
