@@ -1,6 +1,6 @@
 {
   "private": "true",
-  "name": "demo",
+  "name": "docs",
   "version": "0.2.0",
   "author": "Joe Bell <joe@joebell.co.uk>",
   "license": "MIT",
@@ -9,7 +9,7 @@
     "build": "next build",
     "start": "next start",
     "clean": "rimraf .next",
-    "build:vercel": "yarn workspace next-placeholder build && yarn workspace next-blurhash build && yarn build"
+    "vercel": "yarn --cwd ../ prepare && yarn build"
   },
   "dependencies": {
     "@joebell/cx": "0.1.0",

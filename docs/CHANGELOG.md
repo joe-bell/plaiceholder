@@ -7,13 +7,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package demo
 
-
-
-
-
 # 0.1.0 (2020-10-28)
-
 
 ### Features
 
-* initial commit ([7da9ebf](https://github.com/joe-bell/next-blurhash/commit/7da9ebf1e60fe65a36c8615b6d4ae89be863149b))
+- initial commit ([7da9ebf](https://github.com/joe-bell/next-blurhash/commit/7da9ebf1e60fe65a36c8615b6d4ae89be863149b))

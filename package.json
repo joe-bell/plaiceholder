@@ -2,11 +2,12 @@
   "private": true,
   "name": "root",
   "scripts": {
-    "prepare": "lerna run build",
+    "prepare": "lerna run build --scope='next-*'",
     "clean": "lerna run clean",
     "commit": "git-cz"
   },
   "workspaces": [
+    "docs",
     "packages/*"
   ],
   "config": {
