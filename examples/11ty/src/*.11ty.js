@@ -99,7 +99,7 @@ class Page {
                   `<${childElem} ${propsToString(childProps)} />`
               )
               .join("")}
-          </$class=>`,
+          </${pixelsSVG.element}>`,
     }[slug];
 
     return { children, template, title };
