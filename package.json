@@ -3,7 +3,10 @@
   "name": "root",
   "scripts": {
     "prepare": "lerna run build --scope='@plaiceholder/*'",
+    "build": "lerna run build",
     "clean": "lerna run clean",
+    "lint": "lerna exec --parallel --stream --ignore='example-with-11ty' -- tsc --noEmit",
+    "format": "prettier",
     "commit": "git-cz"
   },
   "workspaces": [
@@ -21,9 +24,6 @@
       "pre-commit": "lint-staged"
     }
   },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx,json,md,yml}": "prettier --write"
-  },
   "devDependencies": {
     "@types/node": "14.11.2",
     "@types/react": "16.9.50",
@@ -31,7 +31,7 @@
     "commitizen": "4.2.1",
     "cz-conventional-changelog": "3.3.0",
     "husky": "4.3.0",
-    "lerna": "^3.15.0",
+    "lerna": "3.15.0",
     "lint-staged": "10.4.0",
     "microbundle": "0.12.4",
     "prettier": "2.1.2",
