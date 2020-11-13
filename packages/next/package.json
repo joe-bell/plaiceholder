@@ -3,7 +3,7 @@
   "version": "0.2.0",
   "description": "Roll-you-own placeholders for Next.js.",
   "author": "Joe Bell <joe@joebell.co.uk>",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "source": "src/index.ts",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",

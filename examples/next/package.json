@@ -3,7 +3,7 @@
   "name": "example-with-next",
   "version": "0.2.0",
   "author": "Joe Bell <joe@joebell.co.uk>",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
