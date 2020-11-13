@@ -4,6 +4,7 @@
   "version": "0.2.0",
   "author": "Joe Bell <joe@joebell.co.uk>",
   "license": "Apache-2.0",
+  "funding": "https://plaiceholder.co",
   "scripts": {
     "dev": "yarn build --serve --port=5000",
     "build": "eleventy --input=src",

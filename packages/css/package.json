@@ -4,6 +4,7 @@
   "description": "Roll-you-own CSS gradient placeholders.",
   "author": "Joe Bell <joe@joebell.co.uk>",
   "license": "Apache-2.0",
+  "funding": "https://plaiceholder.co",
   "source": "src/index.ts",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
