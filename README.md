@@ -1,20 +1,12 @@
-<p align="center">
-  <img alt="Plaiceholder" src=".github/assets/logo.jpg" />
-</p>
+<h1 align="center">
+  Plaiceholder 🐟
+</h1>
 
 <p align="center">
-  <strong>Roll-you-own low-quality image placeholders 🖼</strong>
+  <strong>Beautifully lightweight image placeholders, without the hassle.</strong>
 </p>
 <p align="center">
   Includes plugins for Next.js (to compliment the latest <a href="https://nextjs.org/docs/basic-features/image-optimization">Image Optimization</a> features).
-</p>
-
-<p align="center">
-  <strong>
-    <a href="https://plaiceholder.co">
-      Sponsors get access to premium features ✨
-    </a>
-  </strong>
 </p>
 
 <p align="center">
@@ -32,164 +24,246 @@
   </a>
 </p>
 
-<br/>
+---
+
+<h2 align="center">
+  Sponsors
+</h2>
+
+<p align="center">
+  <strong>
+    <a href="https://plaiceholder.co">
+      Become a project sponsor 
+    </a> 
+    to access premium features, including:
+  </strong>
+</p>
+
+<h3 align="center">
+  Plaiceholder Studio
+</h3>
+
+<p align="center">
+  <img width="300" height="auto" src="./.github/assets/studio.jpg">
+</p>
+
+---
 
 ## Table of Contents
 
 1. [Introduction](#introduction)
 1. [Setup](#setup)
-
-   1. [Gradient](#gradient)
-   1. [SVG](#svg)
-   1. [Base64](#base64)
-   1. [BlurHash](#blurhash)
-
 1. [Plugins](#plugins)
    1. [Next.js](#next.js)
-1. [Examples](#examples)
 1. [FAQs](#faqs)
+
+### Examples
+
+Jump to the [`examples`](/tree/main/examples) directory to see working demos for Next.js, 11ty and more...
+
+---
 
 ## Introduction
 
 "Plaiceholder" is a collection of **Node.js** helpers for creating low quality image placeholders, with 4 approaches to choose from:
 
-1.  **Gradient** <small>(unique to Plaiceholder)</small>
+1.  [**CSS**](#css) <small>(recommended)</small>
+2.  [**SVG**](#svg)
+3.  [**Base64**](#base64)
+4.  [**Blurhash**](#blurhash)
 
-    Converts a specified image into a low-res placeholder, outputted as a set of `linear-gradient`s.
-
-    **Pros:** Fast `DOMContentLoaded` and `LCP`  
-    **Cons:** ? (Still figuring out)
-
-2.  **SVG**  
-    Converts a specified image into a low-res placeholder, outputted as an SVG.
-
-    **Pros:** Fast `DOMContentLoaded` and `LCP`  
-    **Cons:** ? (Still figuring out)
-
-3.  **Base64**  
-    Converts a specified image into a low-res image, encoded as Base64 string.
-
-    **Pros:** Fast `DOMContentLoaded` and `LCP`  
-    **Cons:** ? (Still figuring out)
-
-4.  **Blurhash**  
-    Converts a specified image into a low-res image, encoded as Blurhash string.
-
-    **Pros:** Lightweight, fast `DOMContentLoaded` and `LCP`  
-    **Cons:** As it uses `canvas`, it's not ideal to use Blurhash for above-the-fold content.
-
-It's still worth taking any pros/cons with a grain of salt; as more consumers use Plaiceholder and provide their feedback, it will help determine the fastest option.
+> Disclaimer: It's worth taking pros/cons of each approach with a grain of salt. Although initial tests locally and on [WebPageTest](webpagetest.org/) have proved successful, extra research needs to be completed to determine the fastest solution.
 
 ## Setup
 
-Choose your own adventure: [BlurHash](#blurhash) or [Base64](#base64)…
+### CSS
 
-### BlurHash
+Converts a specified image `Buffer` into a low-res placeholder, outputted as a set of `linear-gradient`s (in the form of a JavaScript style object).
 
-In this example, we're going to use the additional `next-blurhash` package to create a [BlurHash][blurhash] string for a single image inside a Next.js [Page](https://nextjs.org/docs/basic-features/pages).
+**Pros:** Fast `DOMContentLoaded` and `LCP`  
+**Cons:** ? (Still figuring out)
 
-We'll then use [`react-blurhash`][react-blurhash] to render the string to a canvas, to sit underneath our [`Image`][next/image] whilst it's loading.
+For a "blurred" effect, extend the returned styles with `filter: blur(<value>)` and `transform: scale(<value>)`.
 
-> [**See the demo**][demo] for a live example.
+#### Installation
 
-1. Add the package to your existing Next.js project:
+```sh
+npm i @plaiceholder/css
+```
 
-   ```sh
-   npm i next-blurhash react-blurhash
-   ```
+#### Example
 
-2. Add your chosen image to the [`public`](https://nextjs.org/docs/basic-features/static-file-serving) directory.
+```js
+import fs from "fs";
+import path from "path";
+import { promisify } from "util";
+import { getPixelsCSS } from "@plaiceholder/css";
 
-   In this case, our image is `public/keila-joa.jpg` (to match the [demo][demo])
+const image = await promisify(fs.readFile)(
+  path.join("path", "to", "your", "image.jpg")
+);
 
-   > In it's current state, `next-blurhash` only supports [local images](#what-about-remote-images).
+const css = await getPixelsCSS(image);
 
-3. Create a new page (or add to an existing page), and add the following:
+console.log(css);
 
-   1. Call `getBlurhash()` inside `getStaticProps()` with your image's path **without the `public` prefix**.
+// Outputs
+// {
+//   backgroundImage: "…"
+//   backgroundPosition: "…"
+//   backgroundSize: "…"
+//   backgroundRepeat: "…"
+// }
+```
 
-      This will return the [BlurHash][blurhash] string as a static prop (which will be decoded to dimensions of **32×32**).
+### SVG
 
-   2. Import `BlurhashCanvas` from [`react-blurhash`][react-blurhash] and supply it with your newly generated static [BlurHash][blurhash] string.
+Converts a specified image `Buffer` into a low-res placeholder, outputted as an SVG.
 
-   3. Add custom styles to place the `BlurhashCanvas` underneath Next.js' `Image` whilst it loads.
+**Pros:** Fast `DOMContentLoaded` and `LCP`  
+**Cons:** ? (Still figuring out)
 
-   ```jsx
-   // pages/index.jsx
-   import * as React from "react";
-   import Image from "next/image";
-   import { getBlurhash } from "next-blurhash";
-   import { BlurhashCanvas } from "react-blurhash";
+For a "blurred" effect, extend the returned SVG's styles with `filter: blur(<value>)` and `transform: scale(<value>)`.
 
-   export const getStaticProps: GetStaticProps = async () => {
-     const imgSrc = "/keila-joa.jpg";
-     const imgHash = await getBlurhash(imgSrc);
+> Although it returns the SVG in the format of [`React.createElement()`](https://reactjs.org/docs/react-api.html#createelement) arguments, you are not constrained to using React.js.
+>
+> e.g. See the 11ty example.
 
-     return {
-       props: {
-         imgHash,
-         imgSrc,
-       },
-     };
-   };
+#### Installation
 
-   function Index({ imgHash, imgSrc }) {
-     return (
-       <main>
-         <div style={{ position: "relative" }}>
-           {/* Canvas sits underneath the `Image` and fills available space */}
-           <BlurhashCanvas
-             // Your generated Blurhash string
-             hash={imgHash}
-             // getBlurhash **always** returns 32×32 dimensions
-             width={32}
-             height={32}
-             punch={1}
-             style={{
-               position: "absolute",
-               top: 0,
-               left: 0,
-               right: 0,
-               bottom: 0,
-               width: "100%",
-               height: "100%",
-             }}
-           />
-           {/* Your image, optimized by next/image */}
-           <Image src={imgSrc} width={4032} height={3024} />
-         </div>
-       </main>
-     );
-   }
+```sh
+npm i @plaiceholder/svg
+```
 
-   export default Index;
-   ```
+#### Example
 
-4. [Run your Next.js app](https://nextjs.org/docs/api-reference/cli#build) to see the results in action!
+```js
+import fs from "fs";
+import path from "path";
+import { promisify } from "util";
+import { getPixelsSVG } from "@plaiceholder/svg";
 
-   You should expect to see the [BlurHash][blurhash] canvas first, then the image optimized by Next.js
+const image = await promisify(fs.readFile)(
+  path.join("path", "to", "your", "image.jpg")
+);
+
+const svg = await getPixelsSVG(image);
+
+console.log(svg);
+
+// Outputs
+// [
+//   "svg",
+//   { ...props }
+//   [
+//     [
+//       "rect",
+//       { ...childProps }
+//     ],
+//     ...etc
+//   ]
+// ]
+```
 
 ### Base64
 
-In this example, we're going to use the base `next-placeholder` package to create a Base64 string for a single image inside a Next.js [Page](https://nextjs.org/docs/basic-features/pages).
+Converts a specified image `Buffer` into a low-res image, encoded as Base64 string.
+
+**Pros:** Fast `DOMContentLoaded` and `LCP`  
+**Cons:** ? (Still figuring out)
+
+For a "blurred" effect, add `filter: blur(<value>)` and `transform: scale(<value>)` styles to the image.
+
+#### Installation
+
+```sh
+npm i @plaiceholder/base64
+```
+
+#### Example
+
+```js
+import fs from "fs";
+import path from "path";
+import { promisify } from "util";
+import { getBase64 } from "@plaiceholder/base64";
+
+const image = await promisify(fs.readFile)(
+  path.join("path", "to", "your", "image.jpg")
+);
+
+const base64 = await getBase64(image);
+
+console.log(base64);
+
+// Outputs
+// data:image/jpeg;base64,/9j/2wBDAAYEBQY…
+```
+
+### Blurhash
+
+Converts a specified image `Buffer` into a low-res image, encoded as Blurhash string accompanied by its width and height
+
+**Pros:** Lightweight, fast `DOMContentLoaded` and `LCP`  
+**Cons:** As it uses `canvas`, it's not ideal to use Blurhash for above-the-fold content.
+
+This can be passed into a library such as [react-blurhash][react-blurhash].
+
+#### Installation
+
+```sh
+npm i @plaiceholder/blurhash
+```
+
+#### Example
+
+```js
+import fs from "fs";
+import path from "path";
+import { promisify } from "util";
+import { getBlurhash } from "@plaiceholder/blurhash";
+
+const image = await promisify(fs.readFile)(
+  path.join("path", "to", "your", "image.jpg")
+);
+
+const blurhash = await getBlurhash(image);
+
+console.log(blurhash);
+
+// Outputs
+//  {
+//    hash: "U.QSL{%1bdxtR...",
+//    height: 32,
+//    width: 32
+//  }
+```
+
+## Plugins
+
+### Next.js
+
+A tiny helper function to access `public` files in server-side functions or `getStaticProps()`
+
+#### Installation
+
+```sh
+npm i @plaiceholder/next
+```
+
+#### Example
+
+In this example, we're going to use the `@plaiceholder/base64` package to create a Base64 string for a single image inside a Next.js [Page](https://nextjs.org/docs/basic-features/pages).
 
 We'll then apply the string to an `<img>` element (hidden from screen-readers) and position underneath our [`Image`][next/image] whilst it's loading.
 
-> [**See the demo**][demo] for a live example.
+1. Add your chosen image to the [`public`](https://nextjs.org/docs/basic-features/static-file-serving) directory.
 
-1. Add the package to your existing Next.js project:
+   In this case, our image is `public/keila-joa.jpg`
 
-   ```sh
-   npm i next-placeholder
-   ```
+   > In it's current state, `@plaiceholder/next` only supports [local images](#what-about-remote-images).
 
-2. Add your chosen image to the [`public`](https://nextjs.org/docs/basic-features/static-file-serving) directory.
-
-   In this case, our image is `public/keila-joa.jpg` (to match the [demo][demo])
-
-   > In it's current state, `next-placeholder` only supports [local images](#what-about-remote-images).
-
-3. Create a new page (or add to an existing page), and add the following:
+2. Create a new page (or add to an existing page), and add the following:
 
    1. Call `getBase64()` inside `getStaticProps()` with your image's path **without the `public` prefix**. This will return the Base64 string as a static prop.
 
@@ -201,10 +275,11 @@ We'll then apply the string to an `<img>` element (hidden from screen-readers) a
    // pages/index.jsx
    import * as React from "react";
    import Image from "next/image";
-   import { getBase64 } from "next-placeholder";
+   import { getImage } from "@plaiceholder/next";
+   import { getBase64 } from "@plaiceholder/base64";
 
    export const getStaticProps: GetStaticProps = async () => {
-     const imgSrc = "/keila-joa.jpg";
+     const imgSrc = await getImage("/keila-joa.jpg");
      const imgBase64 = await getBase64(imgSrc);
 
      return {
@@ -250,7 +325,7 @@ We'll then apply the string to an `<img>` element (hidden from screen-readers) a
    export default Index;
    ```
 
-4. [Run your Next.js app](https://nextjs.org/docs/api-reference/cli#build) to see the results in action!
+3. [Run your Next.js app](https://nextjs.org/docs/api-reference/cli#build) to see the results in action!
 
    You should expect to see the placeholder first, then the image optimized by Next.js
 
@@ -271,11 +346,3 @@ In it's current state, `@plaiceholder/next` only supports local images (added to
 [react-blurhash]: https://github.com/woltapp/react-blurhash
 [next/image]: https://nextjs.org/docs/basic-features/image-optimization
 [demo]: https://next-placeholder.joebell.co.uk
-
-## Acknowledgements
-
-- [BlurHash][blurhash] by **Wolt**
-
-## Copyright
-
-- Plaice Image - © Public Domain. American plaice, _[Hippoglossoides platessoides](https://commons.wikimedia.org/wiki/Hippoglossoides_platessoides)_. From plate 107 of Oceanic Ichthyology by G. Brown Goode and Tarleton H. Bean, published 1896.
