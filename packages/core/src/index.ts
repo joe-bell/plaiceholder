@@ -13,9 +13,6 @@ export const arrayChunk = (arr, size) =>
     ? [arr.slice(0, size), ...arrayChunk(arr.slice(size), size)]
     : [arr];
 
-export const rgb = (channels: (number | string)[]) =>
-  `rgb${channels.length === 4 ? "a" : ""}(${channels.slice(0, 3).join(",")})`;
-
 export interface GetPixels {
   (imageBuffer: PlaiceholderImage): Promise<PlaiceholderPixels>;
 }

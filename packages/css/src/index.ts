@@ -1,4 +1,4 @@
-import { PlaiceholderImage, getPixels, rgb } from "@plaiceholder/core";
+import { PlaiceholderImage, getPixels } from "@plaiceholder/core";
 
 export type PixelsCSS = Record<
   | "backgroundImage"
@@ -7,6 +7,9 @@ export type PixelsCSS = Record<
   | "backgroundRepeat",
   string
 >;
+
+const rgb = (channels: (number | string)[]) =>
+  `rgb${channels.length === 4 ? "a" : ""}(${channels.join(",")})`;
 
 export interface GetPixelsCSS {
   (imageBuffer: PlaiceholderImage): Promise<PixelsCSS>;
