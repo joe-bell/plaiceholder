@@ -1,12 +1,16 @@
 <h1 align="center">
-  Plaiceholder 🐟
+  plaiceholder
 </h1>
 
 <p align="center">
-  <strong>Beautifully lightweight image placeholders, without the hassle.</strong>
+  <img alt="Plaice Fish"  src="./.github/assets/logo.jpg" />
+</p>
+
+<p align="center">
+  <strong>Beautiful image placeholders, without the hassle.</strong>
 </p>
 <p align="center">
-  Includes plugins for Next.js (to compliment the latest <a href="https://nextjs.org/docs/basic-features/image-optimization">Image Optimization</a> features).
+  Choose-your-own adventure, from pure CSS to SVG…
 </p>
 
 <p align="center">
@@ -59,7 +63,7 @@
 
 ### Examples
 
-Jump to the [`examples`](/tree/main/examples) directory to see working demos for Next.js, 11ty and more...
+Jump to the [`examples`](/tree/main/examples) directory to see working demos for **Next.js**, **11ty** and more...
 
 ---
 
