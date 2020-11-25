@@ -2,3 +2,5 @@ node_modules
 dist
 .next
 out
+_site
+_tmp
