@@ -15,6 +15,7 @@ exports.render = function (data) {
       data.content.description || data.description
     }" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
     <style>${getStyles()}</style>
   </head>
   <body>
