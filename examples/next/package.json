@@ -10,7 +10,7 @@
     "build": "next build",
     "start": "next start",
     "clean": "rimraf .next",
-    "vercel": "yarn --cwd ../ prepare && yarn build"
+    "vercel": "yarn --cwd ../../ prepare && yarn build"
   },
   "dependencies": {
     "@joebell/cx": "0.1.0",
