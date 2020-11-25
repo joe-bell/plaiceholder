@@ -63,7 +63,7 @@
 
 ### Examples
 
-Jump to the [`examples`](/tree/main/examples) directory to see working demos for **Next.js**, **11ty** and more...
+Jump to the [`examples`](/examples/README.md) directory to see working demos for **Next.js**, **11ty** and more...
 
 ---
 
