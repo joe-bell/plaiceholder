@@ -58,7 +58,7 @@
 1. [Introduction](#introduction)
 1. [Setup](#setup)
 1. [Plugins](#plugins)
-   1. [Next.js](#next.js)
+   1. [Next.js](#nextjs)
 1. [FAQs](#faqs)
 
 ### Examples
@@ -283,8 +283,9 @@ We'll then apply the string to an `<img>` element (hidden from screen-readers) a
    import { getBase64 } from "@plaiceholder/base64";
 
    export const getStaticProps: GetStaticProps = async () => {
-     const imgSrc = await getImage("/keila-joa.jpg");
-     const imgBase64 = await getBase64(imgSrc);
+     const imgSrc = "/keila-joa.jpg";
+     const img = await getImage(imgSrc);
+     const imgBase64 = await getBase64(img);
 
      return {
        props: {
