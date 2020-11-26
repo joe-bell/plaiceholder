@@ -21,7 +21,7 @@ export const getImage: GetImage = async (imagePath) => {
   }
 
   const imageFile = await promisify(fs.readFile)(
-    path.join("./src/public/", imagePath)
+    path.join("./public/", imagePath)
   );
 
   return imageFile;
