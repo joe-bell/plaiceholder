@@ -30,26 +30,25 @@
 
 ---
 
-<h2 align="center">
-  Sponsors
-</h2>
+## Sponsors 🖤
 
-<p align="center">
-  <strong>
-    <a href="https://plaiceholder.co">
-      Become a project sponsor 
-    </a> 
-    to access premium features, including:
-  </strong>
-</p>
+[**Become a project sponsor**](https://plaiceholder.co) to access premium features, including:
 
-<h3 align="center">
-  Plaiceholder Studio
-</h3>
+1. **Studio**  
+   Upload your images and transform to beautifully lightweight placeholders (like magic, but real) ✨  
+   <img width="300" height="auto" src="./.github/assets/studio.jpg">
+1. **API**  
+   <small>(TBC, depending on sponsor interest)</small>
 
-<p align="center">
-  <img width="300" height="auto" src="./.github/assets/studio.jpg">
-</p>
+### Individuals
+
+Support Plaiceholder and get access to premium features via [plaiceholder.co][plaiceholder:pricing]. Your support will be greatly appreciated!
+
+### Organizations
+
+Support Plaiceholder via your organization. Your logo will show up here **and** on [plaiceholder.co][plaiceholder] with a link to your website.
+
+[See Pricing and T&Cs][plaiceholder:pricing]
 
 ---
 
@@ -346,7 +345,8 @@ A [Plaice](https://en.wikipedia.org/wiki/European_plaice) is a flat fish that la
 
 In it's current state, `@plaiceholder/next` only supports local images (added to `public`). PRs to add support for remote images are welcomed ❤️.
 
+[plaiceholder]: https://plaiceholder.co
+[plaiceholder:pricing]: https://plaiceholder.co/#pricing
 [blurhash]: https://blurha.sh/
 [react-blurhash]: https://github.com/woltapp/react-blurhash
 [next/image]: https://nextjs.org/docs/basic-features/image-optimization
-[demo]: https://next-placeholder.joebell.co.uk
