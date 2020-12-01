@@ -19,7 +19,7 @@
     "@plaiceholder/css": "^1.0.0",
     "@plaiceholder/next": "^1.0.0",
     "@plaiceholder/svg": "^1.0.0",
-    "next": "10.0.0",
+    "next": "10.0.3",
     "react": "16.13.1",
     "react-blurhash": "0.1.3",
     "react-dom": "16.13.1"
