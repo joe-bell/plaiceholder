@@ -39,7 +39,7 @@
     "commitizen": "4.2.1",
     "cz-conventional-changelog": "3.3.0",
     "husky": "4.3.0",
-    "lerna": "3.15.0",
+    "lerna": "3.22.1",
     "lint-staged": "10.4.0",
     "microbundle": "0.12.4",
     "prettier": "2.2.1",
