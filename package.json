@@ -38,7 +38,7 @@
     "@types/sharp": "0.26.1",
     "commitizen": "4.2.2",
     "cz-conventional-changelog": "3.3.0",
-    "husky": "4.3.0",
+    "husky": "4.3.4",
     "lerna": "3.22.1",
     "lint-staged": "10.5.3",
     "microbundle": "0.12.4",
