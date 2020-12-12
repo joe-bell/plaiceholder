@@ -33,19 +33,19 @@
   "devDependencies": {
     "@commitlint/cli": "11.0.0",
     "@commitlint/config-conventional": "11.0.0",
-    "@types/node": "14.14.10",
+    "@types/node": "14.14.12",
     "@types/react": "16.14.2",
     "@types/sharp": "0.26.1",
     "commitizen": "4.2.2",
     "cz-conventional-changelog": "3.3.0",
-    "husky": "4.3.4",
+    "husky": "4.3.5",
     "lerna": "3.22.1",
     "lint-staged": "10.5.3",
     "microbundle": "0.12.4",
     "prettier": "2.2.1",
     "rimraf": "3.0.2",
     "sharp": "0.26.3",
-    "ts-node": "9.1.0",
-    "typescript": "4.1.2"
+    "ts-node": "9.1.1",
+    "typescript": "4.1.3"
   }
 }
