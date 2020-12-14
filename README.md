@@ -336,7 +336,7 @@ We'll then apply the string to an `<img>` element (hidden from screen-readers) a
 ## FAQs
 
 - [Why have you misspelled "placeholder"?](#why-have-you-misspelled-placeholder)
-- [What about remote images?](#what-about-remote-images)
+- [What about remote images?](#what-about-remote-images-in-nextjs)
 
 ### Why have you misspelled "placeholder"?
 
