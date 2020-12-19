@@ -22,7 +22,7 @@ jobs:
         id: nvm
 
       - name: Setup Node.js
-        uses: actions/setup-node@v2.1.2
+        uses: actions/setup-node@v2.1.4
         with:
           node-version: "${{ steps.nvm.outputs.NVMRC }}"
       - run: yarn install --frozen-lockfile --ignore-scripts
