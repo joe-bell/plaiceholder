@@ -14,9 +14,9 @@
 </p>
 
 <p align="center">
-<a href="https://plaiceholder.co/docs"><strong>Try the Studio 🎨</strong></a>
-|
 <a href="https://plaiceholder.co"><strong>Read the Docs 📖</strong></a>
+|
+<a href="https://plaiceholder.co/docs"><strong>Try the Studio 🎨</strong></a>
 </p>
 
 <p align="center">
@@ -36,6 +36,10 @@
 
 ---
 
+## Documentation 📖
+
+Visit **[plaiceholder.co/docs][plaiceholder:docs]** to get started with the open-source free-to-use packages.
+
 ## Studio 🎨
 
 [**Project sponsors**][plaiceholder:pricing] get exclusive access to the [**Studio**][plaiceholder].
@@ -49,10 +53,6 @@ Upload your images and transform to beautifully lightweight placeholders (like m
 Support Plaiceholder via your organization. Your logo will show up here **and** on [plaiceholder.co][plaiceholder] with a link to your website.
 
 [See Pricing and T&Cs][plaiceholder:pricing]
-
-## Documentation 📖
-
-Visit **[plaiceholder.co/docs][plaiceholder:docs]** to get started with the open-source free-to-use packages.
 
 ## Contributors
 
@@ -69,6 +69,8 @@ Visit **[plaiceholder.co/docs][plaiceholder:docs]** to get started with the open
 <!-- prettier-ignore-end -->
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome! ([emoji key](https://github.com/all-contributors/all-contributors#emoji-key))
 
 ---
 

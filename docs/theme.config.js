@@ -1,20 +1,30 @@
+const isProduction = process.env.NODE_ENV === "production";
+const asset = (assetPath) =>
+  isProduction ? assetPath : [process.env.SITE_URL, assetPath].join("");
+
+const title = "Plaiceholder: Docs";
+const description = "Documentation for Plaiceholder.co";
+const repo = "https://github.com/joe-bell/plaiceholder";
+
+const year = new Date().getFullYear();
+
 export default {
-  repository: "https://github.com/joe-bell/plaiceholder",
-  docsRepository: "https://github.com/joe-bell/plaiceholder",
+  repository: repo,
+  docsRepository: repo,
   branch: "main",
   path: "/docs",
-  titleSuffix: " – Plaiceholder Docs",
+  titleSuffix: ` | ${title}`,
   nextLinks: true,
   prevLinks: true,
   search: true,
   customSearch: null,
   darkMode: true,
   footer: true,
-  footerText: "MIT 2021 © Joe Bell.",
+  footerText: `Apache-2.0 ${year} © Joe Bell`,
   footerEditOnGitHubLink: true,
   logo: (
     <>
-      <span className="mr-2 text-xl font-semibold md:inline">plaiceholder</span>
+      <span className="mr-2 text-xl font-500 md:inline">plaiceholder</span>
       <span className="mr-2 md:inline hidden">
         <img
           style={{ width: "2.5rem" }}
@@ -28,8 +38,29 @@ export default {
   head: (
     <>
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <meta name="description" content="Documentation for Plaiceholder.co" />
-      <meta name="og:title" content="Plaiceholder: Docs" />
+      <meta name="description" content={description} />
+      <meta name="og:title" content={title} />
+
+      <link
+        rel="shortcut icon"
+        href={asset("/assets/images/favicon/favicon@192px.png")}
+      />
+      <link
+        rel="apple-touch-icon"
+        href={asset("/assets/images/favicon/favicon@192px.png")}
+      />
+      <meta name="apple-mobile-web-app-title" content={title} />
+
+      <link rel="manifest" href={asset("/manifest.webmanifest")} />
+
+      {isProduction && (
+        <script
+          async
+          defer
+          data-domain={process.env.SITE_DOMAIN}
+          src="https://plausible.io/js/plausible.js"
+        />
+      )}
     </>
   ),
 };
