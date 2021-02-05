@@ -1,0 +1,31 @@
+{
+  "projectName": "plaiceholder",
+  "projectOwner": "joe-bell",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": true,
+  "commitConvention": "angular",
+  "contributors": [
+    {
+      "login": "joe-bell",
+      "name": "Joe Bell",
+      "avatar_url": "https://avatars.githubusercontent.com/u/7349341?v=4",
+      "profile": "https://joebell.co.uk/",
+      "contributions": [
+        "code",
+        "maintenance",
+        "doc",
+        "example",
+        "design",
+        "question",
+        "ideas",
+        "review"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7
+}

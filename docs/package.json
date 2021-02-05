@@ -1,0 +1,28 @@
+{
+  "private": "true",
+  "name": "docs",
+  "version": "1.0.0",
+  "author": "Joe Bell <joe@joebell.co.uk>",
+  "license": "Apache-2.0",
+  "funding": "https://plaiceholder.co",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "clean": "rimraf .next",
+    "vercel": "yarn --cwd ../ prepare && yarn build"
+  },
+  "dependencies": {
+    "@plaiceholder/base64": "^1.0.0",
+    "@plaiceholder/blurhash": "^1.0.0",
+    "@plaiceholder/css": "^1.0.0",
+    "@plaiceholder/next": "^1.0.0",
+    "@plaiceholder/svg": "^1.0.0",
+    "glob": "7.1.6",
+    "next": "10.0.3",
+    "nextra": "0.4.0",
+    "nextra-theme-docs": "1.1.1",
+    "react": "16.13.1",
+    "react-dom": "16.13.1"
+  }
+}
