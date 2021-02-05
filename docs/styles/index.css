@@ -14,3 +14,46 @@
 .font-500 {
   font-weight: 500;
 }
+
+.c-btn {
+  --btn-color: #ffffff;
+  --btn-bg-color: #1a202c;
+  --btn-bg-color-hover: #2d3748;
+  display: inline-flex;
+  appearance: none;
+  align-items: center;
+  justify-content: center;
+  transition-property: color background-color;
+  transition: 250ms ease;
+  user-select: none;
+  position: relative;
+  white-space: nowrap;
+  vertical-align: middle;
+  text-decoration: none;
+  outline: none;
+  width: auto;
+  line-height: 1.2;
+  border-radius: 0.375rem;
+  font-weight: 600;
+  height: 2.5rem;
+  min-width: 2.5rem;
+  font-size: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  background-color: var(--btn-bg-color);
+  color: var(--btn-color);
+}
+
+.c-btn:hover {
+  background-color: var(--btn-bg-color-hover);
+}
+
+.c-btn:focus {
+  z-index: 1;
+  box-shadow: 0 0 0 3px rgb(66 153 225 / 60%);
+}
+
+.dark .c-btn {
+  --btn-bg-color: #2d3748;
+  --btn-bg-color-hover: rgb(26, 32, 44);
+}
