@@ -28,7 +28,7 @@ export default {
       <span className="mr-2 md:inline hidden">
         <img
           style={{ width: "2.5rem" }}
-          src="/docs/assets/images/logo@192px.png"
+          src="/assets/images/logo/logo@192px.png"
           alt=""
         />
       </span>
