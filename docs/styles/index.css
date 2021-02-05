@@ -23,8 +23,8 @@
   appearance: none;
   align-items: center;
   justify-content: center;
-  transition-property: color background-color;
   transition: 250ms ease;
+  transition-property: color, background-color;
   user-select: none;
   position: relative;
   white-space: nowrap;
