@@ -14,9 +14,9 @@
 </p>
 
 <p align="center">
-<a href="https://plaiceholder.co"><strong>Read the Docs 📖</strong></a>
+<a href="https://plaiceholder.co/docs"><strong>Read the Docs 📖</strong></a>
 |
-<a href="https://plaiceholder.co/docs"><strong>Try the Studio 🎨</strong></a>
+<a href="https://plaiceholder.co"><strong>Try the Studio 🎨</strong></a>
 </p>
 
 <p align="center">
