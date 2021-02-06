@@ -19,10 +19,10 @@
     "@plaiceholder/next": "^1.0.0",
     "@plaiceholder/svg": "^1.0.0",
     "glob": "7.1.6",
-    "next": "10.0.3",
+    "next": "10.0.6",
     "nextra": "0.4.0",
     "nextra-theme-docs": "1.1.1",
-    "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "react": "16.14.0",
+    "react-dom": "16.14.0"
   }
 }
