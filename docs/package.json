@@ -22,7 +22,7 @@
     "next": "10.0.6",
     "nextra": "0.4.0",
     "nextra-theme-docs": "1.1.1",
-    "react": "16.14.0",
-    "react-dom": "16.14.0"
+    "react": "17.0.1",
+    "react-dom": "17.0.1"
   }
 }
