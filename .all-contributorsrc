@@ -25,6 +25,16 @@
         "ideas",
         "review"
       ]
+    },
+    {
+      "login": "JamieMason",
+      "name": "Jamie Mason",
+      "avatar_url": "https://avatars.githubusercontent.com/u/320492?v=4",
+      "profile": "http://uk.linkedin.com/in/jamiemasonleeds/",
+      "contributions": [
+        "code",
+        "platform"
+      ]
     }
   ],
   "contributorsPerLine": 7
