@@ -1,6 +1,4 @@
-const isProduction = process.env.NODE_ENV === "production";
-const asset = (assetPath) =>
-  isProduction ? assetPath : [process.env.SITE_URL, assetPath].join("");
+const { asset, isProduction } = require("./utils/nextra");
 
 const title = "Plaiceholder: Docs";
 const description = "Documentation for Plaiceholder.co";
@@ -28,7 +26,7 @@ export default {
       <span className="mr-2 md:inline hidden">
         <img
           style={{ width: "2.5rem" }}
-          src="/assets/images/logo/logo@192px.png"
+          src={asset("/assets/images/logo/logo@192px.png")}
           alt=""
         />
       </span>
