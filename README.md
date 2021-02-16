@@ -32,6 +32,9 @@
   <a href="https://www.npmjs.com/package/@plaiceholder/core">
     <img alt="NPM Downloads" src="https://badgen.net/npm/dm/@plaiceholder/core" />
   </a>
+  <a href="https://twitter.com/joebell_">
+    <img alt="Follow @joebell_ on Twitter" src="https://img.shields.io/twitter/follow/joebell_.svg?style=social&label=Follow" />
+  </a>
 </p>
 
 ---
