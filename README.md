@@ -23,10 +23,10 @@
   <a href="https://www.npmjs.com/package/@plaiceholder/core">
     <img alt="NPM Version" src="https://badgen.net/npm/v/@plaiceholder/core" />
   </a>
-  <a href="https://badgen.net/npm/types/@plaiceholder/core">
+  <a href="https://www.npmjs.com/package/@plaiceholder/core">
     <img alt="Types Included" src="https://badgen.net/npm/types/@plaiceholder/core" />
   </a>
-  <a href="https://badgen.net/github/license/joe-bell/plaiceholder">
+  <a href="https://github.com/joe-bell/plaiceholder/blob/main/LICENSE">
     <img alt="MIT License" src="https://badgen.net/github/license/joe-bell/plaiceholder" />
   </a>
   <a href="https://www.npmjs.com/package/@plaiceholder/core">
