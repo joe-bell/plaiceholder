@@ -36,7 +36,7 @@
     "@plaiceholder/core": "^1.0.0"
   },
   "devDependencies": {
-    "next": "10.0.6"
+    "next": "10.0.7"
   },
   "peerDependencies": {
     "next": ">= 10.0.0"
