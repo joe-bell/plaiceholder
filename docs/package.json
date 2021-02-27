@@ -20,8 +20,8 @@
     "@plaiceholder/svg": "^1.0.0",
     "glob": "7.1.6",
     "next": "10.0.7",
-    "nextra": "0.4.0",
-    "nextra-theme-docs": "1.1.1",
+    "nextra": "0.4.1",
+    "nextra-theme-docs": "1.1.2",
     "react": "17.0.1",
     "react-dom": "17.0.1"
   }
