@@ -21,7 +21,7 @@
     "glob": "7.1.6",
     "next": "10.0.8",
     "nextra": "0.4.3",
-    "nextra-theme-docs": "1.1.4",
+    "nextra-theme-docs": "1.1.5",
     "react": "17.0.1",
     "react-dom": "17.0.1"
   }
