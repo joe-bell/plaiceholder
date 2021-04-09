@@ -7,11 +7,11 @@ import { getBase64 } from "@plaiceholder/base64";
 import { getPixelsCSS } from "@plaiceholder/css";
 import { getPixelsSVG } from "@plaiceholder/svg";
 import { getBlurhash } from "@plaiceholder/blurhash";
+import sizeOf from "image-size";
 import { BlurhashCanvas } from "react-blurhash";
 import { Layout } from "@/components/layout";
 import { cx } from "@/styles";
 import { config } from "@/data/config";
-import Link from "next/link";
 import { getAllPublicImagePaths } from "@/lib/images";
 
 export const getStaticPaths: GetStaticPaths = async () => ({
@@ -25,6 +25,9 @@ export const getStaticProps = async ({ params }) => {
   const images = await Promise.all(
     imagePaths.map(async (src) => {
       const image = await getImage(src);
+
+      const { width, height } = sizeOf(image);
+
       const base64 = await getBase64(image);
       const blurhash = await getBlurhash(image);
       const pixelsCSS = await getPixelsCSS(image);
@@ -32,8 +35,10 @@ export const getStaticProps = async ({ params }) => {
 
       return {
         src,
-        alt: "",
-        title: "",
+        alt: "Paint Splashes",
+        title: "Photo from Unsplash",
+        width,
+        height,
         placeholder: {
           base64,
           blurhash,
@@ -65,40 +70,32 @@ const Example: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
 
   return (
     <Layout>
-      <Link href="/" replace>
-        <a
-          className={cx(
-            "rounded-md",
-            "border",
-            "border-gray-300",
-            "px-4",
-            "py-2",
-            "bg-white",
-            "text-sm",
-            "leading-5",
-            "font-medium",
-            "text-gray-700",
-            "hover:bg-gray-100",
-            "focus:outline-none",
-            "focus:shadow-outline-blue",
-            "active:bg-gray-50",
-            "active:text-gray-800",
-            "transition",
-            "ease-in-out",
-            "duration-150"
-          )}
-        >
-          ⃪ Back to Examples
-        </a>
-      </Link>
+      <h1 className={cx("font-bold", "text-3xl", "mt-8")}>{title}</h1>
 
-      <h1 className={cx("font-bold", "text-2xl", "mt-4")}>{title}</h1>
+      <h2 className={cx("font-light", "text-gray-600", "text-2xl", "mt-2")}>
+        Multiple Images
+      </h2>
 
-      <div className={cx("grid", "grid-cols-3", "h-screen", "gap-4", "mt-4")}>
-        {images.map((image) => (
+      <div
+        className={cx(
+          "grid",
+          "grid-cols-1",
+          "sm:grid-cols-2",
+          "md:grid-cols-3",
+          "gap-4",
+          "mt-8"
+        )}
+      >
+        {images.map(({ placeholder, ...image }) => (
           <div
             key={image.src}
-            className={cx("relative", "block", "overflow-hidden")}
+            className={cx(
+              "relative",
+              "block",
+              "overflow-hidden",
+              // See src/styles/index.css
+              "next-image"
+            )}
           >
             {
               {
@@ -106,7 +103,7 @@ const Example: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
                   <img
                     aria-hidden="true"
                     alt=""
-                    src={image.placeholder.base64}
+                    src={placeholder.base64}
                     className={cx(
                       "absolute",
                       "inset-0",
@@ -120,9 +117,9 @@ const Example: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
                 ),
                 "with-blurhash": (
                   <BlurhashCanvas
-                    hash={image.placeholder.blurhash.hash}
-                    width={image.placeholder.blurhash.height}
-                    height={image.placeholder.blurhash.width}
+                    hash={placeholder.blurhash.hash}
+                    width={placeholder.blurhash.height}
+                    height={placeholder.blurhash.width}
                     punch={1}
                     className={cx("absolute", "inset-0", "w-full", "h-full")}
                   />
@@ -132,22 +129,22 @@ const Example: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
                     className={cx("absolute", "inset-0", "w-full", "h-full")}
                     style={{
                       ...placeholderStyle,
-                      ...image.placeholder.pixelsCSS,
+                      ...placeholder.pixelsCSS,
                     }}
                   />
                 ),
                 "with-pixels-svg": React.createElement(
-                  image.placeholder.pixelsSVG[0],
+                  placeholder.pixelsSVG[0],
                   {
-                    ...image.placeholder.pixelsSVG[1],
+                    ...placeholder.pixelsSVG[1],
                     style: {
                       ...placeholderStyle,
-                      ...image.placeholder.pixelsSVG[1].style,
-                      transform: `${placeholderStyle.transform} ${image.placeholder.pixelsSVG[1].style.transform}`,
+                      ...placeholder.pixelsSVG[1].style,
+                      transform: `${placeholderStyle.transform} ${placeholder.pixelsSVG[1].style.transform}`,
                       filter: placeholderStyle.filter,
                     },
                   },
-                  image.placeholder.pixelsSVG[2].map((child) =>
+                  placeholder.pixelsSVG[2].map((child) =>
                     React.createElement(child[0], {
                       key: [child[1].x, child[1].y].join(","),
                       ...child[1],
@@ -157,12 +154,7 @@ const Example: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
               }[slug]
             }
 
-            <Image
-              alt={image.alt}
-              title={image.title}
-              src={image.src}
-              layout="fill"
-            />
+            <Image {...image} />
           </div>
         ))}
       </div>
