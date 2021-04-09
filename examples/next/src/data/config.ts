@@ -21,4 +21,4 @@ export const config = {
       slug: "with-blurhash",
     },
   ],
-};
+} as const;
