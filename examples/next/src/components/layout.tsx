@@ -1,4 +1,5 @@
 import * as React from "react";
+import NextLink from "next/link";
 import { IconGitHub, IconTwitter } from "@/components/icons";
 import { cx } from "@/styles";
 import { config } from "@/data/config";
@@ -15,10 +16,27 @@ export const Layout: React.FC = ({ children }) => (
           "c-container",
           "w-full",
           "flex",
-          "justify-end",
+          "justify-between",
           "items-center"
         )}
       >
+        <NextLink href="/">
+          <a className={cx("inline-flex", "items-center", "hover:opacity-75")}>
+            <span className="mr-2 text-xl font-medium md:inline">
+              plaiceholder
+            </span>
+            <span className="mr-2 md:inline hidden">
+              <img
+                style={{ width: "2.5rem" }}
+                src={
+                  "https://plaiceholder.co/assets/images/logo/logo@192px.png"
+                }
+                alt=""
+              />
+            </span>
+            <span className="text-gray-600 text-xl md:inline">Next.js</span>
+          </a>
+        </NextLink>
         <ul className={cx("flex", "space-x-4")}>
           <li>
             <a href={config.social.github} className={cx("c-icon-link")}>
