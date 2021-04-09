@@ -1,7 +1,7 @@
 import { createCx } from "@joebell/cx";
 
 const shortcuts = {
-  "c-container": ["max-w-4xl", "mx-auto", "px-4"],
+  "c-container": ["max-w-5xl", "mx-auto", "px-4"],
   "c-icon": ["w-6", "h-6"],
   "c-icon-link": [
     "text-gray-600",
