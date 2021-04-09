@@ -12,6 +12,11 @@ A tiny helper function to access `public` files in server-side functions or `get
 npm i @plaiceholder/next
 ```
 
+<Callout emoji="⚠️">
+  When using any `@plaiceholder` library in Next.js, you **must** add
+  `require(sharp)` to the top of your `next.config.js`.
+</Callout>
+
 ### Example
 
 In this example, we're going to use the `@plaiceholder/base64` package to create a Base64 string for a single image inside a Next.js [Page](https://nextjs.org/docs/basic-features/pages).
