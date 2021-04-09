@@ -1,4 +1,6 @@
 export const config = {
+  title: "Plaiceholder × Next.js",
+  domain: "https://plaiceholder.co",
   social: {
     github: "https://github.com/joe-bell/plaiceholder/tree/main/examples/next",
     twitter: "https://twitter.com/joebell_",

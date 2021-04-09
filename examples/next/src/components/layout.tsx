@@ -28,9 +28,9 @@ export const Layout: React.FC = ({ children }) => (
             <span className="mr-2 md:inline hidden">
               <img
                 style={{ width: "2.5rem" }}
-                src={
-                  "https://plaiceholder.co/assets/images/logo/logo@192px.png"
-                }
+                src={[config.domain, "assets/images/logo/logo@192px.png"].join(
+                  "/"
+                )}
                 alt=""
               />
             </span>
