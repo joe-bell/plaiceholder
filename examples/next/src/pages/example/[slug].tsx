@@ -1,189 +1,173 @@
 import * as React from "react";
-import { GetStaticProps, GetStaticPaths } from "next";
+import { GetStaticPaths, InferGetStaticPropsType } from "next";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { getImage } from "@plaiceholder/next";
-import { getBase64, Base64 } from "@plaiceholder/base64";
-import { getPixelsCSS, PixelsCSS } from "@plaiceholder/css";
-import { getPixelsSVG, PixelsSVG } from "@plaiceholder/svg";
-import { getBlurhash, Blurhash } from "@plaiceholder/blurhash";
+import { getBase64 } from "@plaiceholder/base64";
+import { getPixelsCSS } from "@plaiceholder/css";
+import { getPixelsSVG } from "@plaiceholder/svg";
+import { getBlurhash } from "@plaiceholder/blurhash";
 import { BlurhashCanvas } from "react-blurhash";
 import { Layout } from "@/components/layout";
 import { cx } from "@/styles";
 import { config } from "@/data/config";
 import Link from "next/link";
-
-type ExamplePageProps = {
-  title: string;
-  img: Record<"alt" | "href" | "title" | "src", string>;
-  placeholderBase64?: Base64;
-  placeholderBlurhash?: Blurhash;
-  placeholderPixelsCSS?: PixelsCSS;
-  placeholderPixelsSVG?: PixelsSVG;
-  placeholder: {
-    style: { [key: string]: string };
-  };
-};
+import { getAllPublicImagePaths } from "@/lib/images";
 
 export const getStaticPaths: GetStaticPaths = async () => ({
   paths: config.examples.map(({ slug }) => ({ params: { slug } })),
   fallback: false,
 });
 
-export const getStaticProps: GetStaticProps<ExamplePageProps> = async ({
-  params,
-}) => {
-  const img = {
-    src: "/keila-joa@578.jpg",
-    alt: "Keila Joa, Estonia.",
-    href: config.social.twitter,
-    title: "© Joe Bell",
-  };
+export const getStaticProps = async ({ params }) => {
+  const imagePaths = getAllPublicImagePaths();
 
-  const imgFile = await getImage(img.src);
+  const images = await Promise.all(
+    imagePaths.map(async (src) => {
+      const image = await getImage(src);
+      const base64 = await getBase64(image);
+      const blurhash = await getBlurhash(image);
+      const pixelsCSS = await getPixelsCSS(image);
+      const pixelsSVG = await getPixelsSVG(image);
 
-  const placeholderBase64 = await getBase64(imgFile);
-  const placeholderBlurhash = await getBlurhash(imgFile);
-  const placeholderPixelsCSS = await getPixelsCSS(imgFile);
-  const placeholderPixelsSVG = await getPixelsSVG(imgFile);
+      return {
+        src,
+        alt: "",
+        title: "",
+        placeholder: {
+          base64,
+          blurhash,
+          pixelsCSS,
+          pixelsSVG,
+        },
+      };
+    })
+  ).then((values) => values);
 
   return {
     props: {
-      img,
-      placeholder: {
-        style: { filter: "blur(24px)", transform: "scale(1.2)" },
-      },
-      ...config.examples.reduce(
-        (acc, cv) =>
-          Object.assign({}, acc, {
-            [cv.slug]: {
-              ...cv,
-              ...{
-                "with-pixels-css": {
-                  placeholderPixelsCSS,
-                },
-                "with-pixels-svg": {
-                  placeholderPixelsSVG,
-                },
-                "with-base64": {
-                  placeholderBase64,
-                },
-                "with-blurhash": {
-                  placeholderBlurhash,
-                },
-              }[cv.slug],
-            },
-          }),
-        {}
-      )[typeof params.slug === "string" && params.slug],
+      images,
+      placeholderStyle: { filter: "blur(24px)", transform: "scale(1.2)" },
+      title: config.examples.find((example) => example.slug === params.slug)
+        .title,
     },
   };
 };
 
-const Example: React.FC<ExamplePageProps> = ({
-  img,
-  placeholder,
-  placeholderBase64,
-  placeholderBlurhash,
-  placeholderPixelsCSS,
-  placeholderPixelsSVG,
+const Example: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
   title,
-}) => (
-  <Layout>
-    <Link href="/" replace>
-      <a
-        className={cx(
-          "rounded-md",
-          "border",
-          "border-gray-300",
-          "px-4",
-          "py-2",
-          "bg-white",
-          "text-sm",
-          "leading-5",
-          "font-medium",
-          "text-gray-700",
-          "hover:bg-gray-100",
-          "focus:outline-none",
-          "focus:shadow-outline-blue",
-          "active:bg-gray-50",
-          "active:text-gray-800",
-          "transition",
-          "ease-in-out",
-          "duration-150"
-        )}
-      >
-        ⃪ Back to Examples
-      </a>
-    </Link>
+  images,
+  placeholderStyle,
+}) => {
+  const router = useRouter();
+  const slug = (router.query
+    .slug as unknown) as typeof config.examples[number]["slug"];
 
-    <h1 className={cx("font-bold", "text-2xl", "mt-4")}>{title}</h1>
-
-    <a
-      className={cx("relative", "block", "overflow-hidden", "mt-4", "max-w-lg")}
-      href={img.href}
-    >
-      {placeholderBase64 && (
-        <img
-          aria-hidden="true"
-          alt=""
-          src={placeholderBase64}
+  return (
+    <Layout>
+      <Link href="/" replace>
+        <a
           className={cx(
-            "absolute",
-            "inset-0",
-            "w-full",
-            "h-full",
-            "object-cover",
-            "object-center"
+            "rounded-md",
+            "border",
+            "border-gray-300",
+            "px-4",
+            "py-2",
+            "bg-white",
+            "text-sm",
+            "leading-5",
+            "font-medium",
+            "text-gray-700",
+            "hover:bg-gray-100",
+            "focus:outline-none",
+            "focus:shadow-outline-blue",
+            "active:bg-gray-50",
+            "active:text-gray-800",
+            "transition",
+            "ease-in-out",
+            "duration-150"
           )}
-          style={placeholder.style}
-        />
-      )}
-      {placeholderBlurhash && (
-        <BlurhashCanvas
-          hash={placeholderBlurhash.hash}
-          width={placeholderBlurhash.height}
-          height={placeholderBlurhash.width}
-          punch={1}
-          className={cx("absolute", "inset-0", "w-full", "h-full")}
-        />
-      )}
-      {placeholderPixelsCSS && (
-        <div
-          className={cx("absolute", "inset-0", "w-full", "h-full")}
-          style={{
-            ...placeholder.style,
-            ...placeholderPixelsCSS,
-          }}
-        />
-      )}
-      {placeholderPixelsSVG &&
-        React.createElement(
-          placeholderPixelsSVG[0],
-          {
-            ...placeholderPixelsSVG[1],
-            style: {
-              ...placeholder.style,
-              ...placeholderPixelsSVG[1].style,
-              transform: `scale(1.2) ${placeholderPixelsSVG[1].style.transform}`,
-              filter: "blur(24px)",
-            },
-          },
-          placeholderPixelsSVG[2].map((child) =>
-            React.createElement(child[0], {
-              key: [child[1].x, child[1].y].join(","),
-              ...child[1],
-            })
-          )
-        )}
-      <Image
-        alt={img.alt}
-        title={img.title}
-        src={img.src}
-        width={4032}
-        height={3024}
-      />
-    </a>
-  </Layout>
-);
+        >
+          ⃪ Back to Examples
+        </a>
+      </Link>
+
+      <h1 className={cx("font-bold", "text-2xl", "mt-4")}>{title}</h1>
+
+      <div className={cx("grid", "grid-cols-3", "h-screen", "gap-4", "mt-4")}>
+        {images.map((image) => (
+          <div
+            key={image.src}
+            className={cx("relative", "block", "overflow-hidden")}
+          >
+            {
+              {
+                "with-base64": (
+                  <img
+                    aria-hidden="true"
+                    alt=""
+                    src={image.placeholder.base64}
+                    className={cx(
+                      "absolute",
+                      "inset-0",
+                      "w-full",
+                      "h-full",
+                      "object-cover",
+                      "object-center"
+                    )}
+                    style={placeholderStyle}
+                  />
+                ),
+                "with-blurhash": (
+                  <BlurhashCanvas
+                    hash={image.placeholder.blurhash.hash}
+                    width={image.placeholder.blurhash.height}
+                    height={image.placeholder.blurhash.width}
+                    punch={1}
+                    className={cx("absolute", "inset-0", "w-full", "h-full")}
+                  />
+                ),
+                "with-pixels-css": (
+                  <div
+                    className={cx("absolute", "inset-0", "w-full", "h-full")}
+                    style={{
+                      ...placeholderStyle,
+                      ...image.placeholder.pixelsCSS,
+                    }}
+                  />
+                ),
+                "with-pixels-svg": React.createElement(
+                  image.placeholder.pixelsSVG[0],
+                  {
+                    ...image.placeholder.pixelsSVG[1],
+                    style: {
+                      ...placeholderStyle,
+                      ...image.placeholder.pixelsSVG[1].style,
+                      transform: `${placeholderStyle.transform} ${image.placeholder.pixelsSVG[1].style.transform}`,
+                      filter: placeholderStyle.filter,
+                    },
+                  },
+                  image.placeholder.pixelsSVG[2].map((child) =>
+                    React.createElement(child[0], {
+                      key: [child[1].x, child[1].y].join(","),
+                      ...child[1],
+                    })
+                  )
+                ),
+              }[slug]
+            }
+
+            <Image
+              alt={image.alt}
+              title={image.title}
+              src={image.src}
+              layout="fill"
+            />
+          </div>
+        ))}
+      </div>
+    </Layout>
+  );
+};
 
 export default Example;
