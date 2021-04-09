@@ -1,6 +1,6 @@
 export const config = {
   social: {
-    github: "https://github.com/joe-bell/plaiceholder",
+    github: "https://github.com/joe-bell/plaiceholder/tree/main/examples/next",
     twitter: "https://twitter.com/joebell_",
   },
   examples: [
