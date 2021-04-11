@@ -34,7 +34,7 @@ export const Layout: React.FC = ({ children }) => (
                 alt=""
               />
             </span>
-            <span className="text-gray-600 text-xl md:inline">Next.js</span>
+            <span className="text-gray-600 text-xl md:inline">Examples</span>
           </a>
         </NextLink>
         <ul className={cx("flex", "space-x-4")}>

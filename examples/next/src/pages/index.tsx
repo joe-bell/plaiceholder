@@ -34,9 +34,9 @@ const Index: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
 }) => {
   return (
     <Layout>
-      <h1 className={cx("font-semibold", "text-3xl", "mt-8")}>Examples</h1>
+      {/* <h1 className={cx("font-semibold", "text-3xl", "mt-8")}>Next.js</h1> */}
 
-      <ul
+      {/* <ul
         className={cx(
           "mt-6",
           "grid",
@@ -100,7 +100,30 @@ const Index: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
             </Link>
           </li>
         ))}
-      </ul>
+      </ul> */}
+
+      <div className={cx("grid", "sm:grid-cols-2", "gap-4")}>
+        <img alt="Keila Joa, Estonia" src="/keila-joa@578.jpg" />
+
+        <div className={cx("relative", "overflow-hidden")}>
+          <div
+            className={cx(
+              "absolute",
+              "inset-0",
+              "overflow-hidden",
+              // Create a placeholder via plaiceholder
+              // "plaiceholder-[/keila-joa@578.jpg]",
+              // Blur + Scale
+              "filter",
+              "blur-xl",
+              "transform",
+              "scale-150"
+            )}
+          />
+
+          <img alt="Keila Joa, Estonia" src="/keila-joa@578.jpg" />
+        </div>
+      </div>
     </Layout>
   );
 };
