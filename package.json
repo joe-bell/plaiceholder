@@ -12,7 +12,8 @@
   "workspaces": [
     "docs",
     "examples/*",
-    "packages/*"
+    "packages/*",
+    "plugins/*"
   ],
   "config": {
     "commitizen": {
