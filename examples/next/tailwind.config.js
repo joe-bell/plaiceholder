@@ -1,3 +1,5 @@
+const plaiceholder = require("@plaiceholder/tailwindcss");
+
 module.exports = {
   mode: "jit",
   purge: ["./src/{components,pages,styles}/**/*.{js,ts,jsx,tsx}"],
@@ -5,4 +7,5 @@ module.exports = {
     extend: {},
   },
   variants: {},
+  plugins: [plaiceholder],
 };
