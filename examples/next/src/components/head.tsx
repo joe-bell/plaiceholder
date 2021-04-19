@@ -1,6 +1,6 @@
 import * as React from "react";
 import NextHead from "next/head";
-import { config } from "@/data/config";
+import { config } from "@/config";
 
 export const Head: React.FC = () => (
   <NextHead>

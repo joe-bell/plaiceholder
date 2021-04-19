@@ -1,12 +1,12 @@
 import * as React from "react";
 import { InferGetStaticPropsType } from "next";
 import Link from "next/link";
-import { cx } from "@/styles";
-import { Layout } from "@/components/layout";
-import { config } from "@/data/config";
-import { getAllPublicImagePaths } from "@/lib/images";
 import { getImage } from "@plaiceholder/next";
 import { getPixelsCSS } from "@plaiceholder/css";
+import { cx } from "@/styles";
+import { Layout } from "@/components/layout";
+import { config } from "@/config";
+import { getAllPublicImagePaths } from "@/lib/images";
 
 export const getStaticProps = async () => {
   const imagePaths = getAllPublicImagePaths();
@@ -33,97 +33,116 @@ const Index: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
   examples,
 }) => {
   return (
-    <Layout>
-      {/* <h1 className={cx("font-semibold", "text-3xl", "mt-8")}>Next.js</h1> */}
-
-      {/* <ul
+    <Layout variant="home" title="Next.js">
+      <ul
         className={cx(
-          "mt-6",
+          "mt-10",
           "grid",
           "sm:grid-cols-2",
-          "md:grid-cols-4",
+          "md:grid-cols-3",
           "gap-4",
           "place-content-stretch",
           "text-center"
         )}
       >
-        {examples.map((example, i) => (
-          <li key={example.slug}>
-            <Link href={`multiple/${example.slug}`}>
-              <a
+        {Object.keys(examples.pages).map((example, i) => (
+          <li
+            key={example}
+            className={cx(
+              "group",
+              "rounded-md",
+              "border",
+              "border-gray-200",
+              "shadow-sm",
+              "grid",
+              "flex-col",
+              "rounded-lg",
+              "relative",
+              "overflow-hidden",
+              "w-full",
+              "h-full"
+            )}
+          >
+            <div
+              className={cx(
+                "absolute",
+                "inset-0",
+                "w-full",
+                "h-full",
+                "filter",
+                "blur-xl",
+                "transform",
+                "scale-150"
+              )}
+              style={plaiceholders[i]}
+            />
+            <p
+              className={cx(
+                "relative",
+                "flex",
+                "aspect-w-16",
+                "aspect-h-9",
+                "items-end"
+              )}
+            >
+              <span
                 className={cx(
-                  "group",
-                  "rounded-md",
-                  "shadow-sm",
-                  "inline-flex",
-                  "items-center",
-                  "justify-center",
-                  "rounded-md",
-                  "relative",
-                  "overflow-hidden",
-                  "px-8",
-                  "py-10",
-                  "w-full",
-                  "h-full",
-                  "bg-transparent",
-                  "transition-colors",
-                  "hover:bg-gray-300"
+                  "absolute",
+                  "bottom-0",
+                  "px-4",
+                  "text-white",
+                  "font-bold",
+                  "text-2xl",
+                  "top-auto",
+                  "h-[unset]",
+                  "flex-1",
+                  "text-left"
                 )}
               >
-                <span
-                  className={cx(
-                    "absolute",
-                    "inset-0",
-                    "w-full",
-                    "h-full",
-                    "filter",
-                    "blur-md",
-                    "transform",
-                    "scale-150",
-                    "mix-blend-multiply"
-                  )}
-                  style={plaiceholders[i]}
-                />
-                <span
-                  className={cx(
-                    "relative",
-                    "overflow-hidden",
-                    "no-underline",
-                    "text-white",
-                    "font-bold",
-                    "text-xl"
-                  )}
-                >
-                  {example.title}
-                </span>
-              </a>
-            </Link>
+                {examples.pages[example].title}
+              </span>
+            </p>
+
+            <ul className={cx("grid", "grid-cols-2", "gap-4", "p-4", "z-10")}>
+              {Object.keys(examples.variants).map((variant) => {
+                const href = `/${example}/${variant}`;
+                return (
+                  <li key={href}>
+                    <Link href={href}>
+                      <a
+                        className={cx(
+                          "block",
+                          "appearance-none",
+                          "px-4",
+                          "py-2",
+                          "text-gray-700",
+                          "font-medium",
+                          "text-sm",
+                          "bg-white",
+                          "bg-opacity-80",
+                          "hover:bg-opacity-100",
+                          "focus:bg-opacity-100",
+                          "hover:text-gray-800",
+                          "focus:text-gray-800",
+                          "rounded-md",
+                          "capitalize",
+                          "shadow-sm",
+                          "transition-colors",
+                          "duration-200",
+                          "outline-none",
+                          "focus:ring"
+                        )}
+                      >
+                        {examples.variants[variant].title}
+                      </a>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
           </li>
         ))}
-      </ul> */}
-
-      <div className={cx("grid", "sm:grid-cols-2", "gap-4")}>
-        <img alt="Keila Joa, Estonia" src="/keila-joa@578.jpg" />
-
-        <div className={cx("relative", "overflow-hidden")}>
-          <div
-            className={cx(
-              "absolute",
-              "inset-0",
-              "overflow-hidden",
-              // Create a placeholder via plaiceholder
-              // "plaiceholder-[/keila-joa@578.jpg]",
-              // Blur + Scale
-              "filter",
-              "blur-xl",
-              "transform",
-              "scale-150"
-            )}
-          />
-
-          <img alt="Keila Joa, Estonia" src="/keila-joa@578.jpg" />
-        </div>
-      </div>
+      </ul>
     </Layout>
   );
 };
