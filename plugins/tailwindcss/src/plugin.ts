@@ -18,19 +18,34 @@ export default plugin(({ config, matchUtilities }) => {
     throw Error("@plaiceholder/tailwindcss only supports JIT mode.");
   }
 
-  console.warn("be careful");
+  console.log(`
+-----------------------------
+
+@plaiceholder/tailwindcss
+
+⚠️ WARNING
+Just like JIT, this plugin is in preview.
+Any changes are not covered by semver. Use with caution.
+
+🙏 SPONSORS
+Enjoying Plaiceholder?
+Support further development at https://plaiceholder.co
+
+-----------------------------`);
 
   matchUtilities({
-    plaiceholder: (modifier, b) => {
+    plaiceholder: (modifier) => {
       const valid = modifier.match(/\[([^()]+)\]/g);
 
       if (Array.isArray(valid) && valid.length === 1) {
         const url = extractUrl(modifier);
+        const className = `.${cssEscape(`plaiceholder-${modifier}`)}`;
 
-        console.log(url);
+        // TEMPORARY
+        // console.log(className);
 
         const style = {
-          [`.${cssEscape(`plaiceholder-${modifier}`)}`]: getPlaiceholder(url),
+          [className]: getPlaiceholder(url),
         };
 
         return style;
