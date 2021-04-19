@@ -2,10 +2,19 @@ import * as React from "react";
 import NextLink from "next/link";
 import { IconGitHub, IconTwitter } from "@/components/icons";
 import { cx } from "@/styles";
-import { config } from "@/data/config";
+import { config } from "@/config";
 import { Head } from "./head";
 
-export const Layout: React.FC = ({ children }) => (
+export type TLayoutProps =
+  | {
+      variant: "example";
+      title: string;
+      heading: string;
+    }
+  | { variant: "home"; title: string; heading?: null }
+  | { variant?: null; title?: null; heading?: null };
+
+export const Layout: React.FC<TLayoutProps> = ({ children, ...props }) => (
   <React.Fragment>
     <Head />
     <header
@@ -54,7 +63,46 @@ export const Layout: React.FC = ({ children }) => (
       </div>
     </header>
     <main className={cx("c-container", "mt-6", "pb-20", "text-gray-800")}>
-      {children}
+      {props.variant
+        ? {
+            home: (
+              <article className={cx("max-w-sm", "sm:max-w-none", "mx-auto")}>
+                <h1 className={cx("font-bold", "text-4xl", "mt-10")}>
+                  {props.title}
+                </h1>
+                <p
+                  className={cx(
+                    "font-light",
+                    "text-gray-600",
+                    "text-2xl",
+                    "mt-2"
+                  )}
+                >
+                  Choose-your-own adventure
+                </p>
+                {children}
+              </article>
+            ),
+            example: (
+              <article>
+                <h1 className={cx("font-bold", "text-3xl", "mt-10")}>
+                  {props.title}
+                </h1>
+                <h2
+                  className={cx(
+                    "font-light",
+                    "text-gray-600",
+                    "text-2xl",
+                    "mt-2"
+                  )}
+                >
+                  {props.heading}
+                </h2>
+                <div>{children}</div>
+              </article>
+            ),
+          }[props.variant]
+        : children}
     </main>
   </React.Fragment>
 );
