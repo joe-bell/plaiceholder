@@ -10,6 +10,13 @@ export interface GetImage {
 }
 
 export const getImage: GetImage = async (imagePath) => {
+  console.log(`
+⚠️ DEPRECATION WARNING
+\`getImage\` from @plaiceholder/next will be removed at a later date.
+Please consider switching to:
+\`getImage\` from @plaiceholder/get instead.
+`);
+
   if (imagePath.startsWith("http")) {
     throw new Error("Sorry, remote images aren't supported just yet");
   }
