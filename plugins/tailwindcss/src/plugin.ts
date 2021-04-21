@@ -1,6 +1,7 @@
 import plugin from "tailwindcss/plugin";
 import makeSynchronous from "make-synchronous";
 import cssEscape from "css.escape";
+import { classNamePrefix } from "./config";
 
 const getPlaiceholder = makeSynchronous(async (imageUrl) => {
   const { getImage } = require("@plaiceholder/next");
@@ -39,10 +40,7 @@ Support further development at https://plaiceholder.co
 
       if (Array.isArray(valid) && valid.length === 1) {
         const url = extractUrl(modifier);
-        const className = `.${cssEscape(`plaiceholder-${modifier}`)}`;
-
-        // TEMPORARY
-        // console.log(className);
+        const className = `.${cssEscape([classNamePrefix, modifier].join(""))}`;
 
         const style = {
           [className]: getPlaiceholder(url),
