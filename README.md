@@ -1,3 +1,13 @@
+<p align="center">
+  <strong>
+    <a href="ACQUISITION.md">
+      Open to Acquisition 🟢
+    </a>
+  </strong>
+</p>
+
+---
+
 <h1 align="center">
   plaiceholder
 </h1>
