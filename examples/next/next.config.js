@@ -1,4 +1,3 @@
-// See https://plaiceholder.co/docs/plugins#nextjs
-require("sharp");
+const { withPlaiceholder } = require("@plaiceholder/next");
 
-module.exports = {};
+module.exports = withPlaiceholder({});
