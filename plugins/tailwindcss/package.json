@@ -28,7 +28,7 @@
   ],
   "scripts": {
     "build": "microbundle src/*.ts --no-compress --tsconfig tsconfig.json --external sharp",
-    "dev": "yarn build -- watch",
+    "dev": "yarn build -- --watch",
     "clean": "rimraf {dist,.rts2*}"
   },
   "repository": {
@@ -52,7 +52,7 @@
     "make-synchronous": "0.1.1"
   },
   "devDependencies": {
-    "tailwindcss": "2.1.1"
+    "tailwindcss": "2.1.2"
   },
   "peerDependencies": {
     "tailwindcss": ">= 2.1.1"

@@ -60,7 +60,7 @@ export const Layout: React.FC<TLayoutProps> = ({ children, ...props }) => (
               label: "Contact the author on Twitter",
             },
           ].map((item) => (
-            <li>
+            <li key={item.href}>
               <a
                 href={item.href}
                 className={cx(
