@@ -1,3 +1,3 @@
-require("sharp");
+const { withPlaiceholder } = require("@plaiceholder/next");
 
-module.exports = {};
+module.exports = withPlaiceholder({});
