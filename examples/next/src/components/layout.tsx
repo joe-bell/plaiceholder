@@ -14,6 +14,8 @@ export type TLayoutProps =
   | { variant: "home"; title: string; heading?: null }
   | { variant?: null; title?: null; heading?: null };
 
+const containerClassNames = ["max-w-5xl", "mx-auto", "px-4", "w-full"];
+
 export const Layout: React.FC<TLayoutProps> = ({ children, ...props }) => (
   <React.Fragment>
     <Head />
@@ -22,8 +24,7 @@ export const Layout: React.FC<TLayoutProps> = ({ children, ...props }) => (
     >
       <div
         className={cx(
-          "c-container",
-          "w-full",
+          ...containerClassNames,
           "flex",
           "justify-between",
           "items-center"
@@ -47,22 +48,39 @@ export const Layout: React.FC<TLayoutProps> = ({ children, ...props }) => (
           </a>
         </NextLink>
         <ul className={cx("flex", "space-x-4")}>
-          <li>
-            <a href={config.social.github} className={cx("c-icon-link")}>
-              <span className="sr-only">View the GitHub repo</span>
-              <IconGitHub />
-            </a>
-          </li>
-          <li>
-            <a href={config.social.twitter} className={cx("c-icon-link")}>
-              <span className="sr-only">Contact the author on Twitter</span>
-              <IconTwitter />
-            </a>
-          </li>
+          {[
+            {
+              icon: <IconGitHub />,
+              href: config.social.github,
+              label: "View the GitHub repo",
+            },
+            {
+              icon: <IconTwitter />,
+              href: config.social.twitter,
+              label: "Contact the author on Twitter",
+            },
+          ].map((item) => (
+            <li>
+              <a
+                href={item.href}
+                className={cx(
+                  "text-gray-600",
+                  "hover:text-gray-900",
+                  "transition",
+                  "duration-200"
+                )}
+              >
+                <span className="sr-only">{item.label}</span>
+                {item.icon}
+              </a>
+            </li>
+          ))}
         </ul>
       </div>
     </header>
-    <main className={cx("c-container", "mt-6", "pb-20", "text-gray-800")}>
+    <main
+      className={cx(...containerClassNames, "mt-6", "pb-20", "text-gray-800")}
+    >
       {props.variant
         ? {
             home: (

@@ -13,8 +13,8 @@ export const getStaticProps = async () => {
 
   const plaiceholders = await Promise.all(
     imagePaths.map(async (src) => {
-      const image = await getImage(src);
-      const pixelsCSS = await getPixelsCSS(image);
+      const { buffer } = await getImage(src);
+      const pixelsCSS = await getPixelsCSS(buffer);
 
       return pixelsCSS;
     })

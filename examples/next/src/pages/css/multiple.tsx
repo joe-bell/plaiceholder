@@ -1,7 +1,7 @@
 import * as React from "react";
 import { InferGetStaticPropsType } from "next";
 import Image from "next/image";
-import { getImage } from "@plaiceholder/get";
+import { getImage } from "@plaiceholder/next";
 import { getPixelsCSS } from "@plaiceholder/css";
 import { config } from "@/config";
 import { getAllPublicImagePaths } from "@/lib/images";
