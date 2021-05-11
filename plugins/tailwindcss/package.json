@@ -11,6 +11,17 @@
     "./plugin": "./dist/plugin.js",
     "./utils": "./dist/utils.js"
   },
+  "typings": "./dist/plugin.d.ts",
+  "typesVersions": {
+    "*": {
+      "plugin": [
+        "./dist/plugin.d.ts"
+      ],
+      "utils": [
+        "./dist/utils.d.ts"
+      ]
+    }
+  },
   "files": [
     "dist",
     "README.md"
