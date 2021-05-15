@@ -33,7 +33,7 @@
   "devDependencies": {
     "@commitlint/cli": "12.1.4",
     "@commitlint/config-conventional": "12.1.4",
-    "@types/node": "14.14.44",
+    "@types/node": "14.14.45",
     "@types/react": "17.0.5",
     "@types/sharp": "0.28.0",
     "commitizen": "4.2.4",
