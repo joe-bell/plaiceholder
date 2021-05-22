@@ -29,7 +29,7 @@ exports.render = function (data) {
       ${data.content.children}
       <div style="max-width:100%;width:4032px">
         <div style="position:relative;padding-bottom:75%">
-          <img alt="Keila Joa, Estonia." src="/assets/keila-joa@576px.jpg" style="color: transparent; visibility: visible; height: 100%; left: 0px; position: absolute; top: 0px; width: 100%;"/>
+          <img alt="Keila Joa, Estonia." src="/assets/keila-joa@578.jpg" style="color: transparent; visibility: visible; height: 100%; left: 0px; position: absolute; top: 0px; width: 100%;"/>
         </div>
       </div>
     </a>`
