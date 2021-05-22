@@ -14,7 +14,7 @@
     "README.md"
   ],
   "scripts": {
-    "build": "microbundle --no-compress --tsconfig tsconfig.json --external sharp",
+    "build": "microbundle --external sharp --no-compress --target node --tsconfig tsconfig.json",
     "dev": "yarn build -- watch",
     "clean": "rimraf {dist,.rts2*}"
   },
