@@ -1,0 +1,3 @@
+require("sharp");
+
+module.exports = {};
