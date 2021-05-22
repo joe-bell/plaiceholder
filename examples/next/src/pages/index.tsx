@@ -2,7 +2,7 @@ import * as React from "react";
 import { InferGetStaticPropsType } from "next";
 import Link from "next/link";
 import { getImage } from "@plaiceholder/next";
-import { getPixelsCSS } from "@plaiceholder/css";
+import { getPixelsCSS } from "plaiceholder";
 import { cx } from "@/styles";
 import { Layout } from "@/components/layout";
 import { config } from "@/config";

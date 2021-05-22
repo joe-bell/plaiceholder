@@ -1,6 +1,4 @@
-const { getBase64 } = require("@plaiceholder/base64");
-const { getPixelsCSS } = require("@plaiceholder/css");
-const { getPixelsSVG } = require("@plaiceholder/svg");
+const { getBase64, getPixelsCSS, getPixelsSVG } = require("plaiceholder");
 
 const { getImage, propsToString, stylesToString } = require("./lib");
 

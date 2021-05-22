@@ -2,7 +2,7 @@
   "private": true,
   "name": "root",
   "scripts": {
-    "prepare": "lerna run build --scope='@plaiceholder/*'",
+    "prepare": "lerna run build --scope='plaiceholder' --scope='@plaiceholder/*'",
     "build": "lerna run build",
     "clean": "lerna run clean",
     "lint": "lerna exec --parallel --stream --ignore='example-with-11ty' -- tsc --noEmit",

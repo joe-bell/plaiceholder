@@ -2,7 +2,7 @@ import * as React from "react";
 import { InferGetStaticPropsType } from "next";
 import Image from "next/image";
 import { getImage } from "@plaiceholder/next";
-import { getBlurhash } from "@plaiceholder/blurhash";
+import { getBlurhash } from "plaiceholder";
 import { BlurhashCanvas } from "react-blurhash";
 import { Layout } from "@/components/layout";
 import { config } from "@/config";

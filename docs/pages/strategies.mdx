@@ -23,7 +23,7 @@ npm i @plaiceholder/css
 import fs from "fs";
 import path from "path";
 import { promisify } from "util";
-import { getPixelsCSS } from "@plaiceholder/css";
+import { getPixelsCSS } from "plaiceholder";
 
 const image = await promisify(fs.readFile)(
   path.join("path", "to", "your", "image.jpg")
@@ -70,7 +70,7 @@ npm i @plaiceholder/svg
 import fs from "fs";
 import path from "path";
 import { promisify } from "util";
-import { getPixelsSVG } from "@plaiceholder/svg";
+import { getPixelsSVG } from "plaiceholder";
 
 const image = await promisify(fs.readFile)(
   path.join("path", "to", "your", "image.jpg")
@@ -115,7 +115,7 @@ npm i @plaiceholder/base64
 import fs from "fs";
 import path from "path";
 import { promisify } from "util";
-import { getBase64 } from "@plaiceholder/base64";
+import { getBase64 } from "plaiceholder";
 
 const image = await promisify(fs.readFile)(
   path.join("path", "to", "your", "image.jpg")
@@ -150,7 +150,7 @@ npm i @plaiceholder/blurhash
 import fs from "fs";
 import path from "path";
 import { promisify } from "util";
-import { getBlurhash } from "@plaiceholder/blurhash";
+import { getBlurhash } from "plaiceholder";
 
 const image = await promisify(fs.readFile)(
   path.join("path", "to", "your", "image.jpg")

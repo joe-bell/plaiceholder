@@ -2,7 +2,7 @@ import * as React from "react";
 import { InferGetStaticPropsType } from "next";
 import Image from "next/image";
 import { getImage } from "@plaiceholder/next";
-import { getBase64 } from "@plaiceholder/base64";
+import { getBase64 } from "plaiceholder";
 import { cx } from "@/styles";
 import { config } from "@/config";
 import { getAllPublicImagePaths } from "@/lib/images";

@@ -13,9 +13,7 @@
   },
   "devDependencies": {
     "@11ty/eleventy": "0.11.1",
-    "@plaiceholder/base64": "^1.0.0",
-    "@plaiceholder/css": "^1.0.0",
-    "@plaiceholder/svg": "^1.0.0",
+    "plaiceholder": "^1.0.0",
     "clean-css": "4.2.3",
     "serve": "11.3.2"
   }

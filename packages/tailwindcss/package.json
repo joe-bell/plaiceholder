@@ -46,8 +46,9 @@
   },
   "homepage": "https://github.com/joe-bell/plaiceholder#readme",
   "dependencies": {
+    "@plaiceholder/core": "^1.0.0",
     "@plaiceholder/next": "^1.0.0",
-    "@plaiceholder/css": "^1.0.0",
+    "plaiceholder": "^1.0.0",
     "css.escape": "1.5.1",
     "make-synchronous": "0.1.1"
   },
