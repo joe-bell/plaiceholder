@@ -10067,10 +10067,10 @@ nextra-theme-docs@1.1.6:
     react-innertext "^1.1.5"
     title "^3.4.2"
 
-nextra@0.4.4:
-  version "0.4.4"
-  resolved "https://registry.yarnpkg.com/nextra/-/nextra-0.4.4.tgz#95a72822da09bd4ef8090d7a5dccba5de806ab69"
-  integrity sha512-sVFwByKwP1Luo2D4WL0A29u7h0PgPv997Phy0CwupL6TQTl0TrgoWmWSj7IA7kaxS9TCtQvf0FDOy5ewJ0wszw==
+nextra@0.4.5:
+  version "0.4.5"
+  resolved "https://registry.yarnpkg.com/nextra/-/nextra-0.4.5.tgz#3e0b600307ad22ee3cc4d450b6a3840794dc70f4"
+  integrity sha512-Hg70ikzfhg9k5IK3RPcIDStAr6lO6+xsT7mm6Wsd++AD6QaQWa0xdv53VI7NYLUlEqbF4VDCkaAwMAQDRR2S2g==
   dependencies:
     "@mdx-js/loader" "^2.0.0-next.8"
     download "^8.0.0"
