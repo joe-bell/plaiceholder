@@ -36,7 +36,7 @@ const Index: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
     <Layout variant="home" title="Next.js">
       <ul
         className={cx(
-          "mt-10",
+          "mt-8",
           "grid",
           "sm:grid-cols-2",
           "md:grid-cols-3",
