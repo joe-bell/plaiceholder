@@ -8,9 +8,21 @@ A tiny helper function to access `public` files in server-side functions or `get
 
 ### Installation
 
-```sh
-npm i @plaiceholder/next
-```
+1. Add the package:
+
+   ```sh
+   npm i @plaiceholder/next
+   ```
+
+2. Add `sharp` to the top of your `next.config.js` to ensure it starts in the main thread:
+
+   ```js
+   require("sharp");
+
+   module.exports = {
+     // your Next.js config
+   };
+   ```
 
 ### Example
 
