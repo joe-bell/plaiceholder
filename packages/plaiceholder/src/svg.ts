@@ -1,12 +1,12 @@
 import { arrayChunk, getPixels, PlaiceholderImage } from "@plaiceholder/core";
 
-type PixelsRects = [
+type TRects = [
   "rect",
   Record<"width" | "height" | "x" | "y" | "fillOpacity", {} & number> &
     Record<"fill", {} & string>
 ];
 
-export type PixelsSVG = [
+export type TSVG = [
   "svg",
   {
     viewBox: string;
@@ -17,17 +17,17 @@ export type PixelsSVG = [
     style: any;
     xmlns: string;
   },
-  PixelsRects[]
+  TRects[]
 ];
 
 const rgb = (channels: string[]) => `rgb(${channels.slice(0, 3).join(",")})`;
 const alphaToOpacity = (alpha: number) => ((alpha / 255) * 100) / 100;
 
-export interface GetPixelsSVG {
-  (imageBuffer: PlaiceholderImage): Promise<PixelsSVG>;
+export interface IGetSVG {
+  (imageBuffer: PlaiceholderImage): Promise<TSVG>;
 }
 
-export const getPixelsSVG: GetPixelsSVG = async (imageBuffer) => {
+export const getSVG: IGetSVG = async (imageBuffer) => {
   const { buffer, channels, width, height } = await getPixels(imageBuffer);
 
   const pixels = arrayChunk(buffer, channels).map((value) => {
@@ -49,7 +49,7 @@ export const getPixelsSVG: GetPixelsSVG = async (imageBuffer) => {
   });
 
   const chunkRects = arrayChunk(pixels, width).map((row, y) =>
-    row.map((col, x): PixelsRects[] => [
+    row.map((col, x): TRects[] => [
       "rect",
       {
         ...col,
@@ -67,7 +67,7 @@ export const getPixelsSVG: GetPixelsSVG = async (imageBuffer) => {
     );
   }
 
-  const rects: PixelsRects[] = [].concat(...chunkRects);
+  const rects: TRects[] = [].concat(...chunkRects);
 
   return [
     "svg",

@@ -2,7 +2,7 @@ import * as React from "react";
 import { InferGetStaticPropsType } from "next";
 import Image from "next/image";
 import { getImage } from "@plaiceholder/next";
-import { getPixelsSVG } from "plaiceholder";
+import { getSVG } from "plaiceholder";
 import { config } from "@/config";
 import { Layout } from "@/components/layout";
 import { getAllPublicImagePaths } from "@/lib/images";
@@ -14,7 +14,7 @@ export const getStaticProps = async ({ params }) => {
   const images = await Promise.all(
     imagePaths.map(async (src) => {
       const { buffer, ...details } = await getImage(src);
-      const pixelsSVG = await getPixelsSVG(buffer);
+      const pixelsSVG = await getSVG(buffer);
 
       return {
         src,

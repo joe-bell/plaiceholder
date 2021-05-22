@@ -70,13 +70,13 @@ npm i @plaiceholder/svg
 import fs from "fs";
 import path from "path";
 import { promisify } from "util";
-import { getPixelsSVG } from "plaiceholder";
+import { getSVG } from "plaiceholder";
 
 const image = await promisify(fs.readFile)(
   path.join("path", "to", "your", "image.jpg")
 );
 
-const svg = await getPixelsSVG(image);
+const svg = await getSVG(image);
 
 console.log(svg);
 

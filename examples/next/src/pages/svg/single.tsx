@@ -2,7 +2,7 @@ import * as React from "react";
 import { InferGetStaticPropsType } from "next";
 import Image from "next/image";
 import { getImage } from "@plaiceholder/next";
-import { getPixelsSVG } from "plaiceholder";
+import { getSVG } from "plaiceholder";
 import { config } from "@/config";
 import { ImageGrid, ImageGridItem } from "@/components/image-grid";
 import { Layout } from "@/components/layout";
@@ -11,7 +11,7 @@ export const getStaticProps = async () => {
   const src = "/keila-joa@578.jpg";
 
   const { buffer, ...details } = await getImage(src);
-  const pixelsSVG = await getPixelsSVG(buffer);
+  const pixelsSVG = await getSVG(buffer);
 
   return {
     props: {
