@@ -2,7 +2,7 @@ import * as React from "react";
 import { InferGetStaticPropsType } from "next";
 import Link from "next/link";
 import { getImage } from "@plaiceholder/next";
-import { getPixelsCSS } from "plaiceholder";
+import { getCSS } from "plaiceholder";
 import { cx } from "@/styles";
 import { Layout } from "@/components/layout";
 import { config } from "@/config";
@@ -14,7 +14,7 @@ export const getStaticProps = async () => {
   const plaiceholders = await Promise.all(
     imagePaths.map(async (src) => {
       const { buffer } = await getImage(src);
-      const pixelsCSS = await getPixelsCSS(buffer);
+      const pixelsCSS = await getCSS(buffer);
 
       return pixelsCSS;
     })

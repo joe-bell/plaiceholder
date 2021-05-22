@@ -1,6 +1,6 @@
 import { PlaiceholderImage, getPixels } from "@plaiceholder/core";
 
-export type PixelsCSS = Record<
+export type TCSS = Record<
   | "backgroundImage"
   | "backgroundPosition"
   | "backgroundSize"
@@ -11,11 +11,11 @@ export type PixelsCSS = Record<
 const rgb = (channels: (number | string)[]) =>
   `rgb${channels.length === 4 ? "a" : ""}(${channels.join(",")})`;
 
-export interface GetPixelsCSS {
-  (imageBuffer: PlaiceholderImage): Promise<PixelsCSS>;
+export interface IGetCSS {
+  (imageBuffer: PlaiceholderImage): Promise<TCSS>;
 }
 
-export const getPixelsCSS: GetPixelsCSS = async (imageBuffer) => {
+export const getCSS: IGetCSS = async (imageBuffer) => {
   const { rows } = await getPixels(imageBuffer);
 
   const linearGradients = rows.map((row) => {

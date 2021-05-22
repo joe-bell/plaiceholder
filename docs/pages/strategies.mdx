@@ -23,13 +23,13 @@ npm i @plaiceholder/css
 import fs from "fs";
 import path from "path";
 import { promisify } from "util";
-import { getPixelsCSS } from "plaiceholder";
+import { getCSS } from "plaiceholder";
 
 const image = await promisify(fs.readFile)(
   path.join("path", "to", "your", "image.jpg")
 );
 
-const css = await getPixelsCSS(image);
+const css = await getCSS(image);
 
 console.log(css);
 

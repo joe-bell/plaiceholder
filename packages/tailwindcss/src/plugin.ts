@@ -2,15 +2,15 @@ import plugin from "tailwindcss/plugin";
 import makeSynchronous from "make-synchronous";
 import cssEscape from "css.escape";
 import type { GetImage } from "@plaiceholder/core";
-import type { GetPixelsCSS } from "plaiceholder";
+import type { IGetCSS } from "plaiceholder";
 import { classNamePrefix } from "./config";
 
 const getPlaiceholder = makeSynchronous(async (imageUrl) => {
   const { getImage } = require("@plaiceholder/next");
-  const { getPixelsCSS } = require("@plaiceholder/css");
+  const { getCSS } = require("plaiceholder");
 
   const { buffer } = await (getImage as GetImage)(imageUrl);
-  const pixelsCSS = await (getPixelsCSS as GetPixelsCSS)(buffer);
+  const pixelsCSS = await (getCSS as IGetCSS)(buffer);
   return pixelsCSS;
 });
 

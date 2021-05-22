@@ -1,4 +1,4 @@
-const { getBase64, getPixelsCSS, getPixelsSVG } = require("plaiceholder");
+const { getBase64, getCSS, getPixelsSVG } = require("plaiceholder");
 
 const { getImage, propsToString, stylesToString } = require("./lib");
 
@@ -7,7 +7,7 @@ class Page {
     const src = "/keila-joa@578.jpg";
     const img = await getImage(src);
     const base64 = await getBase64(img);
-    const pixelsCSS = await getPixelsCSS(img);
+    const pixelsCSS = await getCSS(img);
     const [
       pixelsSVGElem,
       pixelsSVGPropsAll,
