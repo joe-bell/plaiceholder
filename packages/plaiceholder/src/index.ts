@@ -3,3 +3,4 @@ export * from "./blurhash";
 export * from "./css";
 export * from "./get";
 export * from "./svg";
+export * from "./types";

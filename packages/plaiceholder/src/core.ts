@@ -1,7 +1,5 @@
 import sharp from "sharp";
 
-export const ACCEPTED_FILE_TYPES = ["jpeg", "png"] as const;
-
 export type PlaiceholderImage = Buffer;
 export type PlaiceholderPixels = {
   buffer: any[];
