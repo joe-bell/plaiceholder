@@ -1,4 +1,4 @@
-import { PlaiceholderImage, getPixels } from "./core";
+import { TBuffer, getPixels } from "./core";
 
 export type TCSS = Record<
   | "backgroundImage"
@@ -12,7 +12,7 @@ const rgb = (channels: (number | string)[]) =>
   `rgb${channels.length === 4 ? "a" : ""}(${channels.join(",")})`;
 
 export interface IGetCSS {
-  (imageBuffer: PlaiceholderImage): Promise<TCSS>;
+  (imageBuffer: TBuffer): Promise<TCSS>;
 }
 
 export const getCSS: IGetCSS = async (imageBuffer) => {

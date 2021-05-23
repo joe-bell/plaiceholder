@@ -1,18 +1,18 @@
 import sharp from "sharp";
 import { encode } from "blurhash";
-import type { PlaiceholderImage } from "./core";
+import type { TBuffer } from "./core";
 
 const size = 32;
 
-export type Blurhash = {
+export type TBlurhash = {
   hash: string;
 } & Record<"width" | "height", number>;
 
-export interface GetBlurhash {
-  (imageBuffer: PlaiceholderImage): Promise<Blurhash>;
+export interface IGetBlurhash {
+  (imageBuffer: TBuffer): Promise<TBlurhash>;
 }
 
-export const getBlurhash: GetBlurhash = async (imageBuffer) =>
+export const getBlurhash: IGetBlurhash = async (imageBuffer) =>
   new Promise((resolve, reject) => {
     sharp(imageBuffer)
       .raw()

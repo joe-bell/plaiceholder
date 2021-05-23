@@ -1,4 +1,4 @@
-import { arrayChunk, getPixels, PlaiceholderImage } from "./core";
+import { arrayChunk, getPixels, TBuffer } from "./core";
 
 type TRects = [
   "rect",
@@ -24,7 +24,7 @@ const rgb = (channels: string[]) => `rgb(${channels.slice(0, 3).join(",")})`;
 const alphaToOpacity = (alpha: number) => ((alpha / 255) * 100) / 100;
 
 export interface IGetSVG {
-  (imageBuffer: PlaiceholderImage): Promise<TSVG>;
+  (imageBuffer: TBuffer): Promise<TSVG>;
 }
 
 export const getSVG: IGetSVG = async (imageBuffer) => {

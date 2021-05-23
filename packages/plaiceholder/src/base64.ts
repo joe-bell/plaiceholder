@@ -1,13 +1,13 @@
 import sharp from "sharp";
-import type { PlaiceholderImage } from "./core";
+import type { TBuffer } from "./core";
 
-export type Base64 = string;
+export type TBase64 = string;
 
-export interface GetBase64 {
-  (imageBuffer: PlaiceholderImage): Promise<Base64>;
+export interface IGetBase64 {
+  (imageBuffer: TBuffer): Promise<TBase64>;
 }
 
-export const getBase64: GetBase64 = async (imageBuffer) =>
+export const getBase64: IGetBase64 = async (imageBuffer) =>
   new Promise((resolve, reject) => {
     sharp(imageBuffer)
       .normalise()

@@ -1,7 +1,7 @@
 import sharp from "sharp";
 
-export type PlaiceholderImage = Buffer;
-export type PlaiceholderPixels = {
+export type TBuffer = Buffer;
+export type TPixels = {
   buffer: any[];
   rows: number[][][];
 } & Record<"channels" | "width" | "height", number>;
@@ -11,11 +11,11 @@ export const arrayChunk = (arr, size) =>
     ? [arr.slice(0, size), ...arrayChunk(arr.slice(size), size)]
     : [arr];
 
-export interface GetPixels {
-  (imageBuffer: PlaiceholderImage): Promise<PlaiceholderPixels>;
+export interface IGetPixels {
+  (imageBuffer: TBuffer): Promise<TPixels>;
 }
 
-export const getPixels: GetPixels = async (imageBuffer) =>
+export const getPixels: IGetPixels = async (imageBuffer) =>
   new Promise((resolve, reject) => {
     sharp(imageBuffer)
       .resize(10, 10, { fit: "inside" })

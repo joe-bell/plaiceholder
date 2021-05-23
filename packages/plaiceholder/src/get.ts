@@ -3,19 +3,19 @@ import path from "path";
 import { promisify } from "util";
 import sizeOf from "image-size";
 import type { ISizeCalculationResult } from "image-size/dist/types/interface";
-import type { PlaiceholderImage } from "./core";
+import type { TBuffer } from "./core";
 
-export type GetImagePath = Buffer | string;
+export type TImage = TBuffer | string;
 
-export interface GetImage {
-  (imagePath: GetImagePath): Promise<
+export interface IGetImage {
+  (imagePath: TImage): Promise<
     {
-      buffer: PlaiceholderImage;
+      buffer: TBuffer;
     } & ISizeCalculationResult
   >;
 }
 
-export const getImage: GetImage = async (imagePath) => {
+export const getImage: IGetImage = async (imagePath) => {
   if (Buffer.isBuffer(imagePath)) {
     return {
       buffer: imagePath,
