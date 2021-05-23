@@ -1,4 +1,4 @@
-import { PlaiceholderImage, getPixels } from "@plaiceholder/core";
+import { PlaiceholderImage, getPixels } from "./core";
 
 export type TCSS = Record<
   | "backgroundImage"

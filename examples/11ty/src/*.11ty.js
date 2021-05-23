@@ -1,18 +1,21 @@
-const { getBase64, getCSS, getSVG } = require("plaiceholder");
+const { getBase64, getCSS, getSVG, getImage } = require("plaiceholder");
 
-const { getImage, propsToString, stylesToString } = require("./lib");
+const { propsToString, stylesToString } = require("./lib");
 
 class Page {
   async data() {
-    const src = "/keila-joa@578.jpg";
-    const img = await getImage(src);
-    const base64 = await getBase64(img);
-    const pixelsCSS = await getCSS(img);
+    const src = "/assets/keila-joa@578.jpg";
+
+    const { buffer, ...imgDetails } = await getImage(src);
+    const base64 = await getBase64(buffer);
+    const pixelsCSS = await getCSS(buffer);
     const [pixelsSVGElem, pixelsSVGPropsAll, pixelsSVGChildren] = await getSVG(
-      img
+      buffer
     );
 
     const { style: pixelsSVGStyle, ...pixelsSVGProps } = pixelsSVGPropsAll;
+
+    const img = { src, ...imgDetails };
 
     return {
       pagination: {
@@ -29,18 +32,21 @@ class Page {
           slug: "with-base64",
           template: "example",
           title: "With Base64",
+          img,
           base64,
         },
         {
           slug: "with-pixels-css",
           template: "example",
           title: "With Pixels (CSS)",
+          img,
           pixelsCSS,
         },
         {
           slug: "with-pixels-svg",
           template: "example",
           title: "With Pixels (SVG)",
+          img,
           pixelsSVG: {
             element: pixelsSVGElem,
             style: pixelsSVGStyle,
@@ -57,7 +63,7 @@ class Page {
 
   async render({
     pagination,
-    path: { base64, pixelsCSS, pixelsSVG, slug, template, title },
+    path: { base64, img, pixelsCSS, pixelsSVG, slug, template, title },
   }) {
     const children = {
       index: `<h2 class="c-heading c-heading--secondary u-margin-top">Examples</h2>
@@ -98,7 +104,7 @@ class Page {
           </${pixelsSVG.element}>`,
     }[slug];
 
-    return { children, template, title };
+    return { children, img, template, title };
   }
 }
 

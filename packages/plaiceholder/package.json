@@ -39,7 +39,7 @@
     "sharp": ">= 0.26.2"
   },
   "dependencies": {
-    "@plaiceholder/core": "1.0.0",
-    "blurhash": "1.1.3"
+    "blurhash": "1.1.3",
+    "image-size": "1.0.0"
   }
 }

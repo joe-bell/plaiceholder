@@ -1,4 +1,4 @@
-import { arrayChunk, getPixels, PlaiceholderImage } from "@plaiceholder/core";
+import { arrayChunk, getPixels, PlaiceholderImage } from "./core";
 
 type TRects = [
   "rect",

@@ -56,8 +56,7 @@ We'll then apply the string to an `<img>` element (hidden from screen-readers) a
    // pages/index.jsx
    import * as React from "react";
    import Image from "next/image";
-   import { getImage } from "@plaiceholder/next";
-   import { getBase64 } from "plaiceholder";
+   import { getBase64, getImage } from "plaiceholder";
 
    export const getStaticProps: GetStaticProps = async () => {
      const imgSrc = "/keila-joa.jpg";

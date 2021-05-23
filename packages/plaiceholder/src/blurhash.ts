@@ -1,6 +1,6 @@
 import sharp from "sharp";
 import { encode } from "blurhash";
-import { PlaiceholderImage } from "@plaiceholder/core";
+import type { PlaiceholderImage } from "./core";
 
 const size = 32;
 

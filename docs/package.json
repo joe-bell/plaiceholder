@@ -13,11 +13,6 @@
     "vercel": "yarn --cwd ../ prepare && yarn build"
   },
   "dependencies": {
-    "@plaiceholder/base64": "^1.0.0",
-    "@plaiceholder/blurhash": "^1.0.0",
-    "@plaiceholder/css": "^1.0.0",
-    "@plaiceholder/next": "^1.0.0",
-    "@plaiceholder/svg": "^1.0.0",
     "glob": "7.1.7",
     "next": "10.2.2",
     "nextra": "0.4.5",

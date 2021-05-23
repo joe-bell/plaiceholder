@@ -1,14 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const { promisify } = require("util");
 const CleanCSS = require("clean-css");
-
-exports.getImage = async (imagePath) => {
-  const file = await promisify(fs.readFile)(
-    path.join("./src/assets/", imagePath)
-  );
-  return file;
-};
 
 exports.getStyles = () => {
   const file = fs.readFileSync(

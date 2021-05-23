@@ -1,5 +1,5 @@
 import sharp from "sharp";
-import { PlaiceholderImage } from "@plaiceholder/core";
+import type { PlaiceholderImage } from "./core";
 
 export type Base64 = string;
 

@@ -1,8 +1,7 @@
 import * as React from "react";
 import { InferGetStaticPropsType } from "next";
 import Link from "next/link";
-import { getImage } from "@plaiceholder/next";
-import { getCSS } from "plaiceholder";
+import { getCSS, getImage } from "plaiceholder";
 import { cx } from "@/styles";
 import { Layout } from "@/components/layout";
 import { config } from "@/config";

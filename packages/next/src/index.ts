@@ -3,6 +3,3 @@ export const withPlaiceholder = (config) => {
 
   return config;
 };
-
-export type { GetImagePath, GetImage } from "@plaiceholder/core";
-export { getImage } from "@plaiceholder/core";

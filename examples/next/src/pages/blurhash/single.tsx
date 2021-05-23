@@ -1,8 +1,7 @@
 import * as React from "react";
 import { InferGetStaticPropsType } from "next";
 import Image from "next/image";
-import { getImage } from "@plaiceholder/next";
-import { getBlurhash } from "plaiceholder";
+import { getBlurhash, getImage } from "plaiceholder";
 import { BlurhashCanvas } from "react-blurhash";
 import { config } from "@/config";
 import { cx } from "@/styles";

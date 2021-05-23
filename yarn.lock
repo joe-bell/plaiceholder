@@ -2177,35 +2177,6 @@
   resolved "https://registry.yarnpkg.com/@opentelemetry/context-base/-/context-base-0.14.0.tgz#c67fc20a4d891447ca1a855d7d70fa79a3533001"
   integrity sha512-sDOAZcYwynHFTbLo6n8kIbLiVF3a3BLkrmehJUyEbT9F+Smbi47kLGS2gG2g0fjBLR/Lr1InPD7kXL7FaTqEkw==
 
-"@plaiceholder/base64@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@plaiceholder/base64/-/base64-1.0.0.tgz#1cb7c2b0e8c768f91a292f4474096060ce0c5fab"
-  integrity sha512-btH50CSDLX/846CzGdnqB1ULzW6byWvEn0keHlPE5hbngyosn+/G/kh6cwRrnKRHcZ8fBcmTF9b8wbiEh4Lndw==
-  dependencies:
-    "@plaiceholder/core" "^1.0.0"
-
-"@plaiceholder/blurhash@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@plaiceholder/blurhash/-/blurhash-1.0.0.tgz#8fd424fb49da95602aff01427d0d84374c3fe42b"
-  integrity sha512-eReJfSNuP4ZOJP82yRi0Nj8RW6FlDqyX/aZr0P4VyBg5cpA7LkM/+f9DFpbgbS80jzNgSPBnENmkJoQtc5Kq0A==
-  dependencies:
-    "@plaiceholder/core" "^1.0.0"
-    blurhash "1.1.3"
-
-"@plaiceholder/css@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@plaiceholder/css/-/css-1.0.0.tgz#6864bdea144035a8d3fa9fe0b99793d633e3bdeb"
-  integrity sha512-GqLUDhYhCmM2N6uWT9KTKTC/S/nu8QQUbxUjU6kBvl63ZYtVDN/1nJmPfmCTFv68P6Rhcz2OkTDWO1NS+tkkgg==
-  dependencies:
-    "@plaiceholder/core" "^1.0.0"
-
-"@plaiceholder/svg@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@plaiceholder/svg/-/svg-1.0.0.tgz#e706a01f9e7912469bd7e998034749636d67c907"
-  integrity sha512-8SqDaCBS/Fk9nhf7jw6ZzKXG7neMoGRRsrgGVtP5o0SFOvz7gEdwEQqrK89fXWsgR7uWW2kIIqEuNoNldsIz3Q==
-  dependencies:
-    "@plaiceholder/core" "^1.0.0"
-
 "@reach/skip-nav@^0.11.2":
   version "0.11.2"
   resolved "https://registry.yarnpkg.com/@reach/skip-nav/-/skip-nav-0.11.2.tgz#015498b2125ad8ef1e48cb8ab33dca93925fcbc8"
@@ -6272,10 +6243,10 @@ ignore@^5.1.4:
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-5.1.8.tgz#f150a8b50a34289b33e22f5889abd4d8016f0e57"
   integrity sha512-BMpfD7PpiETpBl/A6S498BaIJ6Y/ABT93ETbby2fP00v4EbvPBXWEoaR1UBPKs3iR53pJY7EtZk5KACI57i1Uw==
 
-image-size@0.9.7:
-  version "0.9.7"
-  resolved "https://registry.yarnpkg.com/image-size/-/image-size-0.9.7.tgz#43b4ead4b1310d5ae310a559d52935a347e47c09"
-  integrity sha512-KRVgLNZkr00YGN0qn9MlIrmlxbRhsCcEb1Byq3WKGnIV4M48iD185cprRtaoK4t5iC+ym2Q5qlArxZ/V1yzDgA==
+image-size@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/image-size/-/image-size-1.0.0.tgz#58b31fe4743b1cec0a0ac26f5c914d3c5b2f0750"
+  integrity sha512-JLJ6OwBfO1KcA+TvJT+v8gbE6iWbj24LyDNFgFEN0lzegn6cC6a/p3NIDaepMsJjQjlUWqIC7wJv8lBFxPNjcw==
   dependencies:
     queue "6.0.2"
 

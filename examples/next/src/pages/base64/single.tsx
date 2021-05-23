@@ -1,8 +1,7 @@
 import * as React from "react";
 import { InferGetStaticPropsType } from "next";
 import Image from "next/image";
-import { getImage } from "@plaiceholder/next";
-import { getBase64 } from "plaiceholder";
+import { getBase64, getImage } from "plaiceholder";
 import { config } from "@/config";
 import { cx } from "@/styles";
 import { ImageGrid, ImageGridItem } from "@/components/image-grid";
