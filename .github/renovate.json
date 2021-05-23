@@ -1,3 +1,4 @@
 {
-  "extends": ["github>joe-bell/renovate-config"]
+  "extends": ["github>joe-bell/renovate-config"],
+  "enabled": false
 }
