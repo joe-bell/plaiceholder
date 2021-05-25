@@ -23,13 +23,9 @@ npm i @plaiceholder/css
 import fs from "fs";
 import path from "path";
 import { promisify } from "util";
-import { getCSS } from "plaiceholder";
+import { getPlaiceholder } from "plaiceholder";
 
-const image = await promisify(fs.readFile)(
-  path.join("path", "to", "your", "image.jpg")
-);
-
-const css = await getCSS(image);
+const { css } = await getPlaiceholder("/path-to-your-image.jpg");
 
 console.log(css);
 
@@ -70,13 +66,9 @@ npm i @plaiceholder/svg
 import fs from "fs";
 import path from "path";
 import { promisify } from "util";
-import { getSVG } from "plaiceholder";
+import { getPlaiceholder } from "plaiceholder";
 
-const image = await promisify(fs.readFile)(
-  path.join("path", "to", "your", "image.jpg")
-);
-
-const svg = await getSVG(image);
+const { svg } = await getPlaiceholder("/path-to-your-image.jpg");
 
 console.log(svg);
 
@@ -115,13 +107,9 @@ npm i @plaiceholder/base64
 import fs from "fs";
 import path from "path";
 import { promisify } from "util";
-import { getBase64 } from "plaiceholder";
+import { getPlaiceholder } from "plaiceholder";
 
-const image = await promisify(fs.readFile)(
-  path.join("path", "to", "your", "image.jpg")
-);
-
-const base64 = await getBase64(image);
+const { base64 } = await getPlaiceholder("/path-to-your-image.jpg");
 
 console.log(base64);
 
@@ -150,13 +138,9 @@ npm i @plaiceholder/blurhash
 import fs from "fs";
 import path from "path";
 import { promisify } from "util";
-import { getBlurhash } from "plaiceholder";
+import { getPlaiceholder } from "plaiceholder";
 
-const image = await promisify(fs.readFile)(
-  path.join("path", "to", "your", "image.jpg")
-);
-
-const blurhash = await getBlurhash(image);
+const { blurhash } = await getPlaiceholder("/path-to-your-image.jpg");
 
 console.log(blurhash);
 

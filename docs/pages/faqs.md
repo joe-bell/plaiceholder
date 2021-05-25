@@ -6,4 +6,4 @@ A [Plaice](https://en.wikipedia.org/wiki/European_plaice) is a flat fish that la
 
 ## What about remote images in Next.js?
 
-In it's current state, `@plaiceholder/next` only supports local images (added to `public`). PRs to add support for remote images are welcomed ❤️.
+In it's current state, `plaiceholder` only supports local images (added to `public`). PRs to add support for remote images are welcomed ❤️.

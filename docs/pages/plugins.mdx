@@ -4,108 +4,22 @@ import Callout from "nextra-theme-docs/callout";
 
 ## Next.js
 
-A tiny helper function to access `public` files in server-side functions or `getStaticProps()`
+An essential plugin for Next.js, ensuring that all `plaiceholder` functions start in the main thread.
 
 ### Installation
 
-1. Add the package:
+1. Install the package alongside your existing `plaiceholder` installation:
 
    ```sh
    npm i @plaiceholder/next
    ```
 
-2. Add `sharp` to the top of your `next.config.js` to ensure it starts in the main thread:
+2. Wrap your Next.js config with `withPlaiceholder`:
 
    ```js
-   require("sharp");
+   const { withPlaiceholder } = require("@plaiceholder/next");
 
-   module.exports = {
+   module.exports = withPlaiceholder({
      // your Next.js config
-   };
+   });
    ```
-
-<Callout emoji="⚠️">
-  When using any `@plaiceholder` library in Next.js, you **must** add
-  `require(sharp)` to the top of your `next.config.js`.
-</Callout>
-
-### Example
-
-In this example, we're going to use the `@plaiceholder/base64` package to create a Base64 string for a single image inside a Next.js [Page](https://nextjs.org/docs/basic-features/pages).
-
-We'll then apply the string to an `<img>` element (hidden from screen-readers) and position underneath our [`Image`][next/image] whilst it's loading.
-
-1. Add your chosen image to the [`public`](https://nextjs.org/docs/basic-features/static-file-serving) directory.
-
-   In this case, our image is `public/keila-joa.jpg`
-
-   <Callout>
-     In it's current state, `@plaiceholder/next` only supports [local
-     images](#what-about-remote-images).
-   </Callout>
-
-2. Create a new page (or add to an existing page), and add the following:
-
-   1. Call `getBase64()` inside `getStaticProps()` with your image's path **without the `public` prefix**. This will return the Base64 string as a static prop.
-
-   2. Add custom styles to position (and blur) the placeholder `img` underneath Next.js' `Image` whilst it loads.
-
-   An `aria-hidden` ensures the content is hidden from screen-readers.
-
-   ```jsx
-   // pages/index.jsx
-   import * as React from "react";
-   import Image from "next/image";
-   import { getBase64, getImage } from "plaiceholder";
-
-   export const getStaticProps: GetStaticProps = async () => {
-     const imgSrc = "/keila-joa.jpg";
-     const img = await getImage(imgSrc);
-     const imgBase64 = await getBase64(img);
-
-     return {
-       props: {
-         imgBase64,
-         imgSrc,
-       },
-     };
-   };
-
-   function Index({ imgBase64, imgSrc }) {
-     return (
-       <main>
-         <div style={{ position: "relative", overflow: "hidden" }}>
-           {/* Our placeholder image */}
-           <img
-             aria-hidden="true"
-             alt=""
-             src={imgBase64}
-             style={{
-               position: "absolute",
-               top: 0,
-               left: 0,
-               right: 0,
-               bottom: 0,
-               width: "100%",
-               height: "100%",
-               /* Adjust the content to fit */
-               objectFit: "cover",
-               objectPosition: "center",
-               /* Blur the image and scale to avoid transparent corners */
-               filter: "blur(2rem)",
-               transform: "scale(1.2)",
-             }}
-           />
-           {/* Your image, optimized by next/image */}
-           <Image src={imgSrc} width={4032} height={3024} />
-         </div>
-       </main>
-     );
-   }
-
-   export default Index;
-   ```
-
-3. [Run your Next.js app](https://nextjs.org/docs/api-reference/cli#build) to see the results in action!
-
-   You should expect to see the placeholder first, then the image optimized by Next.js
