@@ -1,32 +1,23 @@
-import sharp from "sharp";
 import { encode } from "blurhash";
-import type { TBuffer } from "./core";
+import type { IOptimizeImageReturnValue } from "./get";
 
-const size = 32;
-
-export type TBlurhash = {
+export interface IGetBlurhashOptions extends IOptimizeImageReturnValue {}
+export type IGetBlurhashReturn = {
   hash: string;
 } & Record<"width" | "height", number>;
 
 export interface IGetBlurhash {
-  (imageBuffer: TBuffer): Promise<TBlurhash>;
+  (options: IGetBlurhashOptions): IGetBlurhashReturn;
 }
 
-export const getBlurhash: IGetBlurhash = async (imageBuffer) =>
-  new Promise((resolve, reject) => {
-    sharp(imageBuffer)
-      .raw()
-      .ensureAlpha()
-      .resize(size, size, { fit: "inside" })
-      .toBuffer((err, buffer, { width, height }) => {
-        if (err) return reject(err);
+export const getBlurhash: IGetBlurhash = ({ data, info }) => {
+  const { width, height } = info;
 
-        const hash = encode(new Uint8ClampedArray(buffer), width, height, 4, 4);
+  const hash = encode(new Uint8ClampedArray(data), width, height, 4, 4);
 
-        resolve({
-          hash,
-          height,
-          width,
-        });
-      });
-  });
+  return {
+    width,
+    height,
+    hash,
+  };
+};

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { InferGetStaticPropsType } from "next";
 import Image from "next/image";
-import { getCSS, getImage } from "plaiceholder";
+import { getPlaiceholder } from "plaiceholder";
 import { config } from "@/config";
 import { getAllPublicImagePaths } from "@/lib/images";
 import { cx } from "@/styles";
@@ -13,15 +13,13 @@ export const getStaticProps = async ({ params }) => {
 
   const images = await Promise.all(
     imagePaths.map(async (src) => {
-      const { buffer, ...details } = await getImage(src);
-      const pixelsCSS = await getCSS(buffer);
+      const { css, img } = await getPlaiceholder(src);
 
       return {
-        src,
+        ...img,
         alt: "Paint Splashes",
         title: "Photo from Unsplash",
-        ...details,
-        pixelsCSS,
+        css,
       };
     })
   ).then((values) => values);
@@ -40,7 +38,7 @@ const PageCSSMultiple: React.FC<
 > = ({ title, heading, images }) => (
   <Layout variant="example" title={title} heading={heading}>
     <ImageGrid>
-      {images.map(({ pixelsCSS, ...image }) => (
+      {images.map(({ css, ...image }) => (
         <ImageGridItem key={image.src}>
           <div
             className={cx(
@@ -56,7 +54,7 @@ const PageCSSMultiple: React.FC<
             style={{
               filter: "blur(24px)",
               transform: "scale(1.2)",
-              ...pixelsCSS,
+              ...css,
             }}
           />
 

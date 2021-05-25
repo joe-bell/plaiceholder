@@ -1,4 +1,5 @@
-import { arrayChunk, getPixels, TBuffer } from "./core";
+import { arrayChunk } from "./utils";
+import type { IOptimizeImageReturnValue } from "./get";
 
 type TRects = [
   "rect",
@@ -6,7 +7,11 @@ type TRects = [
     Record<"fill", {} & string>
 ];
 
-export type TSVG = [
+const rgb = (channels: string[]) => `rgb(${channels.slice(0, 3).join(",")})`;
+const alphaToOpacity = (alpha: number) => ((alpha / 255) * 100) / 100;
+
+export interface IGetSVGOptions extends IOptimizeImageReturnValue {}
+export type TGetSVGReturn = [
   "svg",
   {
     viewBox: string;
@@ -20,17 +25,14 @@ export type TSVG = [
   TRects[]
 ];
 
-const rgb = (channels: string[]) => `rgb(${channels.slice(0, 3).join(",")})`;
-const alphaToOpacity = (alpha: number) => ((alpha / 255) * 100) / 100;
-
 export interface IGetSVG {
-  (imageBuffer: TBuffer): Promise<TSVG>;
+  (options: IGetSVGOptions): TGetSVGReturn;
 }
 
-export const getSVG: IGetSVG = async (imageBuffer) => {
-  const { buffer, channels, width, height } = await getPixels(imageBuffer);
+export const getSVG: IGetSVG = ({ data, info, rawBuffer }) => {
+  const { channels, width, height } = info;
 
-  const pixels = arrayChunk(buffer, channels).map((value) => {
+  const pixels = arrayChunk(rawBuffer, channels).map((value) => {
     const channelToProps = {
       3: { fill: rgb(value), fillOpacity: 1 },
       4: {

@@ -2,24 +2,35 @@ import fs from "fs";
 import path from "path";
 import { promisify } from "util";
 import sizeOf from "image-size";
-import type { ISizeCalculationResult } from "image-size/dist/types/interface";
-import type { TBuffer } from "./core";
+import sharp from "sharp";
+import { arrayChunk } from "./utils";
 
+export type TBuffer = Buffer;
 export type TImage = TBuffer | string;
 
-export interface IGetImage {
-  (imagePath: TImage): Promise<
-    {
-      buffer: TBuffer;
-    } & ISizeCalculationResult
-  >;
+export type TLoadImageParam = TImage;
+export interface ILoadImageReturn {
+  img: {
+    src: string;
+    height: number;
+    width: number;
+    type?: string;
+  };
+  buffer: TBuffer;
 }
 
-export const getImage: IGetImage = async (imagePath) => {
+export interface ILoadImage {
+  (imagePath: TLoadImageParam): Promise<ILoadImageReturn>;
+}
+
+export const loadImage: ILoadImage = async (imagePath) => {
   if (Buffer.isBuffer(imagePath)) {
     return {
       buffer: imagePath,
-      ...sizeOf(imagePath),
+      img: {
+        src: undefined,
+        ...sizeOf(imagePath),
+      },
     };
   }
 
@@ -39,6 +50,109 @@ export const getImage: IGetImage = async (imagePath) => {
 
   return {
     buffer,
-    ...sizeOf(buffer),
+    img: {
+      src: imagePath,
+      ...sizeOf(buffer),
+    },
+  };
+};
+
+export type TOptimizeImageSrc = TBuffer;
+
+export interface IOptimizeImageOptions {}
+export interface IOptimizeImageReturnValue {
+  data: Buffer;
+  info: sharp.OutputInfo;
+  rawBuffer: number[];
+  rows: number[][][];
+}
+export interface IOptimizeImageReturn
+  extends Record<
+    | "optimizedForBase64"
+    | "optimizedForBlurhash"
+    | "optimizedForCSS"
+    | "optimizedForSVG",
+    IOptimizeImageReturnValue
+  > {}
+
+export interface IOptimizeImage {
+  (
+    src: TOptimizeImageSrc,
+    options?: IOptimizeImageOptions
+  ): Promise<IOptimizeImageReturn>;
+}
+
+export const optimizeImage: IOptimizeImage = async (src, options) => {
+  const pipeline = sharp(src).resize(10, 10, { fit: "inside" });
+
+  const getOptimizedForBase64 = pipeline
+    .clone()
+    .normalise()
+    .modulate({ saturation: 1.2, brightness: 1 })
+    .removeAlpha()
+    .toBuffer({ resolveWithObject: true });
+
+  const getOptimizedForBlurhash = pipeline
+    .clone()
+    .raw()
+    .ensureAlpha()
+    .toBuffer({ resolveWithObject: true });
+
+  const getOptimizedForPixels = pipeline
+    .clone()
+    .raw()
+    .toBuffer({ resolveWithObject: true });
+
+  return Promise.all([
+    getOptimizedForBase64,
+    getOptimizedForBlurhash,
+    getOptimizedForPixels,
+  ])
+
+    .then((values) =>
+      values.map((value) => {
+        const { channels, width } = value.info;
+
+        const rawBuffer = [].concat(...value.data) as number[];
+        const pixels = arrayChunk(rawBuffer, channels);
+        const rows = arrayChunk(pixels, width);
+
+        return {
+          ...value,
+          rawBuffer,
+          rows,
+        };
+      })
+    )
+    .then((values) => ({
+      optimizedForBase64: values[0],
+      optimizedForBlurhash: values[1],
+      optimizedForCSS: values[2],
+      optimizedForSVG: values[2],
+    }))
+    .catch((err) => {
+      console.error("transform failed", err);
+      throw err;
+    });
+};
+
+export type TGetImageSrc = TLoadImageParam;
+export interface IGetImageOptions extends IOptimizeImageOptions {}
+export interface IGetImageReturn
+  extends ILoadImageReturn,
+    IOptimizeImageReturn {}
+
+export interface IGetImage {
+  (src: TGetImageSrc, options?: IGetImageOptions): Promise<IGetImageReturn>;
+}
+
+export const getImage: IGetImage = async (src, options) => {
+  const { buffer, img } = await loadImage(src);
+  const optimized = await optimizeImage(buffer, options);
+
+  return {
+    img,
+    buffer,
+    ...optimized,
   };
 };

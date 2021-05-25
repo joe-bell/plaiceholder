@@ -1,23 +1,23 @@
-import { TBuffer, getPixels } from "./core";
-
-export type TCSS = Record<
-  | "backgroundImage"
-  | "backgroundPosition"
-  | "backgroundSize"
-  | "backgroundRepeat",
-  string
->;
+import type { IOptimizeImageReturnValue } from "./get";
 
 const rgb = (channels: (number | string)[]) =>
   `rgb${channels.length === 4 ? "a" : ""}(${channels.join(",")})`;
 
+export interface IGetCSSOptions extends IOptimizeImageReturnValue {}
+export interface IGetCSSReturn
+  extends Record<
+    | "backgroundImage"
+    | "backgroundPosition"
+    | "backgroundSize"
+    | "backgroundRepeat",
+    string
+  > {}
+
 export interface IGetCSS {
-  (imageBuffer: TBuffer): Promise<TCSS>;
+  (options: IGetCSSOptions): IGetCSSReturn;
 }
 
-export const getCSS: IGetCSS = async (imageBuffer) => {
-  const { rows } = await getPixels(imageBuffer);
-
+export const getCSS: IGetCSS = ({ info, rows }) => {
   const linearGradients = rows.map((row) => {
     const pixels = row.map((pixel) => rgb(pixel));
 
@@ -33,6 +33,12 @@ export const getCSS: IGetCSS = async (imageBuffer) => {
 
     return `linear-gradient(90deg, ${gradient})`;
   });
+
+  if (linearGradients.length !== info.height) {
+    console.error(
+      "Woops! Something went wrong here and caused the color height to differ from the source height."
+    );
+  }
 
   const backgroundPosition = linearGradients
     .map((_, i) =>

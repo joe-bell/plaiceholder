@@ -1,25 +1,19 @@
 import * as React from "react";
 import { InferGetStaticPropsType } from "next";
 import Image from "next/image";
-import { getCSS, getImage } from "plaiceholder";
+import { getPlaiceholder } from "plaiceholder";
 import { config } from "@/config";
 import { cx } from "@/styles";
 import { ImageGrid, ImageGridItem } from "@/components/image-grid";
 import { Layout } from "@/components/layout";
 
 export const getStaticProps = async () => {
-  const src = "/keila-joa@578.jpg";
-
-  const { buffer, ...details } = await getImage(src);
-  const pixelsCSS = await getCSS(buffer);
+  const { css, img } = await getPlaiceholder("/keila-joa@578.jpg");
 
   return {
     props: {
-      image: {
-        src,
-        ...details,
-      },
-      pixelsCSS,
+      img,
+      css,
       title: config.examples.pages.css.title,
       heading: config.examples.variants.single.title,
     },
@@ -28,10 +22,10 @@ export const getStaticProps = async () => {
 
 const PageCSSSingle: React.FC<
   InferGetStaticPropsType<typeof getStaticProps>
-> = ({ title, heading, image, pixelsCSS }) => (
+> = ({ title, heading, img, css }) => (
   <Layout variant="example" title={title} heading={heading}>
     <ImageGrid columns={2}>
-      <ImageGridItem key={image.src}>
+      <ImageGridItem key={img.src}>
         <div
           className={cx(
             "absolute",
@@ -41,16 +35,14 @@ const PageCSSSingle: React.FC<
             "transform",
             "scale-150",
             "filter",
-            "blur-xl"
+            "blur-2xl"
           )}
           style={{
-            filter: "blur(24px)",
-            transform: "scale(1.2)",
-            ...pixelsCSS,
+            ...css,
           }}
         />
 
-        <Image {...image} />
+        <Image {...img} />
       </ImageGridItem>
     </ImageGrid>
   </Layout>

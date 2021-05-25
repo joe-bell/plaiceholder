@@ -1,7 +1,7 @@
 import * as React from "react";
 import { InferGetStaticPropsType } from "next";
 import Image from "next/image";
-import { getBlurhash, getImage } from "plaiceholder";
+import { getPlaiceholder } from "plaiceholder";
 import { BlurhashCanvas } from "react-blurhash";
 import { Layout } from "@/components/layout";
 import { config } from "@/config";
@@ -14,14 +14,12 @@ export const getStaticProps = async ({ params }) => {
 
   const images = await Promise.all(
     imagePaths.map(async (src) => {
-      const { buffer, ...details } = await getImage(src);
-      const blurhash = await getBlurhash(buffer);
+      const { blurhash, img } = await getPlaiceholder(src);
 
       return {
-        src,
+        ...img,
         alt: "Paint Splashes",
         title: "Photo from Unsplash",
-        ...details,
         blurhash,
       };
     })

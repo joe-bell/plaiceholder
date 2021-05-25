@@ -1,7 +1,7 @@
 import * as React from "react";
 import { InferGetStaticPropsType } from "next";
 import Image from "next/image";
-import { getBase64, getImage } from "plaiceholder";
+import { getPlaiceholder } from "plaiceholder";
 import { cx } from "@/styles";
 import { config } from "@/config";
 import { getAllPublicImagePaths } from "@/lib/images";
@@ -13,14 +13,12 @@ export const getStaticProps = async ({ params }) => {
 
   const images = await Promise.all(
     imagePaths.map(async (src) => {
-      const { buffer, ...details } = await getImage(src);
-      const base64 = await getBase64(buffer);
+      const { base64, img } = await getPlaiceholder(src);
 
       return {
-        src,
+        ...img,
         alt: "Paint Splashes",
         title: "Photo from Unsplash",
-        ...details,
         base64,
       };
     })

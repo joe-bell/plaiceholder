@@ -1,7 +1,7 @@
 import * as React from "react";
 import { InferGetStaticPropsType } from "next";
 import Image from "next/image";
-import { getImage } from "plaiceholder";
+import { getPlaiceholder } from "plaiceholder";
 import { extractImagePath } from "@plaiceholder/tailwindcss/utils";
 import { config } from "@/config";
 import { ImageGrid, ImageGridItem } from "@/components/image-grid";
@@ -10,17 +10,11 @@ import { cx } from "@/styles";
 
 export const getStaticProps = async () => {
   const plaiceholder = "plaiceholder-[/keila-joa@578.jpg]";
-
-  const src = extractImagePath(plaiceholder);
-  const { width, height } = await getImage(src);
+  const { img } = await getPlaiceholder(extractImagePath(plaiceholder));
 
   return {
     props: {
-      image: {
-        src,
-        width,
-        height,
-      },
+      img,
       plaiceholder,
       title: config.examples.pages.tailwind.title,
       heading: config.examples.variants.single.title,
@@ -30,7 +24,7 @@ export const getStaticProps = async () => {
 
 const PageTailwindSingle: React.FC<
   InferGetStaticPropsType<typeof getStaticProps>
-> = ({ title, heading, image, plaiceholder }) => (
+> = ({ title, heading, img, plaiceholder }) => (
   <Layout variant="example" title={title} heading={heading}>
     <ImageGrid columns={2}>
       <ImageGridItem key={plaiceholder}>
@@ -47,7 +41,7 @@ const PageTailwindSingle: React.FC<
             "blur-xl"
           )}
         />
-        <Image {...image} />
+        <Image {...img} />
       </ImageGridItem>
     </ImageGrid>
   </Layout>

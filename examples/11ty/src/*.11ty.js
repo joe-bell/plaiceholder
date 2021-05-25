@@ -1,21 +1,16 @@
-const { getBase64, getCSS, getSVG, getImage } = require("plaiceholder");
+const { getPlaiceholder } = require("plaiceholder");
 
 const { propsToString, stylesToString } = require("./lib");
 
 class Page {
   async data() {
-    const src = "/assets/keila-joa@578.jpg";
-
-    const { buffer, ...imgDetails } = await getImage(src);
-    const base64 = await getBase64(buffer);
-    const pixelsCSS = await getCSS(buffer);
-    const [pixelsSVGElem, pixelsSVGPropsAll, pixelsSVGChildren] = await getSVG(
-      buffer
+    const { base64, css, svg, img } = await getPlaiceholder(
+      "/assets/keila-joa@578.jpg"
     );
 
-    const { style: pixelsSVGStyle, ...pixelsSVGProps } = pixelsSVGPropsAll;
+    const [pixelsSVGElem, pixelsSVGPropsAll, pixelsSVGChildren] = svg;
 
-    const img = { src, ...imgDetails };
+    const { style: pixelsSVGStyle, ...pixelsSVGProps } = pixelsSVGPropsAll;
 
     return {
       pagination: {
@@ -40,14 +35,14 @@ class Page {
           template: "example",
           title: "With Pixels (CSS)",
           img,
-          pixelsCSS,
+          css,
         },
         {
           slug: "with-pixels-svg",
           template: "example",
           title: "With Pixels (SVG)",
           img,
-          pixelsSVG: {
+          svg: {
             element: pixelsSVGElem,
             style: pixelsSVGStyle,
             props: pixelsSVGProps,
@@ -63,7 +58,7 @@ class Page {
 
   async render({
     pagination,
-    path: { base64, img, pixelsCSS, pixelsSVG, slug, template, title },
+    path: { base64, img, css, svg, slug, template, title },
   }) {
     const children = {
       index: `<h2 class="c-heading c-heading--secondary u-margin-top">Examples</h2>
@@ -83,25 +78,23 @@ class Page {
         `<img class="c-placeholder c-placeholder--base64" alt="" src="${base64}" />`,
 
       "with-pixels-css":
-        pixelsCSS &&
-        `<div class="c-placeholder" style="${stylesToString(
-          pixelsCSS
-        )}"></div>`,
+        css &&
+        `<div class="c-placeholder" style="${stylesToString(css)}"></div>`,
 
       "with-pixels-svg":
-        pixelsSVG &&
+        svg &&
         `<${
-          pixelsSVG.element
+          svg.element
         } class="c-placeholder c-placeholder--svg" style="${stylesToString(
-          pixelsSVG.style
-        )}" ${propsToString(pixelsSVG.props)} >
-            ${pixelsSVG.children
+          svg.style
+        )}" ${propsToString(svg.props)} >
+            ${svg.children
               .map(
                 ([childElem, childProps]) =>
                   `<${childElem} ${propsToString(childProps)} />`
               )
               .join("")}
-          </${pixelsSVG.element}>`,
+          </${svg.element}>`,
     }[slug];
 
     return { children, img, template, title };

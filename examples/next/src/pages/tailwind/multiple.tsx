@@ -1,20 +1,19 @@
 import * as React from "react";
 import { InferGetStaticPropsType } from "next";
 import Image from "next/image";
-import { getImage } from "plaiceholder";
+import { getPlaiceholder } from "plaiceholder";
 import { extractImagePath } from "@plaiceholder/tailwindcss/utils";
 import { config } from "@/config";
 import { ImageGrid, ImageGridItem } from "@/components/image-grid";
 import { Layout } from "@/components/layout";
 import { cx } from "@/styles";
 
-const getImagesFromPlaiceholders = (...plaiceholders) =>
+const getImagesFromPlaiceholders = (...classNames) =>
   Promise.all(
-    plaiceholders.map(async (plaiceholder) => {
-      const src = extractImagePath(plaiceholder);
-      const { width, height } = await getImage(src);
+    classNames.map(async (className) => {
+      const { img } = await getPlaiceholder(extractImagePath(className));
 
-      return { plaiceholder, src, width, height };
+      return { className, ...img };
     })
   );
 
@@ -42,15 +41,15 @@ const PageTailwindMultiple: React.FC<
 > = ({ images, title, heading }) => (
   <Layout variant="example" title={title} heading={heading}>
     <ImageGrid>
-      {images.map(({ plaiceholder, ...image }) => (
-        <ImageGridItem key={plaiceholder}>
+      {images.map(({ className, ...image }) => (
+        <ImageGridItem key={className}>
           <div
             className={cx(
               "absolute",
               "inset-0",
               "w-full",
               "h-full",
-              plaiceholder,
+              className,
               "transform",
               "scale-150",
               "filter",

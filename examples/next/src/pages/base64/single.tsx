@@ -1,24 +1,18 @@
 import * as React from "react";
 import { InferGetStaticPropsType } from "next";
 import Image from "next/image";
-import { getBase64, getImage } from "plaiceholder";
+import { getPlaiceholder } from "plaiceholder";
 import { config } from "@/config";
 import { cx } from "@/styles";
 import { ImageGrid, ImageGridItem } from "@/components/image-grid";
 import { Layout } from "@/components/layout";
 
 export const getStaticProps = async () => {
-  const src = "/keila-joa@578.jpg";
-
-  const { buffer, ...details } = await getImage(src);
-  const base64 = await getBase64(buffer);
+  const { base64, img } = await getPlaiceholder("/keila-joa@578.jpg");
 
   return {
     props: {
-      image: {
-        src,
-        ...details,
-      },
+      img,
       base64,
       title: config.examples.pages.base64.title,
       heading: config.examples.variants.single.title,
@@ -28,10 +22,10 @@ export const getStaticProps = async () => {
 
 const PageBase64Single: React.FC<
   InferGetStaticPropsType<typeof getStaticProps>
-> = ({ title, heading, image, base64 }) => (
+> = ({ title, heading, img, base64 }) => (
   <Layout variant="example" title={title} heading={heading}>
     <ImageGrid columns={2}>
-      <ImageGridItem key={image.src}>
+      <ImageGridItem key={img.src}>
         <img
           aria-hidden="true"
           alt=""
@@ -47,7 +41,7 @@ const PageBase64Single: React.FC<
           style={{ filter: "blur(24px)", transform: "scale(1.2)" }}
         />
 
-        <Image {...image} />
+        <Image {...img} />
       </ImageGridItem>
     </ImageGrid>
   </Layout>

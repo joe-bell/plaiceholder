@@ -1,7 +1,7 @@
 import * as React from "react";
 import { InferGetStaticPropsType } from "next";
 import Link from "next/link";
-import { getCSS, getImage } from "plaiceholder";
+import { getPlaiceholder } from "plaiceholder";
 import { cx } from "@/styles";
 import { Layout } from "@/components/layout";
 import { config } from "@/config";
@@ -12,10 +12,9 @@ export const getStaticProps = async () => {
 
   const plaiceholders = await Promise.all(
     imagePaths.map(async (src) => {
-      const { buffer } = await getImage(src);
-      const pixelsCSS = await getCSS(buffer);
+      const { css } = await getPlaiceholder(src);
 
-      return pixelsCSS;
+      return css;
     })
   ).then((values) => values);
 
