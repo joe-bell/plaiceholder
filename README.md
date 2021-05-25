@@ -69,7 +69,17 @@ Support Plaiceholder via your organization. Your logo will show up here **and** 
 
 ---
 
+## License
+
 Apache-2.0 License © [Joe Bell](https://twitter.com/joebell_)
+
+### Acknowledgements
+
+#### [Lovell Fuller](https://github.com/lovell) ([Sharp](https://github.com/lovell/sharp))
+
+Copyright © 2013-2021, Lovell Fuller. All Rights Reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License").
 
 [plaiceholder]: https://plaiceholder.co
 [plaiceholder:docs]: https://plaiceholder.co/docs
