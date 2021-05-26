@@ -84,6 +84,7 @@ export const getSVG: IGetSVG = ({ data, info, rawBuffer }) => {
         position: "absolute",
         top: "50%",
         left: "50%",
+        transformOrigin: "top left",
         transform: "translate(-50%, -50%)",
         right: 0,
         bottom: 0,
