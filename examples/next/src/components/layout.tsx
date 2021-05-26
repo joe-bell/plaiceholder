@@ -44,7 +44,7 @@ export const Layout: React.FC<TLayoutProps> = ({ children, ...props }) => (
                 alt=""
               />
             </span>
-            <span className="text-gray-600 text-xl md:inline">Examples</span>
+            <span className="text-gray-600 text-xl md:inline">Next.js</span>
           </a>
         </NextLink>
         <ul className={cx("flex", "space-x-4")}>
