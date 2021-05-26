@@ -59,7 +59,9 @@ export const loadImage: ILoadImage = async (imagePath) => {
 
 export type TOptimizeImageSrc = TBuffer;
 
-export interface IOptimizeImageOptions {}
+export interface IOptimizeImageOptions {
+  size?: number;
+}
 export interface IOptimizeImageReturnValue {
   data: Buffer;
   info: sharp.OutputInfo;
@@ -82,8 +84,24 @@ export interface IOptimizeImage {
   ): Promise<IOptimizeImageReturn>;
 }
 
-export const optimizeImage: IOptimizeImage = async (src, options) => {
-  const pipeline = sharp(src).resize(10, 10, { fit: "inside" });
+export const optimizeImage: IOptimizeImage = async (
+  src,
+  options = { size: 4 }
+) => {
+  const sizeMin = 4;
+  const sizeMax = 64;
+
+  const isSizeValid = sizeMin <= options.size && options.size <= sizeMax;
+  !isSizeValid &&
+    console.error(
+      ["Please enter a `size` value between", sizeMin, "and", sizeMax].join(" ")
+    );
+
+  const size = isSizeValid ? options.size : 4;
+
+  const pipeline = sharp(src).resize(size, size, {
+    fit: "inside",
+  });
 
   const getOptimizedForBase64 = pipeline
     .clone()
