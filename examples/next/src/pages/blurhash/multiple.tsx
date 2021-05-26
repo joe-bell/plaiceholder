@@ -9,7 +9,7 @@ import { cx } from "@/styles";
 import { getAllPublicImagePaths } from "@/lib/images";
 import { ImageGrid, ImageGridItem } from "@/components/image-grid";
 
-export const getStaticProps = async ({ params }) => {
+export const getStaticProps = async () => {
   const imagePaths = getAllPublicImagePaths();
 
   const images = await Promise.all(

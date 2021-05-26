@@ -8,7 +8,7 @@ import { getAllPublicImagePaths } from "@/lib/images";
 import { Layout } from "@/components/layout";
 import { ImageGrid, ImageGridItem } from "@/components/image-grid";
 
-export const getStaticProps = async ({ params }) => {
+export const getStaticProps = async () => {
   const imagePaths = getAllPublicImagePaths();
 
   const images = await Promise.all(
@@ -50,9 +50,12 @@ const PageSVGMultiple: React.FC<
               "w-full",
               "h-full",
               "object-cover",
-              "object-center"
+              "object-center",
+              "transform",
+              "scale-150",
+              "filter",
+              "blur-2xl"
             )}
-            style={{ filter: "blur(24px)", transform: "scale(1.2)" }}
           />
 
           <Image {...image} />

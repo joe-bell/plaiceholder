@@ -13,7 +13,6 @@ export const getStaticProps = async () => {
     props: {
       img,
       svg,
-      placeholderStyle: { filter: "blur(24px)", transform: "scale(1.2)" },
       title: config.examples.pages.svg.title,
       heading: config.examples.variants.single.title,
     },
@@ -22,7 +21,7 @@ export const getStaticProps = async () => {
 
 const PageSVGSingle: React.FC<
   InferGetStaticPropsType<typeof getStaticProps>
-> = ({ title, heading, placeholderStyle, img, svg }) => (
+> = ({ title, heading, img, svg }) => (
   <Layout variant="example" title={title} heading={heading}>
     <ImageGrid columns={2}>
       <ImageGridItem key={img.src}>
@@ -31,10 +30,9 @@ const PageSVGSingle: React.FC<
           {
             ...svg[1],
             style: {
-              ...placeholderStyle,
               ...svg[1].style,
-              transform: `${placeholderStyle.transform} ${svg[1].style.transform}`,
-              filter: placeholderStyle.filter,
+              transform: ["scale(1.5)", svg[1].style.transform].join(" "),
+              filter: "blur(40px)",
             },
           },
           svg[2].map((child) =>

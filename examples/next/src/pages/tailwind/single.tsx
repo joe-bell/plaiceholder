@@ -38,7 +38,7 @@ const PageTailwindSingle: React.FC<
             "transform",
             "scale-150",
             "filter",
-            "blur-xl"
+            "blur-2xl"
           )}
         />
         <Image {...img} />

@@ -36,11 +36,13 @@ const PageBase64Single: React.FC<
             "w-full",
             "h-full",
             "object-cover",
-            "object-center"
+            "object-center",
+            "transform",
+            "scale-150",
+            "filter",
+            "blur-2xl"
           )}
-          style={{ filter: "blur(24px)", transform: "scale(1.2)" }}
         />
-
         <Image {...img} />
       </ImageGridItem>
     </ImageGrid>

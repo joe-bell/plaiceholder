@@ -37,9 +37,7 @@ const PageCSSSingle: React.FC<
             "filter",
             "blur-2xl"
           )}
-          style={{
-            ...css,
-          }}
+          style={css}
         />
 
         <Image {...img} />

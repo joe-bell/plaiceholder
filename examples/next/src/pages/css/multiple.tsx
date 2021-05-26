@@ -8,12 +8,12 @@ import { cx } from "@/styles";
 import { Layout } from "@/components/layout";
 import { ImageGrid, ImageGridItem } from "@/components/image-grid";
 
-export const getStaticProps = async ({ params }) => {
+export const getStaticProps = async () => {
   const imagePaths = getAllPublicImagePaths();
 
   const images = await Promise.all(
     imagePaths.map(async (src) => {
-      const { css, img } = await getPlaiceholder(src);
+      const { css, img } = await getPlaiceholder(src, { size: 4 });
 
       return {
         ...img,
@@ -49,13 +49,9 @@ const PageCSSMultiple: React.FC<
               "transform",
               "scale-150",
               "filter",
-              "blur-xl"
+              "blur-2xl"
             )}
-            style={{
-              filter: "blur(24px)",
-              transform: "scale(1.2)",
-              ...css,
-            }}
+            style={css}
           />
 
           <Image {...image} />
