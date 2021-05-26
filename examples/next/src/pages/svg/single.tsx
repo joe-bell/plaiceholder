@@ -7,7 +7,7 @@ import { ImageGrid, ImageGridItem } from "@/components/image-grid";
 import { Layout } from "@/components/layout";
 
 export const getStaticProps = async () => {
-  const { svg, img } = await getPlaiceholder("/keila-joa@578.jpg");
+  const { svg, img } = await getPlaiceholder("/assets/keila-joa@578.jpg");
 
   return {
     props: {

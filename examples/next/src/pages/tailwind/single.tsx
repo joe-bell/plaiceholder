@@ -9,7 +9,7 @@ import { Layout } from "@/components/layout";
 import { cx } from "@/styles";
 
 export const getStaticProps = async () => {
-  const plaiceholder = "plaiceholder-[/keila-joa@578.jpg]";
+  const plaiceholder = "plaiceholder-[/assets/keila-joa@578.jpg]";
   const { img } = await getPlaiceholder(extractImagePath(plaiceholder));
 
   return {

@@ -1,7 +1,7 @@
 import glob from "glob";
 
-export const getAllPublicImagePaths = (): string[] =>
-  glob.sync("./public/assets/image/*.{jpg,png}").map((file) => {
+export const getAllUnsplashImagePaths = (): string[] =>
+  glob.sync("./public/assets/unsplash/*.{jpg,png}").map((file) => {
     const sep = "/";
     const fileArr = file.split(sep);
 

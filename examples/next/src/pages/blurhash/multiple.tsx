@@ -6,11 +6,11 @@ import { BlurhashCanvas } from "react-blurhash";
 import { Layout } from "@/components/layout";
 import { config } from "@/config";
 import { cx } from "@/styles";
-import { getAllPublicImagePaths } from "@/lib/images";
+import { getAllUnsplashImagePaths } from "@/lib/images";
 import { ImageGrid, ImageGridItem } from "@/components/image-grid";
 
 export const getStaticProps = async () => {
-  const imagePaths = getAllPublicImagePaths();
+  const imagePaths = getAllUnsplashImagePaths();
 
   const images = await Promise.all(
     imagePaths.map(async (src) => {

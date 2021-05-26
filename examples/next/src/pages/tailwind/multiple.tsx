@@ -19,12 +19,12 @@ const getImagesFromPlaiceholders = (...classNames) =>
 
 export const getStaticProps = async () => {
   const images = await getImagesFromPlaiceholders(
-    "plaiceholder-[/assets/image/alexander-ant-oR7HxvOe2YE-unsplash.jpg]",
-    "plaiceholder-[/assets/image/alexander-ant-r7xdS9hjYYE-unsplash.jpg]",
-    "plaiceholder-[/assets/image/solen-feyissa-0KXl7T2YU0I-unsplash.jpg]",
-    "plaiceholder-[/assets/image/solen-feyissa-ju3ZBdiXzmA-unsplash.jpg]",
-    "plaiceholder-[/assets/image/solen-feyissa-tek55norwaQ-unsplash.jpg]",
-    "plaiceholder-[/assets/image/solen-feyissa-WX1siNmy_R4-unsplash.jpg]"
+    "plaiceholder-[/assets/unsplash/alexander-ant-oR7HxvOe2YE.jpg]",
+    "plaiceholder-[/assets/unsplash/alexander-ant-r7xdS9hjYYE.jpg]",
+    "plaiceholder-[/assets/unsplash/solen-feyissa-0KXl7T2YU0I.jpg]",
+    "plaiceholder-[/assets/unsplash/solen-feyissa-ju3ZBdiXzmA.jpg]",
+    "plaiceholder-[/assets/unsplash/solen-feyissa-tek55norwaQ.jpg]",
+    "plaiceholder-[/assets/unsplash/solen-feyissa-WX1siNmy_R4.jpg]"
   );
 
   return {

@@ -4,11 +4,11 @@ import Image from "next/image";
 import { getPlaiceholder } from "plaiceholder";
 import { config } from "@/config";
 import { Layout } from "@/components/layout";
-import { getAllPublicImagePaths } from "@/lib/images";
+import { getAllUnsplashImagePaths } from "@/lib/images";
 import { ImageGrid, ImageGridItem } from "@/components/image-grid";
 
 export const getStaticProps = async () => {
-  const imagePaths = getAllPublicImagePaths();
+  const imagePaths = getAllUnsplashImagePaths();
 
   const images = await Promise.all(
     imagePaths.map(async (src) => {

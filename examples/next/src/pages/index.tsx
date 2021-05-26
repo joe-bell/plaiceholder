@@ -5,10 +5,10 @@ import { getPlaiceholder } from "plaiceholder";
 import { cx } from "@/styles";
 import { Layout } from "@/components/layout";
 import { config } from "@/config";
-import { getAllPublicImagePaths } from "@/lib/images";
+import { getAllUnsplashImagePaths } from "@/lib/images";
 
 export const getStaticProps = async () => {
-  const imagePaths = getAllPublicImagePaths();
+  const imagePaths = getAllUnsplashImagePaths();
 
   const plaiceholders = await Promise.all(
     imagePaths.map(async (src) => {

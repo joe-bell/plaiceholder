@@ -3,13 +3,13 @@ import { InferGetStaticPropsType } from "next";
 import Image from "next/image";
 import { getPlaiceholder } from "plaiceholder";
 import { config } from "@/config";
-import { getAllPublicImagePaths } from "@/lib/images";
+import { getAllUnsplashImagePaths } from "@/lib/images";
 import { cx } from "@/styles";
 import { Layout } from "@/components/layout";
 import { ImageGrid, ImageGridItem } from "@/components/image-grid";
 
 export const getStaticProps = async () => {
-  const imagePaths = getAllPublicImagePaths();
+  const imagePaths = getAllUnsplashImagePaths();
 
   const images = await Promise.all(
     imagePaths.map(async (src) => {
