@@ -1,7 +1,10 @@
 import { encode } from "blurhash";
-import type { IOptimizeImageReturnValue } from "./get";
+import type { IGetImageReturn } from "./get-image";
 
-export interface IGetBlurhashOptions extends IOptimizeImageReturnValue {}
+type TGetImageReturnBlurhash = IGetImageReturn["optimizedForBlurhash"];
+
+export interface IGetBlurhashOptions extends TGetImageReturnBlurhash {}
+
 export type IGetBlurhashReturn = {
   hash: string;
 } & Record<"width" | "height", number>;

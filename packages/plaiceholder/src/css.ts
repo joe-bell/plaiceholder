@@ -1,9 +1,11 @@
-import type { IOptimizeImageReturnValue } from "./get";
+import type { IGetImageReturn } from "./get-image";
+
+type TGetImageReturnCSS = IGetImageReturn["optimizedForCSS"];
 
 const rgb = (channels: (number | string)[]) =>
   `rgb${channels.length === 4 ? "a" : ""}(${channels.join(",")})`;
 
-export interface IGetCSSOptions extends IOptimizeImageReturnValue {}
+export interface IGetCSSOptions extends TGetImageReturnCSS {}
 export interface IGetCSSReturn
   extends Record<
     | "backgroundImage"

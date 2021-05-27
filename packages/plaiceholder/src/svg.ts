@@ -1,5 +1,5 @@
 import { arrayChunk } from "./utils";
-import type { IOptimizeImageReturnValue } from "./get";
+import type { IGetImageReturn } from "./get-image";
 
 type TRects = [
   "rect",
@@ -10,7 +10,9 @@ type TRects = [
 const rgb = (channels: string[]) => `rgb(${channels.slice(0, 3).join(",")})`;
 const alphaToOpacity = (alpha: number) => ((alpha / 255) * 100) / 100;
 
-export interface IGetSVGOptions extends IOptimizeImageReturnValue {}
+type TGetImageReturnSVG = IGetImageReturn["optimizedForSVG"];
+
+export interface IGetSVGOptions extends TGetImageReturnSVG {}
 export type TGetSVGReturn = [
   "svg",
   {

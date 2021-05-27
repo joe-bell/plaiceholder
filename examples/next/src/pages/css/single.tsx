@@ -8,7 +8,9 @@ import { ImageGrid, ImageGridItem } from "@/components/image-grid";
 import { Layout } from "@/components/layout";
 
 export const getStaticProps = async () => {
-  const { css, img } = await getPlaiceholder("/assets/keila-joa@578.jpg");
+  const { css, img } = await getPlaiceholder(
+    "https://images.unsplash.com/photo-1621961458348-f013d219b50c?auto=format&fit=crop&w=2850&q=80"
+  );
 
   return {
     props: {

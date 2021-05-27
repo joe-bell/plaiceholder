@@ -1,6 +1,8 @@
-import type { IOptimizeImageReturnValue } from "./get";
+import type { IGetImageReturn } from "./get-image";
 
-export interface IGetBase64Options extends IOptimizeImageReturnValue {}
+type TGetImageReturnBase64 = IGetImageReturn["optimizedForBase64"];
+
+export interface IGetBase64Options extends TGetImageReturnBase64 {}
 export type TGetBase64Return = string;
 
 export interface IGetBase64 {
