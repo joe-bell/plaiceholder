@@ -1,6 +1,6 @@
 import { classNamePrefix } from "./config";
 
-export const extractImagePath = (plaiceholderClass: string) =>
+export const extractImgSrc = (plaiceholderClass: string) =>
   plaiceholderClass
     .replace([classNamePrefix, "["].join(""), "")
     .replace("]", "");

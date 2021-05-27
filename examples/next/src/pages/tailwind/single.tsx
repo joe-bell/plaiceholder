@@ -2,7 +2,7 @@ import * as React from "react";
 import { InferGetStaticPropsType } from "next";
 import Image from "next/image";
 import { getPlaiceholder } from "plaiceholder";
-import { extractImagePath } from "@plaiceholder/tailwindcss/utils";
+import { extractImgSrc } from "@plaiceholder/tailwindcss/utils";
 import { config } from "@/config";
 import { ImageGrid, ImageGridItem } from "@/components/image-grid";
 import { Layout } from "@/components/layout";
@@ -10,7 +10,7 @@ import { cx } from "@/styles";
 
 export const getStaticProps = async () => {
   const plaiceholder = "plaiceholder-[/assets/keila-joa@578.jpg]";
-  const { img } = await getPlaiceholder(extractImagePath(plaiceholder));
+  const { img } = await getPlaiceholder(extractImgSrc(plaiceholder));
 
   return {
     props: {

@@ -24,10 +24,6 @@ export default plugin(({ config, matchUtilities }) => {
 
 @plaiceholder/tailwindcss
 
-⚠️ WARNING
-Just like JIT, this plugin is in preview.
-Any changes are not covered by semver. Use with caution.
-
 🙏 SPONSORS
 Enjoying Plaiceholder?
 Support further development at https://plaiceholder.co
