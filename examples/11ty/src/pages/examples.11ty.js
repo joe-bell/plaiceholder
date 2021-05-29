@@ -1,6 +1,6 @@
 const { getPlaiceholder } = require("plaiceholder");
 
-const { propsToString, stylesToString } = require("./lib");
+const { propsToString, stylesToString } = require("../lib");
 
 class Page {
   async data() {
@@ -20,26 +20,22 @@ class Page {
       },
       paths: [
         {
-          slug: "index",
-          title: "Plaiceholder: 11ty",
-        },
-        {
           slug: "with-base64",
-          template: "example",
+          variant: "example",
           title: "With Base64",
           img,
           base64,
         },
         {
           slug: "with-pixels-css",
-          template: "example",
+          variant: "example",
           title: "With Pixels (CSS)",
           img,
           css,
         },
         {
           slug: "with-pixels-svg",
-          template: "example",
+          variant: "example",
           title: "With Pixels (SVG)",
           img,
           svg: {
@@ -52,13 +48,13 @@ class Page {
       ],
       permalink: ({ path }) =>
         `${path.slug === "index" ? "" : path.slug}/index.html`,
-      layout: "base",
+      layout: "example",
     };
   }
 
   async render({
     pagination,
-    path: { base64, img, css, svg, slug, template, title },
+    path: { base64, img, css, svg, slug, variant, title },
   }) {
     const children = {
       index: `<h2 class="c-heading c-heading--secondary u-margin-top">Examples</h2>
@@ -97,7 +93,7 @@ class Page {
           </${svg.element}>`,
     }[slug];
 
-    return { children, img, template, title };
+    return { children, img, variant, title };
   }
 }
 

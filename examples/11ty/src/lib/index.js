@@ -1,14 +1,3 @@
-const fs = require("fs");
-const path = require("path");
-const CleanCSS = require("clean-css");
-
-exports.getStyles = () => {
-  const file = fs.readFileSync(
-    path.join(__dirname, "..", "styles", "index.css")
-  );
-  return new CleanCSS().minify(file).styles;
-};
-
 exports.stylesToString = (style) =>
   Object.keys(style).reduce((acc, cv) => {
     return `${(acc += cv

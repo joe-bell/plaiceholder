@@ -1,12 +1,18 @@
+@tailwind base;
+
+img {
+  color: transparent;
+}
+
+@tailwind components;
+
+@tailwind utilities;
+
+/* 
 * {
   margin: 0;
 }
-html {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-    Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji,
-    Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
-  line-height: 1.5;
-}
+
 .c-main {
   max-width: 36rem;
   padding-left: 1rem;
@@ -59,4 +65,4 @@ html {
 
 .u-margin-top {
   margin-top: 1rem;
-}
+} */

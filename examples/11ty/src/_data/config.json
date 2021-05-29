@@ -1,0 +1,31 @@
+{
+  "project": "plaiceholder",
+  "title": "11ty",
+  "domain": "https://plaiceholder.co",
+  "meta": {
+    "title": "Plaiceholder × 11ty",
+    "description": "Using Plaiceholder in 11ty"
+  },
+  "social": {
+    "github": "https://github.com/joe-bell/plaiceholder/tree/main/examples/11ty",
+    "twitter": "https://twitter.com/joebell_"
+  },
+  "pages": {
+    "index": {
+      "heading": "Next.js",
+      "subHeading": "Choose-your-own adventure"
+    },
+    "tailwind": {
+      "heading": "Tailwind"
+    },
+    "css": {
+      "heading": "CSS"
+    },
+    "svg": {
+      "heading": "SVG"
+    },
+    "base64": {
+      "heading": "Base64"
+    }
+  }
+}
