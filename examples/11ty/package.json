@@ -8,10 +8,10 @@
   "scripts": {
     "tw:build": "NODE_ENV=production postcss ./src/styles/index.css -o ./_site/styles/index.css",
     "tw:watch": "NODE_ENV=development postcss ./src/styles/index.css -o ./_site/styles/index.css -w",
-    "11ty:watch": "yarn 11ty:build -- --serve --port=5000",
     "11ty:build": "eleventy --input=src",
-    "build": "yarn tw:build && yarn 11ty:build",
-    "dev": "concurrently \"yarn tw:watch\" \"yarn 11ty:watch\"",
+    "11ty:watch": "eleventy --input=src --serve --port=5000",
+    "build": "yarn 11ty:build && yarn tw:build",
+    "dev": "concurrently \"yarn 11ty:watch\" \"yarn tw:watch\"",
     "clean": "rimraf _site",
     "vercel": "yarn --cwd ../../ prepare && yarn build"
   },
