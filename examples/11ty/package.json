@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "@11ty/eleventy": "0.12.1",
+    "@11ty/eleventy-img": "0.9.0",
     "@plaiceholder/tailwindcss": "^1.0.0",
     "plaiceholder": "^1.0.0",
     "autoprefixer": "10.2.5",
