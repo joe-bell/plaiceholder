@@ -23,6 +23,7 @@
     "autoprefixer": "10.2.5",
     "concurrently": "6.2.0",
     "clean-css": "4.2.3",
+    "glob": "7.1.6",
     "postcss": "8.2.9",
     "postcss-cli": "8.3.1",
     "serve": "11.3.2",

@@ -52,7 +52,6 @@ const Index: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
             "border-gray-200",
             "shadow-sm",
             "grid",
-            "flex-col",
             "rounded-lg",
             "relative",
             "overflow-hidden",

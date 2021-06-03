@@ -10,9 +10,7 @@ exports.render = function (data) {
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="${data.config.meta.description}" />
-    <meta name="og:title" content="${
-      data.content.title || data.config.meta.title
-    }" />
+    <meta name="og:title" content="${data.title || data.config.meta.title}" />
 
     <link
       rel="shortcut icon"
@@ -33,8 +31,8 @@ exports.render = function (data) {
     }" />
 
     <title>${
-      data.content.title
-        ? [data.config.meta.title, data.content.title].join(" | ")
+      data.title
+        ? [data.config.meta.title, data.title].join(" | ")
         : data.config.meta.title
     }</title>
 
@@ -113,36 +111,6 @@ exports.render = function (data) {
     </header>
     <main class="max-w-5xl mx-auto px-4 w-full mt-10 pb-20 text-gray-800">
       ${data.content}
-      ${
-        data.content &&
-        data.content.variant &&
-        {
-          home: `
-          <article class="max-w-sm sm:max-w-none mx-auto">
-            <h1 class="font-bold text-4xl mt-10">${data.config.title}</h1>
-            <p class="font-light text-gray-600 text-2xl mt-2">Choose-your-own adventure</p>
-            
-            ${data.content.children}
-          </article>
-          `,
-          example: `<a
-              href="https://instagram.com/joebell"
-              title="© Joe Bell"
-              class="c-link-img u-margin-top"
-            >
-              ${data.content.children}
-              <div style="max-width:100%;width:4032px">
-                <div style="position:relative;padding-bottom:75%">
-                  <img
-                    alt="Keila Joa, Estonia."
-                    src="${data.content.img && data.content.img.src}"
-                    style="color: transparent; visibility: visible; height: 100%; left: 0px; position: absolute; top: 0px; width: 100%;"
-                  />
-                </div>
-              </div>
-            </a>`,
-        }[data.content.variant]
-      }
     </main>
   </body>
 </html>`;
