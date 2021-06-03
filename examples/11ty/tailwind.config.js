@@ -1,6 +1,6 @@
 module.exports = {
   mode: "jit",
-  purge: ["./_site/**/*.html"],
+  purge: ["./src/**/*.js", "./_site/**/*.html"],
   theme: {
     extend: {},
   },

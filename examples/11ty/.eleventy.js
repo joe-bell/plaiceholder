@@ -1,3 +1,6 @@
+const path = require("path");
+const prettier = require("prettier");
+
 const { imageGrid } = require("./src/_components/image-grid");
 const {
   imageShortcode,
@@ -29,6 +32,15 @@ module.exports = function (config) {
     "imageWithPlaiceholderSVG",
     imageWithPlaiceholderSVG
   );
+
+  // Prettify output
+  config.addTransform("prettier", function (content, outputPath) {
+    const extname = path.extname(outputPath);
+
+    return [".html", ".json"].includes(extname)
+      ? prettier.format(content, { parser: extname.replace(/^./, "") })
+      : content;
+  });
 
   return {
     dir: {

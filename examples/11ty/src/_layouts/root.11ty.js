@@ -38,7 +38,7 @@ exports.render = function (data) {
 
     <link rel="stylesheet" href="/styles/index.css" />
   </head>
-  <body>
+  <body id="root" class="preload">
     <header class="bg-white border-b border-gray-300 py-4 z-10">
       <div class="max-w-5xl mx-auto px-4 w-full flex justify-between items-center">
       <a class="inline-flex items-center hover:opacity-75" href="/">
@@ -112,6 +112,9 @@ exports.render = function (data) {
     <main class="max-w-5xl mx-auto px-4 w-full mt-10 pb-20 text-gray-800">
       ${data.content}
     </main>
+    <script>
+      document.body.classList.remove('preload');
+    </script>
   </body>
 </html>`;
 };

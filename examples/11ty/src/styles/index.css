@@ -6,4 +6,9 @@ img {
 
 @tailwind components;
 
+/* prevent CSS transitions on page load */
+.preload * {
+  transition: none !important;
+}
+
 @tailwind utilities;
