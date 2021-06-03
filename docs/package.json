@@ -6,10 +6,10 @@
   "license": "Apache-2.0",
   "funding": "https://plaiceholder.co",
   "scripts": {
-    "dev": "next dev",
     "build": "next build",
-    "start": "next start",
     "clean": "rimraf .next",
+    "dev": "next dev",
+    "start": "next start",
     "vercel": "yarn --cwd ../ prepare && yarn build"
   },
   "dependencies": {

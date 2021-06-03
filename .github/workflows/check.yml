@@ -28,4 +28,4 @@ jobs:
       - run: yarn install --frozen-lockfile --ignore-scripts
         env:
           CI: true
-      - run: yarn format . --check
+      - run: yarn prettier . --check

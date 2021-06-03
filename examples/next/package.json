@@ -6,10 +6,10 @@
   "license": "Apache-2.0",
   "funding": "https://plaiceholder.co",
   "scripts": {
-    "dev": "next dev",
     "build": "next build",
-    "start": "next start",
     "clean": "rimraf .next",
+    "dev": "next dev",
+    "start": "next start",
     "vercel": "yarn --cwd ../../ prepare && yarn build"
   },
   "dependencies": {
@@ -17,8 +17,8 @@
     "@plaiceholder/next": "^1.0.0",
     "@plaiceholder/tailwindcss": "^1.0.0",
     "@tailwindcss/aspect-ratio": "0.2.0",
-    "glob": "7.1.6",
-    "next": "10.2.0",
+    "glob": "7.1.7",
+    "next": "10.2.2",
     "plaiceholder": "^1.0.0",
     "react": "17.0.2",
     "react-blurhash": "0.1.3",

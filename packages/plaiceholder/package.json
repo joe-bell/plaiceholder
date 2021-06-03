@@ -5,6 +5,18 @@
   "author": "Joe Bell <joe@joebell.co.uk>",
   "license": "Apache-2.0",
   "funding": "https://plaiceholder.co",
+  "repository": "joe-bell/plaiceholder.git",
+  "bugs": "https://github.com/joe-bell/plaiceholder/issues",
+  "homepage": "https://github.com/joe-bell/plaiceholder#readme",
+  "keywords": [
+    "base64",
+    "blurhash",
+    "css",
+    "lqip",
+    "placeholder",
+    "plaiceholder",
+    "svg"
+  ],
   "source": "src/index.ts",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -15,26 +27,9 @@
   ],
   "scripts": {
     "build": "microbundle --external sharp --no-compress --target node --tsconfig tsconfig.json",
-    "dev": "yarn build -- watch",
-    "clean": "rimraf {dist,.rts2*}"
+    "clean": "rimraf {dist,.rts2*}",
+    "dev": "yarn build -- watch"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/joe-bell/plaiceholder.git"
-  },
-  "keywords": [
-    "lqip",
-    "placeholder",
-    "plaiceholder",
-    "base64",
-    "blurhash",
-    "css",
-    "svg"
-  ],
-  "bugs": {
-    "url": "https://github.com/joe-bell/plaiceholder/issues"
-  },
-  "homepage": "https://github.com/joe-bell/plaiceholder#readme",
   "peerDependencies": {
     "sharp": ">= 0.26.2"
   },
