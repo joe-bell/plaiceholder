@@ -70,7 +70,7 @@ const Example = ({ src }) => (
 
 To circumvent this, `@plaiceholder/tailwindcss` offers an additional `utils` entry point to extract image paths from the JIT classes on the server-side. For example, in a Next.js setup.
 
-```ts
+```tsx title="pages/example.tsx"
 import * as React from "react";
 import { InferGetStaticPropsType } from "next";
 import Image from "next/image";
