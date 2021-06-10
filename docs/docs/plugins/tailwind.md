@@ -1,41 +1,13 @@
-import Callout from "nextra-theme-docs/callout";
+# Tailwind
 
-# Plugins
+:::note
 
-## Next.js
+Due to limitations with Tailwind's JIT engine, `@plaiceholder/tailwindcss`
+**only** supports local images.
 
-An essential plugin for Next.js, ensuring that all `plaiceholder` functions start in the main thread.
+:::
 
-### Installation
-
-1. Install the package alongside your existing `plaiceholder` installation:
-
-   ```sh
-   npm i @plaiceholder/next
-   ```
-
-2. Wrap your Next.js config with `withPlaiceholder`:
-
-   ```js
-   const { withPlaiceholder } = require("@plaiceholder/next");
-
-   module.exports = withPlaiceholder({
-     // your Next.js config
-   });
-   ```
-
-### Usage
-
-…and that's it! Use Next.js and `plaiceholder` as you would expect.
-
-## Tailwind
-
-<Callout>
-  Due to limitations with Tailwind's JIT engine, `@plaiceholder/tailwindcss`
-  **only** supports local images.
-</Callout>
-
-### Installation
+## Installation
 
 1. Install the package alongside your existing [`tailwindcss`](https://tailwindcss.com/docs/installation) installation:
 
@@ -45,7 +17,7 @@ An essential plugin for Next.js, ensuring that all `plaiceholder` functions star
 
 2. Add the plugin to your `tailwind.config.js` being sure to enable `"jit"` mode:
 
-   ```js
+   ```js title="tailwind.config.js"
    module.exports = {
      mode: "jit",
      purge: ["./src/**/*.{ts,tsx}"],
@@ -57,7 +29,7 @@ An essential plugin for Next.js, ensuring that all `plaiceholder` functions star
    };
    ```
 
-### Usage
+## Usage
 
 Once installed, pure CSS image LQIPs can be created with the following JIT class format:
 
@@ -81,7 +53,7 @@ The class **only** returns the "pixels" (`linear-gradient` values), allowing you
 />
 ```
 
-### Utils
+## Utils
 
 [Dynamic values aren't supported](https://tailwindcss.com/docs/just-in-time-mode#known-limitations) by JIT mode, meaning arbitrary LQIPs can't be computed.
 

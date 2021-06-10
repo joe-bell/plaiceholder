@@ -1,4 +1,6 @@
-import Callout from "nextra-theme-docs/callout";
+---
+sidebar_position: 2
+---
 
 # Strategies
 
@@ -47,12 +49,13 @@ Converts a specified image `Buffer` into a low-res placeholder, outputted as an 
 
 For a "blurred" effect, extend the returned SVG's styles with `filter: blur(<value>)` and `transform: scale(<value>)`.
 
-<Callout>
+:::note
+
 Although it returns the SVG in the format of [`React.createElement()`](https://reactjs.org/docs/react-api.html#createelement) arguments, you are not constrained to using React.js.
 
 e.g. See the 11ty example.
 
-</Callout>
+:::
 
 ### Installation
 
@@ -124,7 +127,7 @@ Converts a specified image `Buffer` into a low-res image, encoded as Blurhash st
 **Pros:** Lightweight, fast `DOMContentLoaded` and `LCP`  
 **Cons:** As it uses `canvas`, it's not ideal to use Blurhash for above-the-fold content.
 
-This can be passed into a library such as [react-blurhash][react-blurhash].
+This can be passed into a library such as [react-blurhash](https://github.com/woltapp/react-blurhash).
 
 ### Installation
 

@@ -1,0 +1,31 @@
+---
+sidebar_position: 1
+slug: /
+hide_title: true
+---
+
+import IntroHeader from "../src/components/IntroHeader";
+
+# Introduction
+
+<IntroHeader
+  headline="Beautiful image placeholders, without the hassle."
+  tagline="Choose-your-own adventure, from pure CSS to SVG…"
+  link={{ label: "Try the Studio", href: "https://plaiceholder.co" }}
+/>
+
+---
+
+"Plaiceholder" is a collection of **Node.js** helpers for creating low quality image placeholders, with several approaches to choose from:
+
+1.  [**CSS**](/strategies#css) <small>(recommended)</small>
+2.  [**SVG**](/strategies#svg)
+3.  [**Base64**](/strategies#base64)
+4.  [**Blurhash**](/strategies#blurhash)
+
+:::note
+
+Disclaimer: It's worth taking pros/cons of each approach with a grain of salt.  
+Although initial tests locally and on [WebPageTest](https://webpagetest.org/) have proved successful, extra research needs to be completed to determine the fastest solution.
+
+:::
