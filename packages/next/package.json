@@ -5,6 +5,15 @@
   "author": "Joe Bell <joe@joebell.co.uk>",
   "license": "Apache-2.0",
   "funding": "https://plaiceholder.co",
+  "repository": "joe-bell/plaiceholder.git",
+  "bugs": "https://github.com/joe-bell/plaiceholder/issues",
+  "homepage": "https://github.com/joe-bell/plaiceholder#readme",
+  "keywords": [
+    "lqip",
+    "next.js",
+    "placeholder",
+    "plaiceholder"
+  ],
   "source": "src/index.ts",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -15,30 +24,14 @@
   ],
   "scripts": {
     "build": "microbundle --no-compress --tsconfig tsconfig.json --external sharp",
-    "dev": "yarn build -- watch",
-    "clean": "rimraf {dist,.rts2*}"
+    "clean": "rimraf {dist,.rts2*}",
+    "dev": "yarn build -- watch"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/joe-bell/plaiceholder.git"
-  },
-  "keywords": [
-    "lqip",
-    "placeholder",
-    "plaiceholder",
-    "next.js"
-  ],
-  "bugs": {
-    "url": "https://github.com/joe-bell/plaiceholder/issues"
-  },
-  "homepage": "https://github.com/joe-bell/plaiceholder#readme",
-  "dependencies": {
-    "@plaiceholder/core": "^1.0.0"
+  "peerDependencies": {
+    "next": ">= 10.0.0",
+    "sharp": ">= 0.26.2"
   },
   "devDependencies": {
     "next": "10.2.2"
-  },
-  "peerDependencies": {
-    "next": ">= 10.0.0"
   }
 }

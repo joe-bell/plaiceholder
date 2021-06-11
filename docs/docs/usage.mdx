@@ -1,0 +1,461 @@
+---
+sidebar_position: 2
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+# Usage
+
+## Prerequisites
+
+First and foremost, Plaiceholder is a [Node.js](https://nodejs.org/en/) library.
+It's designed **only** to work in a Node.js environment.
+
+Under-the-hood, it uses the wonderful and powerful [`sharp`](https://sharp.pixelplumbing.com/) library to transform images.
+
+Some frameworks or libraries include `sharp` by default, so double-check before you install.
+
+<Tabs
+  groupId="package-manager"
+  defaultValue="npm"
+  values={[
+    { label: "npm", value: "npm" },
+    { label: "Yarn", value: "yarn" },
+  ]}
+>
+<TabItem value="npm">
+
+```sh
+npm i sharp
+```
+
+</TabItem>
+<TabItem value="yarn">
+
+```sh
+yarn add sharp
+```
+
+</TabItem>
+</Tabs>
+
+## Installation
+
+<Tabs
+  groupId="package-manager"
+  defaultValue="npm"
+  values={[
+    { label: "npm", value: "npm" },
+    { label: "Yarn", value: "yarn" },
+  ]}
+>
+<TabItem value="npm">
+
+```sh
+npm i plaiceholder
+```
+
+</TabItem>
+<TabItem value="yarn">
+
+```sh
+yarn add plaiceholder
+```
+
+</TabItem>
+</Tabs>
+
+## Strategies
+
+### CSS
+
+Converts a specified image into a low-res placeholder, outputted as a set of `linear-gradient`s (in the form of a JavaScript style object).
+
+For a "blurred" effect, extend the returned styles with `filter: blur(<value>)` and `transform: scale(<value>)`.
+
+#### Example
+
+<Tabs
+  groupId="example"
+  defaultValue="node"
+  values={[
+    { label: "Node.js", value: "node" },
+    { label: "Next.js", value: "next" },
+  ]}
+>
+<TabItem value="node">
+
+```js
+import { getPlaiceholder } from "plaiceholder";
+
+try {
+  getPlaiceholder("/path-to-your-image.jpg").then(({ css }) =>
+    console.log(css)
+  );
+} catch (err) {
+  err;
+}
+
+// Logs
+// {
+//   backgroundImage: "…"
+//   backgroundPosition: "…"
+//   backgroundSize: "…"
+//   backgroundRepeat: "…"
+// }
+```
+
+</TabItem>
+<TabItem value="next">
+
+```tsx title="pages/example.tsx"
+import * as React from "react";
+import type { InferGetStaticPropsType } from "next";
+import Image from "next/image";
+import { getPlaiceholder } from "plaiceholder";
+
+export const getStaticProps = async () => {
+  const { css, img } = await getPlaiceholder("/path-to-your-image.jpg");
+
+  return {
+    props: {
+      img,
+      css,
+    },
+  };
+};
+
+const Page: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
+  img,
+  css,
+}) => (
+  <div style={{ position: "relative", display: "block", overflow: "hidden" }}>
+    <div
+      style={{
+        position: "absolute",
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        transform: "scale(1.5)",
+        filter: "blur(40px)",
+        ...css,
+      }}
+    />
+
+    <Image {...img} />
+  </div>
+);
+
+export default Page;
+```
+
+</TabItem>
+</Tabs>
+
+### SVG
+
+Converts a specified image into a low-res placeholder, outputted as an SVG.
+
+For a "blurred" effect, extend the returned SVG's styles with `filter: blur(<value>)` and `transform: scale(<value>)`.
+
+:::note
+
+Although it returns the SVG in the format of [`React.createElement()`](https://reactjs.org/docs/react-api.html#createelement) arguments, you are not constrained to using React.js.
+
+e.g. See the 11ty example.
+
+:::
+
+#### Example
+
+<Tabs
+  groupId="example"
+  defaultValue="node"
+  values={[
+    { label: "Node.js", value: "node" },
+    { label: "Next.js", value: "next" },
+  ]}
+>
+<TabItem value="node">
+
+```js
+import { getPlaiceholder } from "plaiceholder";
+
+try {
+  getPlaiceholder("/path-to-your-image.jpg").then(({ svg }) =>
+    console.log(svg)
+  );
+} catch (err) {
+  err;
+}
+
+// Logs
+// [
+//   "svg",
+//   { ...svgProps }
+//   [
+//     [
+//       "rect",
+//       { ...rectProps }
+//     ],
+//     ...etc
+//   ]
+// ]
+```
+
+</TabItem>
+<TabItem value="next">
+
+```tsx title="pages/example.tsx"
+import * as React from "react";
+import type { InferGetStaticPropsType } from "next";
+import Image from "next/image";
+import { getPlaiceholder } from "plaiceholder";
+
+export const getStaticProps = async () => {
+  const { svg, img } = await getPlaiceholder("/path-to-your-image.jpg");
+
+  return {
+    props: {
+      img,
+      svg,
+    },
+  };
+};
+
+const Page: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
+  img,
+  svg,
+}) => (
+  <div style={{ position: "relative", display: "block", overflow: "hidden" }}>
+    {React.createElement(
+      svg[0],
+      {
+        ...svg[1],
+        style: {
+          ...svg[1].style,
+          transform: ["scale(1.5)", svg[1].style.transform].join(" "),
+          filter: "blur(40px)",
+        },
+      },
+      svg[2].map((child) =>
+        React.createElement(child[0], {
+          key: [child[1].x, child[1].y].join(),
+          ...child[1],
+        })
+      )
+    )}
+
+    <Image {...img} />
+  </div>
+);
+
+export default Page;
+```
+
+</TabItem>
+</Tabs>
+
+### Base64
+
+Converts a specified image into a low-res image, encoded as Base64 string.
+
+For a "blurred" effect, add `filter: blur(<value>)` and `transform: scale(<value>)` styles to the image.
+
+#### Example
+
+<Tabs
+  groupId="example"
+  defaultValue="node"
+  values={[
+    { label: "Node.js", value: "node" },
+    { label: "Next.js", value: "next" },
+  ]}
+>
+<TabItem value="node">
+
+```js
+import { getPlaiceholder } from "plaiceholder";
+
+try {
+  getPlaiceholder("/path-to-your-image.jpg").then(({ base64 }) =>
+    console.log(base64)
+  );
+} catch (err) {
+  err;
+}
+
+// Logs
+// data:image/jpeg;base64,/9j/2wBDAAYEBQY…
+```
+
+</TabItem>
+<TabItem value="next">
+
+```tsx title="pages/example.tsx"
+import * as React from "react";
+import type { InferGetStaticPropsType } from "next";
+import Image from "next/image";
+import { getPlaiceholder } from "plaiceholder";
+
+export const getStaticProps = async () => {
+  const { base64, img } = await getPlaiceholder("/path-to-your-image.jpg");
+
+  return {
+    props: {
+      img,
+      base64,
+    },
+  };
+};
+
+const Page: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
+  img,
+  base64,
+}) => (
+  <div style={{ position: "relative", display: "block", overflow: "hidden" }}>
+    <img
+      alt=""
+      src={base64}
+      style={{
+        position: "absolute",
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        objectFit: "cover",
+        objectPosition: "center",
+        transform: "scale(1.5)",
+        filter: "blur(40px)",
+      }}
+    />
+
+    <Image {...img} />
+  </div>
+);
+
+export default Page;
+```
+
+</TabItem>
+</Tabs>
+
+### Blurhash
+
+Converts a specified image into a low-res image, encoded as Blurhash string accompanied by its width and height
+
+This can be passed into a library such as [react-blurhash](https://github.com/woltapp/react-blurhash).
+
+#### Example
+
+<Tabs
+  groupId="example"
+  defaultValue="node"
+  values={[
+    { label: "Node.js", value: "node" },
+    { label: "Next.js", value: "next" },
+  ]}
+>
+<TabItem value="node">
+
+```js
+import { getPlaiceholder } from "plaiceholder";
+
+try {
+  getPlaiceholder("/path-to-your-image.jpg").then(({ blurhash }) =>
+    console.log(blurhash)
+  );
+} catch (err) {
+  err;
+}
+
+// Logs
+//  {
+//    hash: "U.QSL{%1bdxtR...",
+//    height: 32,
+//    width: 32
+//  }
+```
+
+</TabItem>
+<TabItem value="next">
+
+```tsx title="pages/example.tsx"
+import * as React from "react";
+import type { InferGetStaticPropsType } from "next";
+import Image from "next/image";
+import { getPlaiceholder } from "plaiceholder";
+import { BlurhashCanvas } from "react-blurhash";
+
+export const getStaticProps = async () => {
+  const { blurhash, img } = await getPlaiceholder("/path-to-your-image.jpg");
+
+  return {
+    props: {
+      img,
+      blurhash,
+    },
+  };
+};
+
+const Page: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
+  img,
+  blurhash,
+}) => (
+  <div style={{ position: "relative", display: "block", overflow: "hidden" }}>
+    <BlurhashCanvas
+      {...blurhash}
+      punch={1}
+      style={}
+      style={{
+        position: "absolute",
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+      }}
+    />
+
+    <Image {...img} />
+  </div>
+);
+
+export default Page;
+```
+
+</TabItem>
+</Tabs>
+
+## Helpers
+
+### `img`
+
+Returns all essential `<img />` attributes via the `img` object.
+
+```js
+import { getPlaiceholder } from "plaiceholder";
+
+try {
+  getPlaiceholder("/path-to-your-image.jpg").then(({ img }) =>
+    console.log(img)
+  );
+} catch (err) {
+  err;
+}
+
+// Logs
+// {
+//   src: '…',
+//   width: …,
+//   height: …,
+//   type: '…'
+// }
+```

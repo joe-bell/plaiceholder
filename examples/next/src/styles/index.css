@@ -6,4 +6,18 @@ img {
 
 @tailwind components;
 
+/**
+ * Unfortunately, we can't pass styles to the Next/Image parent element - which
+ * forwards styles directly to the `img` tag.
+ *
+ * Instead, we need to apply this class to the element that wraps our:
+ * 1. Placeholder
+ * 2. Next/Image
+ *
+ * This style will target the Next/Image container and correct amend alignment
+ */
+.next-image > div:last-child {
+  @apply align-top;
+}
+
 @tailwind utilities;

@@ -1,11 +1,12 @@
 module.exports = {
-  future: {
-    removeDeprecatedGapUtilities: true,
-    purgeLayersByDefault: true,
-  },
-  purge: ["./src/{components,pages,styles}/**/*.{js,ts,jsx,tsx}"],
+  mode: "jit",
+  purge: ["./src/**/*.{ts,tsx}"],
   theme: {
     extend: {},
   },
   variants: {},
+  plugins: [
+    require("@plaiceholder/tailwindcss"),
+    require("@tailwindcss/aspect-ratio"),
+  ],
 };

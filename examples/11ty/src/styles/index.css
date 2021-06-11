@@ -1,62 +1,14 @@
-* {
-  margin: 0;
-}
-html {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-    Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji,
-    Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
-  line-height: 1.5;
-}
-.c-main {
-  max-width: 36rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  margin-left: auto;
-  margin-right: auto;
-}
-.c-heading {
-  font-weight: 700;
-}
-.c-heading--primary {
-  font-size: 2rem;
-}
-.c-heading--secondary {
-  font-size: 1.5rem;
-}
-.c-menu {
-  padding-left: 0;
-  list-style-type: none;
-}
-.c-menu__link {
-  color: blue;
-}
-.c-link-img {
-  display: block;
-  position: relative;
-  overflow: hidden;
+@tailwind base;
+
+img {
+  color: transparent;
 }
 
-.c-placeholder {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  transform: scale(1.2);
-  filter: blur(24px);
+@tailwind components;
+
+/* prevent CSS transitions on page load */
+.preload * {
+  transition: none !important;
 }
 
-.c-placeholder--svg {
-  transform: translate(-50%, -50%) scale(1.2) !important;
-}
-
-.c-placeholder--base64 {
-  object-fit: cover;
-  object-position: center;
-}
-
-.u-margin-top {
-  margin-top: 1rem;
-}
+@tailwind utilities;

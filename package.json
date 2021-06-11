@@ -2,42 +2,23 @@
   "private": true,
   "name": "root",
   "scripts": {
-    "prepare": "lerna run build --scope='@plaiceholder/*'",
     "build": "lerna run build",
     "clean": "lerna run clean",
-    "lint": "lerna exec --parallel --stream --ignore='example-with-11ty' -- tsc --noEmit",
-    "format": "prettier",
-    "commit": "git-cz"
-  },
-  "workspaces": [
-    "docs",
-    "examples/*",
-    "packages/*"
-  ],
-  "config": {
-    "commitizen": {
-      "path": "cz-conventional-changelog"
-    }
-  },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "lint-staged"
-    }
+    "commit": "git-cz",
+    "lint": "yarn lint:ts && yarn lint:pkg",
+    "lint:pkg": "syncpack list-mismatches",
+    "lint:ts": "lerna exec --parallel --stream --ignore='example-with-11ty' -- tsc --noEmit",
+    "prepare": "lerna run build --scope='plaiceholder' --scope='@plaiceholder/*'"
   },
   "devDependencies": {
     "@commitlint/cli": "12.1.4",
     "@commitlint/config-conventional": "12.1.4",
     "@types/node": "14.14.45",
-    "@types/react": "17.0.6",
+    "@types/react": "17.0.9",
     "@types/sharp": "0.28.1",
     "commitizen": "4.2.4",
     "cz-conventional-changelog": "3.3.0",
+    "esbuild": "0.11.8",
     "husky": "4.3.8",
     "lerna": "4.0.0",
     "lint-staged": "11.0.0",
@@ -45,7 +26,58 @@
     "prettier": "2.2.1",
     "rimraf": "3.0.2",
     "sharp": "0.28.2",
+    "syncpack": "5.7.11",
     "ts-node": "9.1.1",
-    "typescript": "4.2.4"
-  }
+    "typescript": "4.3.2"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "lint-staged"
+    }
+  },
+  "syncpack": {
+    "peer": false,
+    "sortFirst": [
+      "private",
+      "name",
+      "version",
+      "description",
+      "author",
+      "license",
+      "funding",
+      "repository",
+      "bugs",
+      "homepage",
+      "keywords",
+      "source",
+      "main",
+      "module",
+      "exports",
+      "typings",
+      "typesVersions",
+      "files",
+      "scripts",
+      "browserslist",
+      "peerDependencies",
+      "dependencies",
+      "devDependencies"
+    ]
+  },
+  "workspaces": [
+    "docs",
+    "examples/*",
+    "packages/*",
+    "plugins/*"
+  ]
 }
