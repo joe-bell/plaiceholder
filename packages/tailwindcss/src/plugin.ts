@@ -19,17 +19,6 @@ export default plugin(({ config, matchUtilities }) => {
     throw Error("@plaiceholder/tailwindcss only supports JIT mode.");
   }
 
-  console.log(`
------------------------------
-
-@plaiceholder/tailwindcss
-
-🙏 SPONSORS
-Enjoying Plaiceholder?
-Support further development at https://plaiceholder.co
-
------------------------------`);
-
   matchUtilities({
     plaiceholder: (modifier) => {
       const valid = modifier.match(/\[([^()]+)\]/g);
