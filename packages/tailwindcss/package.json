@@ -1,6 +1,6 @@
 {
   "name": "@plaiceholder/tailwindcss",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Roll-you-own placeholders for Tailwind.",
   "author": "Joe Bell <joe@joebell.co.uk>",
   "license": "Apache-2.0",
@@ -46,7 +46,7 @@
   "dependencies": {
     "css.escape": "1.5.1",
     "make-synchronous": "0.1.1",
-    "plaiceholder": "^1.0.0"
+    "plaiceholder": "^2.0.0"
   },
   "devDependencies": {
     "tailwindcss": "2.1.2"
