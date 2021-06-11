@@ -22,13 +22,13 @@ import IntroHeader from "../src/components/IntroHeader";
 
 There is no "one-size-fits-all" LQIP strategy, so we offer them all…
 
-- [**CSS**](#css)  
+- [**CSS**](/usage#css)  
   ~600B when rendered as CSS
-- [**SVG**](#svg)  
+- [**SVG**](/usage#svg)  
   ~1.2kB when rendered in HTML
-- [**Base64**](#base64)  
+- [**Base64**](/usage#base64)  
   ~300B asset size
-- [**Blurhash**](#blurhash)  
+- [**Blurhash**](/usage#blurhash)  
   Size TBC (but ~3.6kB if using [`react-blurhash`](https://bundlephobia.com/package/react-blurhash))
 
 Give each strategy a try to see what works best for your individual use-case.
@@ -37,11 +37,11 @@ Give each strategy a try to see what works best for your individual use-case.
 
 Whilst most strategies offer fast `DOMContentLoaded` and `LCP`, it's important to consider the caveats of each:
 
-- [**CSS**](#css)  
+- [**CSS**](/usage#css)  
   Won't maintain ratio for images that use `object-fit`
-- [**SVG**](#svg)  
+- [**SVG**](/usage#svg)  
   Doesn't (yet) leverage [SVG filter primitives](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feGaussianBlur)
-- [**Base64**](#base64)  
+- [**Base64**](/usage#base64)  
   Not the nicest looking. Even though plaiceholder makes an opinionated choice to slightly increase saturation for base64 images under-the-hood, colors can often appear drab
-- [**Blurhash**](#blurhash)  
+- [**Blurhash**](/usage#blurhash)  
   Uses `canvas`, so it's not ideal to use with above-the-fold content.
