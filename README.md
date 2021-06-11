@@ -30,17 +30,17 @@
 </p>
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/@plaiceholder/core">
-    <img alt="NPM Version" src="https://badgen.net/npm/v/@plaiceholder/core" />
+  <a href="https://www.npmjs.com/package/plaiceholder">
+    <img alt="NPM Version" src="https://badgen.net/npm/v/plaiceholder" />
   </a>
-  <a href="https://www.npmjs.com/package/@plaiceholder/core">
-    <img alt="Types Included" src="https://badgen.net/npm/types/@plaiceholder/core" />
+  <a href="https://www.npmjs.com/package/plaiceholder">
+    <img alt="Types Included" src="https://badgen.net/npm/types/plaiceholder" />
   </a>
   <a href="https://github.com/joe-bell/plaiceholder/blob/main/LICENSE">
     <img alt="MIT License" src="https://badgen.net/github/license/joe-bell/plaiceholder" />
   </a>
-  <a href="https://www.npmjs.com/package/@plaiceholder/core">
-    <img alt="NPM Downloads" src="https://badgen.net/npm/dm/@plaiceholder/core" />
+  <a href="https://www.npmjs.com/package/plaiceholder">
+    <img alt="NPM Downloads" src="https://badgen.net/npm/dm/plaiceholder" />
   </a>
   <a href="https://twitter.com/joebell_">
     <img alt="Follow @joebell_ on Twitter" src="https://img.shields.io/twitter/follow/joebell_.svg?style=social&label=Follow" />
