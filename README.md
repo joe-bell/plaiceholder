@@ -53,6 +53,10 @@
 
 Visit **[plaiceholder.co/docs][plaiceholder:docs]** to get started with the open-source free-to-use packages.
 
+### Migrating from `1.0`?
+
+See the [migration guide](https://github.com/joe-bell/plaiceholder/releases/tag/v2.0.0) for further details.
+
 ## Studio 🎨
 
 [**Project sponsors**][plaiceholder:pricing] get exclusive access to the [**Studio**][plaiceholder].
