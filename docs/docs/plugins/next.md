@@ -1,10 +1,10 @@
 # Next.js
 
-An essential plugin for Next.js, ensuring that all `plaiceholder` functions start in the main thread.
+An essential plugin for Next.js, ensuring that all Plaiceholder functions start in the main thread.
 
 ## Installation
 
-1. Install the package alongside your existing `plaiceholder` installation:
+1. Add the package alongside your [existing `plaiceholder` installation](/usage#installation):
 
    ```sh
    npm i @plaiceholder/next
@@ -22,4 +22,4 @@ An essential plugin for Next.js, ensuring that all `plaiceholder` functions star
 
 ## Usage
 
-…and that's it! Use Next.js and `plaiceholder` as you would expect.
+…and that's it! Use Next.js and [plaiceholder](/usage) as you would expect.

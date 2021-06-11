@@ -14,6 +14,7 @@
   --ifm-color-primary-light: var(--ifm-color-primary);
   --ifm-color-primary-lighter: var(--ifm-color-primary);
   --ifm-color-primary-lightest: var(--ifm-color-primary);
+  --ifm-footer-link-hover-color: var(--ifm-color-gray-300);
   --ifm-code-font-size: 95%;
 }
 
@@ -26,6 +27,10 @@
   display: block;
   margin: 0 calc(-1 * var(--ifm-pre-padding));
   padding: 0 var(--ifm-pre-padding);
+}
+
+.markdown a {
+  text-decoration: underline;
 }
 
 .navbar__brand {

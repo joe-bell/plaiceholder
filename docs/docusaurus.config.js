@@ -17,6 +17,14 @@ module.exports = {
   projectName: "plaiceholder",
   themeConfig: {
     metaTags: [{ name: "data-title", content: title }],
+    announcementBar: {
+      id: "migrate-v1",
+      content:
+        'Introducing Plaiceholder 2.0 🎉 <a target="_blank" rel="noopener noreferrer" href="https://github.com/joe-bell/plaiceholder/releases/tag/v2.0.0">Looking to upgrade from 1.0?</a>',
+      backgroundColor: "#111827",
+      textColor: "#fff",
+      isCloseable: true,
+    },
     navbar: {
       title: "Plaiceholder",
       logo: {
@@ -51,8 +59,8 @@ module.exports = {
               to: "/",
             },
             {
-              label: "Strategies",
-              to: "/strategies",
+              label: "Usage",
+              to: "/usage",
             },
           ],
         },

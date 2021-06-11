@@ -1,0 +1,194 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+# Tailwind
+
+:::note
+
+Due to limitations with Tailwind's JIT engine, `@plaiceholder/tailwindcss`
+only supports **local** images.
+
+:::
+
+## Installation
+
+1. Install the package alongside your existing [`tailwindcss`](https://tailwindcss.com/docs/installation) and [`plaiceholder`](/usage#installation) installation:
+
+   ```sh
+   npm i @plaiceholder/tailwindcss
+   ```
+
+2. Add the plugin to your `tailwind.config.js`, making sure to enable `"jit"` mode:
+
+   ```js title="tailwind.config.js" {2,8}
+   module.exports = {
+     mode: "jit",
+     purge: [],
+     theme: {
+       extend: {},
+     },
+     variants: {},
+     plugins: [require("@plaiceholder/tailwindcss")],
+   };
+   ```
+
+## Usage
+
+Once installed, pure CSS image LQIPs can be created with the following JIT class format:
+
+<Tabs
+groupId="tailwind-example"
+defaultValue="html"
+values={[
+{ label: "HTML", value: "html" },
+{ label: "React.js", value: "react" },
+]}>
+<TabItem value="html">
+
+```html
+<!-- 
+   returns a pure CSS LQIP for 
+   `./public/path-to-your-image.jpg`
+-->
+<div class="plaiceholder-[/path-to-your-image.jpg]" />
+```
+
+</TabItem>
+<TabItem value="react">
+
+```jsx
+const Example = () => (
+  // returns a pure CSS LQIP for
+  // `./public/path-to-your-image.jpg`
+  <div className="plaiceholder-[/path-to-your-image.jpg]" />
+);
+```
+
+</TabItem>
+</Tabs>
+
+The class **only** returns the "pixels" (`linear-gradient` values), allowing you to configure your preferred "blur" effect:
+
+<Tabs
+groupId="tailwind-example"
+defaultValue="html"
+values={[
+{ label: "HTML", value: "html" },
+{ label: "React.js", value: "react" },
+]}>
+<TabItem value="html">
+
+```html
+<!-- 
+   returns a pure CSS LQIP for 
+   `./public/path-to-your-image.jpg`
+-->
+<div
+  class="plaiceholder-[/path-to-your-image.jpg] transform scale-150 filter blur-2xl"
+/>
+```
+
+</TabItem>
+<TabItem value="react">
+
+```jsx
+const Example = () => (
+  // returns a pure CSS LQIP for
+  // `./public/path-to-your-image.jpg`
+  <div className="plaiceholder-[/path-to-your-image.jpg] transform scale-150 filter blur-2xl" />
+);
+```
+
+</TabItem>
+</Tabs>
+
+## Utils
+
+[Dynamic values aren't supported](https://tailwindcss.com/docs/just-in-time-mode#known-limitations) by JIT mode, meaning arbitrary LQIPs can't be computed.
+
+The values **must** exist at build-time.
+
+```jsx
+// ❌ NOT POSSIBLE
+const Example = ({ src }) => (
+  <div
+    className={`plaiceholder-[{src}] transform scale-150 filter blur-2xl`}
+  />;
+);
+```
+
+To circumvent this, `@plaiceholder/tailwindcss` offers an additional `utils` entry point to extract image paths from the JIT classes on the server-side.
+
+For example, in a Next.js setup.
+
+<Tabs
+groupId="example"
+defaultValue="node"
+values={[
+{ label: "Node.js", value: "node" },
+{ label: "Next.js", value: "next" },
+]}>
+<TabItem value="node">
+
+```js
+import { getPlaiceholder } from "plaiceholder";
+import { extractImgSrc } from "@plaiceholder/tailwindcss/utils";
+
+try {
+  const plaiceholder = "plaiceholder-[/path-to-your-image.jpg]";
+
+  getPlaiceholder(extractImgSrc(plaiceholder)).then(({ img }) =>
+    console.log(img)
+  );
+} catch (err) {
+  err;
+}
+
+// Logs
+// {
+//   src: '…',
+//   width: …,
+//   height: …,
+//   type: '…'
+// }
+```
+
+</TabItem>
+<TabItem value="next">
+
+```tsx title="pages/example.tsx"
+import * as React from "react";
+import type { InferGetStaticPropsType } from "next";
+import Image from "next/image";
+import { getPlaiceholder } from "plaiceholder";
+import { extractImgSrc } from "@plaiceholder/tailwindcss/utils";
+
+export const getStaticProps = async () => {
+  const plaiceholder = "plaiceholder-[/path-to-your-image.jpg]";
+  const { img } = await getPlaiceholder(extractImgSrc(plaiceholder));
+
+  return {
+    props: {
+      img,
+      plaiceholder,
+    },
+  };
+};
+
+const Page: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
+  img,
+  plaiceholder,
+}) => (
+  <div className="relative block overflow-hidden">
+    <div
+      className={`absolute inset-0 w-full h-full ${plaiceholder} transform scale-150 filter blur-2xl`}
+    />
+    <Image {...img} />
+  </div>
+);
+
+export default Page;
+```
+
+</TabItem>
+</Tabs>

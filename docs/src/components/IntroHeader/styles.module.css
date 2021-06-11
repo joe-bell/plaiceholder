@@ -53,10 +53,13 @@
   color: var(--btn-color);
 }
 
+.btn.btn {
+  text-decoration: none;
+}
+
 .btn:hover {
   color: var(--btn-color);
   background-color: var(--btn-bg-color-hover);
-  text-decoration: none;
 }
 
 .btn:focus {
