@@ -1,21 +1,21 @@
-import { getBase64 } from "./base64";
-import { getBlurhash } from "./blurhash";
-import { getCSS } from "./css";
+import { getBase64, TGetBase64Return } from "./base64";
+import { getBlurhash, IGetBlurhashReturn } from "./blurhash";
+import { getCSS, IGetCSSReturn } from "./css";
 import {
   getImage,
   TGetImageSrc,
   IGetImageOptions,
   IGetImageReturn,
 } from "./get-image";
-import { getSVG } from "./svg";
+import { getSVG, TGetSVGReturn } from "./svg";
 
 export type TGetPlaiceholderSrc = TGetImageSrc;
 export interface IGetPlaiceholderOptions extends IGetImageOptions {}
 export interface IGetPlaiceholderReturn extends Pick<IGetImageReturn, "img"> {
-  base64: any;
-  blurhash: any;
-  css: any;
-  svg: any;
+  base64: TGetBase64Return;
+  blurhash: IGetBlurhashReturn;
+  css: IGetCSSReturn;
+  svg: TGetSVGReturn;
 }
 
 export interface IGetPlaiceholder {
