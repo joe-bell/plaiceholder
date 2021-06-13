@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.3](https://github.com/joe-bell/next-placeholder/compare/v2.0.2...v2.0.3) (2021-06-13)
+
+### Bug Fixes
+
+- **@plaiceholder/next:** add sharp to webpack externals ([76a49be](https://github.com/joe-bell/next-placeholder/commit/76a49befa385133ecb7171409c347561088bd0e8))
+- **deps:** update react monorepo to v17.0.2 ([d3a7b09](https://github.com/joe-bell/next-placeholder/commit/d3a7b09cf52f2789dceaa3941ac96525775078b5))
+
 ## [2.0.2](https://github.com/joe-bell/plaiceholder/compare/v2.0.1...v2.0.2) (2021-06-11)
 
 ### Bug Fixes

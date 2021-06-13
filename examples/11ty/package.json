@@ -1,7 +1,7 @@
 {
   "private": "true",
   "name": "example-with-11ty",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "author": "Joe Bell <joe@joebell.co.uk>",
   "license": "Apache-2.0",
   "funding": "https://plaiceholder.co",
@@ -18,7 +18,7 @@
   "devDependencies": {
     "@11ty/eleventy": "0.12.1",
     "@11ty/eleventy-img": "0.9.0",
-    "@plaiceholder/tailwindcss": "^2.0.2",
+    "@plaiceholder/tailwindcss": "^2.0.3",
     "autoprefixer": "10.2.5",
     "clean-css": "4.2.3",
     "concurrently": "6.2.0",

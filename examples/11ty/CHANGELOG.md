@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.3](https://github.com/joe-bell/next-placeholder/compare/v2.0.2...v2.0.3) (2021-06-13)
+
+**Note:** Version bump only for package example-with-11ty
+
 ## [2.0.2](https://github.com/joe-bell/plaiceholder/compare/v2.0.1...v2.0.2) (2021-06-11)
 
 **Note:** Version bump only for package example-with-11ty
