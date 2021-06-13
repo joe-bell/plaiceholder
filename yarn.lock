@@ -3989,10 +3989,10 @@
   resolved "https://registry.yarnpkg.com/@types/scheduler/-/scheduler-0.16.1.tgz#18845205e86ff0038517aab7a18a62a6b9f71275"
   integrity sha512-EaCxbanVeyxDRTQBkdLb3Bvl/HK7PBK6UJjsSixB0iHKoWxE5uu2Q/DgtpOhPIojN0Zl1whvOd7PoHs2P0s5eA==
 
-"@types/sharp@0.28.1":
-  version "0.28.1"
-  resolved "https://registry.yarnpkg.com/@types/sharp/-/sharp-0.28.1.tgz#dbd702bd6a8d42576b8faffe1c2ec06fdffaaaff"
-  integrity sha512-Jn9NHCjT3KXjxTpbtaxBI4iL+st5o9pWhMGVpHF+Cs+t/31lohLNXSW9PT9RSl7Ct7yBT2XFu7R/xfo0Y8HH2Q==
+"@types/sharp@0.28.3":
+  version "0.28.3"
+  resolved "https://registry.yarnpkg.com/@types/sharp/-/sharp-0.28.3.tgz#0e57ede34d3e334632ab7a68a6af070aa0f51ceb"
+  integrity sha512-y3mxUj3jukIWgdu9CrSTSCo5HruTzDxdjn5SqdIEALdTszkcot9r8HX/7q9FMx3YjuXifTD0OI+d4wA6Pogqmw==
   dependencies:
     "@types/node" "*"
 
@@ -15085,7 +15085,7 @@ sharp@0.28.2:
     tar-fs "^2.1.1"
     tunnel-agent "^0.6.0"
 
-sharp@^0.28.2:
+sharp@0.28.3, sharp@^0.28.2:
   version "0.28.3"
   resolved "https://registry.yarnpkg.com/sharp/-/sharp-0.28.3.tgz#ecd74cefd020bee4891bb137c9850ee2ce277a8b"
   integrity sha512-21GEP45Rmr7q2qcmdnjDkNP04Ooh5v0laGS5FDpojOO84D1DJwUijLiSq8XNNM6e8aGXYtoYRh3sVNdm8NodMA==
