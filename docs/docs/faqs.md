@@ -1,3 +1,7 @@
+---
+sidebar_position: 5
+---
+
 # FAQs
 
 ## Why have you misspelled "placeholder"?
