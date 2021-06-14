@@ -72,7 +72,7 @@ When building your own implementation, you should meet the following requirement
 - Branding
   - ❌ **Don't** use the "Plaiceholder" name on its own, the logo, tagline or any of the marketing copy from either the [plaiceholder.co](https://plaiceholder.co) domain or [docs](https://plaiceholder.co/docs).  
     The "[Plaiceholder](https://plaiceholder.co)" project is a trading name of "Big Attic OÜ", and therefore should not be confused with affiliation.
-  - ✅ **Do** name your project with the `-plaiceholder` suffix.  
+  - ✅ **Do** name your project with the `-plaiceholder` suffix **or** `plaiceholder-` prefix.  
     e.g. your repo or package, could be called `rust-plaiceholder`, your function could be called `rustPlaiceholder` (but **not** `plaiceholder`).
 - Credit
 
