@@ -56,3 +56,66 @@ yarn workspace <package-name> <script-name>
 ## Releases
 
 A trade-off with using a personal repo is that permissions are fairly locked-down. In the mean-time releases will be made manually by the project owner.
+
+## Implementations
+
+So, you want to build an alternative Plaiceholder implementation? Great!
+
+Let's get started…
+
+### Requirements
+
+Please respect that Plaiceholder is just the end result – countless hours of work have gone into making this project, almost all of it in the "free time" of its maintainers.
+
+When building your own implementation, you should meet the following requirements:
+
+- Branding
+  - ❌ **Don't** use the "Plaiceholder" name on its own, the logo, tagline or any of the marketing copy from either the [plaiceholder.co](https://plaiceholder.co) domain or [docs](https://plaiceholder.co/docs).  
+    The "[Plaiceholder](https://plaiceholder.co)" project is a trading name of "Big Attic OÜ", and therefore should not be confused with affiliation.
+  - ✅ **Do** name your project with the `-plaiceholder` suffix.  
+    e.g. your repo or package, could be called `rust-plaiceholder`, your function could be called `rustPlaiceholder` (but **not** `plaiceholder`).
+- Credit
+
+  - ❌ **Don't** mislead others into thinking your implementation is original.
+  - ✅ **Do**
+
+    1. Link to the original source, documentation, or site, regularly and where relevant.
+    2. Add the following disclaimer to the top of your `README.md`
+
+       ```md
+       <p align="center">
+         An externally-maintained implementation of 
+         <strong>
+            <a href="https://github.com/joe-bell/plaiceholder">
+               Plaiceholder
+            </a>
+         </strong>
+       </p>
+
+       ---
+
+       <!-- your readme content-->
+       ```
+
+    3. Use the Apache-2.0 License.
+    4. Add a License disclaimer to the bottom of your `README.md`
+
+       ```md
+       ## License
+
+       Apache-2.0 License © <!-- your project name -->
+
+       ### Acknowledgements
+
+       #### [Joe Bell](https://github.com/joe-bell) ([Plaiceholder](https://github.com/joe-bell/plaiceholder))
+
+       Copyright © 2020-2021, Joe Bell. All Rights Reserved.
+
+       Licensed under the Apache License, Version 2.0 (the "License").
+       ```
+
+If you have any questions above the above requirements, please feel free to [reach out to the maintainers](https://twitter.com/joebell_) directly.
+
+### Raise a PR
+
+Once you've completed the above, raise a PR to add your implementation to the [Community page](https://plaiceholder.co/docs/community).
