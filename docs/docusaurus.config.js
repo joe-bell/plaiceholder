@@ -16,6 +16,10 @@ module.exports = {
   organizationName: "joe-bell",
   projectName: "plaiceholder",
   themeConfig: {
+    algolia: {
+      apiKey: "826807810a2151450376d6c710bd76c7",
+      indexName: "plaiceholder",
+    },
     metaTags: [{ name: "data-title", content: title }],
     announcementBar: {
       id: "migrate-v1",
