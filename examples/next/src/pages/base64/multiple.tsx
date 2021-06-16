@@ -2,7 +2,6 @@ import * as React from "react";
 import { InferGetStaticPropsType } from "next";
 import Image from "next/image";
 import { getPlaiceholder } from "plaiceholder";
-import { cx } from "@/styles";
 import { config } from "@/config";
 import { getAllUnsplashImagePaths } from "@/lib/images";
 import { Layout } from "@/components/layout";
@@ -19,7 +18,7 @@ export const getStaticProps = async () => {
         ...img,
         alt: "Paint Splashes",
         title: "Photo from Unsplash",
-        base64,
+        blurDataURL: base64,
       };
     })
   ).then((values) => values);
@@ -38,27 +37,9 @@ const PageSVGMultiple: React.FC<
 > = ({ title, heading, images }) => (
   <Layout variant="example" title={title} heading={heading}>
     <ImageGrid>
-      {images.map(({ base64, ...image }) => (
-        <ImageGridItem key={image.src}>
-          <img
-            aria-hidden="true"
-            alt=""
-            src={base64}
-            className={cx(
-              "absolute",
-              "inset-0",
-              "w-full",
-              "h-full",
-              "object-cover",
-              "object-center",
-              "transform",
-              "scale-150",
-              "filter",
-              "blur-2xl"
-            )}
-          />
-
-          <Image {...image} />
+      {images.map((imageProps) => (
+        <ImageGridItem key={imageProps.src}>
+          <Image {...imageProps} placeholder="blur" />
         </ImageGridItem>
       ))}
     </ImageGrid>
