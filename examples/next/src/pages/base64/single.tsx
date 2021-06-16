@@ -3,19 +3,21 @@ import { InferGetStaticPropsType } from "next";
 import Image from "next/image";
 import { getPlaiceholder } from "plaiceholder";
 import { config } from "@/config";
-import { cx } from "@/styles";
 import { ImageGrid, ImageGridItem } from "@/components/image-grid";
 import { Layout } from "@/components/layout";
 
 export const getStaticProps = async () => {
   const { base64, img } = await getPlaiceholder(
-    "https://images.unsplash.com/photo-1621961458348-f013d219b50c?auto=format&fit=crop&w=2850&q=80"
+    "https://images.unsplash.com/photo-1621961458348-f013d219b50c?auto=format&fit=crop&w=2850&q=80",
+    { size: 10 }
   );
 
   return {
     props: {
-      img,
-      base64,
+      imageProps: {
+        ...img,
+        blurDataURL: base64,
+      },
       title: config.examples.pages.base64.title,
       heading: config.examples.variants.single.title,
     },
@@ -24,28 +26,11 @@ export const getStaticProps = async () => {
 
 const PageBase64Single: React.FC<
   InferGetStaticPropsType<typeof getStaticProps>
-> = ({ title, heading, img, base64 }) => (
+> = ({ title, heading, imageProps }) => (
   <Layout variant="example" title={title} heading={heading}>
     <ImageGrid columns={2}>
-      <ImageGridItem key={img.src}>
-        <img
-          aria-hidden="true"
-          alt=""
-          src={base64}
-          className={cx(
-            "absolute",
-            "inset-0",
-            "w-full",
-            "h-full",
-            "object-cover",
-            "object-center",
-            "transform",
-            "scale-150",
-            "filter",
-            "blur-2xl"
-          )}
-        />
-        <Image {...img} />
+      <ImageGridItem key={imageProps.src}>
+        <Image {...imageProps} placeholder="blur" />
       </ImageGridItem>
     </ImageGrid>
   </Layout>

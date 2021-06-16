@@ -32,6 +32,6 @@
     "sharp": ">= 0.26.2"
   },
   "devDependencies": {
-    "next": "10.2.3"
+    "next": "11.0.0"
   }
 }
