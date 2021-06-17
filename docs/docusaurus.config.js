@@ -12,7 +12,7 @@ module.exports = {
   baseUrl: "/docs/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
-  favicon: withUrl("/assets/images/favicon/favicon@192px.png"),
+  favicon: "https://plaiceholder.co/assets/images/favicon/favicon@192px.png",
   organizationName: "joe-bell",
   projectName: "plaiceholder",
   themeConfig: {
