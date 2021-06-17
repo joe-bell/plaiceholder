@@ -12,7 +12,7 @@ module.exports = {
   baseUrl: "/docs/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
-  favicon: "https://plaiceholder.co/assets/images/favicon/favicon@192px.png",
+  favicon: withUrl("/assets/images/favicon/favicon@192px.png"),
   organizationName: "joe-bell",
   projectName: "plaiceholder",
   themeConfig: {
@@ -98,7 +98,6 @@ module.exports = {
       copyright: `Copyright © ${new Date().getFullYear()} Joe Bell`,
     },
   },
-  plugins: [path.resolve(__dirname, "./src/plugin.js")],
   presets: [
     [
       "@docusaurus/preset-classic",
