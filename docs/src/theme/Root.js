@@ -13,7 +13,7 @@ function CustomRoot({ children }) {
       <Head>
         <meta
           property="og:image"
-          content={withUrl("assets/images/og/og.png")}
+          content={withUrl("/assets/images/og/og.png")}
         />
 
         <link

@@ -98,7 +98,6 @@ module.exports = {
       copyright: `Copyright © ${new Date().getFullYear()} Joe Bell`,
     },
   },
-  plugins: [path.resolve(__dirname, "./src/plugin.js")],
   presets: [
     [
       "@docusaurus/preset-classic",
