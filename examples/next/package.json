@@ -1,7 +1,7 @@
 {
   "private": "true",
   "name": "example-with-next",
-  "version": "2.0.3",
+  "version": "2.1.0",
   "author": "Joe Bell <joe@joebell.co.uk>",
   "license": "Apache-2.0",
   "funding": "https://plaiceholder.co",
@@ -14,8 +14,8 @@
   },
   "dependencies": {
     "@joebell/cx": "0.1.0",
-    "@plaiceholder/next": "^2.0.3",
-    "@plaiceholder/tailwindcss": "^2.0.3",
+    "@plaiceholder/next": "^2.1.0",
+    "@plaiceholder/tailwindcss": "^2.1.0",
     "@tailwindcss/aspect-ratio": "0.2.0",
     "glob": "7.1.7",
     "next": "11.0.0",
