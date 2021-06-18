@@ -1,1 +1,1 @@
-export const classNamePrefix = "plaiceholder-";
+export const classNamePrefix = "plaiceholder";
