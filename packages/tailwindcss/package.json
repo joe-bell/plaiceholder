@@ -41,14 +41,13 @@
     "dev": "yarn build -- --watch"
   },
   "peerDependencies": {
-    "tailwindcss": ">=2.1.1 <2.2.0"
+    "tailwindcss": ">=2.2.0 <2.3.0"
   },
   "dependencies": {
-    "css.escape": "1.5.1",
     "make-synchronous": "0.1.1",
     "plaiceholder": "^2.0.1"
   },
   "devDependencies": {
-    "tailwindcss": "2.1.4"
+    "tailwindcss": "2.2.0"
   }
 }
