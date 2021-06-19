@@ -48,6 +48,6 @@
     "plaiceholder": "^2.0.1"
   },
   "devDependencies": {
-    "tailwindcss": "2.2.0"
+    "tailwindcss": "2.2.2"
   }
 }
