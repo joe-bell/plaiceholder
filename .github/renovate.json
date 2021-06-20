@@ -1,3 +1,9 @@
 {
-  "extends": ["github>joe-bell/renovate-config"]
+  "extends": ["github>joe-bell/renovate-config"],
+  "packageRules": [
+    {
+      "updateTypes": ["minor", "patch", "pin", "digest"],
+      "automerge": false
+    }
+  ]
 }
