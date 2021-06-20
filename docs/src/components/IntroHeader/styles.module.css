@@ -7,6 +7,11 @@
   margin-top: 1rem;
 }
 
+.container + hr {
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+}
+
 .headline {
   font-weight: 700;
   font-size: 2.25rem;
