@@ -94,6 +94,11 @@
   opacity: 0.6;
 }
 
+/* Hide external icon */
+.navbar__github-link svg {
+  display: none;
+}
+
 .navbar__toggle {
   margin-right: 1rem;
 }

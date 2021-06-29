@@ -42,7 +42,7 @@ module.exports = {
         {
           href: withUrl(),
           label: "Studio",
-          position: "right",
+          position: "left",
         },
         {
           href: github,
