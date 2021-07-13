@@ -14,7 +14,7 @@
     "@commitlint/cli": "12.1.4",
     "@commitlint/config-conventional": "12.1.4",
     "@types/node": "14.17.5",
-    "@types/react": "17.0.13",
+    "@types/react": "17.0.14",
     "@types/sharp": "0.28.4",
     "commitizen": "4.2.4",
     "cz-conventional-changelog": "3.3.0",
