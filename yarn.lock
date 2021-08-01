@@ -4049,10 +4049,10 @@
   resolved "https://registry.yarnpkg.com/@types/scheduler/-/scheduler-0.16.1.tgz#18845205e86ff0038517aab7a18a62a6b9f71275"
   integrity sha512-EaCxbanVeyxDRTQBkdLb3Bvl/HK7PBK6UJjsSixB0iHKoWxE5uu2Q/DgtpOhPIojN0Zl1whvOd7PoHs2P0s5eA==
 
-"@types/sharp@0.28.4":
-  version "0.28.4"
-  resolved "https://registry.yarnpkg.com/@types/sharp/-/sharp-0.28.4.tgz#7afdcf979069ddc68a915603fdaa412ada93f833"
-  integrity sha512-vfz+RlJU5FgXyyf9w8wc+JwwT8MFI98NZr0272umQegrggAQhTwwb8pKZn0PTtd+j0crXkZDWw5ABG/i6Lu/Lw==
+"@types/sharp@0.28.5":
+  version "0.28.5"
+  resolved "https://registry.yarnpkg.com/@types/sharp/-/sharp-0.28.5.tgz#2095c304e24c310945d6ece7a9fd44b34272c93f"
+  integrity sha512-+RYU1NdKeDtTMau6HBbcVUCWjMiDydW4nRIGnOviwRxZxjJy0LqRdx0+YdxBKHcSlUWIYhD1XtiGQsUtInsjBQ==
   dependencies:
     "@types/node" "*"
 
