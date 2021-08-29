@@ -24,9 +24,9 @@
     "microbundle": "0.13.0",
     "prettier": "2.3.2",
     "rimraf": "3.0.2",
-    "sharp": "0.28.3",
+    "sharp": "0.29.0",
     "syncpack": "5.8.15",
-    "typescript": "4.3.5"
+    "typescript": "4.4.2"
   },
   "commitlint": {
     "extends": [
