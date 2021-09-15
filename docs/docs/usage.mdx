@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 ---
 
 import Tabs from "@theme/Tabs";
@@ -7,68 +7,22 @@ import TabItem from "@theme/TabItem";
 
 # Usage
 
-## Prerequisites
-
-First and foremost, Plaiceholder is a [Node.js](https://nodejs.org/en/) library.
-It's designed **only** to work in a Node.js environment.
-
-Under-the-hood, it uses the wonderful and powerful [`sharp`](https://sharp.pixelplumbing.com/) library to transform images.
-
-Some frameworks or libraries include `sharp` by default, so double-check before you install.
-
-<Tabs
-  groupId="package-manager"
-  defaultValue="npm"
-  values={[
-    { label: "npm", value: "npm" },
-    { label: "Yarn", value: "yarn" },
-  ]}
->
-<TabItem value="npm">
-
-```sh
-npm i sharp
+```js
+getPlaiceholder(src, options);
 ```
 
-</TabItem>
-<TabItem value="yarn">
+## Parameters
 
-```sh
-yarn add sharp
-```
+- `src`: string reference to an image. Can be either;
+  1. a file path to an image inside the root `public` directory, referenced from the base URL (`/`).
+  2. a remote image URL.
+- `options`: _(optional)_
+  - `size`: an integer (between `4` and `64`)
+    to adjust the returned placeholder size.
 
-</TabItem>
-</Tabs>
+## Return Values
 
-## Installation
-
-<Tabs
-  groupId="package-manager"
-  defaultValue="npm"
-  values={[
-    { label: "npm", value: "npm" },
-    { label: "Yarn", value: "yarn" },
-  ]}
->
-<TabItem value="npm">
-
-```sh
-npm i plaiceholder
-```
-
-</TabItem>
-<TabItem value="yarn">
-
-```sh
-yarn add plaiceholder
-```
-
-</TabItem>
-</Tabs>
-
-## Strategies
-
-### CSS
+### `css`
 
 Converts a specified image into a low-res placeholder, outputted as a set of `linear-gradient`s (in the form of a JavaScript style object).
 
@@ -162,7 +116,7 @@ See the [11ty example](/examples/11ty)
 </TabItem>
 </Tabs>
 
-### SVG
+### `svg`
 
 Converts a specified image into a low-res placeholder, outputted as an SVG.
 
@@ -272,7 +226,7 @@ See the [11ty example](/examples/11ty)
 </TabItem>
 </Tabs>
 
-### Base64
+### `base64`
 
 Converts a specified image into a low-res image, encoded as Base64 string.
 
@@ -347,7 +301,7 @@ See the [11ty example](/examples/11ty)
 </TabItem>
 </Tabs>
 
-### Blurhash
+### `blurhash`
 
 Converts a specified image into a low-res image, encoded as Blurhash string accompanied by its width and height
 
@@ -434,8 +388,6 @@ export default Page;
 </TabItem>
 </Tabs>
 
-## Helpers
-
 ### `img`
 
 Returns all essential `<img />` attributes via the `img` object.
@@ -458,14 +410,4 @@ try {
 //   height: …,
 //   type: '…'
 // }
-```
-
-## Options
-
-```js
-getPlaiceholder("/path-to-your-image.jpg", {
-  // Any number value between 4-64
-  //   Default: 4
-  size: 4,
-});
 ```
