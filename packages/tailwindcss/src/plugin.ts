@@ -13,7 +13,6 @@ const getPlaiceholder = makeSynchronous(async (imageUrl) => {
 
 export default plugin(async (props) => {
   if (typeof props === 'undefined') {
-    // console.warn("warn - `@plaiceholder/tailwindcss` no props passed");
     return
   } else {
     console.warn(
@@ -24,25 +23,20 @@ export default plugin(async (props) => {
     const configMode = await config("mode")
 
     if (typeof configMode === 'undefined') {
-      // console.warn("warn - `@plaiceholder/tailwindcss` no config passed.");
       return
     } else {
       if (configMode !== "jit") {
         console.warn("warn - `@plaiceholder/tailwindcss` only supports JIT mode.");
-        // console.warn(configMode)
       }
     }
 
     if (typeof matchUtilities === 'undefined') {
-      // console.warn("warn - `@plaiceholder/tailwindcss` no matchUtilities passed.");
       return
     } else {
       matchUtilities({
         [classNamePrefix]: (url) => getPlaiceholder(url),
       });
     }
-
-    // console.warn("warn - `@plaiceholder/tailwindcss` complete");
 
   }
 
