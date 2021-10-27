@@ -8,6 +8,7 @@ node_modules
 .cache-loader
 
 # Build
+*.tsbuildinfo
 build
 dist
 out
