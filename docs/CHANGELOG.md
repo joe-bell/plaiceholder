@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/joe-bell/next-placeholder/compare/v2.1.0...v2.2.0) (2021-10-27)
+
+### Bug Fixes
+
+- **deps:** update docusaurus monorepo to v2.0.0-beta.1 ([5674a9c](https://github.com/joe-bell/next-placeholder/commit/5674a9cbcdb752d4d5a884d17cc02a2ab21ca3a1))
+- **deps:** update docusaurus monorepo to v2.0.0-beta.2 ([da262eb](https://github.com/joe-bell/next-placeholder/commit/da262eb2d95564dbde62b16b2f4f309b6654bb51))
+- **deps:** update docusaurus monorepo to v2.0.0-beta.3 ([fe26c5f](https://github.com/joe-bell/next-placeholder/commit/fe26c5f8b9422c8f41b72d32ecbece1e2dff8090))
+- **deps:** update docusaurus monorepo to v2.0.0-beta.4 ([080ffad](https://github.com/joe-bell/next-placeholder/commit/080ffad834688080ab99c1bcc2564d0b7e0f4f61))
+- **deps:** update docusaurus monorepo to v2.0.0-beta.6 ([525fd0a](https://github.com/joe-bell/next-placeholder/commit/525fd0a46b62a92707003cd0040ab6c39cd36da9))
+- **docs:** introduction spacing ([e272a46](https://github.com/joe-bell/next-placeholder/commit/e272a46389e79b9d0614f075cc51c7f7b2519a6c))
+
 # [2.1.0](https://github.com/joe-bell/plaiceholder/compare/v2.0.3...v2.1.0) (2021-06-18)
 
 ### Bug Fixes

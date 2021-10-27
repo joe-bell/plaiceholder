@@ -16,7 +16,7 @@ img {
  *
  * This style will target the Next/Image container and correct amend alignment
  */
-.next-image > div:last-child {
+.next-image > span:last-child {
   @apply align-top;
 }
 
