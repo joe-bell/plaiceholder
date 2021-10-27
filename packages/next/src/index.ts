@@ -5,10 +5,10 @@ export const withPlaiceholder = (nextConfig) => {
 
   return Object.assign({}, nextConfig, {
     webpack(config, options) {
-     if (Array.isArray(config.externals)) {
+      if (Array.isArray(config.externals)) {
         config.externals.push({ sharp });
       } else {
-        config.externals = { ...config.externals, sharp }
+        config.externals = { ...config.externals, sharp };
       }
 
       if (typeof nextConfig?.webpack === "function") {
