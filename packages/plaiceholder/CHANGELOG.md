@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/joe-bell/plaiceholder/compare/v2.1.0...v2.2.0) (2021-10-27)
+
+### Bug Fixes
+
+- **deps:** update dependency blurhash to v1.1.4 ([89b262e](https://github.com/joe-bell/plaiceholder/commit/89b262e716542049264cc1cbba0d087c56f42729))
+- **deps:** update dependency node-fetch to v2.6.2 ([3667c1e](https://github.com/joe-bell/plaiceholder/commit/3667c1e48f4c7fbb126f1b2cc766ad835506a5d3))
+
 ## [2.0.1](https://github.com/joe-bell/plaiceholder/compare/v2.0.0...v2.0.1) (2021-06-11)
 
 ### Bug Fixes
