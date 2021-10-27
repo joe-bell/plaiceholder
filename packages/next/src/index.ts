@@ -3,7 +3,7 @@ export const withPlaiceholder = (nextConfig) => {
 
   return Object.assign({}, nextConfig, {
     webpack(config, options) {
-      config.externals.push({
+      config.externals = Object.assign(config.externals, {
         sharp: "commonjs sharp",
       });
 
