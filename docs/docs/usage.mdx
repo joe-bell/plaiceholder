@@ -17,8 +17,16 @@ getPlaiceholder(src, options);
   1. a file path to an image inside the root `public` directory, referenced from the base URL (`/`).
   2. a remote image URL.
 - `options`: _(optional)_
-  - `size`: an integer (between `4` and `64`)
-    to adjust the returned placeholder size.
+  - `size`: an integer (between `4` and `64`) to adjust the returned placeholder size.
+    Default is `4`.
+  - `saturation`: a positive number to multiply saturation by.
+    Default is `1.2`.
+  - `brightness`: a positive number to multiply brightness by.
+    Default is `1`.
+  - `normalise`: boolean
+  - `alpha`: an number (between `0` and `1`) to adjust the alpha.
+    Default is `undefined`, which removes the alpha.
+    Transparent images should use `0`.
 
 ## Return Values
 

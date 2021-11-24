@@ -119,6 +119,10 @@ const loadImage: ILoadImage = async (imagePath) => {
 
 interface IOptimizeImageOptions {
   size?: number;
+  saturation?: number;
+  brightness?: number;
+  normalise?: boolean;
+  alpha?: number;
 }
 interface IOptimizeImageReturn
   extends Record<
@@ -138,7 +142,16 @@ interface IOptimizeImage {
   (src: TImage, options?: IOptimizeImageOptions): Promise<IOptimizeImageReturn>;
 }
 
-const optimizeImage: IOptimizeImage = async (src, options = { size: 4 }) => {
+const optimizeImage: IOptimizeImage = async (src, optimizeOptions) => {
+  const options: IOptimizeImageOptions = {
+    brightness: 1,
+    normalise: true,
+    alpha: undefined,
+    size: 4,
+    saturation: 1.2,
+    ...(optimizeOptions || {}),
+  };
+
   const sizeMin = 4;
   const sizeMax = 64;
 
@@ -154,12 +167,21 @@ const optimizeImage: IOptimizeImage = async (src, options = { size: 4 }) => {
     fit: "inside",
   });
 
-  const getOptimizedForBase64 = pipeline
+  const base64Instance = pipeline
     .clone()
-    .normalise()
-    .modulate({ saturation: 1.2, brightness: 1 })
-    .removeAlpha()
-    .toBuffer({ resolveWithObject: true });
+    .normalise(options.normalise)
+    .modulate({
+      saturation: options.saturation,
+      brightness: options.brightness,
+    });
+
+  options.alpha
+    ? base64Instance.ensureAlpha(options.alpha)
+    : base64Instance.removeAlpha();
+
+  const getOptimizedForBase64 = base64Instance.toBuffer({
+    resolveWithObject: true,
+  });
 
   const getOptimizedForBlurhash = pipeline
     .clone()
