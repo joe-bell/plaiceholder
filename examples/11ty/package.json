@@ -24,7 +24,7 @@
     "concurrently": "6.2.0",
     "glob": "7.1.7",
     "plaiceholder": "^2.2.0",
-    "postcss": "8.2.9",
+    "postcss": "8.2.13",
     "postcss-cli": "8.3.1",
     "prettier": "2.4.0",
     "serve": "11.3.2",
