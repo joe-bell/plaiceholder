@@ -18,7 +18,7 @@
     "@plaiceholder/tailwindcss": "^2.2.0",
     "@tailwindcss/aspect-ratio": "0.2.0",
     "glob": "7.1.7",
-    "next": "12.0.5",
+    "next": "12.0.9",
     "plaiceholder": "^2.2.0",
     "react": "17.0.2",
     "react-blurhash": "0.1.3",
