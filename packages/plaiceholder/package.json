@@ -37,6 +37,6 @@
     "blurhash": "1.1.4",
     "image-size": "1.0.0",
     "node-cache": "5.1.2",
-    "node-fetch": "2.6.2"
+    "node-fetch": "2.6.7"
   }
 }
