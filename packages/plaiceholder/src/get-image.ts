@@ -67,11 +67,22 @@ interface ILoadImageReturn {
   file: TImage;
 }
 
-interface ILoadImage {
-  (imagePath: TImage): Promise<ILoadImageReturn>;
+interface ILoadImageOptions {
+  publicDir?: string | undefined;
 }
 
-const loadImage: ILoadImage = async (imagePath) => {
+interface ILoadImage {
+  (imagePath: TImage, options: ILoadImageOptions): Promise<ILoadImageReturn>;
+}
+
+const defaultLoadImageOptions = { publicDir: "./public" };
+
+const loadImage: ILoadImage = async (
+  imagePath,
+  options = defaultLoadImageOptions
+) => {
+  if (!options.publicDir) options.publicDir = defaultLoadImageOptions.publicDir;
+
   if (Buffer.isBuffer(imagePath)) {
     const imageSize = getImageSize(imagePath);
 
@@ -102,7 +113,7 @@ const loadImage: ILoadImage = async (imagePath) => {
       `Failed to parse src \"${imagePath}\", if using relative image it must start with a leading slash "/"`
     );
 
-  const file = path.join("./public/", imagePath);
+  const file = path.join(options.publicDir, imagePath);
   const imageSize = getImageSize(file);
 
   return {
@@ -138,7 +149,14 @@ interface IOptimizeImage {
   (src: TImage, options?: IOptimizeImageOptions): Promise<IOptimizeImageReturn>;
 }
 
-const optimizeImage: IOptimizeImage = async (src, options = { size: 4 }) => {
+const defaultOptimizeImageOptions = { size: 4 };
+
+const optimizeImage: IOptimizeImage = async (
+  src,
+  options = defaultOptimizeImageOptions
+) => {
+  if (!options.size) options.size = defaultOptimizeImageOptions.size;
+
   const sizeMin = 4;
   const sizeMax = 64;
 
@@ -209,7 +227,9 @@ const optimizeImage: IOptimizeImage = async (src, options = { size: 4 }) => {
    =========================================== */
 
 export type TGetImageSrc = TImage;
-export interface IGetImageOptions extends IOptimizeImageOptions {}
+export interface IGetImageOptions
+  extends IOptimizeImageOptions,
+    ILoadImageOptions {}
 export interface IGetImageReturn
   extends Omit<ILoadImageReturn, "file">,
     IOptimizeImageReturn {}
@@ -219,7 +239,7 @@ export interface IGetImage {
 }
 
 export const getImage: IGetImage = async (src, options) => {
-  const { file, img } = await loadImage(src);
+  const { file, img } = await loadImage(src, options);
   const optimized = await optimizeImage(file, options);
 
   return {
