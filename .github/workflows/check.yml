@@ -16,16 +16,16 @@ jobs:
           - ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Read .nvmrc
         run: echo ::set-output name=NVMRC::$(cat .nvmrc)
         id: nvm
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v2.4.0
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 6.32.19
+      - uses: actions/setup-node@v3
         with:
           node-version: "${{ steps.nvm.outputs.NVMRC }}"
-      - run: yarn install --frozen-lockfile --ignore-scripts
-        env:
-          CI: true
-      - run: yarn prettier . --check
+          cache: "pnpm"
+      - run: pnpm install --frozen-lockfile
+      - run: pnpx prettier . --check

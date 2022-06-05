@@ -1,7 +1,18 @@
 {
   "extends": "@tsconfig/docusaurus/tsconfig.json",
-  "include": ["src/"],
   "compilerOptions": {
-    "skipLibCheck": true
-  }
+    "baseUrl": ".",
+    "exactOptionalPropertyTypes": true,
+    "forceConsistentCasingInFileNames": true,
+    "lib": ["ES2021"],
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "types": ["@docusaurus/module-type-aliases"]
+  },
+  "exclude": ["node_modules/**"],
+  "include": ["src"]
 }

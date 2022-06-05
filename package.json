@@ -2,13 +2,13 @@
   "private": true,
   "name": "root",
   "scripts": {
-    "build": "lerna run build",
-    "clean": "lerna run clean",
+    "build": "pnpm build --filter ./packages --stream --workspace-concurrency=0",
+    "check": "pnpm check --parallel --stream --workspace-concurrency=0",
     "commit": "git-cz",
-    "lint": "yarn lint:ts && yarn lint:pkg",
+    "dev": "pnpm dev --filter ./packages --parallel --stream --workspace-concurrency=0",
+    "lint": "pnpm check && pnpm lint:pkg",
     "lint:pkg": "syncpack list-mismatches",
-    "lint:ts": "lerna exec --parallel --stream --ignore='example-with-11ty' -- tsc --noEmit",
-    "prepare": "lerna run build --scope='plaiceholder' --scope='@plaiceholder/*'"
+    "preinstall": "npx only-allow pnpm"
   },
   "devDependencies": {
     "@commitlint/cli": "13.1.0",
@@ -19,9 +19,7 @@
     "commitizen": "4.2.4",
     "cz-conventional-changelog": "3.3.0",
     "husky": "4.3.8",
-    "lerna": "4.0.0",
     "lint-staged": "11.1.2",
-    "microbundle": "0.13.0",
     "prettier": "2.4.0",
     "rimraf": "3.0.2",
     "sharp": "0.29.1",
@@ -37,6 +35,9 @@
     "commitizen": {
       "path": "cz-conventional-changelog"
     }
+  },
+  "engines": {
+    "pnpm": "^6.32.19"
   },
   "husky": {
     "hooks": {

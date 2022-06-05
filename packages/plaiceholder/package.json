@@ -26,8 +26,9 @@
   ],
   "scripts": {
     "build": "microbundle --external sharp --no-compress --target node --tsconfig tsconfig.json",
+    "check": "tsc --noEmit",
     "clean": "rimraf {dist,.rts2*}",
-    "dev": "yarn build -- watch"
+    "dev": "pnpm build -- watch"
   },
   "peerDependencies": {
     "sharp": ">= 0.26.2"
@@ -37,5 +38,8 @@
     "image-size": "1.0.0",
     "node-cache": "5.1.2",
     "node-fetch": "2.6.7"
+  },
+  "devDependencies": {
+    "microbundle": "0.13.0"
   }
 }

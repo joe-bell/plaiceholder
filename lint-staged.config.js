@@ -4,9 +4,9 @@ module.exports = {
       filename.includes("package.json")
     );
 
-    return hasPackageJson ? ["yarn syncpack format"] : [];
+    return hasPackageJson ? ["pnpx syncpack format"] : [];
   },
   "*.{ts,tsx,jsx,jsx,json,html,css,md,mdx,yml}": (filenames) =>
-    filenames.map((filename) => `yarn prettier --write '${filename}'`),
-  "*.ts?(x)": () => ["yarn lint:ts"],
+    filenames.map((filename) => `pnpx prettier --write '${filename}'`),
+  "*.ts?(x)": () => ["pnpm check"],
 };

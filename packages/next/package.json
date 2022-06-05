@@ -23,14 +23,16 @@
   ],
   "scripts": {
     "build": "microbundle --no-compress --tsconfig tsconfig.json --external sharp",
+    "check": "tsc --noEmit",
     "clean": "rimraf {dist,.rts2*}",
-    "dev": "yarn build -- watch"
+    "dev": "pnpm build -- watch"
   },
   "peerDependencies": {
     "next": ">= 10.0.0",
     "sharp": ">= 0.26.2"
   },
   "devDependencies": {
+    "microbundle": "0.13.0",
     "next": "12.1.0"
   }
 }

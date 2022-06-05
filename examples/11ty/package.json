@@ -7,22 +7,22 @@
   "scripts": {
     "11ty:build": "eleventy --input=src",
     "11ty:watch": "eleventy --input=src --serve --port=5000",
-    "build": "yarn 11ty:build && yarn tw:build",
+    "build": "pnpm -w build && pnpm 11ty:build && pnpm tw:build",
     "clean": "rimraf _site",
-    "dev": "concurrently \"yarn 11ty:watch\" \"yarn tw:watch\"",
+    "dev": "concurrently \"pnpm -w watch\" \"pnpm 11ty:watch\" \"pnpm tw:watch\"",
     "tw:build": "NODE_ENV=production postcss ./src/styles/index.css -o ./_site/styles/index.css",
     "tw:watch": "NODE_ENV=development postcss ./src/styles/index.css -o ./_site/styles/index.css -w",
-    "vercel": "yarn --cwd ../../ prepare && yarn build"
+    "vercel": "pnpm build"
   },
   "devDependencies": {
     "@11ty/eleventy": "0.12.1",
     "@11ty/eleventy-img": "0.9.0",
-    "@plaiceholder/tailwindcss": "^2.3.0",
+    "@plaiceholder/tailwindcss": "workspace:*",
     "autoprefixer": "10.2.5",
     "clean-css": "4.2.3",
     "concurrently": "6.2.0",
     "glob": "7.1.7",
-    "plaiceholder": "^2.3.0",
+    "plaiceholder": "workspace:*",
     "postcss": "8.2.13",
     "postcss-cli": "8.3.1",
     "prettier": "2.4.0",

@@ -36,17 +36,19 @@
   ],
   "scripts": {
     "build": "microbundle src/*.ts --external sharp --no-compress --target node --tsconfig tsconfig.json",
+    "check": "tsc --noEmit",
     "clean": "rimraf {dist,.rts2*}",
-    "dev": "yarn build -- --watch"
+    "dev": "pnpm build -- --watch"
   },
   "peerDependencies": {
     "tailwindcss": ">=2.2.0 <2.3.0"
   },
   "dependencies": {
     "make-synchronous": "0.1.1",
-    "plaiceholder": "^2.3.0"
+    "plaiceholder": "workspace:*"
   },
   "devDependencies": {
+    "microbundle": "0.13.0",
     "tailwindcss": "2.2.15"
   }
 }
