@@ -1,5 +1,5 @@
 {
-  "private": "true",
+  "private": true,
   "name": "example-with-11ty",
   "version": "2.3.0",
   "author": "Joe Bell <joe@joebell.co.uk>",
@@ -7,27 +7,28 @@
   "scripts": {
     "11ty:build": "eleventy --input=src",
     "11ty:watch": "eleventy --input=src --serve --port=5000",
-    "build": "pnpm -w build && pnpm 11ty:build && pnpm tw:build",
+    "build": "pnpm build --filter 'example-with-11ty^...' && pnpm 11ty:build && pnpm tw:build",
     "clean": "rimraf _site",
-    "dev": "concurrently \"pnpm -w watch\" \"pnpm 11ty:watch\" \"pnpm tw:watch\"",
+    "dev": "concurrently \"pnpm dev --filter 'example-with-11ty^...'\" \"pnpm 11ty:watch\" \"pnpm tw:watch\"",
+    "start": "serve _site",
     "tw:build": "NODE_ENV=production postcss ./src/styles/index.css -o ./_site/styles/index.css",
     "tw:watch": "NODE_ENV=development postcss ./src/styles/index.css -o ./_site/styles/index.css -w",
     "vercel": "pnpm build"
   },
   "devDependencies": {
-    "@11ty/eleventy": "0.12.1",
-    "@11ty/eleventy-img": "0.9.0",
+    "@11ty/eleventy": "1.0.1",
+    "@11ty/eleventy-img": "2.0.1",
     "@plaiceholder/tailwindcss": "workspace:*",
-    "autoprefixer": "10.2.5",
-    "clean-css": "4.2.3",
-    "concurrently": "6.2.0",
-    "glob": "7.1.7",
+    "autoprefixer": "10.4.7",
+    "clean-css": "5.3.0",
+    "concurrently": "7.2.1",
+    "glob": "8.0.3",
     "plaiceholder": "workspace:*",
-    "postcss": "8.2.13",
-    "postcss-cli": "8.3.1",
-    "prettier": "2.4.0",
-    "serve": "11.3.2",
-    "sharp": "0.29.1",
+    "postcss": "8.4.14",
+    "postcss-cli": "9.1.0",
+    "prettier": "2.6.2",
+    "serve": "13.0.2",
+    "sharp": "0.30.6",
     "tailwindcss": "2.2.15"
   }
 }
