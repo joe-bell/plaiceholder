@@ -2,12 +2,11 @@
   "private": true,
   "name": "root",
   "scripts": {
-    "build": "pnpm build --filter ./packages --stream --workspace-concurrency=0",
     "check": "pnpm check --parallel --stream --workspace-concurrency=0",
     "commit": "git-cz",
-    "dev": "pnpm dev --filter ./packages --parallel --stream --workspace-concurrency=0",
     "lint": "pnpm check && pnpm lint:pkg",
     "lint:pkg": "syncpack list-mismatches",
+    "postinstall": "pnpm build --filter ./packages --stream --workspace-concurrency=0",
     "preinstall": "npx only-allow pnpm"
   },
   "devDependencies": {
@@ -15,14 +14,14 @@
     "@commitlint/config-conventional": "13.1.0",
     "@types/node": "14.17.15",
     "@types/react": "17.0.20",
-    "@types/sharp": "0.29.1",
+    "@types/sharp": "0.30.2",
     "commitizen": "4.2.4",
     "cz-conventional-changelog": "3.3.0",
     "husky": "4.3.8",
     "lint-staged": "11.1.2",
-    "prettier": "2.4.0",
+    "prettier": "2.6.2",
     "rimraf": "3.0.2",
-    "sharp": "0.29.1",
+    "sharp": "0.30.6",
     "syncpack": "5.8.15",
     "typescript": "4.4.3"
   },

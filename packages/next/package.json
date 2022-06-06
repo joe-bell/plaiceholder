@@ -29,7 +29,7 @@
   },
   "peerDependencies": {
     "next": ">= 10.0.0",
-    "sharp": ">= 0.26.2"
+    "sharp": ">= 0.30.6"
   },
   "devDependencies": {
     "microbundle": "0.13.0",

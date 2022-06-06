@@ -1,5 +1,5 @@
 {
-  "private": "true",
+  "private": true,
   "name": "example-with-next",
   "version": "2.3.0",
   "author": "Joe Bell <joe@joebell.co.uk>",
@@ -17,18 +17,18 @@
     "@plaiceholder/next": "workspace:*",
     "@plaiceholder/tailwindcss": "workspace:*",
     "@tailwindcss/aspect-ratio": "0.2.0",
-    "glob": "7.1.7",
+    "glob": "8.0.3",
     "next": "12.1.0",
     "plaiceholder": "workspace:*",
     "react": "17.0.2",
     "react-blurhash": "0.1.3",
     "react-dom": "17.0.2",
-    "sharp": "0.29.1"
+    "sharp": "0.30.6"
   },
   "devDependencies": {
-    "autoprefixer": "10.2.5",
+    "autoprefixer": "10.4.7",
     "concurrently": "7.2.1",
-    "postcss": "8.2.13",
+    "postcss": "8.4.14",
     "tailwindcss": "2.2.15"
   }
 }

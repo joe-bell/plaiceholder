@@ -1,5 +1,5 @@
 {
-  "private": "true",
+  "private": true,
   "name": "docs",
   "version": "2.2.0",
   "author": "Joe Bell <joe@joebell.co.uk>",

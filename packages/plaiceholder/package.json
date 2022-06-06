@@ -31,7 +31,7 @@
     "dev": "pnpm build -- watch"
   },
   "peerDependencies": {
-    "sharp": ">= 0.26.2"
+    "sharp": ">= 0.30.6"
   },
   "dependencies": {
     "blurhash": "1.1.4",
