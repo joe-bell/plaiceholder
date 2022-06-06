@@ -1,7 +1,12 @@
 const { withPlaiceholder } = require("@plaiceholder/next");
 
-module.exports = withPlaiceholder({
+/**
+ * @type {import('next').NextConfig}
+ */
+const config = {
   images: {
     domains: ["images.unsplash.com"],
   },
-});
+};
+
+module.exports = withPlaiceholder(config);
