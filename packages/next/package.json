@@ -33,6 +33,9 @@
   },
   "devDependencies": {
     "microbundle": "0.13.0",
-    "next": "12.1.6"
+    "next": "12.1.6",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "typescript": "4.4.3"
   }
 }

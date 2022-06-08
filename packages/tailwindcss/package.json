@@ -48,7 +48,10 @@
     "plaiceholder": "workspace:*"
   },
   "devDependencies": {
+    "autoprefixer": "10.4.7",
     "microbundle": "0.13.0",
-    "tailwindcss": "2.2.15"
+    "postcss": "8.4.14",
+    "tailwindcss": "2.2.15",
+    "typescript": "4.4.3"
   }
 }
