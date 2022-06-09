@@ -25,8 +25,6 @@
 
 <p align="center">
 <a href="https://plaiceholder.co/docs"><strong>Read the Docs 📖</strong></a>
-|
-<a href="https://plaiceholder.co"><strong>Try the Studio 🎨</strong></a>
 </p>
 
 <p align="center">
@@ -56,14 +54,6 @@ Visit **[plaiceholder.co/docs][plaiceholder:docs]** to get started with the open
 ### Migrating from `1.0`?
 
 See the [migration guide](https://github.com/joe-bell/plaiceholder/releases/tag/v2.0.0) for further details.
-
-## Studio 🎨
-
-[**Project sponsors**][plaiceholder:pricing] get exclusive access to the [**Studio**][plaiceholder].
-
-Upload your images and transform to beautifully lightweight placeholders (like magic, but real) ✨
-
-<img width="300" height="auto" src="./.github/assets/studio.jpg">
 
 ### Organizations
 

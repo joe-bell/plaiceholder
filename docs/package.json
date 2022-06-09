@@ -4,7 +4,6 @@
   "version": "2.2.0",
   "author": "Joe Bell <joe@joebell.co.uk>",
   "license": "Apache-2.0",
-  "funding": "https://plaiceholder.co",
   "scripts": {
     "build": "docusaurus build --out-dir build/docs",
     "clear": "docusaurus clear",
