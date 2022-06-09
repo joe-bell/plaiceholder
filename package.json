@@ -20,7 +20,7 @@
     "rimraf": "3.0.2",
     "sharp": "0.30.6",
     "syncpack": "5.8.15",
-    "typescript": "4.4.3"
+    "typescript": "4.7.3"
   },
   "commitlint": {
     "extends": [
@@ -67,11 +67,5 @@
       "dependencies",
       "devDependencies"
     ]
-  },
-  "workspaces": [
-    "docs",
-    "examples/*",
-    "packages/*",
-    "plugins/*"
-  ]
+  }
 }
