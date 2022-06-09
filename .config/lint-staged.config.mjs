@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   "*.json": (filenames) => {
     const hasPackageJson = filenames.some((filename) =>
       filename.includes("package.json")

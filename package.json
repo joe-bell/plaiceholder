@@ -7,7 +7,7 @@
     "lint": "pnpm check && pnpm lint:pkg",
     "lint:pkg": "syncpack list-mismatches",
     "postinstall": "[[ \"$CI\" != 'true' ]] && pnpx husky install || echo 'Skipping husky install'",
-    "pre-commit": "pnpx lint-staged --config .config/lint-staged.config.js",
+    "pre-commit": "pnpx lint-staged --config .config/lint-staged.config.mjs",
     "preinstall": "npx only-allow pnpm",
     "prepare": "pnpm build --filter ./packages --stream --workspace-concurrency=0"
   },
