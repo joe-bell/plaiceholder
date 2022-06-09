@@ -6,7 +6,7 @@
   "license": "Apache-2.0",
   "scripts": {
     "build": "pnpm build --filter 'example-with-next^...' && next build",
-    "check": "tsc --noEmit",
+    "lint:ts": "tsc --noEmit",
     "clean": "rimraf .next",
     "dev": "concurrently \"pnpm dev --filter 'example-with-next^...'\" \"next dev\"",
     "start": "next start",

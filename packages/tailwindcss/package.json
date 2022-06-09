@@ -36,7 +36,7 @@
   ],
   "scripts": {
     "build": "microbundle src/*.ts --external sharp --no-compress --target node --tsconfig tsconfig.json",
-    "check": "tsc --noEmit",
+    "lint:ts": "tsc --noEmit",
     "clean": "rimraf {dist,.rts2*}",
     "dev": "pnpm build -- --watch"
   },

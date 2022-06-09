@@ -2,10 +2,13 @@
   "private": true,
   "name": "root",
   "scripts": {
-    "check": "pnpm check --parallel --stream --workspace-concurrency=0",
+    "lint:ts": "pnpm lint:ts --parallel --stream --workspace-concurrency=0",
     "commit": "git-cz",
-    "lint": "pnpm check && pnpm lint:pkg",
-    "lint:pkg": "syncpack list-mismatches",
+    "lint": "pnpx run-s lint:**",
+    "lint:prettier": "prettier --check .",
+    "format:prettier": "prettier --ignore-unknown --no-error-on-unmatched-pattern --write",
+    "format:packages": "syncpack --config .config/.syncpackrc format",
+    "lint:packages": "syncpack --config .config/.syncpackrc list-mismatches",
     "postinstall": "[[ \"$CI\" != 'true' ]] && pnpx husky install || echo 'Skipping husky install'",
     "pre-commit": "pnpx lint-staged --config .config/lint-staged.config.mjs",
     "preinstall": "npx only-allow pnpm",
@@ -18,10 +21,11 @@
     "cz-conventional-changelog": "3.3.0",
     "husky": "8.0.1",
     "lint-staged": "13.0.1",
+    "npm-run-all": "4.1.5",
     "prettier": "2.6.2",
     "rimraf": "3.0.2",
     "sharp": "0.30.6",
-    "syncpack": "5.8.15",
+    "syncpack": "8.0.0",
     "typescript": "4.7.3"
   },
   "commitlint": {
@@ -29,44 +33,7 @@
       "@commitlint/config-conventional"
     ]
   },
-  "config": {
-    "commitizen": {
-      "path": "cz-conventional-changelog"
-    }
-  },
   "engines": {
     "pnpm": "^6.32.19"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "syncpack": {
-    "peer": false,
-    "sortFirst": [
-      "private",
-      "name",
-      "version",
-      "description",
-      "author",
-      "license",
-      "repository",
-      "bugs",
-      "homepage",
-      "keywords",
-      "source",
-      "main",
-      "module",
-      "exports",
-      "typings",
-      "typesVersions",
-      "files",
-      "scripts",
-      "browserslist",
-      "peerDependencies",
-      "dependencies",
-      "devDependencies"
-    ]
   }
 }
