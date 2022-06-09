@@ -6,11 +6,11 @@
   "license": "Apache-2.0",
   "scripts": {
     "build": "docusaurus build --out-dir build/docs",
-    "lint:ts": "tsc --noEmit",
     "clear": "docusaurus clear",
     "deploy": "docusaurus deploy",
     "dev": "docusaurus start",
     "docusaurus": "docusaurus",
+    "lint:ts": "tsc --noEmit",
     "serve": "docusaurus serve",
     "swizzle": "docusaurus swizzle",
     "vercel": "pnpm build",

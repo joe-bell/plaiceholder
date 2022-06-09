@@ -26,9 +26,9 @@
   ],
   "scripts": {
     "build": "microbundle --external sharp --no-compress --target node --tsconfig tsconfig.json",
-    "lint:ts": "tsc --noEmit",
     "clean": "rimraf {dist,.rts2*}",
-    "dev": "pnpm build -- watch"
+    "dev": "pnpm build -- watch",
+    "lint:ts": "tsc --noEmit"
   },
   "peerDependencies": {
     "sharp": ">= 0.30.6"
