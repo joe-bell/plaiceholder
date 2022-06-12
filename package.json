@@ -2,6 +2,7 @@
   "private": true,
   "name": "root",
   "scripts": {
+    "build": "pnpm build --filter ./packages --stream --workspace-concurrency=0",
     "commit": "pnpx git-cz",
     "format:packages": "pnpx syncpack format --config .config/.syncpackrc",
     "format:prettier": "pnpx prettier --ignore-unknown --no-error-on-unmatched-pattern --write",
@@ -12,7 +13,7 @@
     "postinstall": "[[ \"$CI\" != 'true' ]] && pnpx husky install || echo 'Skipping husky install'",
     "pre-commit": "pnpx lint-staged --config .config/lint-staged.config.mjs",
     "preinstall": "npx only-allow pnpm",
-    "prepare": "pnpm build --filter ./packages --stream --workspace-concurrency=0"
+    "prepare": "[[ \"$CI\" != 'true' ]] && pnpm build || echo 'Skipping prepare'"
   },
   "devDependencies": {
     "@commitlint/cli": "13.1.0",

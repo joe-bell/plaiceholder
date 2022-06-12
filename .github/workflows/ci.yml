@@ -13,7 +13,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        script: [lint]
+        script: [lint, build]
 
     steps:
       - uses: actions/checkout@v3
