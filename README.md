@@ -71,7 +71,7 @@ Apache-2.0 License © [Joe Bell](https://twitter.com/joebell_)
 
 #### [Lovell Fuller](https://github.com/lovell) ([Sharp](https://github.com/lovell/sharp))
 
-Copyright © 2013-2021, Lovell Fuller. All Rights Reserved.
+Copyright © 2013-2022, Lovell Fuller. All Rights Reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License").
 
