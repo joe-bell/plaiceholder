@@ -4,7 +4,7 @@ Welcome, and thanks for your interest in contributing! Please take a moment to r
 
 ## Architecture
 
-Plaiceholder uses [Yarn Workspaces](https://yarnpkg.com/en/docs/workspaces) and [Lerna](https://github.com/lerna/lerna) to develop multiple packages together as a monorepo. These packages are split across three directories:
+Plaiceholder uses [PNPM](http://pnpm.io) to develop multiple packages together as a monorepo. These packages are split across three directories:
 
 1. `docs`
 2. `packages/`
@@ -31,10 +31,10 @@ All `@types/` and shared `devDependencies` should be installed to the [root `pac
 
 1. [Fork the repo](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo) and clone to your machine.
 2. Create a new branch with your contribution.
-3. Install [Yarn](https://yarnpkg.com/) on your machine.
+3. Install [pnpm](http://pnpm.io) on your machine.
 4. In the repo, install dependencies and link packages via:
    ```sh
-   yarn
+   pnpm install
    ```
 
 ### Running Scripts
@@ -42,13 +42,13 @@ All `@types/` and shared `devDependencies` should be installed to the [root `pac
 Scripts in the [root `package.json`][root:package] can be run via:
 
 ```sh
-yarn <script-name>
+pnpm <script-name>
 ```
 
 Individual package scripts can be run in the project root via:
 
 ```sh
-yarn workspace <package-name> <script-name>
+pnpm <script-name> --filter <package-name>
 ```
 
 [root:package]: https://github.com/joe-bell/plaiceholder/blob/main/package.json
@@ -109,7 +109,7 @@ When building your own implementation, you should meet the following requirement
 
        #### [Joe Bell](https://github.com/joe-bell) ([Plaiceholder](https://github.com/joe-bell/plaiceholder))
 
-       Copyright © 2020-2021, Joe Bell. All Rights Reserved.
+       Copyright © 2020-2022, Joe Bell. All Rights Reserved.
 
        Licensed under the Apache License, Version 2.0 (the "License").
        ```
