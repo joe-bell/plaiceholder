@@ -13,7 +13,7 @@
     "postinstall": "[[ \"$CI\" != 'true' ]] && pnpx husky install || echo 'Skipping husky install'",
     "pre-commit": "pnpx lint-staged --config .config/lint-staged.config.mjs",
     "preinstall": "npx only-allow pnpm",
-    "prepare": "[[ \"$CI\" != 'true' ]] && pnpm build || echo 'Skipping prepare'"
+    "prepare": "[[ \"$VERCEL\" -ne \"1\" ]] && pnpm build || echo 'Skipping prepare'"
   },
   "devDependencies": {
     "@commitlint/cli": "13.1.0",
