@@ -1,3 +1,5 @@
+// @ts-check
+
 const path = require("path");
 const { withUrl } = require("./src/utils");
 
@@ -17,7 +19,8 @@ module.exports = {
   projectName: "plaiceholder",
   themeConfig: {
     algolia: {
-      apiKey: "826807810a2151450376d6c710bd76c7",
+      appId: "3TA0CXE0R3",
+      apiKey: "bf663ef0d2d7e3bc4c32fe8c83f29f92",
       indexName: "plaiceholder",
     },
     metaTags: [{ name: "data-title", content: title }],
