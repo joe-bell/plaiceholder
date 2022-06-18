@@ -1,11 +1,11 @@
-import { cx } from "@/styles";
+import { cva } from "class-variance-authority";
 
-const iconClassName = (className) => cx("w-6", "h-6", className);
+const icon = cva(["w-6", "h-6"]);
 
 export interface IconProps extends React.FC<JSX.IntrinsicElements["svg"]> {}
 
 export const IconTwitter: IconProps = ({ className, ...props }) => (
-  <svg viewBox="0 0 24 24" className={iconClassName(className)} {...props}>
+  <svg viewBox="0 0 24 24" className={icon({ class: className })} {...props}>
     <g>
       <path
         fill="currentColor"
@@ -17,7 +17,7 @@ export const IconTwitter: IconProps = ({ className, ...props }) => (
 
 export const IconGitHub: IconProps = ({ className, ...props }) => (
   <svg
-    className={iconClassName(className)}
+    className={icon({ class: className })}
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 17 16"
     fill="none"

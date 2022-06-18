@@ -5,7 +5,7 @@ import { getPlaiceholder } from "plaiceholder";
 import { BlurhashCanvas } from "react-blurhash";
 import { Layout } from "@/components/layout";
 import { config } from "@/config";
-import { cx } from "@/styles";
+import { cx } from "class-variance-authority";
 import { getAllUnsplashImagePaths } from "@/lib/images";
 import { ImageGrid, ImageGridItem } from "@/components/image-grid";
 

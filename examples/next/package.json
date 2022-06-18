@@ -12,11 +12,11 @@
     "vercel": "pnpm build"
   },
   "dependencies": {
-    "@joebell/cx": "0.1.0",
     "@plaiceholder/next": "workspace:*",
     "@plaiceholder/tailwindcss": "workspace:*",
     "@tailwindcss/aspect-ratio": "0.2.0",
     "blurhash": "1.1.4",
+    "class-variance-authority": "0.2.2",
     "glob": "8.0.3",
     "next": "12.1.6",
     "plaiceholder": "workspace:*",
