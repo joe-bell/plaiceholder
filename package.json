@@ -16,6 +16,7 @@
     "prepare": "[[ \"$CI\" -ne \"1\" ]] && [[ \"CI\" != 'true' ]] && pnpm build || echo 'Skipping prepare'"
   },
   "devDependencies": {
+    "@changesets/cli": "2.23.0",
     "@commitlint/cli": "13.1.0",
     "@commitlint/config-conventional": "13.1.0",
     "commitizen": "4.2.4",
