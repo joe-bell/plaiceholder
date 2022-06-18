@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.4.0
+
+### Patch Changes
+
+- e950565: Add `sharp` to peerDependencies to avoid installation confusion
+- Updated dependencies [e950565]
+  - plaiceholder@2.4.0
+
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 

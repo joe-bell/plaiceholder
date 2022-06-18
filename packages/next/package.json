@@ -1,6 +1,6 @@
 {
   "name": "@plaiceholder/next",
-  "version": "2.3.0",
+  "version": "2.4.0",
   "description": "Roll-you-own placeholders for Next.js.",
   "author": "Joe Bell <joe@joebell.co.uk>",
   "license": "Apache-2.0",
