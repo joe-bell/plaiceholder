@@ -111,7 +111,6 @@ importers:
 
   examples/next:
     specifiers:
-      '@joebell/cx': 0.1.0
       '@plaiceholder/next': workspace:*
       '@plaiceholder/tailwindcss': workspace:*
       '@tailwindcss/aspect-ratio': 0.2.0
@@ -119,6 +118,7 @@ importers:
       '@types/react': 17.0.45
       autoprefixer: 10.4.7
       blurhash: 1.1.4
+      class-variance-authority: 0.2.2
       concurrently: 7.2.1
       glob: 8.0.3
       next: 12.1.6
@@ -131,11 +131,11 @@ importers:
       tailwindcss: 2.2.15
       typescript: 4.7.3
     dependencies:
-      '@joebell/cx': 0.1.0
       '@plaiceholder/next': link:../../packages/next
       '@plaiceholder/tailwindcss': link:../../packages/tailwindcss
       '@tailwindcss/aspect-ratio': 0.2.0_tailwindcss@2.2.15
       blurhash: 1.1.4
+      class-variance-authority: 0.2.2_typescript@4.7.3
       glob: 8.0.3
       next: 12.1.6_react-dom@17.0.2+react@17.0.2
       plaiceholder: link:../../packages/plaiceholder
@@ -2784,11 +2784,6 @@ packages:
     resolution: {integrity: sha512-trnsAYxU3xnS1gPHPyU961coFyLkh4gAD/0zQ5mymY4yOZ+CYvsPqUbOFSw0aDM4y0tV7tiFxL/1XfXPNC6IPg==}
     dev: true
 
-  /@joebell/cx/0.1.0:
-    resolution: {integrity: sha512-jEnMWRw0sHhB7KB0+jb1sIJyfk+t54DPxojesWiiV6rf8ynNfBPr+k3lPgLkxZCv0w2tUPOEWloscm1pqILh6A==}
-    engines: {node: '>=10'}
-    dev: false
-
   /@jridgewell/gen-mapping/0.1.1:
     resolution: {integrity: sha512-sQXCasFk+U8lWYEe66WxRDOE9PjVz4vSM51fTu3Hw+ClTpUSQb718772vH3pyS5pShp6lvQM7SxgIDXXXmOX7w==}
     engines: {node: '>=6.0.0'}
@@ -4596,6 +4591,17 @@ packages:
   /ci-info/3.3.2:
     resolution: {integrity: sha512-xmDt/QIAdeZ9+nfdPsaBCpMvHNLFiLdjj59qjqn+6iPe6YmHGQ35sBnQ8uslRBXFmXkiZQOJRjvQeoGppoTjjg==}
     dev: true
+
+  /class-variance-authority/0.2.2_typescript@4.7.3:
+    resolution: {integrity: sha512-SPMcf+Jd/QYTfq+cO5/6sS6q9N+DZNeKOSscWOQgE0i6wl0IN6PcRCakyve/08ARrc/Pj5XOluonDFIFA4ASnQ==}
+    peerDependencies:
+      typescript: '>= 4.5.5 < 5'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+    dependencies:
+      typescript: 4.7.3
+    dev: false
 
   /clean-css/5.3.0:
     resolution: {integrity: sha512-YYuuxv4H/iNb1Z/5IbMRoxgrzjWGhOEFfd+groZ5dMCVkpENiMZmwspdrzBo9286JjM1gZJPAyL7ZIdzuvu2AQ==}

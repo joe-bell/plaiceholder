@@ -2,7 +2,7 @@ import * as React from "react";
 import { InferGetStaticPropsType } from "next";
 import Link from "next/link";
 import { getPlaiceholder } from "plaiceholder";
-import { cx } from "@/styles";
+import { cx } from "class-variance-authority";
 import { Layout } from "@/components/layout";
 import { config } from "@/config";
 import { getAllUnsplashImagePaths } from "@/lib/images";

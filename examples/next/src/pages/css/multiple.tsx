@@ -4,7 +4,7 @@ import Image from "next/image";
 import { getPlaiceholder } from "plaiceholder";
 import { config } from "@/config";
 import { getAllUnsplashImagePaths } from "@/lib/images";
-import { cx } from "@/styles";
+import { cx } from "class-variance-authority";
 import { Layout } from "@/components/layout";
 import { ImageGrid, ImageGridItem } from "@/components/image-grid";
 
