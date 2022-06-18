@@ -80,7 +80,7 @@ pnpm changeset
    pnpm changeset version
    ```
 
-3. Regenerate the lockfile
+3. Prepare packages and regenerate the lockfile
 
    ```sh
    pnpm install
