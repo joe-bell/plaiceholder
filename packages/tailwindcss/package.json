@@ -41,6 +41,7 @@
     "lint:ts": "tsc --noEmit"
   },
   "peerDependencies": {
+    "sharp": ">= 0.30.6",
     "tailwindcss": ">=2.2.0 <2.3.0"
   },
   "dependencies": {
