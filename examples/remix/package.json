@@ -1,0 +1,50 @@
+{
+  "private": true,
+  "name": "example-with-remix",
+  "author": "Joe Bell <joe@joebell.co.uk>",
+  "license": "Apache-2.0",
+  "scripts": {
+    "build": "run-s build:*",
+    "build:css": "npm run generate:css -- --minify",
+    "build:remix": "remix build",
+    "dev": "run-p dev:*",
+    "dev:css": "pnpm generate:css -- --watch",
+    "dev:remix": "remix dev",
+    "generate:css": "pnpx tailwindcss -o ./app/tailwind.css",
+    "prepare": "pnpm generate:css"
+  },
+  "dependencies": {
+    "@plaiceholder/tailwindcss": "workspace:*",
+    "@plaiceholder/ui": "workspace:*",
+    "@remix-run/node": "1.6.0",
+    "@remix-run/react": "1.6.0",
+    "@remix-run/vercel": "1.6.0",
+    "@tailwindcss/aspect-ratio": "0.2.0",
+    "@vercel/node": "1.15.2",
+    "blurhash": "1.1.4",
+    "class-variance-authority": "0.2.2",
+    "glob": "8.0.3",
+    "plaiceholder": "workspace:*",
+    "react": "17.0.2",
+    "react-blurhash": "0.1.3",
+    "react-dom": "17.0.2",
+    "sharp": "0.30.6"
+  },
+  "devDependencies": {
+    "@remix-run/dev": "1.6.0",
+    "@remix-run/eslint-config": "1.6.0",
+    "@remix-run/serve": "1.6.0",
+    "@types/react": "17.0.45",
+    "@types/react-dom": "17.0.17",
+    "autoprefixer": "10.4.7",
+    "eslint": "8.15.0",
+    "npm-run-all": "4.1.5",
+    "postcss": "8.4.14",
+    "tailwindcss": "2.2.15",
+    "typescript": "4.7.3"
+  },
+  "engines": {
+    "node": ">=14"
+  },
+  "sideEffects": false
+}
