@@ -3,8 +3,8 @@ import { InferGetStaticPropsType } from "next";
 import Image from "next/image";
 import { getPlaiceholder } from "plaiceholder";
 import { extractImgSrc } from "@plaiceholder/tailwindcss/utils";
+import { ImageGrid, ImageGridItem } from "@plaiceholder/ui";
 import { config } from "@/config";
-import { ImageGrid, ImageGridItem } from "@/components/image-grid";
 import { Layout } from "@/components/layout";
 import { cx } from "class-variance-authority";
 

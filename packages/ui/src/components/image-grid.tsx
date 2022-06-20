@@ -18,7 +18,13 @@ export const ImageGrid: React.FC<ImageGridProps> = ({
   className,
   columns = 3,
   ...props
-}) => <ul className={imageGrid({ class: className, columns })} {...props} />;
+}) => (
+  <ul
+    role="list"
+    className={imageGrid({ class: className, columns })}
+    {...props}
+  />
+);
 
 const imageGridItem = cva([
   "relative",

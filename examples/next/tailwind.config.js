@@ -1,6 +1,9 @@
 module.exports = {
   mode: "jit",
-  purge: ["./src/**/*.{ts,tsx}"],
+  purge: [
+    "./node_modules/\\@plaiceholder/ui/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
   theme: {
     extend: {},
   },

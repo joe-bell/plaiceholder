@@ -1,7 +1,7 @@
 import * as React from "react";
 import NextLink from "next/link";
-import { IconGitHub, IconTwitter } from "@/components/icons";
 import { cx } from "class-variance-authority";
+import { IconGitHub, IconTwitter } from "@plaiceholder/ui";
 import { config } from "@/config";
 import { Head } from "./head";
 

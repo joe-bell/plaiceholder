@@ -1,0 +1,39 @@
+{
+  "private": true,
+  "name": "@plaiceholder/ui",
+  "description": "Private UI components for plaiceholder examples",
+  "author": "Joe Bell <joe@joebell.co.uk>",
+  "license": "Apache-2.0",
+  "main": "src/index.ts",
+  "module": "src/index.ts",
+  "exports": {
+    ".": {
+      "import": "./src/index.ts",
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    },
+    "./components": {
+      "import": "./src/components/index.ts",
+      "types": "./src/components/index.ts",
+      "default": "./src/components/index.ts"
+    },
+    "./icons": {
+      "import": "./src/icons/index.tsx",
+      "types": "./src/icons/index.tsx",
+      "default": "./src/icons/index.tsx"
+    }
+  },
+  "scripts": {
+    "lint:ts": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
+  },
+  "devDependencies": {
+    "class-variance-authority": "0.2.2",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "typescript": "4.7.3"
+  }
+}

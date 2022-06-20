@@ -2,11 +2,11 @@ import * as React from "react";
 import { InferGetStaticPropsType } from "next";
 import Image from "next/image";
 import { getPlaiceholder } from "plaiceholder";
+import { ImageGrid, ImageGridItem } from "@plaiceholder/ui";
 import { config } from "@/config";
 import { getAllUnsplashImagePaths } from "@/lib/images";
 import { cx } from "class-variance-authority";
 import { Layout } from "@/components/layout";
-import { ImageGrid, ImageGridItem } from "@/components/image-grid";
 
 export const getStaticProps = async () => {
   const imagePaths = getAllUnsplashImagePaths();
