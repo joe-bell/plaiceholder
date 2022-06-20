@@ -15,14 +15,14 @@
   ],
   "source": "src/index.ts",
   "main": "dist/index.js",
-  "module": "dist/index.esm.js",
+  "module": "dist/index.mjs",
   "typings": "dist/index.d.ts",
   "files": [
     "dist",
     "README.md"
   ],
   "scripts": {
-    "build": "microbundle --no-compress --tsconfig tsconfig.json --external sharp",
+    "build": "microbundle --no-compress --tsconfig tsconfig.json --external sharp --format cjs,esm",
     "clean": "rimraf {dist,.rts2*}",
     "dev": "pnpm build -- watch",
     "lint:ts": "tsc --noEmit"
@@ -32,7 +32,7 @@
     "sharp": ">= 0.30.6"
   },
   "devDependencies": {
-    "microbundle": "0.13.0",
+    "microbundle": "0.15.0",
     "next": "12.1.6",
     "react": "17.0.2",
     "react-dom": "17.0.2",

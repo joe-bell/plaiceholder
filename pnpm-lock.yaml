@@ -154,13 +154,13 @@ importers:
 
   packages/next:
     specifiers:
-      microbundle: 0.13.0
+      microbundle: 0.15.0
       next: 12.1.6
       react: 17.0.2
       react-dom: 17.0.2
       typescript: 4.7.3
     devDependencies:
-      microbundle: 0.13.0
+      microbundle: 0.15.0
       next: 12.1.6_react-dom@17.0.2+react@17.0.2
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
@@ -172,7 +172,7 @@ importers:
       '@types/sharp': 0.30.2
       blurhash: 1.1.4
       image-size: 1.0.0
-      microbundle: 0.13.0
+      microbundle: 0.15.0
       node-cache: 5.1.2
       node-fetch: 2.6.7
       typescript: 4.7.3
@@ -184,14 +184,14 @@ importers:
     devDependencies:
       '@types/node': 14.17.15
       '@types/sharp': 0.30.2
-      microbundle: 0.13.0
+      microbundle: 0.15.0
       typescript: 4.7.3
 
   packages/tailwindcss:
     specifiers:
       autoprefixer: 10.4.7
       make-synchronous: 0.1.1
-      microbundle: 0.13.0
+      microbundle: 0.15.0
       plaiceholder: workspace:*
       postcss: 8.4.14
       tailwindcss: 2.2.15
@@ -201,7 +201,7 @@ importers:
       plaiceholder: link:../plaiceholder
     devDependencies:
       autoprefixer: 10.4.7_postcss@8.4.14
-      microbundle: 0.13.0
+      microbundle: 0.15.0
       postcss: 8.4.14
       tailwindcss: 2.2.15_a191cbaa25c4a0a9f05cc78eac153be7
       typescript: 4.7.3
@@ -3145,6 +3145,15 @@ packages:
     resolution: {integrity: sha512-+9jVqKhRSpsc591z5vX+X5Yyw+he/HCB4iQ/RYxw35CEPaY1gnsNE43nf9n9AaYjAQrTiI/mOwKUKdUs9vf7Xg==}
     dev: true
 
+  /@surma/rollup-plugin-off-main-thread/2.2.3:
+    resolution: {integrity: sha512-lR8q/9W7hZpMWweNiAKU7NQerBnzQQLvi8qnTDU/fxItPhtZVMbPV3lbCwjhIlNBe9Bbr5V+KHshvWmVSG9cxQ==}
+    dependencies:
+      ejs: 3.1.8
+      json5: 2.2.1
+      magic-string: 0.25.9
+      string.prototype.matchall: 4.0.7
+    dev: true
+
   /@svgr/babel-plugin-add-jsx-attribute/6.0.0_@babel+core@7.18.2:
     resolution: {integrity: sha512-MdPdhdWLtQsjd29Wa4pABdhWbaRMACdM1h31BY+c6FghTZqNGT7pEYdBoaGeKtdTOBC/XNFQaKVj+r/Ei2ryWA==}
     engines: {node: '>=10'}
@@ -5477,7 +5486,6 @@ packages:
   /define-lazy-prop/2.0.0:
     resolution: {integrity: sha512-Ds09qNh8yw3khSjiJjiUInaGX9xlqZDY7JVryGxdxV7NPeuqQfplOpQ66yJFZut3jLa5zOwkXw1g9EI2uKh4Og==}
     engines: {node: '>=8'}
-    dev: false
 
   /define-properties/1.1.4:
     resolution: {integrity: sha512-uckOqKcfaVvtBdsVkdPv3XjveQJsNQqmhXgRi8uhvWWuPYZCNlzT8qAyblUgNoXdHdjMTzAqeGjAoli8f+bzPA==}
@@ -8213,8 +8221,8 @@ packages:
     engines: {node: '>= 0.6'}
     dev: false
 
-  /microbundle/0.13.0:
-    resolution: {integrity: sha512-d5glQP8nWoaZhgNF7pxmBpSI/zYMn0NfjH5tOjLudfgoceWiiq+5crwIHGqWKFDbaTcyMjD9HKowy3hNWJCHow==}
+  /microbundle/0.15.0:
+    resolution: {integrity: sha512-EkFst5ntLXoQGewkvga/Kd72RcN7IuJRl5ivLihJSbvLfJQo8LDS0n9X0q81vegiC59vhtKIM6qjrl1fOAtuGw==}
     hasBin: true
     dependencies:
       '@babel/core': 7.18.2
@@ -8232,6 +8240,7 @@ packages:
       '@rollup/plugin-commonjs': 17.1.0_rollup@2.75.6
       '@rollup/plugin-json': 4.1.0_rollup@2.75.6
       '@rollup/plugin-node-resolve': 11.2.1_rollup@2.75.6
+      '@surma/rollup-plugin-off-main-thread': 2.2.3
       asyncro: 3.0.0
       autoprefixer: 10.4.7_postcss@8.4.14
       babel-plugin-macros: 3.1.0
@@ -8252,7 +8261,9 @@ packages:
       rollup-plugin-postcss: 4.0.2_postcss@8.4.14
       rollup-plugin-terser: 7.0.2_rollup@2.75.6
       rollup-plugin-typescript2: 0.29.0_rollup@2.75.6+typescript@4.7.3
+      rollup-plugin-visualizer: 5.6.0_rollup@2.75.6
       sade: 1.8.1
+      terser: 5.14.1
       tiny-glob: 0.2.9
       tslib: 2.4.0
       typescript: 4.7.3
@@ -8763,7 +8774,6 @@ packages:
       define-lazy-prop: 2.0.0
       is-docker: 2.2.1
       is-wsl: 2.2.0
-    dev: false
 
   /opener/1.5.2:
     resolution: {integrity: sha512-ur5UIdyw5Y7yEj9wLzhqXiy6GZ3Mwx0yGI+5sMn2r0N0v3cKJvUmFH5yPP+WXh9e0xfyzyJX95D8l088DNFj7A==}
@@ -10561,6 +10571,20 @@ packages:
       typescript: 4.7.3
     dev: true
 
+  /rollup-plugin-visualizer/5.6.0_rollup@2.75.6:
+    resolution: {integrity: sha512-CKcc8GTUZjC+LsMytU8ocRr/cGZIfMR7+mdy4YnlyetlmIl/dM8BMnOEpD4JPIGt+ZVW7Db9ZtSsbgyeBH3uTA==}
+    engines: {node: '>=12'}
+    hasBin: true
+    peerDependencies:
+      rollup: ^2.0.0
+    dependencies:
+      nanoid: 3.3.4
+      open: 8.4.0
+      rollup: 2.75.6
+      source-map: 0.7.4
+      yargs: 17.5.1
+    dev: true
+
   /rollup-pluginutils/2.8.2:
     resolution: {integrity: sha512-EEp9NhnUkwY8aif6bxgovPHMoMoNr2FulJziTndpt5H9RdwC47GSGuII9XxpSdzVGM0GWrNPHV6ie1LTNJPaLQ==}
     dependencies:
@@ -11137,6 +11161,11 @@ packages:
     resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==}
     engines: {node: '>=0.10.0'}
 
+  /source-map/0.7.4:
+    resolution: {integrity: sha512-l3BikUxvPOcn5E74dZiq5BGsTb5yEwhaTSzccU6t4sDOH8NWJCstKO5QT2CvtFoK6F0saL7p9xHAqHOlCPJygA==}
+    engines: {node: '>= 8'}
+    dev: true
+
   /sourcemap-codec/1.4.8:
     resolution: {integrity: sha512-9NykojV5Uih4lgo5So5dtw+f0JgJX30KCNI8gwhz2J9A15wD0Ml6tjHKwf6fTSa6fAdVBdZeNOs9eJ71qCk8vA==}
     dev: true
@@ -11284,6 +11313,19 @@ packages:
       eastasianwidth: 0.2.0
       emoji-regex: 9.2.2
       strip-ansi: 7.0.1
+
+  /string.prototype.matchall/4.0.7:
+    resolution: {integrity: sha512-f48okCX7JiwVi1NXCVWcFnZgADDC/n2vePlQ/KUCNqCikLLilQvwjMO8+BHVKvgzH0JB0J9LEPgxOGT02RoETg==}
+    dependencies:
+      call-bind: 1.0.2
+      define-properties: 1.1.4
+      es-abstract: 1.20.1
+      get-intrinsic: 1.1.2
+      has-symbols: 1.0.3
+      internal-slot: 1.0.3
+      regexp.prototype.flags: 1.4.3
+      side-channel: 1.0.4
+    dev: true
 
   /string.prototype.padend/3.1.3:
     resolution: {integrity: sha512-jNIIeokznm8SD/TZISQsZKYu7RJyheFNt84DUPrh482GC8RVp2MKqm2O5oBRdGxbDQoXrhhWtPIWQOiy20svUg==}
