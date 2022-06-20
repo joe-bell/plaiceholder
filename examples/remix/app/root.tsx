@@ -10,7 +10,7 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 import { config } from "~/config";
-import { IconGitHub, IconTwitter } from "@plaiceholder/ui/icons";
+import { IconGitHub, IconTwitter } from "@plaiceholder/ui";
 
 import tailwind from "./tailwind.css";
 
