@@ -38,6 +38,7 @@ importers:
       '@docusaurus/module-type-aliases': 2.0.0-beta.21
       '@docusaurus/plugin-sitemap': 2.0.0-beta.21
       '@docusaurus/preset-classic': 2.0.0-beta.21
+      '@docusaurus/remark-plugin-npm2yarn': 2.0.0-beta.21
       '@docusaurus/theme-classic': 2.0.0-beta.21
       '@docusaurus/theme-common': 2.0.0-beta.21
       '@mdx-js/react': 1.6.22
@@ -59,6 +60,7 @@ importers:
       '@docusaurus/core': 2.0.0-beta.21_da7aa441eab317dce4b40399f38f0b05
       '@docusaurus/plugin-sitemap': 2.0.0-beta.21_da7aa441eab317dce4b40399f38f0b05
       '@docusaurus/preset-classic': 2.0.0-beta.21_9286fc7d1db39ced470f3da0f1c8140b
+      '@docusaurus/remark-plugin-npm2yarn': 2.0.0-beta.21
       '@docusaurus/theme-classic': 2.0.0-beta.21_da7aa441eab317dce4b40399f38f0b05
       '@docusaurus/theme-common': 2.0.0-beta.21_da7aa441eab317dce4b40399f38f0b05
       '@mdx-js/react': 1.6.22_react@17.0.2
@@ -2555,6 +2557,15 @@ packages:
       '@types/react': 17.0.45
       prop-types: 15.8.1
       react: 17.0.2
+    dev: false
+
+  /@docusaurus/remark-plugin-npm2yarn/2.0.0-beta.21:
+    resolution: {integrity: sha512-CqvmoFEj05NzaQBKxnsfI90aM8KHJZWyCzED/Qg5odUD9VtR9zNQJ1Nu/X1ctqCN7FBIxBYk2tz1Xb1+zCP8gg==}
+    engines: {node: '>=16.14'}
+    dependencies:
+      npm-to-yarn: 1.0.1
+      tslib: 2.4.0
+      unist-util-visit: 2.0.3
     dev: false
 
   /@docusaurus/theme-classic/2.0.0-beta.21_da7aa441eab317dce4b40399f38f0b05:
@@ -8659,6 +8670,11 @@ packages:
     dependencies:
       path-key: 4.0.0
     dev: true
+
+  /npm-to-yarn/1.0.1:
+    resolution: {integrity: sha512-bp8T8oNMfLW+N/fE0itFfSu7RReytwhqNd9skbkfHfzGYC+5CCdzS2HnaXz6JiG4AlK2eA0qlT6NJN1SoFvcWQ==}
+    engines: {node: '>=6.0.0'}
+    dev: false
 
   /nprogress/0.2.0:
     resolution: {integrity: sha512-I19aIingLgR1fmhftnbWWO3dXc0hSxqHQHQb3H8m+K3TnEn/iSeTZZOyvKXWqQESMwuUVnatlCnZdLBZZt2VSA==}

@@ -103,6 +103,12 @@ module.exports = {
           editUrl: path.join(github, "/edit/main/docs/"),
           path: "docs",
           routeBasePath: "/",
+          remarkPlugins: [
+            [require("@docusaurus/remark-plugin-npm2yarn"), { sync: true }],
+          ],
+        },
+        pages: {
+          remarkPlugins: [require("@docusaurus/remark-plugin-npm2yarn")],
         },
         blog: false,
         theme: {
