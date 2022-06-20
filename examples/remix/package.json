@@ -10,8 +10,7 @@
     "dev": "run-p dev:*",
     "dev:css": "pnpm generate:css -- --watch",
     "dev:remix": "remix dev",
-    "generate:css": "pnpx tailwindcss -o ./app/tailwind.css",
-    "prepare": "pnpm generate:css"
+    "generate:css": "pnpx tailwindcss -o ./app/tailwind.css"
   },
   "dependencies": {
     "@plaiceholder/tailwindcss": "workspace:*",
