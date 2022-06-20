@@ -13,7 +13,6 @@
     "lint:ts": "tsc --noEmit",
     "serve": "docusaurus serve",
     "swizzle": "docusaurus swizzle",
-    "vercel": "pnpm build",
     "write-heading-ids": "docusaurus write-heading-ids",
     "write-translations": "docusaurus write-translations"
   },
