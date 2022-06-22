@@ -275,10 +275,13 @@ importers:
 
   packages/ui:
     specifiers:
+      '@radix-ui/react-slot': 0.1.2
       class-variance-authority: 0.2.2
       react: 17.0.2
       react-dom: 17.0.2
       typescript: 4.7.3
+    dependencies:
+      '@radix-ui/react-slot': 0.1.2_react@17.0.2
     devDependencies:
       class-variance-authority: 0.2.2_typescript@4.7.3
       react: 17.0.2
@@ -3204,6 +3207,25 @@ packages:
 
   /@polka/url/1.0.0-next.21:
     resolution: {integrity: sha512-a5Sab1C4/icpTZVzZc5Ghpz88yQtGOyNqYXcZgOssB2uuAr+wF/MvN6bgtW32q7HHrvBki+BsZ0OuNv6EV3K9g==}
+    dev: false
+
+  /@radix-ui/react-compose-refs/0.1.0_react@17.0.2:
+    resolution: {integrity: sha512-eyclbh+b77k+69Dk72q3694OHrn9B3QsoIRx7ywX341U9RK1ThgQjMFZoPtmZNQTksXHLNEiefR8hGVeFyInGg==}
+    peerDependencies:
+      react: ^16.8 || ^17.0
+    dependencies:
+      '@babel/runtime': 7.18.3
+      react: 17.0.2
+    dev: false
+
+  /@radix-ui/react-slot/0.1.2_react@17.0.2:
+    resolution: {integrity: sha512-ADkqfL+agEzEguU3yS26jfB50hRrwf7U4VTwAOZEmi/g+ITcBWe12yM46ueS/UCIMI9Py+gFUaAdxgxafFvY2Q==}
+    peerDependencies:
+      react: ^16.8 || ^17.0
+    dependencies:
+      '@babel/runtime': 7.18.3
+      '@radix-ui/react-compose-refs': 0.1.0_react@17.0.2
+      react: 17.0.2
     dev: false
 
   /@remix-run/dev/1.6.0_react-dom@17.0.2+react@17.0.2:

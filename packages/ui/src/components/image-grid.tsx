@@ -1,6 +1,6 @@
+import React from "react";
 import type * as CVA from "class-variance-authority";
 import { cva } from "class-variance-authority";
-import React from "react";
 
 const imageGrid = cva(
   ["grid", "grid-cols-1", "sm:grid-cols-2", "gap-4", "mt-8"],

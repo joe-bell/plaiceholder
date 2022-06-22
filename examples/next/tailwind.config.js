@@ -1,7 +1,7 @@
 module.exports = {
   mode: "jit",
   purge: [
-    "./node_modules/\\@plaiceholder/ui/**/*.{ts,tsx}",
+    "./node_modules/@plaiceholder/ui/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
   ],
   theme: {
