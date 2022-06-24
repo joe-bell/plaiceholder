@@ -3,13 +3,14 @@ import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import Image from "remix-image";
 import { cx } from "class-variance-authority";
+import { BlurhashCanvas } from "react-blurhash";
 import { ImageGrid, ImageGridItem } from "@plaiceholder/ui";
 import type { IGetPlaiceholderReturn } from "~/modules/plaiceholder.server";
 import { getPlaiceholder } from "~/modules/plaiceholder.server";
 import { getAllUnsplashImagePaths } from "~/lib/images.server";
 
 type LoaderData = {
-  images: (Pick<IGetPlaiceholderReturn, "base64"> & {
+  images: (Pick<IGetPlaiceholderReturn, "blurhash"> & {
     img: Record<"alt" | "title", string> & IGetPlaiceholderReturn["img"];
   })[];
 };
@@ -19,10 +20,10 @@ export const loader: LoaderFunction = async () => {
 
   const images = await Promise.all(
     imagePaths.map(async (src) => {
-      const { base64, img } = await getPlaiceholder(src);
+      const { blurhash, img } = await getPlaiceholder(src);
 
       return {
-        base64,
+        blurhash,
         img: {
           ...img,
           alt: "Paint Splashes",
@@ -37,27 +38,19 @@ export const loader: LoaderFunction = async () => {
   });
 };
 
-export default function Base64Multiple() {
+export default function BlurhashMultiple() {
   const { images } = useLoaderData<LoaderData>();
 
   return (
     <ImageGrid columns={3}>
-      {images.map(({ base64, img }) => (
+      {images.map(({ blurhash, img }) => (
         <ImageGridItem key={img.src}>
-          <img
-            alt=""
-            src={base64}
-            className={cx(
-              "absolute",
-              "inset-0",
-              "w-full",
-              "h-full",
-              "transform",
-              "scale-150",
-              "filter",
-              "blur-2xl",
-              "z-[-1]"
-            )}
+          <BlurhashCanvas
+            hash={blurhash.hash}
+            width={blurhash.height}
+            height={blurhash.width}
+            punch={1}
+            className={cx("absolute", "inset-0", "w-full", "h-full", "z-[-1]")}
           />
           <Image className="text-transparent" loaderUrl="/api/image" {...img} />
         </ImageGridItem>

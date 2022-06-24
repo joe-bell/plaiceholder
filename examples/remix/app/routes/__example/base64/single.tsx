@@ -3,10 +3,9 @@ import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import Image from "remix-image";
 import { cx } from "class-variance-authority";
-
-import type { IGetPlaiceholderReturn } from "~/lib/plaiceholder.server";
-import { getPlaiceholder } from "~/lib/plaiceholder.server";
 import { ImageGrid, ImageGridItem } from "@plaiceholder/ui";
+import type { IGetPlaiceholderReturn } from "~/modules/plaiceholder.server";
+import { getPlaiceholder } from "~/modules/plaiceholder.server";
 
 type LoaderData = Pick<IGetPlaiceholderReturn, "base64" | "img">;
 
@@ -19,7 +18,7 @@ export const loader: LoaderFunction = async () => {
   });
 };
 
-export default function TailwindSingle() {
+export default function Base64Single() {
   const { base64, img } = useLoaderData<LoaderData>();
 
   return (

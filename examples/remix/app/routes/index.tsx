@@ -16,8 +16,8 @@ import {
 } from "@plaiceholder/ui";
 
 import { config } from "~/config";
-import type { IGetPlaiceholderReturn } from "~/lib/plaiceholder.server";
-import { getPlaiceholder } from "~/lib/plaiceholder.server";
+import type { IGetPlaiceholderReturn } from "~/modules/plaiceholder.server";
+import { getPlaiceholder } from "~/modules/plaiceholder.server";
 import { getAllUnsplashImagePaths } from "~/lib/images.server";
 
 type LoaderData = {

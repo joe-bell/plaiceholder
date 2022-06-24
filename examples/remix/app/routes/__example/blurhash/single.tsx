@@ -3,46 +3,34 @@ import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import Image from "remix-image";
 import { cx } from "class-variance-authority";
-import { extractImgSrc } from "@plaiceholder/tailwindcss/utils";
+import { BlurhashCanvas } from "react-blurhash";
 import { ImageGrid, ImageGridItem } from "@plaiceholder/ui";
 import type { IGetPlaiceholderReturn } from "~/modules/plaiceholder.server";
 import { getPlaiceholder } from "~/modules/plaiceholder.server";
 
-type LoaderData = {
-  plaiceholder: string;
-  // @TODO: Provide a nicer TypeScript experience here
-  img: IGetPlaiceholderReturn["img"];
-};
+type LoaderData = Pick<IGetPlaiceholderReturn, "blurhash" | "img">;
 
 export const loader: LoaderFunction = async () => {
-  const plaiceholder = "plaiceholder-[/assets/keila-joa@578.jpg]";
-  const { img } = await getPlaiceholder(extractImgSrc(plaiceholder));
+  const { blurhash, img } = await getPlaiceholder("/assets/keila-joa@578.jpg");
 
   return json<LoaderData>({
+    blurhash,
     img,
-    plaiceholder,
   });
 };
 
-export default function TailwindSingle() {
-  const { plaiceholder, img } = useLoaderData<LoaderData>();
+export default function BlurhashSingle() {
+  const { blurhash, img } = useLoaderData<LoaderData>();
 
   return (
     <ImageGrid columns={2}>
       <ImageGridItem>
-        <div
-          className={cx(
-            "absolute",
-            "inset-0",
-            "w-full",
-            "h-full",
-            plaiceholder,
-            "transform",
-            "scale-150",
-            "filter",
-            "blur-2xl",
-            "z-[-1]"
-          )}
+        <BlurhashCanvas
+          hash={blurhash.hash}
+          width={blurhash.height}
+          height={blurhash.width}
+          punch={1}
+          className={cx("absolute", "inset-0", "w-full", "h-full", "z-[-1]")}
         />
         <Image
           className="text-transparent"

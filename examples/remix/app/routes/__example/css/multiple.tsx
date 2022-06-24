@@ -9,7 +9,7 @@ import { getPlaiceholder } from "~/modules/plaiceholder.server";
 import { getAllUnsplashImagePaths } from "~/lib/images.server";
 
 type LoaderData = {
-  images: (Pick<IGetPlaiceholderReturn, "base64"> & {
+  images: (Pick<IGetPlaiceholderReturn, "css"> & {
     img: Record<"alt" | "title", string> & IGetPlaiceholderReturn["img"];
   })[];
 };
@@ -19,10 +19,10 @@ export const loader: LoaderFunction = async () => {
 
   const images = await Promise.all(
     imagePaths.map(async (src) => {
-      const { base64, img } = await getPlaiceholder(src);
+      const { css, img } = await getPlaiceholder(src);
 
       return {
-        base64,
+        css,
         img: {
           ...img,
           alt: "Paint Splashes",
@@ -37,16 +37,14 @@ export const loader: LoaderFunction = async () => {
   });
 };
 
-export default function Base64Multiple() {
+export default function CSSMultiple() {
   const { images } = useLoaderData<LoaderData>();
 
   return (
     <ImageGrid columns={3}>
-      {images.map(({ base64, img }) => (
+      {images.map(({ css, img }) => (
         <ImageGridItem key={img.src}>
-          <img
-            alt=""
-            src={base64}
+          <div
             className={cx(
               "absolute",
               "inset-0",
@@ -58,6 +56,7 @@ export default function Base64Multiple() {
               "blur-2xl",
               "z-[-1]"
             )}
+            style={css}
           />
           <Image className="text-transparent" loaderUrl="/api/image" {...img} />
         </ImageGridItem>

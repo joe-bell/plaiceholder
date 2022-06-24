@@ -3,10 +3,9 @@ import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import Image from "remix-image";
 import { cx } from "class-variance-authority";
-
-import { getPlaiceholder } from "~/lib/plaiceholder.server";
 import { extractImgSrc } from "@plaiceholder/tailwindcss/utils";
 import { ImageGrid, ImageGridItem } from "@plaiceholder/ui";
+import { getPlaiceholder } from "~/modules/plaiceholder.server";
 
 const getImagesFromPlaiceholders = (...plaiceholders: string[]) =>
   Promise.all(
@@ -35,7 +34,7 @@ export const loader: LoaderFunction = async () => {
   });
 };
 
-export default function TailwindSingle() {
+export default function TailwindMultiple() {
   const { images } = useLoaderData<LoaderData>();
 
   return (

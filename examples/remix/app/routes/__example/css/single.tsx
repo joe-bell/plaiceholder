@@ -3,29 +3,23 @@ import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import Image from "remix-image";
 import { cx } from "class-variance-authority";
-import { extractImgSrc } from "@plaiceholder/tailwindcss/utils";
 import { ImageGrid, ImageGridItem } from "@plaiceholder/ui";
 import type { IGetPlaiceholderReturn } from "~/modules/plaiceholder.server";
 import { getPlaiceholder } from "~/modules/plaiceholder.server";
 
-type LoaderData = {
-  plaiceholder: string;
-  // @TODO: Provide a nicer TypeScript experience here
-  img: IGetPlaiceholderReturn["img"];
-};
+type LoaderData = Pick<IGetPlaiceholderReturn, "css" | "img">;
 
 export const loader: LoaderFunction = async () => {
-  const plaiceholder = "plaiceholder-[/assets/keila-joa@578.jpg]";
-  const { img } = await getPlaiceholder(extractImgSrc(plaiceholder));
+  const { css, img } = await getPlaiceholder("/assets/keila-joa@578.jpg");
 
   return json<LoaderData>({
+    css,
     img,
-    plaiceholder,
   });
 };
 
-export default function TailwindSingle() {
-  const { plaiceholder, img } = useLoaderData<LoaderData>();
+export default function CSSSingle() {
+  const { css, img } = useLoaderData<LoaderData>();
 
   return (
     <ImageGrid columns={2}>
@@ -36,13 +30,13 @@ export default function TailwindSingle() {
             "inset-0",
             "w-full",
             "h-full",
-            plaiceholder,
             "transform",
             "scale-150",
             "filter",
             "blur-2xl",
             "z-[-1]"
           )}
+          style={css}
         />
         <Image
           className="text-transparent"
