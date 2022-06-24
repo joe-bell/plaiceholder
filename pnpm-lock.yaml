@@ -187,6 +187,7 @@ importers:
       remix-image: 0.3.18
       sharp: 0.30.6
       tailwindcss: 2.2.15
+      tiny-invariant: 1.2.0
       typescript: 4.7.3
     dependencies:
       '@next-boost/hybrid-disk-cache': 0.3.0
@@ -206,6 +207,7 @@ importers:
       react-dom: 17.0.2_react@17.0.2
       remix-image: 0.3.18_55f7cf1f1a6b85b691c1d2c4dd2b2f17
       sharp: 0.30.6
+      tiny-invariant: 1.2.0
     devDependencies:
       '@remix-run/dev': 1.6.0_react-dom@17.0.2+react@17.0.2
       '@remix-run/eslint-config': 1.6.0_a28b8ca30244ba1564f740ab0935d561

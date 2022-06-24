@@ -40,9 +40,13 @@ const PageTailwindMultiple: React.FC<
   InferGetStaticPropsType<typeof getStaticProps>
 > = ({ images, title, heading }) => (
   <Layout variant="example" title={title} heading={heading}>
-    <ImageGrid>
+    <ImageGrid columns={3}>
       {images.map(({ className, ...image }) => (
-        <ImageGridItem key={className}>
+        <ImageGridItem
+          key={className}
+          // See src/styles/index.css
+          className="next-image"
+        >
           <div
             className={cx(
               "absolute",

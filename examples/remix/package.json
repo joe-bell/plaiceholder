@@ -29,7 +29,8 @@
     "react-blurhash": "0.1.3",
     "react-dom": "17.0.2",
     "remix-image": "0.3.18",
-    "sharp": "0.30.6"
+    "sharp": "0.30.6",
+    "tiny-invariant": "1.2.0"
   },
   "devDependencies": {
     "@remix-run/dev": "1.6.0",

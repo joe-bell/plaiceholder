@@ -2,6 +2,7 @@ import type { LoaderFunction } from "@remix-run/node";
 import { imageLoader, DiskCache } from "remix-image/server";
 
 const config = {
+  // @TODO: Tie to VERCEL URL
   selfUrl: "http://localhost:3000",
   cache: new DiskCache(),
 };

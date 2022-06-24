@@ -1,4 +1,4 @@
-import type { LoaderFunction } from "@remix-run/node";
+import type { LoaderFunction, MetaFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { useLoaderData, Link } from "@remix-run/react";
 import {
@@ -45,7 +45,9 @@ export default function Index() {
   return (
     <Article>
       <ArticleHeading size="alpha">Remix</ArticleHeading>
-      <ArticleSubheading>Choose-your-own adventure</ArticleSubheading>
+      <ArticleSubheading asChild>
+        <p>Choose-your-own adventure</p>
+      </ArticleSubheading>
       <ArticleContent>
         <Examples>
           {Object.keys(examples.pages).map((example, i) => (

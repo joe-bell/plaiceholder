@@ -11,22 +11,40 @@ import {
 } from "@remix-run/react";
 import { config } from "~/config";
 import {
+  IconLink,
   IconGitHub,
   IconTwitter,
   LayoutHeader,
   LayoutMain,
+  Logo,
+  LogoBrand,
+  LogoIcon,
+  LogoTitle,
+  Flex,
 } from "@plaiceholder/ui";
 
 import tailwind from "./tailwind.css";
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: tailwind },
+  {
+    rel: "shortcut icon",
+    href: [config.domain, "assets/images/favicon/favicon@192px.png"].join("/"),
+  },
+  {
+    rel: "apple-touch-icon",
+    href: [config.domain, "assets/images/favicon/favicon@192px.png"].join("/"),
+  },
 ];
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
-  title: "New Remix App",
+  title: config.title,
   viewport: "width=device-width,initial-scale=1",
+  robots: "noindex",
+  description: config.title,
+  "og:title": config.title,
+  "apple-mobile-web-app-title": config.title,
 });
 
 export default function App() {
@@ -38,53 +56,39 @@ export default function App() {
       </head>
       <body>
         <LayoutHeader>
-          <NavLink
-            to="/"
-            className={cx("inline-flex", "items-center", "hover:opacity-75")}
-          >
-            <span className="mr-2 text-xl font-medium md:inline">
-              plaiceholder
-            </span>
-            <span className="mr-2 md:inline hidden">
-              <img
-                className="w-[2.5rem]"
+          <Logo asChild>
+            <NavLink to="/">
+              <LogoBrand>plaiceholder</LogoBrand>
+              <LogoIcon
                 src={[config.domain, "assets/images/logo/logo@192px.png"].join(
                   "/"
                 )}
-                alt=""
               />
-            </span>
-            <span className="text-gray-600 text-xl md:inline">Remix</span>
-          </NavLink>
-          <ul className={cx("flex", "space-x-4")}>
-            {[
-              {
-                icon: <IconGitHub />,
-                href: config.social.github,
-                label: "View the GitHub repo",
-              },
-              {
-                icon: <IconTwitter />,
-                href: config.social.twitter,
-                label: "Contact the author on Twitter",
-              },
-            ].map((item) => (
-              <li key={item.href}>
-                <a
-                  href={item.href}
-                  className={cx(
-                    "text-gray-500",
-                    "hover:text-gray-900",
-                    "transition-colors",
-                    "duration-200"
-                  )}
-                >
-                  <span className="sr-only">{item.label}</span>
-                  {item.icon}
-                </a>
-              </li>
-            ))}
-          </ul>
+              <LogoTitle>Remix</LogoTitle>
+            </NavLink>
+          </Logo>
+          <Flex role="list" asChild>
+            <ul>
+              {[
+                {
+                  icon: <IconGitHub />,
+                  href: config.social.github,
+                  label: "View the GitHub repo",
+                },
+                {
+                  icon: <IconTwitter />,
+                  href: config.social.twitter,
+                  label: "Contact the author on Twitter",
+                },
+              ].map((item) => (
+                <li key={item.href}>
+                  <IconLink href={item.href} label={item.label}>
+                    {item.icon}
+                  </IconLink>
+                </li>
+              ))}
+            </ul>
+          </Flex>
         </LayoutHeader>
         <LayoutMain>
           <Outlet />

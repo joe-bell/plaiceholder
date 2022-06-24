@@ -27,7 +27,11 @@ const PageTailwindSingle: React.FC<
 > = ({ title, heading, img, plaiceholder }) => (
   <Layout variant="example" title={title} heading={heading}>
     <ImageGrid columns={2}>
-      <ImageGridItem key={plaiceholder}>
+      <ImageGridItem
+        key={plaiceholder}
+        // See src/styles/index.css
+        className="next-image"
+      >
         <div
           className={cx(
             "absolute",

@@ -26,13 +26,7 @@ export const ImageGrid: React.FC<ImageGridProps> = ({
   />
 );
 
-const imageGridItem = cva([
-  "relative",
-  "block",
-  "overflow-hidden",
-  // See src/styles/index.css
-  "next-image",
-]);
+const imageGridItem = cva(["relative", "block", "overflow-hidden"]);
 
 export interface ImageGridItemProps
   extends React.HTMLAttributes<HTMLLIElement>,

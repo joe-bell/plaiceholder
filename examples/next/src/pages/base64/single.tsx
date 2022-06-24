@@ -29,7 +29,11 @@ const PageBase64Single: React.FC<
 > = ({ title, heading, imageProps }) => (
   <Layout variant="example" title={title} heading={heading}>
     <ImageGrid columns={2}>
-      <ImageGridItem key={imageProps.src}>
+      <ImageGridItem
+        key={imageProps.src}
+        // See src/styles/index.css
+        className="next-image"
+      >
         <Image {...imageProps} placeholder="blur" />
       </ImageGridItem>
     </ImageGrid>

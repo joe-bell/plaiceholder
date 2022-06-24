@@ -38,9 +38,13 @@ const PageBlurhashMultiple: React.FC<
   InferGetStaticPropsType<typeof getStaticProps>
 > = ({ title, heading, images }) => (
   <Layout variant="example" title={title} heading={heading}>
-    <ImageGrid>
+    <ImageGrid columns={3}>
       {images.map(({ blurhash, ...image }) => (
-        <ImageGridItem key={image.src}>
+        <ImageGridItem
+          key={image.src}
+          // See src/styles/index.css
+          className="next-image"
+        >
           <BlurhashCanvas
             hash={blurhash.hash}
             width={blurhash.height}

@@ -36,9 +36,13 @@ const PageSVGMultiple: React.FC<
   InferGetStaticPropsType<typeof getStaticProps>
 > = ({ title, heading, images }) => (
   <Layout variant="example" title={title} heading={heading}>
-    <ImageGrid>
+    <ImageGrid columns={3}>
       {images.map((imageProps) => (
-        <ImageGridItem key={imageProps.src}>
+        <ImageGridItem
+          key={imageProps.src}
+          // See src/styles/index.css
+          className="next-image"
+        >
           <Image {...imageProps} placeholder="blur" />
         </ImageGridItem>
       ))}

@@ -27,7 +27,11 @@ const PageCSSSingle: React.FC<
 > = ({ title, heading, img, css }) => (
   <Layout variant="example" title={title} heading={heading}>
     <ImageGrid columns={2}>
-      <ImageGridItem key={img.src}>
+      <ImageGridItem
+        key={img.src}
+        // See src/styles/index.css
+        className="next-image"
+      >
         <div
           className={cx(
             "absolute",

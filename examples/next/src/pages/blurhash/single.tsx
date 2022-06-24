@@ -29,7 +29,11 @@ const PageBlurhashSingle: React.FC<
 > = ({ title, heading, img, blurhash }) => (
   <Layout variant="example" title={title} heading={heading}>
     <ImageGrid columns={2}>
-      <ImageGridItem key={img.src}>
+      <ImageGridItem
+        key={img.src}
+        // See src/styles/index.css
+        className="next-image"
+      >
         <BlurhashCanvas
           hash={blurhash.hash}
           width={blurhash.height}
