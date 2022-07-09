@@ -28,7 +28,7 @@ module.exports = {
     navbar: {
       title: "Plaiceholder",
       logo: {
-        href: withUrl(),
+        href: "/",
         alt: "Plaice Fish",
         src: "assets/img/logo-light.png",
         srcDark: "assets/img/logo-dark.png",
