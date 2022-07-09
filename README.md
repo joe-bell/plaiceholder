@@ -49,19 +49,40 @@
 
 ## Documentation 📖
 
-Visit **[plaiceholder.co][plaiceholder:docs]** to get started with the open-source free-to-use packages.
+Visit **[plaiceholder.co][plaiceholder]** to get started with the open-source free-to-use packages.
 
 ### Migrating from `1.0`?
 
 See the [migration guide](https://github.com/joe-bell/plaiceholder/releases/tag/v2.0.0) for further details.
 
-### Organizations
+## Sponsors
 
-Support Plaiceholder via your organization. Your logo will show up here **and** on [plaiceholder.co][plaiceholder] with a link to your website.
+We're still working on a process for supporting Plaiceholder – check back soon for more details.
 
-[See Pricing and T&Cs][plaiceholder:pricing]
+### Long-term Supporters
 
----
+Thanks go to these wondeful people for their long-standing support.
+
+<!--
+  Avatars can be grabbed from https://api.github.com/users/username
+-->
+
+<a href="https://github.com/elijahharry">
+  <img
+    src="https://avatars.githubusercontent.com/u/8610716?v=4" title="@elijahharry"
+    alt="Avatar of @elijahharry"
+    width="50"
+    height="50"
+  />
+</a>
+<a href="https://github.com/heysanil">
+  <img
+    src="https://avatars.githubusercontent.com/u/6345801?v=4" title="@heysanil"
+    alt="Avatar of @heysanil"
+    width="50"
+    height="50"
+  />
+</a>
 
 ## License
 
@@ -76,8 +97,6 @@ Copyright © 2013-2022, Lovell Fuller. All Rights Reserved.
 Licensed under the Apache License, Version 2.0 (the "License").
 
 [plaiceholder]: https://plaiceholder.co
-[plaiceholder:docs]: https://plaiceholder.co
-[plaiceholder:pricing]: https://plaiceholder.co/#pricing
 [blurhash]: https://blurha.sh/
 [react-blurhash]: https://github.com/woltapp/react-blurhash
 [next/image]: https://nextjs.org/docs/basic-features/image-optimization
