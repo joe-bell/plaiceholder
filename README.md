@@ -83,6 +83,14 @@ Thanks go to these wondeful people for their long-standing support.
     height="50"
   />
 </a>
+<a href="https://github.com/reallybadnews">
+  <img
+    src="https://avatars.githubusercontent.com/u/1545970?v=4" title="@reallybadnews"
+    alt="Avatar of @reallybadnews"
+    width="50"
+    height="50"
+  />
+</a>
 
 ## License
 
