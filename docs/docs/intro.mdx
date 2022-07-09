@@ -11,7 +11,6 @@ import IntroHeader from "../src/components/IntroHeader";
 <IntroHeader
   headline="Beautiful image placeholders, without the hassle."
   tagline="Choose-your-own adventure, from pure CSS to SVG…"
-  link={{ label: "Try the Studio", href: "https://plaiceholder.co" }}
 />
 
 ---
@@ -22,13 +21,13 @@ import IntroHeader from "../src/components/IntroHeader";
 
 There is no "one-size-fits-all" LQIP strategy, so we offer them all…
 
-- [**CSS**](/docs/usage#css)  
+- [**CSS**](/usage#css)  
   ~600B when rendered as CSS
-- [**SVG**](/docs/usage#svg)  
+- [**SVG**](/usage#svg)  
   ~1.2kB when rendered in HTML
-- [**Base64**](/docs/usage#base64)  
+- [**Base64**](/usage#base64)  
   ~300B asset size
-- [**Blurhash**](/docs/usage#blurhash)  
+- [**Blurhash**](/usage#blurhash)  
   Size TBC (but ~3.6kB if using [`react-blurhash`](https://bundlephobia.com/package/react-blurhash))
 
 Give each strategy a try to see what works best for your individual use-case.
@@ -37,11 +36,11 @@ Give each strategy a try to see what works best for your individual use-case.
 
 Whilst most strategies offer fast `DOMContentLoaded` and `LCP`, it's important to consider the caveats of each:
 
-- [**CSS**](/docs/usage#css)  
+- [**CSS**](/usage#css)  
   Won't maintain ratio for images that use `object-fit`
-- [**SVG**](/docs/usage#svg)  
-  Doesn't (yet) leverage [SVG filter primitives](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feGaussianBlur)
-- [**Base64**](/docs/usage#base64)  
+- [**SVG**](/usage#svg)  
+  Doesn't (yet) leverage [SVG filter primitives](https://developer.mozilla.org/en-US/Web/SVG/Element/feGaussianBlur)
+- [**Base64**](/usage#base64)  
   Not the nicest looking. Even though plaiceholder makes an opinionated choice to slightly increase saturation for base64 images under-the-hood, colors can often appear drab
-- [**Blurhash**](/docs/usage#blurhash)  
+- [**Blurhash**](/usage#blurhash)  
   Uses `canvas`, so it's not ideal to use with above-the-fold content.

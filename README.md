@@ -24,7 +24,7 @@
 </p>
 
 <p align="center">
-<a href="https://plaiceholder.co/docs"><strong>Read the Docs 📖</strong></a>
+<a href="https://plaiceholder.co"><strong>Read the Docs 📖</strong></a>
 </p>
 
 <p align="center">
@@ -49,7 +49,7 @@
 
 ## Documentation 📖
 
-Visit **[plaiceholder.co/docs][plaiceholder:docs]** to get started with the open-source free-to-use packages.
+Visit **[plaiceholder.co][plaiceholder:docs]** to get started with the open-source free-to-use packages.
 
 ### Migrating from `1.0`?
 
@@ -76,7 +76,7 @@ Copyright © 2013-2022, Lovell Fuller. All Rights Reserved.
 Licensed under the Apache License, Version 2.0 (the "License").
 
 [plaiceholder]: https://plaiceholder.co
-[plaiceholder:docs]: https://plaiceholder.co/docs
+[plaiceholder:docs]: https://plaiceholder.co
 [plaiceholder:pricing]: https://plaiceholder.co/#pricing
 [blurhash]: https://blurha.sh/
 [react-blurhash]: https://github.com/woltapp/react-blurhash

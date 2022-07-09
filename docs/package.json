@@ -5,7 +5,7 @@
   "author": "Joe Bell <joe@joebell.co.uk>",
   "license": "Apache-2.0",
   "scripts": {
-    "build": "docusaurus build --out-dir build/docs",
+    "build": "docusaurus build",
     "clear": "docusaurus clear",
     "deploy": "docusaurus deploy",
     "dev": "docusaurus start",

@@ -11,15 +11,9 @@ function CustomRoot({ children }) {
   return (
     <React.Fragment>
       <Head>
-        <meta
-          property="og:image"
-          content={withUrl("/assets/images/og/og.png")}
-        />
+        <meta property="og:image" content={withUrl("/assets/img/og.png")} />
 
-        <link
-          rel="apple-touch-icon"
-          href={withUrl("/assets/images/favicon/favicon@192px.png")}
-        />
+        <link rel="apple-touch-icon" href="/assets/img/favicon@192px.png" />
         <meta name="apple-mobile-web-app-title" content={title} />
 
         {isProduction && (

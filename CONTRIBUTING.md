@@ -17,8 +17,6 @@ Plaiceholder uses [PNPM](http://pnpm.io) to develop multiple packages together a
 
 All `@types/` and shared `devDependencies` should be installed to the [root `package.json`][root:package]
 
-[**`plaiceholder.co`**](https://plaiceholder.co/) is a separate closed-source product. However, if you have any suggestions, please feel free to raise an issue on this repo.
-
 ## Style Guide
 
 - **Commits** follow the ["Conventional Commits" specification](https://www.conventionalcommits.org/en/v1.0.0/). This allows for changelogs to be generated automatically upon release.
@@ -121,7 +119,7 @@ Please respect that Plaiceholder is just the end result – countless hours of w
 When building your own implementation, you should meet the following requirements:
 
 - Branding
-  - ❌ **Don't** use the "Plaiceholder" name on its own, the logo, tagline or any of the marketing copy from either the [plaiceholder.co](https://plaiceholder.co) domain or [docs](https://plaiceholder.co/docs).
+  - ❌ **Don't** use the "Plaiceholder" name on its own, the logo, tagline or any of the marketing copy from [plaiceholder.co](https://plaiceholder.co).
     The "[Plaiceholder](https://plaiceholder.co)" project is a trading name of "Big Attic OÜ", and therefore should not be confused with affiliation.
   - ✅ **Do** name your project with the `-plaiceholder` suffix **or** `plaiceholder-` prefix.
     e.g. your repo or package, could be called `rust-plaiceholder`, your function could be called `rustPlaiceholder` (but **not** `plaiceholder`).
@@ -169,7 +167,7 @@ If you have any questions above the above requirements, please feel free to [rea
 
 ### Raise a PR
 
-Once you've completed the above, raise a PR to add your implementation to the [Community page](https://plaiceholder.co/docs/community).
+Once you've completed the above, raise a PR to add your implementation to the [Community page](https://plaiceholder.co/community).
 
 ```
 

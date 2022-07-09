@@ -9,12 +9,12 @@ const github = "https://github.com/joe-bell/plaiceholder";
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
   title,
-  tagline: "Documentation for Plaiceholder.co",
+  tagline: "Beautiful image placeholders, without the hassle.",
   url: withUrl(),
-  baseUrl: "/docs/",
+  baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
-  favicon: withUrl("/assets/images/favicon/favicon@192px.png"),
+  favicon: "assets/img/favicon@192px.png",
   organizationName: "joe-bell",
   projectName: "plaiceholder",
   themeConfig: {
@@ -30,16 +30,11 @@ module.exports = {
       logo: {
         href: withUrl(),
         alt: "Plaice Fish",
-        src: "img/logo-light.png",
-        srcDark: "img/logo-dark.png",
+        src: "assets/img/logo-light.png",
+        srcDark: "assets/img/logo-dark.png",
       },
       items: [
         { to: "/", label: "Docs", position: "left" },
-        {
-          href: withUrl(),
-          label: "Studio",
-          position: "left",
-        },
         {
           href: github,
           position: "right",
@@ -74,19 +69,6 @@ module.exports = {
             {
               label: "Twitter",
               href: "https://twitter.com/joebell_",
-            },
-          ],
-        },
-        {
-          title: "Legal",
-          items: [
-            {
-              label: "Privacy",
-              href: withUrl("/privacy"),
-            },
-            {
-              label: "Terms",
-              href: withUrl("/terms"),
             },
           ],
         },
