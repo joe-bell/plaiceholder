@@ -2,8 +2,9 @@ import type { IGetImageReturn } from "./get-image";
 
 type TGetImageReturnCSS = IGetImageReturn["optimizedForCSS"];
 
-const rgb = (channels: (number | string)[]) =>
-  `rgb${channels.length === 4 ? "a" : ""}(${channels.join(",")})`;
+const rgb = (channels: number[]) => `rgb(${channels.slice(0, 3).join(",")})`;
+const rgba = (channels: number[]) =>
+  `rgba(${channels.slice(0, 3).join(",")},${(channels[3] / 255).toFixed(3)})`;
 
 export interface IGetCSSOptions extends TGetImageReturnCSS {}
 export interface IGetCSSReturn
@@ -21,7 +22,9 @@ export interface IGetCSS {
 
 export const getCSS: IGetCSS = ({ info, rows }) => {
   const linearGradients = rows.map((row) => {
-    const pixels = row.map((pixel) => rgb(pixel));
+    const pixels = row.map((pixel) =>
+      pixel.length === 4 ? rgba(pixel) : rgb(pixel)
+    );
 
     const gradient = pixels
       .map((pixel, i) => {

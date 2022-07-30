@@ -30,20 +30,6 @@ Content APIs and image storage solutions with on-the-fly image optimization serv
 
 A lot of these providers don't take into account LQIP generation; which could be fetched on the server/build-time to improve the perceived performance of images used. Plaiceholder's open-source functions could be used under-the-hood to provide that unique functionality, and help you to attract more developers/customers to your service.
 
-## What's Included?
-
-Plaiceholder as a whole consists of 2 projects:
-
-1. **[`plaiceholder`][repo]** (public)  
-   Open-source functions for creating beautifully lightweight placeholders
-2. **`plaiceholder.co`** (private)  
-   Web application for sponsors ("pro") users to create LQIPs via the "studio" GUI.
-   - Built with [Next.js](https://nextjs.org/) and [Chakra UI](https://chakra-ui.com/)
-   - Deployed to [Vercel](https://vercel.com/)
-   - Authentication/Backend handled by [Supabase](https://app.supabase.io/)
-   - Payments handled by [Paddle](https://paddle.com/)
-   - Analytics via [Plausible](https://plausible.io/)
-
 ## Terms
 
 - All open-source code **must** remain open-source

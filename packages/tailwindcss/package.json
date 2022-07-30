@@ -1,10 +1,9 @@
 {
   "name": "@plaiceholder/tailwindcss",
-  "version": "2.2.0",
+  "version": "2.4.0",
   "description": "Roll-you-own placeholders for Tailwind.",
   "author": "Joe Bell <joe@joebell.co.uk>",
   "license": "Apache-2.0",
-  "funding": "https://plaiceholder.co",
   "repository": "joe-bell/plaiceholder.git",
   "bugs": "https://github.com/joe-bell/plaiceholder/issues",
   "homepage": "https://github.com/joe-bell/plaiceholder#readme",
@@ -15,10 +14,20 @@
     "tailwindcss"
   ],
   "main": "dist/plugin.js",
+  "module": "dist/plugin.mjs",
   "exports": {
-    ".": "./dist/plugin.js",
-    "./plugin": "./dist/plugin.js",
-    "./utils": "./dist/utils.js"
+    ".": {
+      "import": "./dist/plugin.mjs",
+      "require": "./dist/plugin.js"
+    },
+    "./plugin": {
+      "import": "./dist/plugin.mjs",
+      "require": "./dist/plugin.js"
+    },
+    "./utils": {
+      "import": "./dist/utils.mjs",
+      "require": "./dist/utils.js"
+    }
   },
   "typings": "./dist/plugin.d.ts",
   "typesVersions": {
@@ -36,18 +45,24 @@
     "README.md"
   ],
   "scripts": {
-    "build": "microbundle src/*.ts --external sharp --no-compress --target node --tsconfig tsconfig.json",
+    "build": "microbundle src/*.ts --external sharp --no-compress --target node --tsconfig tsconfig.json --format cjs,esm",
     "clean": "rimraf {dist,.rts2*}",
-    "dev": "yarn build -- --watch"
+    "dev": "pnpm build -- --watch",
+    "lint:ts": "tsc --noEmit"
   },
   "peerDependencies": {
+    "sharp": ">= 0.30.6",
     "tailwindcss": ">=2.2.0 <2.3.0"
   },
   "dependencies": {
     "make-synchronous": "0.1.1",
-    "plaiceholder": "^2.2.0"
+    "plaiceholder": "workspace:*"
   },
   "devDependencies": {
-    "tailwindcss": "2.2.15"
+    "autoprefixer": "10.4.7",
+    "microbundle": "0.15.0",
+    "postcss": "8.4.14",
+    "tailwindcss": "2.2.15",
+    "typescript": "4.7.3"
   }
 }

@@ -6,7 +6,7 @@ import { extractImgSrc } from "@plaiceholder/tailwindcss/utils";
 import { config } from "@/config";
 import { ImageGrid, ImageGridItem } from "@/components/image-grid";
 import { Layout } from "@/components/layout";
-import { cx } from "@/styles";
+import { cx } from "class-variance-authority";
 
 export const getStaticProps = async () => {
   const plaiceholder = "plaiceholder-[/assets/keila-joa@578.jpg]";

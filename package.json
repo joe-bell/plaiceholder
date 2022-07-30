@@ -2,80 +2,40 @@
   "private": true,
   "name": "root",
   "scripts": {
-    "build": "lerna run build",
-    "clean": "lerna run clean",
+    "build": "pnpm build --filter ./packages --stream --workspace-concurrency=0",
     "commit": "git-cz",
-    "lint": "yarn lint:ts && yarn lint:pkg",
-    "lint:pkg": "syncpack list-mismatches",
-    "lint:ts": "lerna exec --parallel --stream --ignore='example-with-11ty' -- tsc --noEmit",
-    "prepare": "lerna run build --scope='plaiceholder' --scope='@plaiceholder/*'"
+    "format:packages": "syncpack format --config .config/.syncpackrc",
+    "format:prettier": "prettier --ignore-unknown --no-error-on-unmatched-pattern --write",
+    "lint": "run-s lint:*",
+    "lint:packages": "syncpack list-mismatches --config .config/.syncpackrc",
+    "lint:prettier": "prettier --check .",
+    "lint:ts": "pnpm lint:ts --parallel --stream --workspace-concurrency=0",
+    "postinstall": "[[ \"$CI\" -ne \"1\" ]] && [[ \"CI\" != 'true' ]] && husky install || echo 'Skipping postinstall'",
+    "pre-commit": "lint-staged --config .config/lint-staged.config.mjs",
+    "preinstall": "npx only-allow pnpm",
+    "prepare": "[[ \"$CI\" -ne \"1\" ]] && [[ \"CI\" != 'true' ]] && pnpm build || echo 'Skipping prepare'"
   },
   "devDependencies": {
+    "@changesets/cli": "2.23.0",
     "@commitlint/cli": "13.1.0",
     "@commitlint/config-conventional": "13.1.0",
-    "@types/node": "14.17.15",
-    "@types/react": "17.0.20",
-    "@types/sharp": "0.29.1",
     "commitizen": "4.2.4",
     "cz-conventional-changelog": "3.3.0",
-    "husky": "4.3.8",
-    "lerna": "4.0.0",
-    "lint-staged": "11.1.2",
-    "microbundle": "0.13.0",
-    "prettier": "2.4.0",
+    "husky": "8.0.1",
+    "lint-staged": "13.0.1",
+    "npm-run-all": "4.1.5",
+    "prettier": "2.6.2",
     "rimraf": "3.0.2",
-    "sharp": "0.29.1",
-    "syncpack": "5.8.15",
-    "typescript": "4.4.3"
+    "sharp": "0.30.6",
+    "syncpack": "8.0.0",
+    "typescript": "4.7.3"
   },
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
     ]
   },
-  "config": {
-    "commitizen": {
-      "path": "cz-conventional-changelog"
-    }
-  },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "lint-staged"
-    }
-  },
-  "syncpack": {
-    "peer": false,
-    "sortFirst": [
-      "private",
-      "name",
-      "version",
-      "description",
-      "author",
-      "license",
-      "funding",
-      "repository",
-      "bugs",
-      "homepage",
-      "keywords",
-      "source",
-      "main",
-      "module",
-      "exports",
-      "typings",
-      "typesVersions",
-      "files",
-      "scripts",
-      "browserslist",
-      "peerDependencies",
-      "dependencies",
-      "devDependencies"
-    ]
-  },
-  "workspaces": [
-    "docs",
-    "examples/*",
-    "packages/*",
-    "plugins/*"
-  ]
+  "engines": {
+    "pnpm": "^6.32.19"
+  }
 }

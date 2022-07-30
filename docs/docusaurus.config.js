@@ -1,3 +1,5 @@
+// @ts-check
+
 const path = require("path");
 const { withUrl } = require("./src/utils");
 
@@ -7,35 +9,32 @@ const github = "https://github.com/joe-bell/plaiceholder";
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
   title,
-  tagline: "Documentation for Plaiceholder.co",
+  tagline: "Beautiful image placeholders, without the hassle.",
   url: withUrl(),
-  baseUrl: "/docs/",
+  baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
-  favicon: withUrl("/assets/images/favicon/favicon@192px.png"),
+  favicon: "assets/img/favicon@192px.png",
   organizationName: "joe-bell",
   projectName: "plaiceholder",
   themeConfig: {
     algolia: {
-      apiKey: "826807810a2151450376d6c710bd76c7",
+      appId: "3TA0CXE0R3",
+      apiKey: "bf663ef0d2d7e3bc4c32fe8c83f29f92",
       indexName: "plaiceholder",
+      contextualSearch: true,
     },
     metaTags: [{ name: "data-title", content: title }],
     navbar: {
       title: "Plaiceholder",
       logo: {
-        href: withUrl(),
+        href: "/",
         alt: "Plaice Fish",
-        src: "img/logo-light.png",
-        srcDark: "img/logo-dark.png",
+        src: "assets/img/logo-light.png",
+        srcDark: "assets/img/logo-dark.png",
       },
       items: [
         { to: "/", label: "Docs", position: "left" },
-        {
-          href: withUrl(),
-          label: "Studio",
-          position: "left",
-        },
         {
           href: github,
           position: "right",
@@ -73,19 +72,6 @@ module.exports = {
             },
           ],
         },
-        {
-          title: "Legal",
-          items: [
-            {
-              label: "Privacy",
-              href: withUrl("/privacy"),
-            },
-            {
-              label: "Terms",
-              href: withUrl("/terms"),
-            },
-          ],
-        },
       ],
       copyright: `Copyright © ${new Date().getFullYear()} Joe Bell`,
     },
@@ -99,6 +85,12 @@ module.exports = {
           editUrl: path.join(github, "/edit/main/docs/"),
           path: "docs",
           routeBasePath: "/",
+          remarkPlugins: [
+            [require("@docusaurus/remark-plugin-npm2yarn"), { sync: true }],
+          ],
+        },
+        pages: {
+          remarkPlugins: [require("@docusaurus/remark-plugin-npm2yarn")],
         },
         blog: false,
         theme: {

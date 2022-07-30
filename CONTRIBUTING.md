@@ -4,7 +4,7 @@ Welcome, and thanks for your interest in contributing! Please take a moment to r
 
 ## Architecture
 
-Plaiceholder uses [Yarn Workspaces](https://yarnpkg.com/en/docs/workspaces) and [Lerna](https://github.com/lerna/lerna) to develop multiple packages together as a monorepo. These packages are split across three directories:
+Plaiceholder uses [PNPM](http://pnpm.io) to develop multiple packages together as a monorepo. These packages are split across three directories:
 
 1. `docs`
 2. `packages/`
@@ -16,8 +16,6 @@ Plaiceholder uses [Yarn Workspaces](https://yarnpkg.com/en/docs/workspaces) and 
    - Each package is prefixed with `example-with-`
 
 All `@types/` and shared `devDependencies` should be installed to the [root `package.json`][root:package]
-
-[**`plaiceholder.co`**](https://plaiceholder.co/) is a separate closed-source product. However, if you have any suggestions, please feel free to raise an issue on this repo.
 
 ## Style Guide
 
@@ -31,10 +29,10 @@ All `@types/` and shared `devDependencies` should be installed to the [root `pac
 
 1. [Fork the repo](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo) and clone to your machine.
 2. Create a new branch with your contribution.
-3. Install [Yarn](https://yarnpkg.com/) on your machine.
+3. Install [pnpm](http://pnpm.io) on your machine.
 4. In the repo, install dependencies and link packages via:
    ```sh
-   yarn
+   pnpm install
    ```
 
 ### Running Scripts
@@ -42,13 +40,13 @@ All `@types/` and shared `devDependencies` should be installed to the [root `pac
 Scripts in the [root `package.json`][root:package] can be run via:
 
 ```sh
-yarn <script-name>
+pnpm <script-name>
 ```
 
 Individual package scripts can be run in the project root via:
 
 ```sh
-yarn workspace <package-name> <script-name>
+pnpm <script-name> --filter <package-name>
 ```
 
 [root:package]: https://github.com/joe-bell/plaiceholder/blob/main/package.json
@@ -56,6 +54,57 @@ yarn workspace <package-name> <script-name>
 ## Releases
 
 A trade-off with using a personal repo is that permissions are fairly locked-down. In the mean-time releases will be made manually by the project owner.
+
+Releases and versioning are handled by [Changesets](https://pnpm.io/using-changesets).
+
+### Adding Changesets
+
+```sh
+pnpm changeset
+```
+
+### Publishing
+
+1. Switch into the default branch
+
+   ```sh
+   git checkout main
+   ```
+
+2. Bump packages and generate `CHANGELOG.md`s based on the previously specified
+   changesets.
+
+   ```sh
+   pnpm changeset version
+   ```
+
+3. Prepare packages and regenerate the lockfile
+
+   ```sh
+   pnpm install
+   ```
+
+4. Create a commit with the shared version, and push
+
+   ```sh
+   git commit vX.X.X
+   ```
+
+5. Publish all packages to npm
+
+   ```sh
+   pnpm publish -r
+   ```
+
+6. Create a tag with the shared version, then push the commit and tag
+
+   ```sh
+   git tag vX.X.X
+   git push
+   git push origin refs/tags/vX.X.X
+   ```
+
+7. [Create a release](https://github.com/joe-bell/plaiceholder/releases/new), using the newly pushed tag
 
 ## Implementations
 
@@ -70,9 +119,9 @@ Please respect that Plaiceholder is just the end result – countless hours of w
 When building your own implementation, you should meet the following requirements:
 
 - Branding
-  - ❌ **Don't** use the "Plaiceholder" name on its own, the logo, tagline or any of the marketing copy from either the [plaiceholder.co](https://plaiceholder.co) domain or [docs](https://plaiceholder.co/docs).  
+  - ❌ **Don't** use the "Plaiceholder" name on its own, the logo, tagline or any of the marketing copy from [plaiceholder.co](https://plaiceholder.co).
     The "[Plaiceholder](https://plaiceholder.co)" project is a trading name of "Big Attic OÜ", and therefore should not be confused with affiliation.
-  - ✅ **Do** name your project with the `-plaiceholder` suffix **or** `plaiceholder-` prefix.  
+  - ✅ **Do** name your project with the `-plaiceholder` suffix **or** `plaiceholder-` prefix.
     e.g. your repo or package, could be called `rust-plaiceholder`, your function could be called `rustPlaiceholder` (but **not** `plaiceholder`).
 - Credit
 
@@ -84,7 +133,7 @@ When building your own implementation, you should meet the following requirement
 
        ```md
        <p align="center">
-         An externally-maintained implementation of 
+         An externally-maintained implementation of
          <strong>
             <a href="https://github.com/joe-bell/plaiceholder">
                Plaiceholder
@@ -109,7 +158,7 @@ When building your own implementation, you should meet the following requirement
 
        #### [Joe Bell](https://github.com/joe-bell) ([Plaiceholder](https://github.com/joe-bell/plaiceholder))
 
-       Copyright © 2020-2021, Joe Bell. All Rights Reserved.
+       Copyright © 2020-2022, Joe Bell. All Rights Reserved.
 
        Licensed under the Apache License, Version 2.0 (the "License").
        ```
@@ -118,4 +167,8 @@ If you have any questions above the above requirements, please feel free to [rea
 
 ### Raise a PR
 
-Once you've completed the above, raise a PR to add your implementation to the [Community page](https://plaiceholder.co/docs/community).
+Once you've completed the above, raise a PR to add your implementation to the [Community page](https://plaiceholder.co/community).
+
+```
+
+```

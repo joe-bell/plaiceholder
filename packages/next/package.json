@@ -1,10 +1,9 @@
 {
   "name": "@plaiceholder/next",
-  "version": "2.2.0",
+  "version": "2.4.0",
   "description": "Roll-you-own placeholders for Next.js.",
   "author": "Joe Bell <joe@joebell.co.uk>",
   "license": "Apache-2.0",
-  "funding": "https://plaiceholder.co",
   "repository": "joe-bell/plaiceholder.git",
   "bugs": "https://github.com/joe-bell/plaiceholder/issues",
   "homepage": "https://github.com/joe-bell/plaiceholder#readme",
@@ -16,22 +15,27 @@
   ],
   "source": "src/index.ts",
   "main": "dist/index.js",
-  "module": "dist/index.esm.js",
+  "module": "dist/index.mjs",
   "typings": "dist/index.d.ts",
   "files": [
     "dist",
     "README.md"
   ],
   "scripts": {
-    "build": "microbundle --no-compress --tsconfig tsconfig.json --external sharp",
+    "build": "microbundle --no-compress --tsconfig tsconfig.json --external sharp --format cjs,esm",
     "clean": "rimraf {dist,.rts2*}",
-    "dev": "yarn build -- watch"
+    "dev": "pnpm build -- watch",
+    "lint:ts": "tsc --noEmit"
   },
   "peerDependencies": {
     "next": ">= 10.0.0",
-    "sharp": ">= 0.26.2"
+    "sharp": ">= 0.30.6"
   },
   "devDependencies": {
-    "next": "12.0.0"
+    "microbundle": "0.15.0",
+    "next": "12.1.6",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "typescript": "4.7.3"
   }
 }

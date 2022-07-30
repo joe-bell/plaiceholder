@@ -48,7 +48,7 @@ exports.render = function (data) {
         <span class="mr-2 md:inline hidden">
           <img
             class="w-[2.5rem]"
-            src="https://plaiceholder.co/assets/images/logo/logo@192px.png"
+            src="https://plaiceholder.co/assets/img/logo@192px.png"
             alt=""
           />
         </span>

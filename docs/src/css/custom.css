@@ -36,6 +36,7 @@
 .navbar__brand {
   --brand-padding: 0.5rem;
   --brand-margin: calc(var(--brand-padding) * -1);
+  display: inline-flex;
   padding: var(--brand-padding);
   margin: var(--brand-margin);
   margin-right: calc(var(--brand-margin) + 1rem);
@@ -43,6 +44,7 @@
   flex-direction: row-reverse;
   text-transform: lowercase;
   color: var(--ifm-color-primary);
+  align-items: center;
 }
 
 .navbar__brand:hover {
@@ -50,14 +52,13 @@
 }
 
 .navbar__title {
-  font-weight: 500;
+  font-weight: 700;
   font-size: 1.25rem;
   color: var(--ifm-color-primary);
 }
 
 .navbar__logo {
-  width: 2.5rem;
-  height: auto;
+  max-height: 1.5rem;
   flex-shrink: 0;
   margin-right: 0;
   margin-left: 0.5rem;

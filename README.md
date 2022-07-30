@@ -24,9 +24,7 @@
 </p>
 
 <p align="center">
-<a href="https://plaiceholder.co/docs"><strong>Read the Docs 📖</strong></a>
-|
-<a href="https://plaiceholder.co"><strong>Try the Studio 🎨</strong></a>
+<a href="https://plaiceholder.co"><strong>Read the Docs 📖</strong></a>
 </p>
 
 <p align="center">
@@ -51,27 +49,48 @@
 
 ## Documentation 📖
 
-Visit **[plaiceholder.co/docs][plaiceholder:docs]** to get started with the open-source free-to-use packages.
+Visit **[plaiceholder.co][plaiceholder]** to get started with the open-source free-to-use packages.
 
 ### Migrating from `1.0`?
 
 See the [migration guide](https://github.com/joe-bell/plaiceholder/releases/tag/v2.0.0) for further details.
 
-## Studio 🎨
+## Sponsors
 
-[**Project sponsors**][plaiceholder:pricing] get exclusive access to the [**Studio**][plaiceholder].
+We're still working on a process for supporting Plaiceholder – check back soon for more details.
 
-Upload your images and transform to beautifully lightweight placeholders (like magic, but real) ✨
+### Long-term Supporters
 
-<img width="300" height="auto" src="./.github/assets/studio.jpg">
+Thanks go to these wondeful people for their long-standing support.
 
-### Organizations
+<!--
+  Avatars can be grabbed from https://api.github.com/users/username
+-->
 
-Support Plaiceholder via your organization. Your logo will show up here **and** on [plaiceholder.co][plaiceholder] with a link to your website.
-
-[See Pricing and T&Cs][plaiceholder:pricing]
-
----
+<a href="https://github.com/elijahharry">
+  <img
+    src="https://avatars.githubusercontent.com/u/8610716?v=4" title="@elijahharry"
+    alt="Avatar of @elijahharry"
+    width="50"
+    height="50"
+  />
+</a>
+<a href="https://github.com/heysanil">
+  <img
+    src="https://avatars.githubusercontent.com/u/6345801?v=4" title="@heysanil"
+    alt="Avatar of @heysanil"
+    width="50"
+    height="50"
+  />
+</a>
+<a href="https://github.com/reallybadnews">
+  <img
+    src="https://avatars.githubusercontent.com/u/1545970?v=4" title="@reallybadnews"
+    alt="Avatar of @reallybadnews"
+    width="50"
+    height="50"
+  />
+</a>
 
 ## License
 
@@ -81,13 +100,11 @@ Apache-2.0 License © [Joe Bell](https://twitter.com/joebell_)
 
 #### [Lovell Fuller](https://github.com/lovell) ([Sharp](https://github.com/lovell/sharp))
 
-Copyright © 2013-2021, Lovell Fuller. All Rights Reserved.
+Copyright © 2013-2022, Lovell Fuller. All Rights Reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License").
 
 [plaiceholder]: https://plaiceholder.co
-[plaiceholder:docs]: https://plaiceholder.co/docs
-[plaiceholder:pricing]: https://plaiceholder.co/#pricing
 [blurhash]: https://blurha.sh/
 [react-blurhash]: https://github.com/woltapp/react-blurhash
 [next/image]: https://nextjs.org/docs/basic-features/image-optimization
