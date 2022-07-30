@@ -171,11 +171,13 @@ const optimizeImage: IOptimizeImage = async (src, optimizeOptions) => {
     .clone()
     .normalise(options.normalise)
     .modulate({
-      saturation: options.saturation,
-      brightness: options.brightness,
+      saturation: Math.abs(options.saturation),
+      brightness: Math.abs(options.brightness),
     });
 
-  options.alpha
+   const isValidAlphaValue = (subject: unknown): subject is number => typeof subject === 'number' && subject <= 1 && subject >= 0;
+
+  isValidAlphaValue(options.alpha) && options.alpha
     ? base64Instance.ensureAlpha(options.alpha)
     : base64Instance.removeAlpha();
 
