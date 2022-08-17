@@ -50,6 +50,12 @@ module.exports = {
             },
           ],
         },
+        {
+          href: github,
+          position: "right",
+          label: "GitHub",
+          className: "navbar__github-link",
+        },
       ],
     },
     footer: {
