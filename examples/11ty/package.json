@@ -7,12 +7,12 @@
     "build": "run-s build:deps build:css build:11ty",
     "build:11ty": "eleventy --input=src",
     "build:css": "NODE_ENV=production postcss ./src/styles/index.css -o ./_site/styles/index.css",
-    "build:deps": "pnpm build --filter 'example-with-11ty^...'",
+    "build:deps": "pnpm --filter 'example-with-11ty^...' build",
     "clean": "rimraf _site",
     "dev": "run-p dev:*",
     "dev:11ty": "eleventy --input=src --serve --port=5000",
     "dev:css": "NODE_ENV=development postcss ./src/styles/index.css -o ./_site/styles/index.css -w",
-    "dev:deps": "pnpm dev --filter 'example-with-11ty^...'",
+    "dev:deps": "pnpm --filter 'example-with-11ty^...' dev",
     "start": "serve _site"
   },
   "devDependencies": {
