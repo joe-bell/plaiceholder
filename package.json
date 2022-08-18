@@ -9,7 +9,7 @@
     "lint": "run-s lint:*",
     "lint:packages": "syncpack list-mismatches --config .config/.syncpackrc",
     "lint:prettier": "prettier --check .",
-    "lint:ts": "pnpm lint:ts --parallel --stream --workspace-concurrency=0",
+    "lint:ts": "pnpm --parallel --stream --workspace-concurrency=0 lint:ts",
     "postinstall": "[[ \"$CI\" -ne \"1\" ]] && [[ \"CI\" != 'true' ]] && husky install || echo 'Skipping postinstall'",
     "pre-commit": "lint-staged --config .config/lint-staged.config.mjs",
     "preinstall": "npx only-allow pnpm",

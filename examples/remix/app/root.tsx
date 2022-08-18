@@ -1,5 +1,4 @@
 import type { MetaFunction, LinksFunction } from "@remix-run/node";
-import { cx } from "class-variance-authority";
 import {
   Links,
   LiveReload,
@@ -29,11 +28,11 @@ export const links: LinksFunction = () => [
   { rel: "stylesheet", href: tailwind },
   {
     rel: "shortcut icon",
-    href: [config.domain, "assets/images/favicon/favicon@192px.png"].join("/"),
+    href: "/assets/favicon@192px.png",
   },
   {
     rel: "apple-touch-icon",
-    href: [config.domain, "assets/images/favicon/favicon@192px.png"].join("/"),
+    href: "/assets/favicon@192px.png",
   },
 ];
 
@@ -59,11 +58,7 @@ export default function App() {
           <Logo asChild>
             <NavLink to="/">
               <LogoBrand>plaiceholder</LogoBrand>
-              <LogoIcon
-                src={[config.domain, "assets/images/logo/logo@192px.png"].join(
-                  "/"
-                )}
-              />
+              <LogoIcon src="/assets/logo@192px.png" />
               <LogoTitle>Remix</LogoTitle>
             </NavLink>
           </Logo>

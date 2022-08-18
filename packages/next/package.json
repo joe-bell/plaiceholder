@@ -32,6 +32,7 @@
     "sharp": ">= 0.30.6"
   },
   "devDependencies": {
+    "@types/node": "14.17.15",
     "microbundle": "0.15.0",
     "next": "12.1.6",
     "react": "17.0.2",

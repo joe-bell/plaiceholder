@@ -1,19 +1,20 @@
-import type { LoaderFunction } from "@remix-run/node";
-import { json } from "@remix-run/node";
+import { json, type LoaderFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
-import Image from "remix-image";
 import { cx } from "class-variance-authority";
 import { BlurhashCanvas } from "react-blurhash";
 import { ImageGrid, ImageGridItem } from "@plaiceholder/ui";
-import type { IGetPlaiceholderReturn } from "~/modules/plaiceholder.server";
-import { getPlaiceholder } from "~/modules/plaiceholder.server";
+import {
+  getPlaiceholder,
+  type IGetPlaiceholderReturn,
+} from "~/modules/plaiceholder.server";
 import { getAllUnsplashImagePaths } from "~/lib/images.server";
 
-type LoaderData = {
-  images: (Pick<IGetPlaiceholderReturn, "blurhash"> & {
-    img: Record<"alt" | "title", string> & IGetPlaiceholderReturn["img"];
+interface LoaderData {
+  images: (Pick<IGetPlaiceholderReturn, "blurhash" | "img"> & {
+    alt: string;
+    title: string;
   })[];
-};
+}
 
 export const loader: LoaderFunction = async () => {
   const imagePaths = getAllUnsplashImagePaths();
@@ -23,12 +24,10 @@ export const loader: LoaderFunction = async () => {
       const { blurhash, img } = await getPlaiceholder(src);
 
       return {
+        alt: "Paint Splashes",
+        title: "Photo from Unsplash",
         blurhash,
-        img: {
-          ...img,
-          alt: "Paint Splashes",
-          title: "Photo from Unsplash",
-        },
+        img,
       };
     })
   ).then((values) => values);
@@ -43,7 +42,7 @@ export default function BlurhashMultiple() {
 
   return (
     <ImageGrid columns={3}>
-      {images.map(({ blurhash, img }) => (
+      {images.map(({ blurhash, img, alt, title }) => (
         <ImageGridItem key={img.src}>
           <BlurhashCanvas
             hash={blurhash.hash}
@@ -52,7 +51,7 @@ export default function BlurhashMultiple() {
             punch={1}
             className={cx("absolute", "inset-0", "w-full", "h-full", "z-[-1]")}
           />
-          <Image className="text-transparent" loaderUrl="/api/image" {...img} />
+          <img className="text-transparent" alt={alt} title={title} {...img} />
         </ImageGridItem>
       ))}
     </ImageGrid>

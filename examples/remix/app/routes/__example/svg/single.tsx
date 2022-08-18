@@ -1,26 +1,33 @@
 import React from "react";
-import type { LoaderFunction } from "@remix-run/node";
-import { json } from "@remix-run/node";
+import { json, type LoaderFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
-import Image from "remix-image";
 import { cx } from "class-variance-authority";
 import { ImageGrid, ImageGridItem } from "@plaiceholder/ui";
-import type { IGetPlaiceholderReturn } from "~/modules/plaiceholder.server";
-import { getPlaiceholder } from "~/modules/plaiceholder.server";
+import {
+  getPlaiceholder,
+  type IGetPlaiceholderReturn,
+} from "~/modules/plaiceholder.server";
 
-type LoaderData = Pick<IGetPlaiceholderReturn, "svg" | "img">;
+interface LoaderData extends Pick<IGetPlaiceholderReturn, "svg" | "img"> {
+  alt: string;
+  title: string;
+}
 
 export const loader: LoaderFunction = async () => {
-  const { svg, img } = await getPlaiceholder("/assets/keila-joa@578.jpg");
+  const { svg, img } = await getPlaiceholder(
+    "/assets/images/keila-joa@578px.jpg"
+  );
 
   return json<LoaderData>({
+    alt: "Keila Joa, Estonia",
     svg,
     img,
+    title: "Photo by Joe Bell",
   });
 };
 
 export default function SVGSingle() {
-  const { svg, img } = useLoaderData<LoaderData>();
+  const { alt, img, svg, title } = useLoaderData<LoaderData>();
 
   return (
     <ImageGrid columns={2}>
@@ -33,7 +40,7 @@ export default function SVGSingle() {
               ...svg[1].style,
               transform: ["scale(1.5)", svg[1].style.transform].join(" "),
             },
-            class: cx("filter", "blur-2xl", "z-[-1]"),
+            className: cx("filter", "blur-2xl", "z-[-1]"),
           },
           svg[2].map((child) =>
             React.createElement(child[0], {
@@ -42,11 +49,7 @@ export default function SVGSingle() {
             })
           )
         )}
-        <Image
-          className="text-transparent"
-          loaderUrl="/api/image"
-          src={img.src}
-        />
+        <img className="text-transparent" alt={alt} title={title} {...img} />
       </ImageGridItem>
     </ImageGrid>
   );

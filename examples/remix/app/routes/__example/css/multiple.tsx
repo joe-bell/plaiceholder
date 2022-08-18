@@ -1,18 +1,19 @@
-import type { LoaderFunction } from "@remix-run/node";
-import { json } from "@remix-run/node";
+import { json, type LoaderFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
-import Image from "remix-image";
 import { cx } from "class-variance-authority";
 import { ImageGrid, ImageGridItem } from "@plaiceholder/ui";
-import type { IGetPlaiceholderReturn } from "~/modules/plaiceholder.server";
-import { getPlaiceholder } from "~/modules/plaiceholder.server";
+import {
+  getPlaiceholder,
+  type IGetPlaiceholderReturn,
+} from "~/modules/plaiceholder.server";
 import { getAllUnsplashImagePaths } from "~/lib/images.server";
 
-type LoaderData = {
-  images: (Pick<IGetPlaiceholderReturn, "css"> & {
-    img: Record<"alt" | "title", string> & IGetPlaiceholderReturn["img"];
+interface LoaderData {
+  images: (Pick<IGetPlaiceholderReturn, "css" | "img"> & {
+    alt: string;
+    title: string;
   })[];
-};
+}
 
 export const loader: LoaderFunction = async () => {
   const imagePaths = getAllUnsplashImagePaths();
@@ -22,12 +23,10 @@ export const loader: LoaderFunction = async () => {
       const { css, img } = await getPlaiceholder(src);
 
       return {
+        alt: "Paint Splashes",
         css,
-        img: {
-          ...img,
-          alt: "Paint Splashes",
-          title: "Photo from Unsplash",
-        },
+        img,
+        title: "Photo from Unsplash",
       };
     })
   ).then((values) => values);
@@ -42,7 +41,7 @@ export default function CSSMultiple() {
 
   return (
     <ImageGrid columns={3}>
-      {images.map(({ css, img }) => (
+      {images.map(({ alt, css, img, title }) => (
         <ImageGridItem key={img.src}>
           <div
             className={cx(
@@ -58,7 +57,7 @@ export default function CSSMultiple() {
             )}
             style={css}
           />
-          <Image className="text-transparent" loaderUrl="/api/image" {...img} />
+          <img className="text-transparent" alt={alt} title={title} {...img} />
         </ImageGridItem>
       ))}
     </ImageGrid>

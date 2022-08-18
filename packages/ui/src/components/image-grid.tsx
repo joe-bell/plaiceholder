@@ -16,7 +16,7 @@ export interface ImageGridProps
 
 export const ImageGrid: React.FC<ImageGridProps> = ({
   className,
-  columns = 3,
+  columns = 3 as ImageGridProps["columns"],
   ...props
 }) => (
   <ul

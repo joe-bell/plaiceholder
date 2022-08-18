@@ -1,30 +1,36 @@
-import type { LoaderFunction } from "@remix-run/node";
-import { json } from "@remix-run/node";
+import { json, type LoaderFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
-import Image from "remix-image";
 import { cx } from "class-variance-authority";
 import { ImageGrid, ImageGridItem } from "@plaiceholder/ui";
 import type { IGetPlaiceholderReturn } from "~/modules/plaiceholder.server";
 import { getPlaiceholder } from "~/modules/plaiceholder.server";
 
-type LoaderData = Pick<IGetPlaiceholderReturn, "base64" | "img">;
+interface LoaderData extends Pick<IGetPlaiceholderReturn, "base64" | "img"> {
+  alt: string;
+  title: string;
+}
 
 export const loader: LoaderFunction = async () => {
-  const { base64, img } = await getPlaiceholder("/assets/keila-joa@578.jpg");
+  const { base64, img } = await getPlaiceholder(
+    "/assets/images/keila-joa@578px.jpg"
+  );
 
   return json<LoaderData>({
+    alt: "Keila Joa, Estonia",
     base64,
     img,
+    title: "Photo by Joe Bell",
   });
 };
 
 export default function Base64Single() {
-  const { base64, img } = useLoaderData<LoaderData>();
+  const { alt, base64, img, title } = useLoaderData<LoaderData>();
 
   return (
     <ImageGrid columns={2}>
       <ImageGridItem>
         <img
+          aria-hidden
           alt=""
           src={base64}
           className={cx(
@@ -39,11 +45,7 @@ export default function Base64Single() {
             "z-[-1]"
           )}
         />
-        <Image
-          className="text-transparent"
-          loaderUrl="/api/image"
-          src={img.src}
-        />
+        <img className="text-transparent" alt={alt} title={title} {...img} />
       </ImageGridItem>
     </ImageGrid>
   );

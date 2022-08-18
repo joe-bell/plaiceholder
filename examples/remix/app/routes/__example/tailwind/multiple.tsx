@@ -1,7 +1,5 @@
-import type { LoaderFunction } from "@remix-run/node";
-import { json } from "@remix-run/node";
+import { json, type LoaderFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
-import Image from "remix-image";
 import { cx } from "class-variance-authority";
 import { extractImgSrc } from "@plaiceholder/tailwindcss/utils";
 import { ImageGrid, ImageGridItem } from "@plaiceholder/ui";
@@ -11,22 +9,27 @@ const getImagesFromPlaiceholders = (...plaiceholders: string[]) =>
   Promise.all(
     plaiceholders.map(async (plaiceholder) => {
       const { img } = await getPlaiceholder(extractImgSrc(plaiceholder));
-      return { plaiceholder, ...img };
+      return {
+        plaiceholder,
+        alt: "Paint Splashes",
+        title: "Photo from Unsplash",
+        img,
+      };
     })
   );
 
-type LoaderData = {
+interface LoaderData {
   images: Awaited<ReturnType<typeof getImagesFromPlaiceholders>>;
-};
+}
 
 export const loader: LoaderFunction = async () => {
   const images = await getImagesFromPlaiceholders(
-    "plaiceholder-[/assets/unsplash/alexander-ant-oR7HxvOe2YE.jpg]",
-    "plaiceholder-[/assets/unsplash/alexander-ant-r7xdS9hjYYE.jpg]",
-    "plaiceholder-[/assets/unsplash/solen-feyissa-0KXl7T2YU0I.jpg]",
-    "plaiceholder-[/assets/unsplash/solen-feyissa-ju3ZBdiXzmA.jpg]",
-    "plaiceholder-[/assets/unsplash/solen-feyissa-tek55norwaQ.jpg]",
-    "plaiceholder-[/assets/unsplash/solen-feyissa-WX1siNmy_R4.jpg]"
+    "plaiceholder-[/assets/images/unsplash/alexander-ant-oR7HxvOe2YE.jpg]",
+    "plaiceholder-[/assets/images/unsplash/alexander-ant-r7xdS9hjYYE.jpg]",
+    "plaiceholder-[/assets/images/unsplash/solen-feyissa-0KXl7T2YU0I.jpg]",
+    "plaiceholder-[/assets/images/unsplash/solen-feyissa-ju3ZBdiXzmA.jpg]",
+    "plaiceholder-[/assets/images/unsplash/solen-feyissa-tek55norwaQ.jpg]",
+    "plaiceholder-[/assets/images/unsplash/solen-feyissa-WX1siNmy_R4.jpg]"
   );
 
   return json<LoaderData>({
@@ -39,7 +42,7 @@ export default function TailwindMultiple() {
 
   return (
     <ImageGrid columns={3}>
-      {images.map(({ plaiceholder, ...img }) => (
+      {images.map(({ alt, plaiceholder, img, title }) => (
         <ImageGridItem key={plaiceholder}>
           <div
             className={cx(
@@ -55,11 +58,7 @@ export default function TailwindMultiple() {
               "z-[-1]"
             )}
           />
-          <Image
-            className="text-transparent"
-            loaderUrl="/api/image"
-            src={img.src}
-          />
+          <img className="text-transparent" alt={alt} title={title} {...img} />
         </ImageGridItem>
       ))}
     </ImageGrid>

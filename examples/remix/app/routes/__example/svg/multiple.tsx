@@ -1,19 +1,20 @@
 import React from "react";
-import type { LoaderFunction } from "@remix-run/node";
-import { json } from "@remix-run/node";
+import { json, type LoaderFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
-import Image from "remix-image";
 import { cx } from "class-variance-authority";
 import { ImageGrid, ImageGridItem } from "@plaiceholder/ui";
-import type { IGetPlaiceholderReturn } from "~/modules/plaiceholder.server";
-import { getPlaiceholder } from "~/modules/plaiceholder.server";
+import {
+  getPlaiceholder,
+  type IGetPlaiceholderReturn,
+} from "~/modules/plaiceholder.server";
 import { getAllUnsplashImagePaths } from "~/lib/images.server";
 
-type LoaderData = {
-  images: (Pick<IGetPlaiceholderReturn, "svg"> & {
-    img: Record<"alt" | "title", string> & IGetPlaiceholderReturn["img"];
+interface LoaderData {
+  images: (Pick<IGetPlaiceholderReturn, "img" | "svg"> & {
+    alt: string;
+    title: string;
   })[];
-};
+}
 
 export const loader: LoaderFunction = async () => {
   const imagePaths = getAllUnsplashImagePaths();
@@ -23,12 +24,10 @@ export const loader: LoaderFunction = async () => {
       const { svg, img } = await getPlaiceholder(src);
 
       return {
+        alt: "Paint Splashes",
+        img,
         svg,
-        img: {
-          ...img,
-          alt: "Paint Splashes",
-          title: "Photo from Unsplash",
-        },
+        title: "Photo from Unsplash",
       };
     })
   ).then((values) => values);
@@ -43,7 +42,7 @@ export default function SVGMultiple() {
 
   return (
     <ImageGrid columns={3}>
-      {images.map(({ svg, img }) => (
+      {images.map(({ alt, img, svg, title }) => (
         <ImageGridItem key={img.src}>
           {React.createElement(
             svg[0],
@@ -53,7 +52,7 @@ export default function SVGMultiple() {
                 ...svg[1].style,
                 transform: ["scale(1.5)", svg[1].style.transform].join(" "),
               },
-              class: cx("filter", "blur-2xl", "z-[-1]"),
+              className: cx("filter", "blur-2xl", "z-[-1]"),
             },
             svg[2].map((child) =>
               React.createElement(child[0], {
@@ -62,7 +61,7 @@ export default function SVGMultiple() {
               })
             )
           )}
-          <Image className="text-transparent" loaderUrl="/api/image" {...img} />
+          <img className="text-transparent" alt={alt} title={title} {...img} />
         </ImageGridItem>
       ))}
     </ImageGrid>
