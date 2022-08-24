@@ -29,12 +29,12 @@
     ]
   },
   "dependencies": {
-    "@docusaurus/core": "2.0.0-beta.21",
-    "@docusaurus/plugin-sitemap": "2.0.0-beta.21",
-    "@docusaurus/preset-classic": "2.0.0-beta.21",
-    "@docusaurus/remark-plugin-npm2yarn": "2.0.0-beta.21",
-    "@docusaurus/theme-classic": "2.0.0-beta.21",
-    "@docusaurus/theme-common": "2.0.0-beta.21",
+    "@docusaurus/core": "2.0.1",
+    "@docusaurus/plugin-sitemap": "2.0.1",
+    "@docusaurus/preset-classic": "2.0.1",
+    "@docusaurus/remark-plugin-npm2yarn": "2.0.1",
+    "@docusaurus/theme-classic": "2.0.1",
+    "@docusaurus/theme-common": "2.0.1",
     "@mdx-js/react": "1.6.22",
     "@svgr/webpack": "6.2.1",
     "clsx": "1.1.1",
@@ -45,8 +45,8 @@
     "url-loader": "4.1.1"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "2.0.0-beta.21",
-    "@docusaurus/types": "2.0.0-beta.21",
+    "@docusaurus/module-type-aliases": "2.0.1",
+    "@docusaurus/types": "2.0.1",
     "@tsconfig/docusaurus": "1.0.5",
     "@types/node": "18.7.13",
     "@types/react": "17.0.45",

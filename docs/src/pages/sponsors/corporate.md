@@ -1,3 +1,0 @@
-# Corporate Sponsors
-
-Coming soon…

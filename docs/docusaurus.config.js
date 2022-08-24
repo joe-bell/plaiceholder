@@ -37,16 +37,12 @@ module.exports = {
         { to: "/", label: "Docs", position: "left" },
         {
           type: "dropdown",
-          label: "💜 Sponsors",
+          label: "🤎 Sponsors",
           position: "right",
           items: [
             {
               to: "/sponsors/tips",
               label: "Tips & Donations",
-            },
-            {
-              to: "/sponsors/corporate",
-              label: "Corporate Sponsors",
             },
           ],
         },
