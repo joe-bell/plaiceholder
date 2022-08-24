@@ -13,12 +13,12 @@ class TailwindMultiplePage {
   async render(data) {
     const images = await Promise.all(
       [
-        "plaiceholder-[/assets/unsplash/alexander-ant-oR7HxvOe2YE.jpg]",
-        "plaiceholder-[/assets/unsplash/alexander-ant-r7xdS9hjYYE.jpg]",
-        "plaiceholder-[/assets/unsplash/solen-feyissa-0KXl7T2YU0I.jpg]",
-        "plaiceholder-[/assets/unsplash/solen-feyissa-ju3ZBdiXzmA.jpg]",
-        "plaiceholder-[/assets/unsplash/solen-feyissa-tek55norwaQ.jpg]",
-        "plaiceholder-[/assets/unsplash/solen-feyissa-WX1siNmy_R4.jpg]",
+        "plaiceholder-[/assets/images/unsplash/alexander-ant-oR7HxvOe2YE.jpg]",
+        "plaiceholder-[/assets/images/unsplash/alexander-ant-r7xdS9hjYYE.jpg]",
+        "plaiceholder-[/assets/images/unsplash/solen-feyissa-0KXl7T2YU0I.jpg]",
+        "plaiceholder-[/assets/images/unsplash/solen-feyissa-ju3ZBdiXzmA.jpg]",
+        "plaiceholder-[/assets/images/unsplash/solen-feyissa-tek55norwaQ.jpg]",
+        "plaiceholder-[/assets/images/unsplash/solen-feyissa-WX1siNmy_R4.jpg]",
       ].map(async (plaiceholder) => {
         const image = await this.image(
           extractImgSrc(plaiceholder),

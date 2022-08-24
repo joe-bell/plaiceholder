@@ -1,6 +1,6 @@
 import * as React from "react";
 import { InferGetStaticPropsType } from "next";
-import Image from "next/image";
+import Image from "next/future/image";
 import { getPlaiceholder } from "plaiceholder";
 import { ImageGrid, ImageGridItem } from "@plaiceholder/ui";
 import { config } from "@/config";
@@ -38,11 +38,7 @@ const PageSVGMultiple: React.FC<
   <Layout variant="example" title={title} heading={heading}>
     <ImageGrid columns={3}>
       {images.map(({ svg, ...image }) => (
-        <ImageGridItem
-          key={image.src}
-          // See src/styles/index.css
-          className="next-image"
-        >
+        <ImageGridItem key={image.src}>
           {React.createElement(
             svg[0],
             {
@@ -52,6 +48,7 @@ const PageSVGMultiple: React.FC<
                 transform: ["scale(1.5)", svg[1].style.transform].join(" "),
                 filter: "blur(40px)",
               },
+              className: "z-[-1]",
             },
             svg[2].map((child) =>
               React.createElement(child[0], {

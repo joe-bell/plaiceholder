@@ -1,6 +1,6 @@
 import * as React from "react";
 import { InferGetStaticPropsType } from "next";
-import Image from "next/image";
+import Image from "next/future/image";
 import { getPlaiceholder } from "plaiceholder";
 import { ImageGrid, ImageGridItem } from "@plaiceholder/ui";
 import { config } from "@/config";
@@ -26,11 +26,7 @@ const PageSVGSingle: React.FC<
 > = ({ title, heading, img, svg }) => (
   <Layout variant="example" title={title} heading={heading}>
     <ImageGrid columns={2}>
-      <ImageGridItem
-        key={img.src}
-        // See src/styles/index.css
-        className="next-image"
-      >
+      <ImageGridItem key={img.src}>
         {React.createElement(
           svg[0],
           {
@@ -40,6 +36,7 @@ const PageSVGSingle: React.FC<
               transform: ["scale(1.5)", svg[1].style.transform].join(" "),
               filter: "blur(40px)",
             },
+            className: "z-[-1]",
           },
           svg[2].map((child) =>
             React.createElement(child[0], {

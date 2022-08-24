@@ -1,6 +1,6 @@
 import * as React from "react";
 import { InferGetStaticPropsType } from "next";
-import Image from "next/image";
+import Image from "next/future/image";
 import { getPlaiceholder } from "plaiceholder";
 import { ImageGrid, ImageGridItem } from "@plaiceholder/ui";
 import { config } from "@/config";
@@ -29,11 +29,7 @@ const PageBase64Single: React.FC<
 > = ({ title, heading, imageProps }) => (
   <Layout variant="example" title={title} heading={heading}>
     <ImageGrid columns={2}>
-      <ImageGridItem
-        key={imageProps.src}
-        // See src/styles/index.css
-        className="next-image"
-      >
+      <ImageGridItem key={imageProps.src}>
         <Image {...imageProps} placeholder="blur" />
       </ImageGridItem>
     </ImageGrid>

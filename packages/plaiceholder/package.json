@@ -34,15 +34,16 @@
     "sharp": ">= 0.30.6"
   },
   "dependencies": {
-    "blurhash": "1.1.4",
-    "image-size": "1.0.0",
+    "blurhash": "1.1.5",
+    "image-size": "1.0.2",
     "node-cache": "5.1.2",
     "node-fetch": "2.6.7"
   },
   "devDependencies": {
-    "@types/node": "14.17.15",
+    "@types/node": "18.7.13",
     "@types/sharp": "0.30.2",
-    "microbundle": "0.15.0",
-    "typescript": "4.7.3"
+    "microbundle": "0.15.1",
+    "sharp": "0.30.7",
+    "typescript": "4.7.4"
   }
 }

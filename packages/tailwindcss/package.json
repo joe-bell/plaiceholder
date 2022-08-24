@@ -60,9 +60,10 @@
   },
   "devDependencies": {
     "autoprefixer": "10.4.7",
-    "microbundle": "0.15.0",
+    "microbundle": "0.15.1",
     "postcss": "8.4.14",
+    "sharp": "0.30.7",
     "tailwindcss": "2.2.15",
-    "typescript": "4.7.3"
+    "typescript": "4.7.4"
   }
 }

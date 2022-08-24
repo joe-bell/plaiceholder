@@ -48,11 +48,11 @@
     "@docusaurus/module-type-aliases": "2.0.0-beta.21",
     "@docusaurus/types": "2.0.0-beta.21",
     "@tsconfig/docusaurus": "1.0.5",
-    "@types/node": "14.17.15",
+    "@types/node": "18.7.13",
     "@types/react": "17.0.45",
     "@types/react-helmet": "6.1.5",
     "@types/react-router-dom": "5.3.3",
-    "typescript": "4.7.3",
+    "typescript": "4.7.4",
     "webpack": "^5.73.0"
   }
 }

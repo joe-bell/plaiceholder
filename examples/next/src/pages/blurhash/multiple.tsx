@@ -1,6 +1,6 @@
 import * as React from "react";
 import { InferGetStaticPropsType } from "next";
-import Image from "next/image";
+import Image from "next/future/image";
 import { getPlaiceholder } from "plaiceholder";
 import { ImageGrid, ImageGridItem } from "@plaiceholder/ui";
 import { BlurhashCanvas } from "react-blurhash";
@@ -40,17 +40,13 @@ const PageBlurhashMultiple: React.FC<
   <Layout variant="example" title={title} heading={heading}>
     <ImageGrid columns={3}>
       {images.map(({ blurhash, ...image }) => (
-        <ImageGridItem
-          key={image.src}
-          // See src/styles/index.css
-          className="next-image"
-        >
+        <ImageGridItem key={image.src}>
           <BlurhashCanvas
             hash={blurhash.hash}
             width={blurhash.height}
             height={blurhash.width}
             punch={1}
-            className={cx("absolute", "inset-0", "w-full", "h-full")}
+            className={cx("absolute", "inset-0", "w-full", "h-full", "z-[-1]")}
           />
 
           <Image {...image} />

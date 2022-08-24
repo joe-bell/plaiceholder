@@ -1,6 +1,6 @@
 import * as React from "react";
 import { InferGetStaticPropsType } from "next";
-import Image from "next/image";
+import Image from "next/future/image";
 import { getPlaiceholder } from "plaiceholder";
 import { ImageGrid, ImageGridItem } from "@plaiceholder/ui";
 import { config } from "@/config";
@@ -39,11 +39,7 @@ const PageCSSMultiple: React.FC<
   <Layout variant="example" title={title} heading={heading}>
     <ImageGrid columns={3}>
       {images.map(({ css, ...image }) => (
-        <ImageGridItem
-          key={image.src}
-          // See src/styles/index.css
-          className="next-image"
-        >
+        <ImageGridItem key={image.src}>
           <div
             className={cx(
               "absolute",
@@ -53,7 +49,8 @@ const PageCSSMultiple: React.FC<
               "transform",
               "scale-150",
               "filter",
-              "blur-2xl"
+              "blur-2xl",
+              "z-[-1]"
             )}
             style={css}
           />

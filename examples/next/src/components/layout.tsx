@@ -1,6 +1,5 @@
 import * as React from "react";
 import NextLink from "next/link";
-import { cx } from "class-variance-authority";
 import {
   Article,
   ArticleHeading,
@@ -40,9 +39,7 @@ export const Layout: React.FC<TLayoutProps> = ({ children, ...props }) => (
       <NextLink href="/" passHref>
         <Logo>
           <LogoBrand>plaiceholder</LogoBrand>
-          <LogoIcon
-            src={[config.domain, "assets/images/logo/logo@192px.png"].join("/")}
-          />
+          <LogoIcon src="/assets/logo@192px.png" />
           <LogoTitle>Next.js</LogoTitle>
         </Logo>
       </NextLink>
