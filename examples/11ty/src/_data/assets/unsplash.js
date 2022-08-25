@@ -1,14 +1,16 @@
 const glob = require("glob");
 
 module.exports = function getAllUnsplashImagePaths() {
-  return glob.sync("./public/assets/unsplash/*.{jpg,png}").map((file) => {
-    const sep = "/";
-    const fileArr = file.split(sep);
+  return glob
+    .sync("./public/assets/images/unsplash/*.{jpg,png}")
+    .map((file) => {
+      const sep = "/";
+      const fileArr = file.split(sep);
 
-    const filePath = fileArr
-      .slice(fileArr.indexOf("public") + 1, fileArr.length)
-      .join(sep);
+      const filePath = fileArr
+        .slice(fileArr.indexOf("public") + 1, fileArr.length)
+        .join(sep);
 
-    return [sep, filePath].join("");
-  });
+      return [sep, filePath].join("");
+    });
 };

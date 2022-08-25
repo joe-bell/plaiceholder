@@ -1,4 +1,5 @@
 {
+  "workspace": false,
   "peer": false,
   "sortFirst": [
     "private",

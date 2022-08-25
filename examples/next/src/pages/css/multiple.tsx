@@ -1,12 +1,12 @@
 import * as React from "react";
 import { InferGetStaticPropsType } from "next";
-import Image from "next/image";
+import Image from "next/future/image";
 import { getPlaiceholder } from "plaiceholder";
+import { ImageGrid, ImageGridItem } from "@plaiceholder/ui";
 import { config } from "@/config";
 import { getAllUnsplashImagePaths } from "@/lib/images";
 import { cx } from "class-variance-authority";
 import { Layout } from "@/components/layout";
-import { ImageGrid, ImageGridItem } from "@/components/image-grid";
 
 export const getStaticProps = async () => {
   const imagePaths = getAllUnsplashImagePaths();
@@ -37,7 +37,7 @@ const PageCSSMultiple: React.FC<
   InferGetStaticPropsType<typeof getStaticProps>
 > = ({ title, heading, images }) => (
   <Layout variant="example" title={title} heading={heading}>
-    <ImageGrid>
+    <ImageGrid columns={3}>
       {images.map(({ css, ...image }) => (
         <ImageGridItem key={image.src}>
           <div
@@ -49,7 +49,8 @@ const PageCSSMultiple: React.FC<
               "transform",
               "scale-150",
               "filter",
-              "blur-2xl"
+              "blur-2xl",
+              "z-[-1]"
             )}
             style={css}
           />

@@ -1,10 +1,10 @@
 import * as React from "react";
 import { InferGetStaticPropsType } from "next";
-import Image from "next/image";
+import Image from "next/future/image";
 import { getPlaiceholder } from "plaiceholder";
+import { ImageGrid, ImageGridItem } from "@plaiceholder/ui";
 import { config } from "@/config";
 import { cx } from "class-variance-authority";
-import { ImageGrid, ImageGridItem } from "@/components/image-grid";
 import { Layout } from "@/components/layout";
 
 export const getStaticProps = async () => {
@@ -37,7 +37,8 @@ const PageCSSSingle: React.FC<
             "transform",
             "scale-150",
             "filter",
-            "blur-2xl"
+            "blur-2xl",
+            "z-[-1]"
           )}
           style={css}
         />

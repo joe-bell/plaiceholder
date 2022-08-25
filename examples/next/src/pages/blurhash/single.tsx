@@ -1,11 +1,11 @@
 import * as React from "react";
 import { InferGetStaticPropsType } from "next";
-import Image from "next/image";
+import Image from "next/future/image";
 import { getPlaiceholder } from "plaiceholder";
+import { ImageGrid, ImageGridItem } from "@plaiceholder/ui";
 import { BlurhashCanvas } from "react-blurhash";
 import { config } from "@/config";
 import { cx } from "class-variance-authority";
-import { ImageGrid, ImageGridItem } from "@/components/image-grid";
 import { Layout } from "@/components/layout";
 
 export const getStaticProps = async () => {
@@ -35,7 +35,7 @@ const PageBlurhashSingle: React.FC<
           width={blurhash.height}
           height={blurhash.width}
           punch={1}
-          className={cx("absolute", "inset-0", "w-full", "h-full")}
+          className={cx("absolute", "inset-0", "w-full", "h-full", "z-[-1]")}
         />
         <Image {...img} />
       </ImageGridItem>

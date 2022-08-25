@@ -1,4 +1,6 @@
-export const withPlaiceholder = (nextConfig) => {
+import type { NextConfig } from "next";
+
+export const withPlaiceholder = (nextConfig: NextConfig): NextConfig => {
   require("sharp");
 
   const sharp = "commonjs sharp";

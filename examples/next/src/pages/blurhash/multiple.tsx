@@ -1,13 +1,13 @@
 import * as React from "react";
 import { InferGetStaticPropsType } from "next";
-import Image from "next/image";
+import Image from "next/future/image";
 import { getPlaiceholder } from "plaiceholder";
+import { ImageGrid, ImageGridItem } from "@plaiceholder/ui";
 import { BlurhashCanvas } from "react-blurhash";
 import { Layout } from "@/components/layout";
 import { config } from "@/config";
 import { cx } from "class-variance-authority";
 import { getAllUnsplashImagePaths } from "@/lib/images";
-import { ImageGrid, ImageGridItem } from "@/components/image-grid";
 
 export const getStaticProps = async () => {
   const imagePaths = getAllUnsplashImagePaths();
@@ -38,7 +38,7 @@ const PageBlurhashMultiple: React.FC<
   InferGetStaticPropsType<typeof getStaticProps>
 > = ({ title, heading, images }) => (
   <Layout variant="example" title={title} heading={heading}>
-    <ImageGrid>
+    <ImageGrid columns={3}>
       {images.map(({ blurhash, ...image }) => (
         <ImageGridItem key={image.src}>
           <BlurhashCanvas
@@ -46,7 +46,7 @@ const PageBlurhashMultiple: React.FC<
             width={blurhash.height}
             height={blurhash.width}
             punch={1}
-            className={cx("absolute", "inset-0", "w-full", "h-full")}
+            className={cx("absolute", "inset-0", "w-full", "h-full", "z-[-1]")}
           />
 
           <Image {...image} />

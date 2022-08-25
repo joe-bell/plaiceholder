@@ -1,6 +1,6 @@
+import React from "react";
 import type * as CVA from "class-variance-authority";
 import { cva } from "class-variance-authority";
-import React from "react";
 
 const imageGrid = cva(
   ["grid", "grid-cols-1", "sm:grid-cols-2", "gap-4", "mt-8"],
@@ -16,17 +16,17 @@ export interface ImageGridProps
 
 export const ImageGrid: React.FC<ImageGridProps> = ({
   className,
-  columns = 3,
+  columns = 3 as ImageGridProps["columns"],
   ...props
-}) => <ul className={imageGrid({ class: className, columns })} {...props} />;
+}) => (
+  <ul
+    role="list"
+    className={imageGrid({ class: className, columns })}
+    {...props}
+  />
+);
 
-const imageGridItem = cva([
-  "relative",
-  "block",
-  "overflow-hidden",
-  // See src/styles/index.css
-  "next-image",
-]);
+const imageGridItem = cva(["relative", "block", "overflow-hidden"]);
 
 export interface ImageGridItemProps
   extends React.HTMLAttributes<HTMLLIElement>,

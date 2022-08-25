@@ -13,18 +13,8 @@ export const Head: React.FC = () => (
     <meta name="description" content={config.title} />
     <meta name="og:title" content={config.title} />
 
-    <link
-      rel="shortcut icon"
-      href={[config.domain, "assets/images/favicon/favicon@192px.png"].join(
-        "/"
-      )}
-    />
-    <link
-      rel="apple-touch-icon"
-      href={[config.domain, "assets/images/favicon/favicon@192px.png"].join(
-        "/"
-      )}
-    />
+    <link rel="shortcut icon" href="/assets/favicon@192px.png" />
+    <link rel="apple-touch-icon" href="/assets/favicon@192px.png" />
     <meta name="apple-mobile-web-app-title" content={config.title} />
 
     <title>Plaiceholder × Next.js</title>

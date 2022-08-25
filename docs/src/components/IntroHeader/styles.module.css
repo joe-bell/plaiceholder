@@ -1,3 +1,7 @@
+.container {
+  margin-bottom: 2.5rem;
+}
+
 .container > * {
   display: block;
   margin: 0;
@@ -5,11 +9,6 @@
 
 .container > * + * {
   margin-top: 1rem;
-}
-
-.container + hr {
-  margin-top: 2.5rem;
-  margin-bottom: 2.5rem;
 }
 
 .headline {

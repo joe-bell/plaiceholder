@@ -2,33 +2,32 @@
   "private": true,
   "name": "root",
   "scripts": {
-    "build": "pnpm build --filter ./packages --stream --workspace-concurrency=0",
+    "build": "pnpm --filter './packages/**' --stream --workspace-concurrency=0 build",
     "commit": "git-cz",
     "format:packages": "syncpack format --config .config/.syncpackrc",
     "format:prettier": "prettier --ignore-unknown --no-error-on-unmatched-pattern --write",
     "lint": "run-s lint:*",
     "lint:packages": "syncpack list-mismatches --config .config/.syncpackrc",
     "lint:prettier": "prettier --check .",
-    "lint:ts": "pnpm lint:ts --parallel --stream --workspace-concurrency=0",
+    "lint:ts": "pnpm --parallel --stream --workspace-concurrency=0 lint:ts",
     "postinstall": "[[ \"$CI\" -ne \"1\" ]] && [[ \"CI\" != 'true' ]] && husky install || echo 'Skipping postinstall'",
     "pre-commit": "lint-staged --config .config/lint-staged.config.mjs",
     "preinstall": "npx only-allow pnpm",
     "prepare": "[[ \"$CI\" -ne \"1\" ]] && [[ \"CI\" != 'true' ]] && pnpm build || echo 'Skipping prepare'"
   },
   "devDependencies": {
-    "@changesets/cli": "2.23.0",
-    "@commitlint/cli": "13.1.0",
-    "@commitlint/config-conventional": "13.1.0",
-    "commitizen": "4.2.4",
+    "@changesets/cli": "2.24.3",
+    "@commitlint/cli": "17.0.3",
+    "@commitlint/config-conventional": "17.0.3",
+    "commitizen": "4.2.5",
     "cz-conventional-changelog": "3.3.0",
     "husky": "8.0.1",
-    "lint-staged": "13.0.1",
+    "lint-staged": "13.0.3",
     "npm-run-all": "4.1.5",
-    "prettier": "2.6.2",
-    "rimraf": "3.0.2",
-    "sharp": "0.30.6",
-    "syncpack": "8.0.0",
-    "typescript": "4.7.3"
+    "prettier": "2.7.1",
+    "sharp": "0.30.7",
+    "syncpack": "8.2.4",
+    "typescript": "4.7.4"
   },
   "commitlint": {
     "extends": [
@@ -36,6 +35,6 @@
     ]
   },
   "engines": {
-    "pnpm": "^6.32.19"
+    "pnpm": "^7"
   }
 }

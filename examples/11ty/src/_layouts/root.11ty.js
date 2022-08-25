@@ -14,17 +14,11 @@ exports.render = function (data) {
 
     <link
       rel="shortcut icon"
-      href="${[
-        data.config.domain,
-        "assets/images/favicon/favicon@192px.png",
-      ].join("/")}"
+      href="/assets/favicon@192px.png"
     />
     <link
       rel="apple-touch-icon"
-      href="${[
-        data.config.domain,
-        "assets/images/favicon/favicon@192px.png",
-      ].join("/")}"
+      href="/assets/favicon@192px.png"
     />
     <meta name="apple-mobile-web-app-title" content="${
       data.config.meta.title
@@ -48,7 +42,7 @@ exports.render = function (data) {
         <span class="mr-2 md:inline hidden">
           <img
             class="w-[2.5rem]"
-            src="https://plaiceholder.co/assets/img/logo@192px.png"
+            src="/assets/logo@192px.png"
             alt=""
           />
         </span>

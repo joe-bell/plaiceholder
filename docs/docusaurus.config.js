@@ -36,6 +36,17 @@ module.exports = {
       items: [
         { to: "/", label: "Docs", position: "left" },
         {
+          type: "dropdown",
+          label: "🤎 Sponsors",
+          position: "right",
+          items: [
+            {
+              to: "/sponsors/tips",
+              label: "Tips & Donations",
+            },
+          ],
+        },
+        {
           href: github,
           position: "right",
           label: "GitHub",

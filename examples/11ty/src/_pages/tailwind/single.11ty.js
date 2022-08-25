@@ -11,7 +11,7 @@ class TailwindSinglePage {
   }
 
   async render() {
-    const plaiceholder = "plaiceholder-[/assets/keila-joa@578.jpg]";
+    const plaiceholder = "plaiceholder-[/assets/images/keila-joa@578.jpg]";
     const imgSrc = extractImgSrc(plaiceholder);
 
     const image = await this.image(

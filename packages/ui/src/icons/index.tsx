@@ -1,11 +1,47 @@
 import { cva } from "class-variance-authority";
+import type * as CVA from "class-variance-authority";
 
-const icon = cva(["w-6", "h-6"]);
+const icon = cva(null, {
+  variants: { size: { 4: ["h-4", "w-4"], 6: ["h-6", "w-6"] } },
+  defaultVariants: { size: 6 },
+});
 
-export interface IconProps extends React.FC<JSX.IntrinsicElements["svg"]> {}
+export interface IconProps
+  extends React.HTMLAttributes<SVGElement>,
+    CVA.VariantProps<typeof icon> {}
 
-export const IconTwitter: IconProps = ({ className, ...props }) => (
-  <svg viewBox="0 0 24 24" className={icon({ class: className })} {...props}>
+export const IconBack: React.FC<IconProps> = ({
+  className,
+  size,
+  ...props
+}) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className={icon({ class: className, size })}
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    {...props}
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M15 19l-7-7 7-7"
+    />
+  </svg>
+);
+
+export const IconTwitter: React.FC<IconProps> = ({
+  className,
+  size,
+  ...props
+}) => (
+  <svg
+    viewBox="0 0 24 24"
+    className={icon({ class: className, size })}
+    {...props}
+  >
     <g>
       <path
         fill="currentColor"
@@ -15,9 +51,13 @@ export const IconTwitter: IconProps = ({ className, ...props }) => (
   </svg>
 );
 
-export const IconGitHub: IconProps = ({ className, ...props }) => (
+export const IconGitHub: React.FC<IconProps> = ({
+  className,
+  size,
+  ...props
+}) => (
   <svg
-    className={icon({ class: className })}
+    className={icon({ class: className, size })}
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 17 16"
     fill="none"

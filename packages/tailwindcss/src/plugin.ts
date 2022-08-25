@@ -12,14 +12,6 @@ const getPlaiceholder = makeSynchronous(async (imageUrl) => {
 });
 
 export default plugin(({ config, matchUtilities }) => {
-  if (config("mode") !== "jit") {
-    throw Error("@plaiceholder/tailwindcss only supports JIT mode.");
-  }
-
-  console.warn(
-    "warn - `@plaiceholder/tailwindcss` uses Tailwind's JIT engine and is not covered by semver."
-  );
-
   matchUtilities({
     [classNamePrefix]: (url) => getPlaiceholder(url),
   });
