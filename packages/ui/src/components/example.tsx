@@ -80,7 +80,7 @@ export const ExampleTitle: React.FC<ExampleTitleProps> = ({
   ...props
 }) => (
   <p
-    className={cx("relative", "flex", "aspect-w-16", "aspect-h-9", "items-end")}
+    className={cx("relative", "flex", "aspect-[16/9]", "items-end")}
     {...props}
   >
     <span

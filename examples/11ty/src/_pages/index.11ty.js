@@ -60,7 +60,7 @@ class IndexPage {
                 style="${stylesToString(plaiceholders[i])}"
               ></div>
 
-              <p class="relative flex aspect-w-16 aspect-h-9 items-end">
+              <p class="relative flex aspect-[16/9] items-end">
                 <span class="absolute bottom-0 px-4 text-white font-bold text-2xl top-auto h-[unset] flex-1 text-left">
                   ${heading}
                 </span>

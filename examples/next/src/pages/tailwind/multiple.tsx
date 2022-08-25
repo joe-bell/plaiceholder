@@ -24,7 +24,7 @@ export const getStaticProps = async () => {
     "plaiceholder-[/assets/images/unsplash/solen-feyissa-0KXl7T2YU0I.jpg]",
     "plaiceholder-[/assets/images/unsplash/solen-feyissa-ju3ZBdiXzmA.jpg]",
     "plaiceholder-[/assets/images/unsplash/solen-feyissa-tek55norwaQ.jpg]",
-    "plaiceholder-[/assets/images/unsplash/solen-feyissa-WX1siNmy_R4.jpg]"
+    "plaiceholder-[/assets/images/unsplash/solen-feyissa-WX1siNmyR4.jpg]"
   );
 
   return {

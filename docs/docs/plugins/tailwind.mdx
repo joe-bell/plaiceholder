@@ -2,8 +2,10 @@
 
 :::note
 
-Due to limitations with Tailwind's JIT engine, `@plaiceholder/tailwindcss`
-only supports **local** images.
+Due to limitations with Tailwind's JIT engine:
+
+1. `@plaiceholder/tailwindcss` only supports **Local** images.
+2. Images must not have an `_` in their name (Tailwind treats this as a space)
 
 :::
 
@@ -15,12 +17,11 @@ only supports **local** images.
    npm install @plaiceholder/tailwindcss
    ```
 
-2. Add the plugin to your `tailwind.config.js`, making sure to enable `"jit"` mode:
+2. Add the plugin to your `tailwind.config.js`:
 
    ```js title="tailwind.config.js" {2,8}
    module.exports = {
-     mode: "jit",
-     purge: [],
+     content: [],
      theme: {
        extend: {},
      },

@@ -1,7 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  mode: "jit",
-  purge: [
+  content: [
     "./node_modules/@plaiceholder/ui/**/*.{ts,tsx}",
     "./app/**/*.{ts,tsx}",
   ],
@@ -9,8 +8,5 @@ module.exports = {
     extend: {},
   },
   variants: {},
-  plugins: [
-    require("@plaiceholder/tailwindcss"),
-    require("@tailwindcss/aspect-ratio"),
-  ],
+  plugins: [require("@plaiceholder/tailwindcss")],
 };
