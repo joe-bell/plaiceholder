@@ -19,7 +19,7 @@
     "@plaiceholder/tailwindcss": "workspace:*",
     "@plaiceholder/ui": "workspace:*",
     "blurhash": "1.1.5",
-    "class-variance-authority": "0.2.2",
+    "class-variance-authority": "0.2.3",
     "glob": "8.0.3",
     "next": "12.2.5",
     "plaiceholder": "workspace:*",
@@ -31,8 +31,9 @@
   "devDependencies": {
     "@types/node": "18.7.13",
     "@types/react": "17.0.45",
-    "autoprefixer": "10.4.7",
-    "postcss": "8.4.14",
+    "autoprefixer": "10.4.8",
+    "postcss": "8.4.16",
+    "rimraf": "3.0.2",
     "tailwindcss": "3.1.8",
     "typescript": "4.7.4"
   },

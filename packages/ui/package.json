@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@radix-ui/react-slot": "1.0.0",
-    "class-variance-authority": "0.2.2"
+    "class-variance-authority": "0.2.3"
   },
   "devDependencies": {
     "react": "17.0.2",
