@@ -288,13 +288,13 @@ importers:
   packages/ui:
     specifiers:
       '@radix-ui/react-slot': 1.0.0
-      class-variance-authority: 0.2.2
+      class-variance-authority: 0.2.3
       react: 17.0.2
       react-dom: 17.0.2
       typescript: 4.7.4
     dependencies:
       '@radix-ui/react-slot': 1.0.0_react@17.0.2
-      class-variance-authority: 0.2.2_typescript@4.7.4
+      class-variance-authority: 0.2.3_typescript@4.7.4
     devDependencies:
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
@@ -5621,17 +5621,6 @@ packages:
       static-extend: 0.1.2
     dev: true
 
-  /class-variance-authority/0.2.2_typescript@4.7.4:
-    resolution: {integrity: sha512-SPMcf+Jd/QYTfq+cO5/6sS6q9N+DZNeKOSscWOQgE0i6wl0IN6PcRCakyve/08ARrc/Pj5XOluonDFIFA4ASnQ==}
-    peerDependencies:
-      typescript: '>= 4.5.5 < 5'
-    peerDependenciesMeta:
-      typescript:
-        optional: true
-    dependencies:
-      typescript: 4.7.4
-    dev: false
-
   /class-variance-authority/0.2.3_typescript@4.7.4:
     resolution: {integrity: sha512-q3VGDidOOFp5yqNpUljA8L6N78gdOPhP5oeFJPaGRnCAPRmyAw65qo+Kw2WVfKq9uiR1de7HzlcvTN871Gks/g==}
     peerDependencies:
@@ -8308,6 +8297,16 @@ packages:
       - encoding
     dev: false
 
+  /follow-redirects/1.15.1:
+    resolution: {integrity: sha512-yLAMQs+k0b2m7cVxpS1VKJVvoz7SS9Td1zss3XRwXj+ZDH00RJgnuLx7E44wx02kQLrdM3aOOy+FpzS7+8OizA==}
+    engines: {node: '>=4.0'}
+    peerDependencies:
+      debug: '*'
+    peerDependenciesMeta:
+      debug:
+        optional: true
+    dev: false
+
   /follow-redirects/1.15.1_debug@4.3.2:
     resolution: {integrity: sha512-yLAMQs+k0b2m7cVxpS1VKJVvoz7SS9Td1zss3XRwXj+ZDH00RJgnuLx7E44wx02kQLrdM3aOOy+FpzS7+8OizA==}
     engines: {node: '>=4.0'}
@@ -8318,18 +8317,6 @@ packages:
         optional: true
     dependencies:
       debug: 4.3.2
-
-  /follow-redirects/1.15.1_debug@4.3.4:
-    resolution: {integrity: sha512-yLAMQs+k0b2m7cVxpS1VKJVvoz7SS9Td1zss3XRwXj+ZDH00RJgnuLx7E44wx02kQLrdM3aOOy+FpzS7+8OizA==}
-    engines: {node: '>=4.0'}
-    peerDependencies:
-      debug: '*'
-    peerDependenciesMeta:
-      debug:
-        optional: true
-    dependencies:
-      debug: 4.3.4
-    dev: true
 
   /for-each/0.3.3:
     resolution: {integrity: sha512-jqYfLp7mo9vIyQf8ykW2v7A+2N4QjeCeI5+Dz9XraiO1ign81wjiH7Fb9vSOWvQfNtmSa4H2RoQTrrXivdUZmw==}
@@ -9145,7 +9132,7 @@ packages:
     engines: {node: '>=8.0.0'}
     dependencies:
       eventemitter3: 4.0.7
-      follow-redirects: 1.15.1_debug@4.3.2
+      follow-redirects: 1.15.1
       requires-port: 1.0.0
     transitivePeerDependencies:
       - debug
@@ -9156,7 +9143,7 @@ packages:
     engines: {node: '>=8.0.0'}
     dependencies:
       eventemitter3: 4.0.7
-      follow-redirects: 1.15.1_debug@4.3.4
+      follow-redirects: 1.15.1_debug@4.3.2
       requires-port: 1.0.0
     transitivePeerDependencies:
       - debug
