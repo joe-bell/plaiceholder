@@ -44,7 +44,7 @@ importers:
       '@docusaurus/types': 2.0.1
       '@mdx-js/react': 1.6.22
       '@svgr/webpack': 6.2.1
-      '@tsconfig/docusaurus': 1.0.5
+      '@tsconfig/docusaurus': 1.0.6
       '@types/node': 18.7.13
       '@types/react': 17.0.45
       '@types/react-helmet': 6.1.5
@@ -75,7 +75,7 @@ importers:
     devDependencies:
       '@docusaurus/module-type-aliases': 2.0.1_sfoxds7t5ydpegc3knd667wn6m
       '@docusaurus/types': 2.0.1_sfoxds7t5ydpegc3knd667wn6m
-      '@tsconfig/docusaurus': 1.0.5
+      '@tsconfig/docusaurus': 1.0.6
       '@types/node': 18.7.13
       '@types/react': 17.0.45
       '@types/react-helmet': 6.1.5
@@ -3850,8 +3850,8 @@ packages:
     resolution: {integrity: sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==}
     engines: {node: '>=10.13.0'}
 
-  /@tsconfig/docusaurus/1.0.5:
-    resolution: {integrity: sha512-KM/TuJa9fugo67dTGx+ktIqf3fVc077J6jwHu845Hex4EQf7LABlNonP/mohDKT0cmncdtlYVHHF74xR/YpThg==}
+  /@tsconfig/docusaurus/1.0.6:
+    resolution: {integrity: sha512-1QxDaP54hpzM6bq9E+yFEo4F9WbWHhsDe4vktZXF/iDlc9FqGr9qlg+3X/nuKQXx8QxHV7ue8NXFazzajsxFBA==}
     dev: true
 
   /@tsconfig/node10/1.0.9:
