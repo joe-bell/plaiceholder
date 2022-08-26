@@ -5,6 +5,7 @@ import fetch from "node-fetch";
 import sizeOf from "image-size";
 import sharp from "sharp";
 import { arrayChunk } from "./utils";
+import { defaults } from "./defaults";
 
 type TImage = Buffer | string;
 
@@ -74,10 +75,7 @@ interface ILoadImage {
   (imagePath: TImage, options: ILoadImageOptions): Promise<ILoadImageReturn>;
 }
 
-const loadImage: ILoadImage = async (
-  imagePath,
-  options = { dir: "./public" }
-) => {
+const loadImage: ILoadImage = async (imagePath, options) => {
   if (Buffer.isBuffer(imagePath)) {
     const imageSize = getImageSize(imagePath);
 
@@ -108,7 +106,7 @@ const loadImage: ILoadImage = async (
       `Failed to parse src \"${imagePath}\", if using relative image it must start with a leading slash "/"`
     );
 
-  const file = path.join(options.dir, imagePath);
+  const file = path.join(options?.dir || defaults.dir, imagePath);
   const imageSize = getImageSize(file);
 
   return {
@@ -217,9 +215,7 @@ const optimizeImage: IOptimizeImage = async (src, options = { size: 4 }) => {
 export type TGetImageSrc = TImage;
 export interface IGetImageOptions
   extends ILoadImageOptions,
-    IOptimizeImageOptions {
-  dir?: string;
-}
+    IOptimizeImageOptions {}
 export interface IGetImageReturn
   extends Omit<ILoadImageReturn, "file">,
     IOptimizeImageReturn {}
