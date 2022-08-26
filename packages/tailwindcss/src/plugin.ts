@@ -11,7 +11,7 @@ const getPlaiceholder = makeSynchronous(async (imageUrl) => {
   return css;
 });
 
-export default plugin(({ config, matchUtilities }) => {
+export default plugin(({ matchUtilities }) => {
   matchUtilities({
     [classNamePrefix]: (url) => getPlaiceholder(url),
   });
