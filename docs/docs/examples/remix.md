@@ -2,6 +2,12 @@
 
 :::caution
 
+Work in progress
+
+:::
+
+:::info
+
 Some Remix deployment targets don't support plaiceholder (specifically, the `sharp` dependency)
 
 For most cases, we recommend using Vercel (which this example uses)
