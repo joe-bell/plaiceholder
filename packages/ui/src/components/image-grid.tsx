@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import type * as CVA from "class-variance-authority";
 import { cva } from "class-variance-authority";
 

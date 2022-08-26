@@ -17,6 +17,7 @@
   "dependencies": {
     "@plaiceholder/tailwindcss": "workspace:*",
     "@plaiceholder/ui": "workspace:*",
+    "@radix-ui/react-slot": "1.0.0",
     "@remix-run/node": "1.6.8",
     "@remix-run/react": "1.6.8",
     "@remix-run/vercel": "1.6.8",

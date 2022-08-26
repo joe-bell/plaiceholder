@@ -120,6 +120,7 @@ importers:
       '@plaiceholder/next': workspace:*
       '@plaiceholder/tailwindcss': workspace:*
       '@plaiceholder/ui': workspace:*
+      '@radix-ui/react-slot': 1.0.0
       '@types/node': 18.7.13
       '@types/react': 17.0.45
       autoprefixer: 10.4.8
@@ -140,6 +141,7 @@ importers:
       '@plaiceholder/next': link:../../packages/next
       '@plaiceholder/tailwindcss': link:../../packages/tailwindcss
       '@plaiceholder/ui': link:../../packages/ui
+      '@radix-ui/react-slot': 1.0.0_react@17.0.2
       blurhash: 1.1.5
       class-variance-authority: 0.2.3_typescript@4.7.4
       glob: 8.0.3
@@ -162,6 +164,7 @@ importers:
     specifiers:
       '@plaiceholder/tailwindcss': workspace:*
       '@plaiceholder/ui': workspace:*
+      '@radix-ui/react-slot': 1.0.0
       '@remix-run/dev': 1.6.8
       '@remix-run/eslint-config': 1.6.8
       '@remix-run/node': 1.6.8
@@ -190,6 +193,7 @@ importers:
     dependencies:
       '@plaiceholder/tailwindcss': link:../../packages/tailwindcss
       '@plaiceholder/ui': link:../../packages/ui
+      '@radix-ui/react-slot': 1.0.0_react@17.0.2
       '@remix-run/node': 1.6.8_sfoxds7t5ydpegc3knd667wn6m
       '@remix-run/react': 1.6.8_sfoxds7t5ydpegc3knd667wn6m
       '@remix-run/vercel': 1.6.8_elu2qyc4ssyltpttoe3anfo4xe
@@ -292,10 +296,9 @@ importers:
       react: 17.0.2
       react-dom: 17.0.2
       typescript: 4.7.4
-    dependencies:
+    devDependencies:
       '@radix-ui/react-slot': 1.0.0_react@17.0.2
       class-variance-authority: 0.2.3_typescript@4.7.4
-    devDependencies:
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       typescript: 4.7.4
@@ -3252,7 +3255,6 @@ packages:
     dependencies:
       '@babel/runtime': 7.18.9
       react: 17.0.2
-    dev: false
 
   /@radix-ui/react-slot/1.0.0_react@17.0.2:
     resolution: {integrity: sha512-3mrKauI/tWXo1Ll+gN5dHcxDPdm/Df1ufcDLCecn+pnCIVcdWE7CujXo8QaXOWRJyZyQWWbpB8eFwHzWXlv5mQ==}
@@ -3262,7 +3264,6 @@ packages:
       '@babel/runtime': 7.18.9
       '@radix-ui/react-compose-refs': 1.0.0_react@17.0.2
       react: 17.0.2
-    dev: false
 
   /@remix-run/dev/1.6.8_rm6hilvfhbxarrqqulcfevspou:
     resolution: {integrity: sha512-y0m/KJfgyJ6QBTsXplZDTB7abmBEg+Qmf0HUAWcC6GhbgHIls13mdsCnhUpwsXWm1qNm4as3BJ/YTKbWk44wIw==}
@@ -5630,7 +5631,6 @@ packages:
         optional: true
     dependencies:
       typescript: 4.7.4
-    dev: false
 
   /clean-css/5.3.1:
     resolution: {integrity: sha512-lCr8OHhiWCTw4v8POJovCoh4T7I9U11yVsPjMWWnnMmp9ZowCxyad1Pathle/9HjaDp+fdQKjO9fQydE6RHTZg==}

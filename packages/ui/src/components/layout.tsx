@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { cva, cx } from "class-variance-authority";
 
 const container = cva(["max-w-5xl", "mx-auto", "px-4", "w-full"]);
