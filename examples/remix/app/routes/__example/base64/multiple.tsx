@@ -8,6 +8,7 @@ import {
   type IGetPlaiceholderReturn,
 } from "~/modules/plaiceholder.server";
 import { getAllUnsplashImagePaths } from "~/lib/images.server";
+import { glob } from "glob";
 
 interface LoaderData {
   images: (Pick<IGetPlaiceholderReturn, "base64" | "img"> & {
@@ -18,6 +19,31 @@ interface LoaderData {
 
 export const loader: LoaderFunction = async () => {
   const imagePaths = getAllUnsplashImagePaths();
+
+  console.log(
+    0,
+    glob.sync(
+      path.join(__dirname, "./public/assets/images/unsplash/*.{jpg,png}")
+    )
+  );
+  console.log(
+    1,
+    glob.sync(
+      path.join(__dirname, "../public/assets/images/unsplash/*.{jpg,png}")
+    )
+  );
+  console.log(
+    2,
+    glob.sync(
+      path.join(__dirname, "../../public/assets/images/unsplash/*.{jpg,png}")
+    )
+  );
+  console.log(
+    3,
+    glob.sync(
+      path.join(__dirname, "../../../public/assets/images/unsplash/*.{jpg,png}")
+    )
+  );
 
   const images = await Promise.all(
     imagePaths.map(async (src) => {
