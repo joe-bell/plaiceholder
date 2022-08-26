@@ -15,7 +15,7 @@ export const getStaticProps = async () => {
       const {
         base64,
         img: { width, height, ...img },
-      } = await getPlaiceholder(src, { dir: "./test" });
+      } = await getPlaiceholder(src);
 
       return {
         ...img,
