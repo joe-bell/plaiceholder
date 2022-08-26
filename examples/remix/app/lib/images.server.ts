@@ -17,3 +17,27 @@ export const getAllUnsplashImagePaths = (): string[] =>
 
       return [sep, filePath].join("");
     });
+
+console.log(
+  0,
+  glob.sync(path.join(__dirname, "/public/assets/images/unsplash/*.{jpg,png}"))
+);
+
+console.log(
+  1,
+  glob.sync(
+    path.join(__dirname, "../public/assets/images/unsplash/*.{jpg,png}")
+  )
+);
+console.log(
+  2,
+  glob.sync(
+    path.join(__dirname, "../../public/assets/images/unsplash/*.{jpg,png}")
+  )
+);
+console.log(
+  3,
+  glob.sync(
+    path.join(__dirname, "../../../public/assets/images/unsplash/*.{jpg,png}")
+  )
+);
