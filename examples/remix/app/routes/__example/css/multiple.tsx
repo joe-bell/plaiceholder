@@ -1,4 +1,3 @@
-import path from "path";
 import { json, type LoaderFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { cx } from "class-variance-authority";
@@ -19,10 +18,7 @@ interface LoaderData {
 export const loader: LoaderFunction = async () => {
   const images = await Promise.all(
     config.examples.variants.multiple.unsplash.map(async (src) => {
-      const { css, img } = await getPlaiceholder(src, {
-        // See https://github.com/remix-run/remix/discussions/4074
-        dir: path.join(__dirname, "../public"),
-      });
+      const { css, img } = await getPlaiceholder(src);
 
       return {
         alt: "Paint Splashes",

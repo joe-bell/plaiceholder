@@ -1,4 +1,3 @@
-import path from "path";
 import React from "react";
 import { json, type LoaderFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
