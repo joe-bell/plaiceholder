@@ -18,7 +18,6 @@ import {
 import { config } from "~/config";
 import type { IGetPlaiceholderReturn } from "~/modules/plaiceholder.server";
 import { getPlaiceholder } from "~/modules/plaiceholder.server";
-import { getAllUnsplashImagePaths } from "~/lib/images.server";
 
 type LoaderData = {
   examples: typeof config.examples;
@@ -26,10 +25,8 @@ type LoaderData = {
 };
 
 export const loader: LoaderFunction = async () => {
-  const imagePaths = getAllUnsplashImagePaths();
-
   const plaiceholders = await Promise.all(
-    imagePaths.map(async (src) => {
+    config.examples.variants.multiple.unsplash.map(async (src) => {
       const { css } = await getPlaiceholder(src);
 
       return css;

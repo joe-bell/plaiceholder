@@ -15,7 +15,6 @@
     "generate:css": "tailwindcss -o ./app/tailwind.css"
   },
   "dependencies": {
-    "@plaiceholder/tailwindcss": "workspace:*",
     "@plaiceholder/ui": "workspace:*",
     "@radix-ui/react-slot": "1.0.0",
     "@remix-run/node": "1.6.8",

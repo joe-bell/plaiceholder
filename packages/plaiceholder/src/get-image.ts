@@ -5,6 +5,7 @@ import fetch from "node-fetch";
 import sizeOf from "image-size";
 import sharp from "sharp";
 import { arrayChunk } from "./utils";
+import { defaults } from "./defaults";
 
 type TImage = Buffer | string;
 
@@ -62,16 +63,19 @@ const loadRemoteImage: ILoadRemoteImage = async (src) => {
 interface ILoadImageImg extends IGetImageSizeReturn {
   src: string;
 }
+interface ILoadImageOptions {
+  dir?: string;
+}
 interface ILoadImageReturn {
   img: ILoadImageImg;
   file: TImage;
 }
 
 interface ILoadImage {
-  (imagePath: TImage): Promise<ILoadImageReturn>;
+  (imagePath: TImage, options: ILoadImageOptions): Promise<ILoadImageReturn>;
 }
 
-const loadImage: ILoadImage = async (imagePath) => {
+const loadImage: ILoadImage = async (imagePath, options) => {
   if (Buffer.isBuffer(imagePath)) {
     const imageSize = getImageSize(imagePath);
 
@@ -102,7 +106,7 @@ const loadImage: ILoadImage = async (imagePath) => {
       `Failed to parse src \"${imagePath}\", if using relative image it must start with a leading slash "/"`
     );
 
-  const file = path.join("./public/", imagePath);
+  const file = path.join(options?.dir || defaults.dir, imagePath);
   const imageSize = getImageSize(file);
 
   return {
@@ -138,17 +142,18 @@ interface IOptimizeImage {
   (src: TImage, options?: IOptimizeImageOptions): Promise<IOptimizeImageReturn>;
 }
 
-const optimizeImage: IOptimizeImage = async (src, options = { size: 4 }) => {
+const optimizeImage: IOptimizeImage = async (src, options) => {
+  const size = options?.size || defaults.size;
+
   const sizeMin = 4;
   const sizeMax = 64;
 
-  const isSizeValid = sizeMin <= options.size && options.size <= sizeMax;
+  const isSizeValid = sizeMin <= size && size <= sizeMax;
+
   !isSizeValid &&
     console.error(
       ["Please enter a `size` value between", sizeMin, "and", sizeMax].join(" ")
     );
-
-  const size = isSizeValid ? options.size : 4;
 
   const pipeline = sharp(src).resize(size, size, {
     fit: "inside",
@@ -209,7 +214,9 @@ const optimizeImage: IOptimizeImage = async (src, options = { size: 4 }) => {
    =========================================== */
 
 export type TGetImageSrc = TImage;
-export interface IGetImageOptions extends IOptimizeImageOptions {}
+export interface IGetImageOptions
+  extends ILoadImageOptions,
+    IOptimizeImageOptions {}
 export interface IGetImageReturn
   extends Omit<ILoadImageReturn, "file">,
     IOptimizeImageReturn {}
@@ -219,7 +226,7 @@ export interface IGetImage {
 }
 
 export const getImage: IGetImage = async (src, options) => {
-  const { file, img } = await loadImage(src);
+  const { file, img } = await loadImage(src, options);
   const optimized = await optimizeImage(file, options);
 
   return {

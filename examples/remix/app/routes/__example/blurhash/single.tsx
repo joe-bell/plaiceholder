@@ -7,6 +7,7 @@ import {
   getPlaiceholder,
   type IGetPlaiceholderReturn,
 } from "~/modules/plaiceholder.server";
+import { config } from "~/config";
 
 interface LoaderData extends Pick<IGetPlaiceholderReturn, "blurhash" | "img"> {
   alt: string;
@@ -15,7 +16,7 @@ interface LoaderData extends Pick<IGetPlaiceholderReturn, "blurhash" | "img"> {
 
 export const loader: LoaderFunction = async () => {
   const { blurhash, img } = await getPlaiceholder(
-    "/assets/images/keila-joa@578px.jpg"
+    config.examples.variants.single.unsplash
   );
 
   return json<LoaderData>({

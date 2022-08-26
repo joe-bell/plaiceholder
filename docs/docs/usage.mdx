@@ -17,8 +17,9 @@ getPlaiceholder(src, options);
   1. a file path to an image inside the root `public` directory, referenced from the base URL (`/`).
   2. a remote image URL.
 - `options`: _(optional)_
+  - `dir`: a file path to your preferred static assets directory; where local images are resolved from (default: `./public`)
   - `size`: an integer (between `4` and `64`)
-    to adjust the returned placeholder size.
+    to adjust the returned placeholder size (default: `4`)
 
 ## Return Values
 
