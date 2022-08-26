@@ -4,11 +4,13 @@
   "author": "Joe Bell <joe@joebell.co.uk>",
   "license": "Apache-2.0",
   "scripts": {
-    "build": "run-s build:*",
+    "build": "run-s build:deps build:css build:remix",
     "build:css": "pnpm generate:css -- --minify",
+    "build:deps": "pnpm --filter 'example-with-remix^...' build",
     "build:remix": "remix build",
     "dev": "run-p dev:*",
     "dev:css": "pnpm generate:css -- --watch",
+    "dev:deps": "pnpm --filter 'example-with-remix^...' dev",
     "dev:remix": "remix dev",
     "generate:css": "tailwindcss -o ./app/tailwind.css"
   },
@@ -40,7 +42,6 @@
     "eslint": "8.22.0",
     "npm-run-all": "4.1.5",
     "postcss": "8.4.16",
-    "request": "2.88.2",
     "tailwindcss": "3.1.8",
     "typescript": "4.7.4"
   },
