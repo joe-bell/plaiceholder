@@ -142,17 +142,18 @@ interface IOptimizeImage {
   (src: TImage, options?: IOptimizeImageOptions): Promise<IOptimizeImageReturn>;
 }
 
-const optimizeImage: IOptimizeImage = async (src, options = { size: 4 }) => {
+const optimizeImage: IOptimizeImage = async (src, options) => {
+  const size = options?.size || defaults.size;
+
   const sizeMin = 4;
   const sizeMax = 64;
 
-  const isSizeValid = sizeMin <= options.size && options.size <= sizeMax;
+  const isSizeValid = sizeMin <= size && size <= sizeMax;
+
   !isSizeValid &&
     console.error(
       ["Please enter a `size` value between", sizeMin, "and", sizeMax].join(" ")
     );
-
-  const size = isSizeValid ? options.size : 4;
 
   const pipeline = sharp(src).resize(size, size, {
     fit: "inside",
