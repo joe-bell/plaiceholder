@@ -14,7 +14,7 @@ interface LoaderData extends Pick<IGetPlaiceholderReturn, "css" | "img"> {
 
 export const loader: LoaderFunction = async () => {
   const { css, img } = await getPlaiceholder(
-    "/assets/images/keila-joa@578px.jpg"
+    "https://images.unsplash.com/photo-1621961458348-f013d219b50c?auto=format&fit=crop&w=2850&q=80"
   );
 
   return json<LoaderData>({
