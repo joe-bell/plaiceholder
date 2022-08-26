@@ -3,7 +3,7 @@ import path from "path";
 import NodeCache from "node-cache";
 import fetch from "node-fetch";
 import sizeOf from "image-size";
-import sharp from "sharp";
+import sharp, { type Sharp } from "sharp";
 import { arrayChunk } from "./utils";
 import { defaults } from "./defaults";
 
@@ -123,6 +123,7 @@ const loadImage: ILoadImage = async (imagePath, options) => {
 
 interface IOptimizeImageOptions {
   size?: number;
+  format?: Parameters<Sharp["toFormat"]>;
 }
 interface IOptimizeImageReturn
   extends Record<
@@ -155,9 +156,11 @@ const optimizeImage: IOptimizeImage = async (src, options) => {
       ["Please enter a `size` value between", sizeMin, "and", sizeMax].join(" ")
     );
 
-  const pipeline = sharp(src).resize(size, size, {
-    fit: "inside",
-  });
+  const pipeline = sharp(src)
+    .resize(size, size, {
+      fit: "inside",
+    })
+    .toFormat(...(options?.format || defaults?.format));
 
   const getOptimizedForBase64 = pipeline
     .clone()
