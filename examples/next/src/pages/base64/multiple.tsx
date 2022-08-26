@@ -12,7 +12,10 @@ export const getStaticProps = async () => {
 
   const images = await Promise.all(
     imagePaths.map(async (src) => {
-      const { base64, img } = await getPlaiceholder(src);
+      const {
+        base64,
+        img: { width, height, ...img },
+      } = await getPlaiceholder(src, { dir: "./test" });
 
       return {
         ...img,
@@ -38,8 +41,8 @@ const PageSVGMultiple: React.FC<
   <Layout variant="example" title={title} heading={heading}>
     <ImageGrid columns={3}>
       {images.map((imageProps) => (
-        <ImageGridItem key={imageProps.src}>
-          <Image {...imageProps} placeholder="blur" />
+        <ImageGridItem key={imageProps.src} className="aspect-[5/7]">
+          <Image {...imageProps} placeholder="blur" fill />
         </ImageGridItem>
       ))}
     </ImageGrid>
