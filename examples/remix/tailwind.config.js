@@ -8,5 +8,4 @@ module.exports = {
     extend: {},
   },
   variants: {},
-  plugins: [require("@plaiceholder/tailwindcss")],
 };

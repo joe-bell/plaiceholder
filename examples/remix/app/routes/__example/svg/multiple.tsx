@@ -8,7 +8,7 @@ import {
   getPlaiceholder,
   type IGetPlaiceholderReturn,
 } from "~/modules/plaiceholder.server";
-import { getAllUnsplashImagePaths } from "~/lib/images.server";
+import { config } from "~/config";
 
 interface LoaderData {
   images: (Pick<IGetPlaiceholderReturn, "img" | "svg"> & {
@@ -18,14 +18,9 @@ interface LoaderData {
 }
 
 export const loader: LoaderFunction = async () => {
-  const imagePaths = getAllUnsplashImagePaths();
-
   const images = await Promise.all(
-    imagePaths.map(async (src) => {
-      const { svg, img } = await getPlaiceholder(src, {
-        // See https://github.com/remix-run/remix/discussions/4074
-        dir: path.join(__dirname, "../public"),
-      });
+    config.examples.variants.multiple.unsplash.map(async (src) => {
+      const { svg, img } = await getPlaiceholder(src);
 
       return {
         alt: "Paint Splashes",

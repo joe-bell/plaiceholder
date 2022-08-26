@@ -162,7 +162,6 @@ importers:
 
   examples/remix:
     specifiers:
-      '@plaiceholder/tailwindcss': workspace:*
       '@plaiceholder/ui': workspace:*
       '@radix-ui/react-slot': 1.0.0
       '@remix-run/dev': 1.6.8
@@ -191,7 +190,6 @@ importers:
       tiny-invariant: 1.2.0
       typescript: 4.7.4
     dependencies:
-      '@plaiceholder/tailwindcss': link:../../packages/tailwindcss
       '@plaiceholder/ui': link:../../packages/ui
       '@radix-ui/react-slot': 1.0.0_react@17.0.2
       '@remix-run/node': 1.6.8_sfoxds7t5ydpegc3knd667wn6m

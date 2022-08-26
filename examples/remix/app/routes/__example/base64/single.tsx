@@ -4,6 +4,7 @@ import { cx } from "class-variance-authority";
 import { ImageGrid, ImageGridItem } from "@plaiceholder/ui";
 import type { IGetPlaiceholderReturn } from "~/modules/plaiceholder.server";
 import { getPlaiceholder } from "~/modules/plaiceholder.server";
+import { config } from "~/config";
 
 interface LoaderData extends Pick<IGetPlaiceholderReturn, "base64" | "img"> {
   alt: string;
@@ -12,7 +13,7 @@ interface LoaderData extends Pick<IGetPlaiceholderReturn, "base64" | "img"> {
 
 export const loader: LoaderFunction = async () => {
   const { base64, img } = await getPlaiceholder(
-    "https://images.unsplash.com/photo-1621961458348-f013d219b50c?auto=format&fit=crop&w=2850&q=80"
+    config.examples.variants.single.unsplash
   );
 
   return json<LoaderData>({

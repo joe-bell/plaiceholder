@@ -7,8 +7,7 @@ import {
   getPlaiceholder,
   type IGetPlaiceholderReturn,
 } from "~/modules/plaiceholder.server";
-import { getAllUnsplashImagePaths } from "~/lib/images.server";
-import { glob } from "glob";
+import { config } from "~/config";
 
 interface LoaderData {
   images: (Pick<IGetPlaiceholderReturn, "base64" | "img"> & {
@@ -18,35 +17,8 @@ interface LoaderData {
 }
 
 export const loader: LoaderFunction = async () => {
-  const imagePaths = getAllUnsplashImagePaths();
-
-  console.log(
-    0,
-    glob.sync(
-      path.join(__dirname, "./public/assets/images/unsplash/*.{jpg,png}")
-    )
-  );
-  console.log(
-    1,
-    glob.sync(
-      path.join(__dirname, "../public/assets/images/unsplash/*.{jpg,png}")
-    )
-  );
-  console.log(
-    2,
-    glob.sync(
-      path.join(__dirname, "../../public/assets/images/unsplash/*.{jpg,png}")
-    )
-  );
-  console.log(
-    3,
-    glob.sync(
-      path.join(__dirname, "../../../public/assets/images/unsplash/*.{jpg,png}")
-    )
-  );
-
   const images = await Promise.all(
-    imagePaths.map(async (src) => {
+    config.examples.variants.multiple.unsplash.map(async (src) => {
       const { base64, img } = await getPlaiceholder(src, {
         // See https://github.com/remix-run/remix/discussions/4074
         dir: path.join(__dirname, "../public"),
