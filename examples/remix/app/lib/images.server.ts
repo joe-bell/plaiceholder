@@ -1,3 +1,4 @@
+import path from "path";
 import glob from "glob";
 
 export const getAllUnsplashImagePaths = (): string[] =>

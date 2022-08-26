@@ -1,3 +1,4 @@
+import path from "path";
 import { json, type LoaderFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { cx } from "class-variance-authority";
@@ -20,7 +21,10 @@ export const loader: LoaderFunction = async () => {
 
   const images = await Promise.all(
     imagePaths.map(async (src) => {
-      const { css, img } = await getPlaiceholder(src);
+      const { css, img } = await getPlaiceholder(src, {
+        // See https://github.com/remix-run/remix/discussions/4074
+        dir: path.join(__dirname, "../public"),
+      });
 
       return {
         alt: "Paint Splashes",
