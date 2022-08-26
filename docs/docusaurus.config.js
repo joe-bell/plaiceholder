@@ -83,6 +83,16 @@ module.exports = {
             },
           ],
         },
+        {
+          items: [
+            {
+              html: `
+                <a href="https://vercel.com?utm_source=plaiceholder&utm_campaign=oss" target="_blank" rel="noreferrer noopener">
+                  <img alt="Powered by Vercel"  src="/assets/img/powered-by-vercel.svg" />
+                <a>`,
+            },
+          ],
+        },
       ],
       copyright: `Copyright © ${new Date().getFullYear()} Joe Bell`,
     },

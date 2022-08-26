@@ -108,3 +108,11 @@ Licensed under the Apache License, Version 2.0 (the "License").
 [blurhash]: https://blurha.sh/
 [react-blurhash]: https://github.com/woltapp/react-blurhash
 [next/image]: https://nextjs.org/docs/basic-features/image-optimization
+
+---
+
+<p align="center">
+  <a href="https://vercel.com?utm_source=plaiceholder&utm_campaign=oss">
+    <img alt="Powered by Vercel"  src="./.github/assets/powered-by-vercel.svg" />
+  <a>
+</p>

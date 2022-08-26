@@ -23,4 +23,4 @@ Accepting GBP or USD
 0xC756F748ff6A499f3C826529A0Da30FF1A3ac28c
 ```
 
-![Ethereum QR Code](/img/wallet/eth.png)
+![Ethereum QR Code](/assets/img/wallet/eth.png)
