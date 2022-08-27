@@ -1,4 +1,3 @@
-import fs from "fs";
 import path from "path";
 import NodeCache from "node-cache";
 import fetch from "node-fetch";
@@ -121,9 +120,12 @@ const loadImage: ILoadImage = async (imagePath, options) => {
 /* optimizeImage
    =========================================== */
 
-interface IOptimizeImageOptions {
+type SharpFormatOptions = Parameters<Sharp["toFormat"]>;
+type SharpModulateOptions = Parameters<Sharp["modulate"]>[0];
+
+interface IOptimizeImageOptions extends SharpModulateOptions {
   size?: number;
-  format?: Parameters<Sharp["toFormat"]>;
+  format?: SharpFormatOptions;
 }
 interface IOptimizeImageReturn
   extends Record<
@@ -160,12 +162,17 @@ const optimizeImage: IOptimizeImage = async (src, options) => {
     .resize(size, size, {
       fit: "inside",
     })
-    .toFormat(...(options?.format || defaults?.format));
+    .toFormat(...(options?.format || defaults?.format))
+    .modulate({
+      brightness: options?.brightness || defaults?.brightness,
+      saturation: options?.saturation || defaults?.saturation,
+      ...(options?.hue ? { hue: options?.hue } : {}),
+      ...(options?.lightness ? { lightness: options?.lightness } : {}),
+    });
 
   const getOptimizedForBase64 = pipeline
     .clone()
     .normalise()
-    .modulate({ saturation: 1.2, brightness: 1 })
     .removeAlpha()
     .toBuffer({ resolveWithObject: true });
 
