@@ -1,11 +1,21 @@
 ---
 name: Bug report
 about: Create a report to help us improve
-title: ''
-labels: ''
-assignees: ''
-
+title: ""
+labels: ""
+assignees: ""
 ---
+
+<!--
+
+Issues that don't follow the templates provided will be closed without comment.
+
+**No exceptions.**
+
+For feature requests, please create a "Discussion" with the category "Ideas":
+https://github.com/joe-bell/plaiceholder/discussions/new
+
+-->
 
 **Describe the bug**
 A clear and concise description of what the bug is.
