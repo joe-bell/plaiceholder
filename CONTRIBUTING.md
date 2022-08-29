@@ -110,7 +110,9 @@ pnpm changeset
    git push origin refs/tags/vX.X.X
    ```
 
-8. [Create a release](https://github.com/joe-bell/plaiceholder/releases/new), using the newly pushed tag
+8. Update the version in the [docs' open-graph image](docs/static/assets/img/og.png). If you're @joe-bell, you'll have access to a Figma file. Once complete, upload the same file as [the repo's social image](https://github.com/joe-bell/plaiceholder/settings).
+
+9. [Create a release](https://github.com/joe-bell/plaiceholder/releases/new), using the newly pushed tag
 
 ## Implementations
 
