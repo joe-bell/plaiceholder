@@ -5,6 +5,9 @@ export const config = {
     github: "https://github.com/joe-bell/plaiceholder/tree/main/examples/remix",
     twitter: "https://twitter.com/joebell_",
   },
+  "Cache-Control": `public, max-age=${60 * 60 * 24}, stale-while-revalidate=${
+    60 * 60 * 6
+  }`,
   examples: {
     variants: {
       single: {

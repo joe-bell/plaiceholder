@@ -1,5 +1,9 @@
 import React from "react";
-import { json, type LoaderFunction } from "@remix-run/node";
+import {
+  json,
+  type HeadersFunction,
+  type LoaderFunction,
+} from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { cx } from "class-variance-authority";
 import { ImageGrid, ImageGridItem } from "@plaiceholder/ui";
@@ -15,6 +19,10 @@ interface LoaderData {
     title: string;
   })[];
 }
+
+export const headers: HeadersFunction = () => ({
+  "Cache-Control": config["Cache-Control"],
+});
 
 export const loader: LoaderFunction = async () => {
   const images = await Promise.all(

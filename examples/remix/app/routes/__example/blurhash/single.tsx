@@ -1,4 +1,8 @@
-import { json, type LoaderFunction } from "@remix-run/node";
+import {
+  json,
+  type HeadersFunction,
+  type LoaderFunction,
+} from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { cx } from "class-variance-authority";
 import { BlurhashCanvas } from "react-blurhash";
@@ -13,6 +17,10 @@ interface LoaderData extends Pick<IGetPlaiceholderReturn, "blurhash" | "img"> {
   alt: string;
   title: string;
 }
+
+export const headers: HeadersFunction = () => ({
+  "Cache-Control": config["Cache-Control"],
+});
 
 export const loader: LoaderFunction = async () => {
   const { blurhash, img } = await getPlaiceholder(

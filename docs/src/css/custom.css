@@ -103,3 +103,7 @@
 .navbar__toggle {
   margin-right: 1rem;
 }
+
+.footer {
+  --ifm-footer-background-color: #242526;
+}
