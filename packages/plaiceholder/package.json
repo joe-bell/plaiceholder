@@ -35,6 +35,7 @@
   },
   "dependencies": {
     "blurhash": "1.1.5",
+    "encoding": "0.1.13",
     "image-size": "1.0.2",
     "node-cache": "5.1.2",
     "node-fetch": "2.6.7"

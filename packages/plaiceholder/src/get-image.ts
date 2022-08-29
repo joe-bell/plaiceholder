@@ -1,9 +1,8 @@
-import fs from "fs";
 import path from "path";
 import NodeCache from "node-cache";
 import fetch from "node-fetch";
 import sizeOf from "image-size";
-import sharp from "sharp";
+import sharp, { type Sharp } from "sharp";
 import { arrayChunk } from "./utils";
 import { defaults } from "./defaults";
 
@@ -121,8 +120,15 @@ const loadImage: ILoadImage = async (imagePath, options) => {
 /* optimizeImage
    =========================================== */
 
-interface IOptimizeImageOptions {
+type SharpFormatOptions = Parameters<Sharp["toFormat"]>;
+type SharpModulateOptions = Parameters<Sharp["modulate"]>[0];
+
+interface IOptimizeImageOptions extends SharpModulateOptions {
   size?: number;
+  format?: SharpFormatOptions;
+  // Note: `removeAlpha` is a no-op for blurhash
+  //        See https://github.com/woltapp/blurhash/issues/100
+  removeAlpha?: boolean;
 }
 interface IOptimizeImageReturn
   extends Record<
@@ -155,22 +161,36 @@ const optimizeImage: IOptimizeImage = async (src, options) => {
       ["Please enter a `size` value between", sizeMin, "and", sizeMax].join(" ")
     );
 
-  const pipeline = sharp(src).resize(size, size, {
-    fit: "inside",
-  });
+  const pipelineBeforeAlpha = sharp(src)
+    .resize(size, size, {
+      fit: "inside",
+    })
+    .toFormat(...(options?.format || defaults?.format))
+    .modulate({
+      brightness: options?.brightness || defaults?.brightness,
+      saturation: options?.saturation || defaults?.saturation,
+      ...(options?.hue ? { hue: options?.hue } : {}),
+      ...(options?.lightness ? { lightness: options?.lightness } : {}),
+    });
+
+  const pipeline =
+    // Defaults to `true` (as pet defaults.ts)
+    options?.removeAlpha === false
+      ? pipelineBeforeAlpha
+      : pipelineBeforeAlpha.removeAlpha();
 
   const getOptimizedForBase64 = pipeline
     .clone()
     .normalise()
-    .modulate({ saturation: 1.2, brightness: 1 })
-    .removeAlpha()
     .toBuffer({ resolveWithObject: true });
 
-  const getOptimizedForBlurhash = pipeline
-    .clone()
-    .raw()
-    .ensureAlpha()
-    .toBuffer({ resolveWithObject: true });
+  const getOptimizedForBlurhash =
+    // See above note about `removeAlpha`
+    pipelineBeforeAlpha
+      .clone()
+      .raw()
+      .ensureAlpha()
+      .toBuffer({ resolveWithObject: true });
 
   const getOptimizedForPixels = pipeline
     .clone()
