@@ -1,6 +1,7 @@
 {
   "private": true,
   "name": "@plaiceholder/ui",
+  "version": "2.5.0",
   "description": "Private UI components for plaiceholder examples",
   "author": "Joe Bell <joe@joebell.co.uk>",
   "license": "Apache-2.0",

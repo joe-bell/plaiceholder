@@ -1,5 +1,14 @@
 # Change Log
 
+## 2.5.0
+
+### Minor Changes
+
+- ffe15ab: Expose sharp format options, setting png by default to improve performance
+- 24ac70e: Surface removeAlpha for transparent images
+- c2f8327: Provides the option to customize the directory where local images are resolved from (`./public` by default)
+- a287cf4: Expose Sharp modulate options
+
 ## 2.4.0
 
 ### Minor Changes

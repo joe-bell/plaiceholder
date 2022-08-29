@@ -1,5 +1,19 @@
 # Change Log
 
+## 2.5.0
+
+### Minor Changes
+
+- ffbdcec: increase minimum supported tailwindcss version to 3.\*
+
+### Patch Changes
+
+- Updated dependencies [ffe15ab]
+- Updated dependencies [24ac70e]
+- Updated dependencies [c2f8327]
+- Updated dependencies [a287cf4]
+  - plaiceholder@2.5.0
+
 ## 2.4.0
 
 ### Patch Changes
