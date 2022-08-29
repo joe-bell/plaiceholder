@@ -3,12 +3,14 @@ import { json } from "@remix-run/node";
 import { useLoaderData, Outlet, Link } from "@remix-run/react";
 import invariant from "tiny-invariant";
 import {
-  Article,
-  ArticleHeading,
-  ArticleSubheading,
-  IconBack,
-  BackBar,
-  BackBarLink,
+  article,
+  articleContent,
+  articleHeader,
+  articleHeaderSubtitle,
+  articleHeaderTitle,
+  backBar,
+  backBarLink,
+  icon,
 } from "@plaiceholder/ui";
 
 import { config } from "~/config";
@@ -60,18 +62,35 @@ export default function Example() {
   const { title, subheading } = useLoaderData<LoaderData>();
 
   return (
-    <Article>
-      <ArticleHeading size="beta">{title}</ArticleHeading>
-      <ArticleSubheading>{subheading}</ArticleSubheading>
-      <Outlet />
-      <BackBar>
-        <BackBarLink asChild>
-          <Link to="/">
-            <IconBack size={4} />
-            Back to Examples
-          </Link>
-        </BackBarLink>
-      </BackBar>
-    </Article>
+    <article className={article()}>
+      <header className={articleHeader()}>
+        <h1 className={articleHeaderTitle({ size: "beta" })}>{title}</h1>
+        <p className={articleHeaderSubtitle()}>{subheading}</p>
+      </header>
+
+      <div className={articleContent()}>
+        <Outlet />
+      </div>
+
+      <nav className={backBar()}>
+        <Link to="/" className={backBarLink()}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className={icon({ size: 4 })}
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M15 19l-7-7 7-7"
+            />
+          </svg>
+          Back to Examples
+        </Link>
+      </nav>
+    </article>
   );
 }

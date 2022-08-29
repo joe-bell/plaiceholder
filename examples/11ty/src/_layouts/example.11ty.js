@@ -1,28 +1,35 @@
+const {
+  article,
+  articleContent,
+  articleHeader,
+  articleHeaderSubtitle,
+  articleHeaderTitle,
+  backBar,
+  backBarLink,
+  icon,
+} = require("../_modules/@plaiceholder/ui");
+
 module.exports.data = {
   layout: "root",
 };
 
 exports.render = function (data) {
   return `
-    <article>
-      <h1 class="font-bold text-3xl mt-10">${data.title}</h1>
-      <h2 class="font-light text-gray-600 text-2xl mt-2 mb-8">${data.subTitle}</h2>
-      ${data.content}
-      <nav class="mt-10 py-4 border-t">
-        <a
-          class="
-            inline-flex
-            items-center
-            text-gray-500
-            hover:text-gray-900
-            transition-colors
-            duration-200
-          "
-          href="/"
-          >
+    <article class="${article()}">
+      <header class="${articleHeader()}">
+        <h1 class="${articleHeaderTitle({ size: "beta" })}">${data.title}</h1>
+        <h2 class="${articleHeaderSubtitle()}">
+          ${data.subTitle}
+        </h2>
+      </header>
+      <div class="${articleContent()}">
+        ${data.content}
+      </div>
+      <nav class="${backBar()}">
+        <a class="${backBarLink()}" href="/">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="h-4 w-4 mr-2"
+              class="${icon({ size: 4 })}"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"

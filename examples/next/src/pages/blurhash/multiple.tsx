@@ -2,7 +2,7 @@ import * as React from "react";
 import { InferGetStaticPropsType } from "next";
 import Image from "next/future/image";
 import { getPlaiceholder } from "plaiceholder";
-import { ImageGrid, ImageGridItem } from "@plaiceholder/ui";
+import { imageList, imageListItem } from "@plaiceholder/ui";
 import { BlurhashCanvas } from "react-blurhash";
 import { Layout } from "@/components/layout";
 import { config } from "@/config";
@@ -38,9 +38,9 @@ const PageBlurhashMultiple: React.FC<
   InferGetStaticPropsType<typeof getStaticProps>
 > = ({ title, heading, images }) => (
   <Layout variant="example" title={title} heading={heading}>
-    <ImageGrid columns={3}>
+    <ul role="list" className={imageList({ columns: 3, aspect: "5/7" })}>
       {images.map(({ blurhash, ...image }) => (
-        <ImageGridItem key={image.src}>
+        <li key={image.src} className={imageListItem()}>
           <BlurhashCanvas
             hash={blurhash.hash}
             width={blurhash.height}
@@ -50,9 +50,9 @@ const PageBlurhashMultiple: React.FC<
           />
 
           <Image {...image} />
-        </ImageGridItem>
+        </li>
       ))}
-    </ImageGrid>
+    </ul>
   </Layout>
 );
 

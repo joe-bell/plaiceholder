@@ -1,9 +1,5 @@
 @tailwind base;
 
-img {
-  color: transparent;
-}
-
 @tailwind components;
 
 /* prevent CSS transitions on page load */

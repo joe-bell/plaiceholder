@@ -2,7 +2,7 @@ import * as React from "react";
 import { InferGetStaticPropsType } from "next";
 import Image from "next/future/image";
 import { getPlaiceholder } from "plaiceholder";
-import { ImageGrid, ImageGridItem } from "@plaiceholder/ui";
+import { imageList, imageListItem } from "@plaiceholder/ui";
 import { config } from "@/config";
 import { Layout } from "@/components/layout";
 
@@ -25,8 +25,8 @@ const PageSVGSingle: React.FC<
   InferGetStaticPropsType<typeof getStaticProps>
 > = ({ title, heading, img, svg }) => (
   <Layout variant="example" title={title} heading={heading}>
-    <ImageGrid columns={2}>
-      <ImageGridItem key={img.src}>
+    <ul role="list" className={imageList({ columns: 2 })}>
+      <li key={img.src} className={imageListItem()}>
         {React.createElement(
           svg[0],
           {
@@ -46,8 +46,8 @@ const PageSVGSingle: React.FC<
           )
         )}
         <Image {...img} />
-      </ImageGridItem>
-    </ImageGrid>
+      </li>
+    </ul>
   </Layout>
 );
 

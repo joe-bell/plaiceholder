@@ -1,0 +1,24 @@
+{
+  "private": true,
+  "name": "example-with-astro",
+  "version": "0.0.1",
+  "scripts": {
+    "astro": "astro",
+    "build": "astro build",
+    "dev": "astro dev",
+    "preview": "astro preview",
+    "start": "astro dev"
+  },
+  "devDependencies": {
+    "@astrojs/image": "0.3.6",
+    "@astrojs/tailwind": "1.0.0",
+    "@plaiceholder/tailwindcss": "workspace:*",
+    "@plaiceholder/ui": "workspace:*",
+    "@types/glob": "7.2.0",
+    "astro": "1.1.1",
+    "class-variance-authority": "0.2.3",
+    "glob": "8.0.3",
+    "plaiceholder": "workspace:*",
+    "sharp": "0.30.7"
+  }
+}

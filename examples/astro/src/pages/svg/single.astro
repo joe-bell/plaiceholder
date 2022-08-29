@@ -1,0 +1,42 @@
+---
+import { cx } from "class-variance-authority";
+import { getPlaiceholder } from "plaiceholder";
+import { imageList, imageListItem } from "@plaiceholder/ui";
+import { config } from "../../config";
+import Layout from "../../layouts/Layout.astro";
+
+const title = config.examples.pages.svg.title;
+const heading = config.examples.variants.single.title;
+
+const { svg, img } = await getPlaiceholder(
+  "https://images.unsplash.com/photo-1621961458348-f013d219b50c?auto=format&fit=crop&w=2850&q=80",
+  { size: 10 }
+);
+
+const [Svg, svgProps, svgChildren] = svg;
+---
+
+<Layout variant="example" title={title} heading={heading}>
+  <ul role="list" class={imageList({ columns: 2 })}>
+    <li class={imageListItem()}>
+      <Svg
+        {...svgProps}
+        style={{
+          ...svgProps.style,
+          transform: ["scale(1.5)", svgProps.style.transform].join(" "),
+          filter: "blur(40px)",
+        }}
+        class={cx("absolute", "inset-0", "w-full", "h-full", "z-[-1]")}
+      >
+        {
+          svgChildren.map((child) => {
+            const [Path, pathProps] = child;
+
+            return <Path {...pathProps} />;
+          })
+        }
+      </Svg>
+      <img {...img} />
+    </li>
+  </ul>
+</Layout>

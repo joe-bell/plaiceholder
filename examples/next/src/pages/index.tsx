@@ -3,13 +3,14 @@ import { InferGetStaticPropsType } from "next";
 import Link from "next/link";
 import { getPlaiceholder } from "plaiceholder";
 import {
-  Example,
-  ExampleLink,
-  ExampleNav,
-  ExampleNavItem,
-  ExamplePlaiceholder,
-  Examples,
-  ExampleTitle,
+  exampleBody,
+  exampleLink,
+  exampleList,
+  exampleListItem,
+  exampleLQIP,
+  exampleNav,
+  exampleNavItem,
+  exampleTitle,
 } from "@plaiceholder/ui";
 
 import { config } from "@/config";
@@ -40,29 +41,38 @@ const Index: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
   examples,
 }) => (
   <Layout variant="home" title="Next.js">
-    <Examples>
+    <ul role="list" className={exampleList()}>
       {Object.keys(examples.pages).map((example, i) => (
-        <Example key={example}>
-          <ExamplePlaiceholder plaiceholder={plaiceholders[i]} />
-          <ExampleTitle>{examples.pages[example].title}</ExampleTitle>
+        <li className={exampleListItem()}>
+          <div
+            aria-hidden="true"
+            className={exampleLQIP()}
+            style={plaiceholders[i]}
+          />
 
-          <ExampleNav>
+          <p className={exampleBody()}>
+            <span className={exampleTitle()}>
+              {config.examples.pages[example].title}
+            </span>
+          </p>
+
+          <ul role="list" className={exampleNav()}>
             {Object.keys(examples.variants).map((variant) => {
               const href = `/${example}/${variant}`;
               return (
-                <ExampleNavItem key={href}>
-                  <Link href={href} passHref>
-                    <ExampleLink>
+                <li className={exampleNavItem()}>
+                  <Link href={href}>
+                    <a className={exampleLink()}>
                       {examples.variants[variant].title}
-                    </ExampleLink>
+                    </a>
                   </Link>
-                </ExampleNavItem>
+                </li>
               );
             })}
-          </ExampleNav>
-        </Example>
+          </ul>
+        </li>
       ))}
-    </Examples>
+    </ul>
   </Layout>
 );
 

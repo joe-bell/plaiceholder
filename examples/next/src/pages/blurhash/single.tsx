@@ -2,7 +2,7 @@ import * as React from "react";
 import { InferGetStaticPropsType } from "next";
 import Image from "next/future/image";
 import { getPlaiceholder } from "plaiceholder";
-import { ImageGrid, ImageGridItem } from "@plaiceholder/ui";
+import { imageList, imageListItem } from "@plaiceholder/ui";
 import { BlurhashCanvas } from "react-blurhash";
 import { config } from "@/config";
 import { cx } from "class-variance-authority";
@@ -28,8 +28,8 @@ const PageBlurhashSingle: React.FC<
   InferGetStaticPropsType<typeof getStaticProps>
 > = ({ title, heading, img, blurhash }) => (
   <Layout variant="example" title={title} heading={heading}>
-    <ImageGrid columns={2}>
-      <ImageGridItem key={img.src}>
+    <ul role="list" className={imageList({ columns: 2 })}>
+      <li key={img.src} className={imageListItem()}>
         <BlurhashCanvas
           hash={blurhash.hash}
           width={blurhash.height}
@@ -38,8 +38,8 @@ const PageBlurhashSingle: React.FC<
           className={cx("absolute", "inset-0", "w-full", "h-full", "z-[-1]")}
         />
         <Image {...img} />
-      </ImageGridItem>
-    </ImageGrid>
+      </li>
+    </ul>
   </Layout>
 );
 

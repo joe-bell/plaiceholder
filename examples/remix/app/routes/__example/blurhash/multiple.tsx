@@ -6,7 +6,7 @@ import {
 import { useLoaderData } from "@remix-run/react";
 import { cx } from "class-variance-authority";
 import { BlurhashCanvas } from "react-blurhash";
-import { ImageGrid, ImageGridItem } from "@plaiceholder/ui";
+import { imageList, imageListItem } from "@plaiceholder/ui";
 import {
   getPlaiceholder,
   type IGetPlaiceholderReturn,
@@ -47,9 +47,9 @@ export default function BlurhashMultiple() {
   const { images } = useLoaderData<LoaderData>();
 
   return (
-    <ImageGrid columns={3}>
+    <ul className={imageList({ columns: 3, aspect: "5/7" })}>
       {images.map(({ blurhash, img, alt, title }) => (
-        <ImageGridItem key={img.src}>
+        <li key={img.src} className={imageListItem()}>
           <BlurhashCanvas
             hash={blurhash.hash}
             width={blurhash.height}
@@ -58,8 +58,8 @@ export default function BlurhashMultiple() {
             className={cx("absolute", "inset-0", "w-full", "h-full", "z-[-1]")}
           />
           <img className="text-transparent" alt={alt} title={title} {...img} />
-        </ImageGridItem>
+        </li>
       ))}
-    </ImageGrid>
+    </ul>
   );
 }

@@ -5,7 +5,7 @@ import {
 } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { cx } from "class-variance-authority";
-import { ImageGrid, ImageGridItem } from "@plaiceholder/ui";
+import { imageList, imageListItem } from "@plaiceholder/ui";
 import {
   getPlaiceholder,
   type IGetPlaiceholderReturn,
@@ -38,8 +38,8 @@ export default function CSSSingle() {
   const { alt, css, img, title } = useLoaderData<LoaderData>();
 
   return (
-    <ImageGrid columns={2}>
-      <ImageGridItem>
+    <ul className={imageList({ columns: 2 })}>
+      <li className={imageListItem()}>
         <div
           className={cx(
             "absolute",
@@ -55,7 +55,7 @@ export default function CSSSingle() {
           style={css}
         />
         <img className="text-transparent" alt={alt} title={title} {...img} />
-      </ImageGridItem>
-    </ImageGrid>
+      </li>
+    </ul>
   );
 }

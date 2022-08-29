@@ -2,7 +2,7 @@ import * as React from "react";
 import { InferGetStaticPropsType } from "next";
 import Image from "next/future/image";
 import { getPlaiceholder } from "plaiceholder";
-import { ImageGrid, ImageGridItem } from "@plaiceholder/ui";
+import { imageList, imageListItem } from "@plaiceholder/ui";
 import { config } from "@/config";
 import { Layout } from "@/components/layout";
 
@@ -28,11 +28,11 @@ const PageBase64Single: React.FC<
   InferGetStaticPropsType<typeof getStaticProps>
 > = ({ title, heading, imageProps }) => (
   <Layout variant="example" title={title} heading={heading}>
-    <ImageGrid columns={2}>
-      <ImageGridItem key={imageProps.src}>
+    <ul role="list" className={imageList({ columns: 2 })}>
+      <li key={imageProps.src} className={imageListItem()}>
         <Image {...imageProps} placeholder="blur" />
-      </ImageGridItem>
-    </ImageGrid>
+      </li>
+    </ul>
   </Layout>
 );
 
