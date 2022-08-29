@@ -6,4 +6,5 @@ export const defaults: IGetPlaiceholderOptions = {
   format: ["png"],
   brightness: 1,
   saturation: 1.2,
+  removeAlpha: true,
 };

@@ -17,9 +17,29 @@ getPlaiceholder(src, options);
   1. a file path to an image inside the root `public` directory, referenced from the base URL (`/`).
   2. a remote image URL.
 - `options`: _(optional)_
+
   - `dir`: a file path to your preferred static assets directory; where local images are resolved from (default: `./public`)
   - `size`: an integer (between `4` and `64`)
     to adjust the returned placeholder size (default: `4`)
+  - Sharp Configuration
+
+    Under-the-hood, plaiceholder uses [Sharp](https://sharp.pixelplumbing.com) to transform images; a small selection of options have been exposed for further customization:
+
+    :::note
+
+    Plaiceholder has no plans to expand these options. If you need more control on the ouput, we recommend rolling your own Sharp-based LQIP solution.
+
+    :::
+
+    - `brightness`: brightness multiplier (default: `1`)
+    - `format`: force output to a [specified output](https://sharp.pixelplumbing.com/api-output#toformat) (default: `["png"]`)
+    - `hue`: degrees for hue rotation (no default)
+    - `lightness`: lightness addend (no default)
+    - `removeAlpha`: remove alpha channel for transparent images (default: `true`)
+
+      _Note: this option is a [no-op for Blurhash](/#tradeoffs)._
+
+    - `saturation`: saturation multiplier (default: `1.2`)
 
 ## Return Values
 

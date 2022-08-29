@@ -43,4 +43,5 @@ Whilst most strategies offer fast `DOMContentLoaded` and `LCP`, it's important t
 - [**Base64**](/usage#base64)  
   Not the nicest looking. Even though plaiceholder makes an opinionated choice to slightly increase saturation for base64 images under-the-hood, colors can often appear drab
 - [**Blurhash**](/usage#blurhash)  
-  Uses `canvas`, so it's not ideal to use with above-the-fold content.
+  Uses `canvas`, so it's not ideal to use with above-the-fold content.  
+  [Doesn't account for transparency](https://github.com/woltapp/blurhash/issues/100).
