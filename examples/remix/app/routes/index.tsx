@@ -1,5 +1,9 @@
-import type { LoaderFunction, MetaFunction } from "@remix-run/node";
-import { json } from "@remix-run/node";
+import {
+  json,
+  type HeadersFunction,
+  type LoaderFunction,
+} from "@remix-run/node";
+
 import { useLoaderData, Link } from "@remix-run/react";
 import {
   Article,
@@ -23,6 +27,10 @@ type LoaderData = {
   examples: typeof config.examples;
   plaiceholders: IGetPlaiceholderReturn["css"][];
 };
+
+export const headers: HeadersFunction = () => ({
+  "Cache-Control": config["Cache-Control"],
+});
 
 export const loader: LoaderFunction = async () => {
   const plaiceholders = await Promise.all(
