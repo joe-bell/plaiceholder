@@ -90,13 +90,19 @@ pnpm changeset
    git commit vX.X.X
    ```
 
-5. Publish all packages to npm
+5. Prepare all packages for publishing
+
+   ```sh
+   pnpm build
+   ```
+
+6. Publish all packages to npm
 
    ```sh
    pnpm publish -r
    ```
 
-6. Create a tag with the shared version, then push the commit and tag
+7. Create a tag with the shared version, then push the commit and tag
 
    ```sh
    git tag vX.X.X
@@ -104,7 +110,7 @@ pnpm changeset
    git push origin refs/tags/vX.X.X
    ```
 
-7. [Create a release](https://github.com/joe-bell/plaiceholder/releases/new), using the newly pushed tag
+8. [Create a release](https://github.com/joe-bell/plaiceholder/releases/new), using the newly pushed tag
 
 ## Implementations
 
