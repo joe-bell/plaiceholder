@@ -3,7 +3,7 @@
   "name": "@plaiceholder/ui",
   "version": "2.5.0",
   "description": "Private UI styles for plaiceholder examples",
-  "author": "Joe Bell <joe@joebell.co.uk>",
+  "author": "Joe Bell (https://joebell.co.uk)",
   "license": "Apache-2.0",
   "main": "src/index.ts",
   "module": "src/index.ts",
