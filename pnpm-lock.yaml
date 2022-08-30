@@ -129,6 +129,7 @@ importers:
       astro: 1.1.1
       class-variance-authority: 0.2.3
       glob: 8.0.3
+      npm-run-all: 4.1.5
       plaiceholder: workspace:*
       sharp: 0.30.7
     devDependencies:
@@ -140,6 +141,7 @@ importers:
       astro: 1.1.1
       class-variance-authority: 0.2.3
       glob: 8.0.3
+      npm-run-all: 4.1.5
       plaiceholder: link:../../packages/plaiceholder
       sharp: 0.30.7
 
@@ -156,6 +158,7 @@ importers:
       class-variance-authority: 0.2.3
       glob: 8.0.3
       next: 12.2.5
+      npm-run-all: 4.1.5
       plaiceholder: workspace:*
       postcss: 8.4.16
       react: 17.0.2
@@ -183,6 +186,7 @@ importers:
       '@types/node': 18.7.13
       '@types/react': 17.0.45
       autoprefixer: 10.4.8_postcss@8.4.16
+      npm-run-all: 4.1.5
       postcss: 8.4.16
       rimraf: 3.0.2
       tailwindcss: 3.1.8_postcss@8.4.16

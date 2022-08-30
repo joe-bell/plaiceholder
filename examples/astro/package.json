@@ -1,11 +1,16 @@
 {
   "private": true,
   "name": "example-with-astro",
-  "version": "0.0.1",
+  "author": "Joe Bell <joe@joebell.co.uk>",
+  "license": "Apache-2.0",
   "scripts": {
     "astro": "astro",
-    "build": "astro build",
-    "dev": "astro dev",
+    "build": "run-s build:deps build:astro",
+    "build:astro": "astro build",
+    "build:deps": "pnpm --filter 'example-with-astro^...' build",
+    "dev": "run-p dev:*",
+    "dev:astro": "astro dev",
+    "dev:deps": "pnpm --filter 'example-with-astro^...' dev",
     "preview": "astro preview",
     "start": "astro dev"
   },
@@ -18,6 +23,7 @@
     "astro": "1.1.1",
     "class-variance-authority": "0.2.3",
     "glob": "8.0.3",
+    "npm-run-all": "4.1.5",
     "plaiceholder": "workspace:*",
     "sharp": "0.30.7"
   }
