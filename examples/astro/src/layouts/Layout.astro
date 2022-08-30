@@ -56,7 +56,7 @@ const { heading, title, variant } = Astro.props;
 			}
 		</title>
 	</head>
-	<body>
+	<body class="[&_*]:!transition-none">
 		<header class={layoutHeader()}>
 			<div class={layoutHeaderContainer()}>
 				<a class={logo()} href="/">
@@ -185,6 +185,9 @@ const { heading, title, variant } = Astro.props;
 			}
 		</main>
 
+		<script is:inline>
+			document.body.classList.remove("[&_*]:!transition-none");
+		</script>
 		<script
 			src="//instant.page/5.1.1"
 			type="module"
