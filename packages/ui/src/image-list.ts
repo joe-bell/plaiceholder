@@ -19,4 +19,5 @@ export const imageListItem = cva([
   "relative",
   "block",
   "overflow-hidden",
+  "[&_img]:text-transparent",
 ]);
