@@ -6,7 +6,7 @@ import {
 } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { cx } from "class-variance-authority";
-import { ImageGrid, ImageGridItem } from "@plaiceholder/ui";
+import { imageList, imageListItem } from "@plaiceholder/ui";
 import {
   getPlaiceholder,
   type IGetPlaiceholderReturn,
@@ -47,9 +47,9 @@ export default function SVGMultiple() {
   const { images } = useLoaderData<LoaderData>();
 
   return (
-    <ImageGrid columns={3}>
+    <ul className={imageList({ columns: 3, aspect: "5/7" })}>
       {images.map(({ alt, img, svg, title }) => (
-        <ImageGridItem key={img.src}>
+        <li key={img.src} className={imageListItem()}>
           {React.createElement(
             svg[0],
             {
@@ -68,8 +68,8 @@ export default function SVGMultiple() {
             )
           )}
           <img className="text-transparent" alt={alt} title={title} {...img} />
-        </ImageGridItem>
+        </li>
       ))}
-    </ImageGrid>
+    </ul>
   );
 }

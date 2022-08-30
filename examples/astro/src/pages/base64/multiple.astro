@@ -1,0 +1,50 @@
+---
+import { cx } from "class-variance-authority";
+import { getPlaiceholder } from "plaiceholder";
+import { imageList, imageListItem } from "@plaiceholder/ui";
+import { config } from "../../config";
+import Layout from "../../layouts/Layout.astro";
+import { getAllUnsplashImagePaths } from "../../lib/images";
+
+const title = config.examples.pages.base64.title;
+const heading = config.examples.variants.multiple.title;
+
+const images = await Promise.all(
+  getAllUnsplashImagePaths().map(async (src) => {
+    const { base64, img } = await getPlaiceholder(src);
+
+    return {
+      base64,
+      img,
+    };
+  })
+).then((values) => values);
+---
+
+<Layout variant="example" title={title} heading={heading}>
+  <ul role="list" class={imageList({ columns: 3, aspect: "5/7" })}>
+    {
+      images.map(({ base64, img }) => (
+        <li class={imageListItem()}>
+          <img
+            aria-hidden
+            alt=""
+            src={base64}
+            class={cx(
+              "absolute",
+              "inset-0",
+              "w-full",
+              "h-full",
+              "transform",
+              "scale-150",
+              "filter",
+              "blur-2xl",
+              "z-[-1]"
+            )}
+          />
+          <img {...img} />
+        </li>
+      ))
+    }
+  </ul>
+</Layout>

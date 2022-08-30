@@ -1,0 +1,54 @@
+---
+import { cx } from "class-variance-authority";
+import { getPlaiceholder } from "plaiceholder";
+import { imageList, imageListItem } from "@plaiceholder/ui";
+import { config } from "../../config";
+import Layout from "../../layouts/Layout.astro";
+import { getAllUnsplashImagePaths } from "../../lib/images";
+
+const title = config.examples.pages.svg.title;
+const heading = config.examples.variants.multiple.title;
+
+const images = await Promise.all(
+  getAllUnsplashImagePaths().map(async (src) => {
+    const { svg, img } = await getPlaiceholder(src);
+
+    return {
+      svg,
+      img,
+    };
+  })
+).then((values) => values);
+---
+
+<Layout variant="example" title={title} heading={heading}>
+  <ul role="list" class={imageList({ columns: 3, aspect: "5/7" })}>
+    {
+      images.map(({ svg, img }) => {
+        const [Svg, svgProps, svgChildren] = svg;
+
+        return (
+          <li class={imageListItem()}>
+            <Svg
+              {...svgProps}
+              style={{
+                ...svgProps.style,
+                transform: ["scale(1.5)", svgProps.style.transform].join(" "),
+                filter: "blur(40px)",
+              }}
+              class={cx("absolute", "inset-0", "w-full", "h-full", "z-[-1]")}
+            >
+              {svgChildren.map((child) => {
+                const [Path, pathProps] = child;
+
+                return <Path {...pathProps} />;
+              })}
+            </Svg>
+
+            <img {...img} />
+          </li>
+        );
+      })
+    }
+  </ul>
+</Layout>

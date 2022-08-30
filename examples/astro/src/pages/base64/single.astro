@@ -1,0 +1,39 @@
+---
+import { cx } from "class-variance-authority";
+import { getPlaiceholder } from "plaiceholder";
+import { imageList, imageListItem } from "@plaiceholder/ui";
+import { config } from "../../config";
+import Layout from "../../layouts/Layout.astro";
+
+const title = config.examples.pages.base64.title;
+const heading = config.examples.variants.single.title;
+
+const { base64, img } = await getPlaiceholder(
+  "https://images.unsplash.com/photo-1621961458348-f013d219b50c?auto=format&fit=crop&w=2850&q=80",
+  { size: 10 }
+);
+---
+
+<Layout variant="example" title={title} heading={heading}>
+  <ul role="list" class={imageList({ columns: 2 })}>
+    <li class={imageListItem()}>
+      <img
+        aria-hidden
+        alt=""
+        src={base64}
+        class={cx(
+          "absolute",
+          "inset-0",
+          "w-full",
+          "h-full",
+          "transform",
+          "scale-150",
+          "filter",
+          "blur-2xl",
+          "z-[-1]"
+        )}
+      />
+      <img {...img} />
+    </li>
+  </ul>
+</Layout>

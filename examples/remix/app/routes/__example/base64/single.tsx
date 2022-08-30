@@ -5,7 +5,7 @@ import {
 } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { cx } from "class-variance-authority";
-import { ImageGrid, ImageGridItem } from "@plaiceholder/ui";
+import { imageList, imageListItem } from "@plaiceholder/ui";
 import type { IGetPlaiceholderReturn } from "~/modules/plaiceholder.server";
 import { getPlaiceholder } from "~/modules/plaiceholder.server";
 import { config } from "~/config";
@@ -36,8 +36,8 @@ export default function Base64Single() {
   const { alt, base64, img, title } = useLoaderData<LoaderData>();
 
   return (
-    <ImageGrid columns={2}>
-      <ImageGridItem>
+    <ul className={imageList({ columns: 2 })}>
+      <li className={imageListItem()}>
         <img
           aria-hidden
           alt=""
@@ -55,7 +55,7 @@ export default function Base64Single() {
           )}
         />
         <img className="text-transparent" alt={alt} title={title} {...img} />
-      </ImageGridItem>
-    </ImageGrid>
+      </li>
+    </ul>
   );
 }

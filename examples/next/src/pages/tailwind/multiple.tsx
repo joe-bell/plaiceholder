@@ -3,7 +3,7 @@ import { InferGetStaticPropsType } from "next";
 import Image from "next/future/image";
 import { getPlaiceholder } from "plaiceholder";
 import { extractImgSrc } from "@plaiceholder/tailwindcss/utils";
-import { ImageGrid, ImageGridItem } from "@plaiceholder/ui";
+import { imageList, imageListItem } from "@plaiceholder/ui";
 import { config } from "@/config";
 import { Layout } from "@/components/layout";
 import { cx } from "class-variance-authority";
@@ -40,9 +40,9 @@ const PageTailwindMultiple: React.FC<
   InferGetStaticPropsType<typeof getStaticProps>
 > = ({ images, title, heading }) => (
   <Layout variant="example" title={title} heading={heading}>
-    <ImageGrid columns={3}>
+    <ul role="list" className={imageList({ columns: 3, aspect: "5/7" })}>
       {images.map(({ className, ...image }) => (
-        <ImageGridItem key={className}>
+        <li key={image.src} className={imageListItem()}>
           <div
             className={cx(
               "absolute",
@@ -58,9 +58,9 @@ const PageTailwindMultiple: React.FC<
             )}
           />
           <Image {...image} />
-        </ImageGridItem>
+        </li>
       ))}
-    </ImageGrid>
+    </ul>
   </Layout>
 );
 

@@ -2,7 +2,7 @@ import * as React from "react";
 import { InferGetStaticPropsType } from "next";
 import Image from "next/future/image";
 import { getPlaiceholder } from "plaiceholder";
-import { ImageGrid, ImageGridItem } from "@plaiceholder/ui";
+import { imageList, imageListItem } from "@plaiceholder/ui";
 import { config } from "@/config";
 import { cx } from "class-variance-authority";
 import { Layout } from "@/components/layout";
@@ -26,8 +26,8 @@ const PageCSSSingle: React.FC<
   InferGetStaticPropsType<typeof getStaticProps>
 > = ({ title, heading, img, css }) => (
   <Layout variant="example" title={title} heading={heading}>
-    <ImageGrid columns={2}>
-      <ImageGridItem key={img.src}>
+    <ul role="list" className={imageList({ columns: 2 })}>
+      <li key={img.src} className={imageListItem()}>
         <div
           className={cx(
             "absolute",
@@ -44,8 +44,8 @@ const PageCSSSingle: React.FC<
         />
 
         <Image {...img} />
-      </ImageGridItem>
-    </ImageGrid>
+      </li>
+    </ul>
   </Layout>
 );
 

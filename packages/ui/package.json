@@ -2,7 +2,7 @@
   "private": true,
   "name": "@plaiceholder/ui",
   "version": "2.5.0",
-  "description": "Private UI components for plaiceholder examples",
+  "description": "Private UI styles for plaiceholder examples",
   "author": "Joe Bell <joe@joebell.co.uk>",
   "license": "Apache-2.0",
   "main": "src/index.ts",
@@ -17,16 +17,10 @@
     "lint:ts": "tsc --noEmit"
   },
   "peerDependencies": {
-    "@radix-ui/react-slot": "1.0.0",
-    "class-variance-authority": "0.2.3",
-    "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "class-variance-authority": "0.2.3"
   },
   "devDependencies": {
-    "@radix-ui/react-slot": "1.0.0",
     "class-variance-authority": "0.2.3",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
     "typescript": "4.7.4"
   },
   "sideEffects": false

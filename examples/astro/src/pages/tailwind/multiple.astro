@@ -1,0 +1,55 @@
+---
+import { cx } from "class-variance-authority";
+import { getPlaiceholder } from "plaiceholder";
+import { extractImgSrc } from "@plaiceholder/tailwindcss/utils";
+import { imageList, imageListItem } from "@plaiceholder/ui";
+import { config } from "../../config";
+import Layout from "../../layouts/Layout.astro";
+
+const title = config.examples.pages.tailwind.title;
+const heading = config.examples.variants.multiple.title;
+
+const getImagesFromPlaiceholders = (...classNames: string[]) =>
+  Promise.all(
+    classNames.map(async (className) => {
+      const { img } = await getPlaiceholder(extractImgSrc(className));
+
+      return { className, ...img };
+    })
+  );
+
+const images = await getImagesFromPlaiceholders(
+  "plaiceholder-[/assets/images/unsplash/alexander-ant-oR7HxvOe2YE.jpg]",
+  "plaiceholder-[/assets/images/unsplash/alexander-ant-r7xdS9hjYYE.jpg]",
+  "plaiceholder-[/assets/images/unsplash/solen-feyissa-0KXl7T2YU0I.jpg]",
+  "plaiceholder-[/assets/images/unsplash/solen-feyissa-ju3ZBdiXzmA.jpg]",
+  "plaiceholder-[/assets/images/unsplash/solen-feyissa-tek55norwaQ.jpg]",
+  "plaiceholder-[/assets/images/unsplash/solen-feyissa-WX1siNmyR4.jpg]"
+);
+---
+
+<Layout variant="example" title={title} heading={heading}>
+  <ul role="list" class={imageList({ columns: 3, aspect: "5/7" })}>
+    {
+      images.map(({ className, ...img }) => (
+        <li class={imageListItem()}>
+          <div
+            class={cx(
+              className,
+              "absolute",
+              "inset-0",
+              "w-full",
+              "h-full",
+              "transform",
+              "scale-150",
+              "filter",
+              "blur-2xl",
+              "z-[-1]"
+            )}
+          />
+          <img {...img} />
+        </li>
+      ))
+    }
+  </ul>
+</Layout>

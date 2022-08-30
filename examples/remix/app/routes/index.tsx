@@ -6,17 +6,19 @@ import {
 
 import { useLoaderData, Link } from "@remix-run/react";
 import {
-  Article,
-  ArticleHeading,
-  ArticleSubheading,
-  ArticleContent,
-  Example,
-  ExampleLink,
-  ExampleNav,
-  ExampleNavItem,
-  ExamplePlaiceholder,
-  Examples,
-  ExampleTitle,
+  article,
+  articleContent,
+  articleHeader,
+  articleHeaderSubtitle,
+  articleHeaderTitle,
+  exampleBody,
+  exampleLink,
+  exampleList,
+  exampleListItem,
+  exampleLQIP,
+  exampleNav,
+  exampleNavItem,
+  exampleTitle,
 } from "@plaiceholder/ui";
 
 import { config } from "~/config";
@@ -48,45 +50,51 @@ export default function Index() {
   const { examples, plaiceholders } = useLoaderData<LoaderData>();
 
   return (
-    <Article>
-      <ArticleHeading size="alpha">Remix</ArticleHeading>
-      <ArticleSubheading asChild>
-        <p>Choose-your-own adventure</p>
-      </ArticleSubheading>
-      <ArticleContent>
-        <Examples>
+    <article className={article()}>
+      <header className={articleHeader()}>
+        <h1 className={articleHeaderTitle({ size: "alpha" })}>Remix</h1>
+        <p className={articleHeaderSubtitle()}>Choose-your-own adventure</p>
+      </header>
+      <div className={articleContent()}>
+        <ul className={exampleList()}>
           {Object.keys(examples.pages).map((example, i) => (
-            <Example key={example}>
-              <ExamplePlaiceholder plaiceholder={plaiceholders[i]} />
-              <ExampleTitle>
-                {
-                  examples.pages[example as keyof typeof config.examples.pages]
-                    .title
-                }
-              </ExampleTitle>
+            <li key={example} className={exampleListItem()}>
+              <div
+                aria-hidden="true"
+                className={exampleLQIP()}
+                style={plaiceholders[i]}
+              />
 
-              <ExampleNav>
+              <p className={exampleBody()}>
+                <span className={exampleTitle()}>
+                  {
+                    examples.pages[
+                      example as keyof typeof config.examples.pages
+                    ].title
+                  }
+                </span>
+              </p>
+
+              <ul className={exampleNav()}>
                 {Object.keys(examples.variants).map((variant) => {
                   const to = `/${example}/${variant}`;
                   return (
-                    <ExampleNavItem key={to}>
-                      <ExampleLink asChild>
-                        <Link {...{ to }}>
-                          {
-                            examples.variants[
-                              variant as keyof typeof config.examples.variants
-                            ].title
-                          }
-                        </Link>
-                      </ExampleLink>
-                    </ExampleNavItem>
+                    <li key={to} className={exampleNavItem()}>
+                      <Link {...{ to }} className={exampleLink()}>
+                        {
+                          examples.variants[
+                            variant as keyof typeof config.examples.variants
+                          ].title
+                        }
+                      </Link>
+                    </li>
                   );
                 })}
-              </ExampleNav>
-            </Example>
+              </ul>
+            </li>
           ))}
-        </Examples>
-      </ArticleContent>
-    </Article>
+        </ul>
+      </div>
+    </article>
   );
 }
