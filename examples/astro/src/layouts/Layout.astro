@@ -35,10 +35,26 @@ const { heading, title, variant } = Astro.props;
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta http-equiv="x-ua-compatible" content="ie=edge" />
+		<meta name="robots" content="noindex" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content={config.title} />
+		<meta name="og:title" content={config.title} />
+
+		<link rel="shortcut icon" href="/assets/favicon@192px.png" />
+		<link rel="apple-touch-icon" href="/assets/favicon@192px.png" />
+		<meta name="apple-mobile-web-app-title" content={config.title} />
+
 		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
+
+		<title>
+			{
+				heading
+					? [[title, heading].join(": "), config.title].join(" | ")
+					: config.title
+			}
+		</title>
 	</head>
 	<body>
 		<header class={layoutHeader()}>
