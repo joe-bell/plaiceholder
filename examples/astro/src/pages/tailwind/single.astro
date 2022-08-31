@@ -1,16 +1,15 @@
 ---
+import { Image } from "@astrojs/image/components";
 import { cx } from "class-variance-authority";
-import { getPlaiceholder } from "plaiceholder";
-import { extractImgSrc } from "@plaiceholder/tailwindcss/utils";
 import { imageList, imageListItem } from "@plaiceholder/ui";
 import { config } from "@/config";
 import Layout from "@/layouts/Layout.astro";
+import img from "../../assets/images/keila-joa@578.jpg";
 
 const title = config.examples.pages.tailwind.title;
 const heading = config.examples.variants.single.title;
 
 const plaiceholder = "plaiceholder-[/assets/images/keila-joa@578.jpg]";
-const { img } = await getPlaiceholder(extractImgSrc(plaiceholder));
 ---
 
 <Layout variant="example" title={title} heading={heading}>
@@ -31,7 +30,7 @@ const { img } = await getPlaiceholder(extractImgSrc(plaiceholder));
 				)}
 			>
 			</div>
-			<img {...img} />
+			<Image src={img} />
 		</li>
 	</ul>
 </Layout>
