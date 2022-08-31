@@ -10,9 +10,9 @@ import {
 	exampleNavItem,
 	exampleTitle,
 } from "@plaiceholder/ui";
-import { config } from "../config";
-import Layout from "../layouts/Layout.astro";
-import { getAllUnsplashImagePaths } from "../lib/images";
+import { config } from "@/config";
+import Layout from "@/layouts/Layout.astro";
+import { getAllUnsplashImagePaths } from "@/lib/images";
 
 const plaiceholders = await Promise.all(
 	getAllUnsplashImagePaths().map(async (src) => {
