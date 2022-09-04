@@ -2,3 +2,4 @@
 .next
 dist
 pnpm-lock.yaml
+*.min.js

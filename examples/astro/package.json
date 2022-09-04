@@ -19,12 +19,12 @@
     "@astrojs/tailwind": "1.0.0",
     "@plaiceholder/tailwindcss": "workspace:*",
     "@plaiceholder/ui": "workspace:*",
-    "@types/glob": "7.2.0",
     "astro": "1.1.2",
     "class-variance-authority": "0.2.3",
-    "glob": "8.0.3",
+    "image-size": "1.0.2",
     "npm-run-all": "4.1.5",
     "plaiceholder": "workspace:*",
-    "sharp": "0.30.7"
+    "sharp": "0.30.7",
+    "tiny-glob": "0.2.9"
   }
 }

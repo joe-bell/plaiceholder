@@ -5,4 +5,9 @@ import tailwind from "@astrojs/tailwind";
 
 export default defineConfig({
   integrations: [image(), tailwind()],
+  vite: {
+    ssr: {
+      external: ["image-size", "tiny-glob"],
+    },
+  },
 });

@@ -47,7 +47,13 @@ const images = await getImagesFromPlaiceholders(
               "z-[-1]"
             )}
           />
-          <img {...img} />
+          {/**
+           * For now, @plaiceholder/tailwindcss needs the image to be in `/public`,
+           * which @astrojs/image doesn't support.
+           *
+           * So we'll use a regular ol' `<img>` instead:
+           */}
+          <img loading="lazy" {...img} />
         </li>
       ))
     }
