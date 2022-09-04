@@ -1,66 +1,68 @@
 ---
 import { getPlaiceholder } from "plaiceholder";
 import {
-	exampleBody,
-	exampleLink,
-	exampleList,
-	exampleListItem,
-	exampleLQIP,
-	exampleNav,
-	exampleNavItem,
-	exampleTitle,
+  exampleBody,
+  exampleLink,
+  exampleList,
+  exampleListItem,
+  exampleLQIP,
+  exampleNav,
+  exampleNavItem,
+  exampleTitle,
 } from "@plaiceholder/ui";
 import { config } from "@/config";
 import Layout from "@/layouts/Layout.astro";
-import { getAllUnsplashImagePaths } from "@/lib/images";
+import { getAllPublicUnsplashImagePaths } from "@/lib/images";
+
+const imagePaths = await getAllPublicUnsplashImagePaths();
 
 const plaiceholders = await Promise.all(
-	getAllUnsplashImagePaths().map(async (src) => {
-		const { css } = await getPlaiceholder(src);
+  imagePaths.map(async (src) => {
+    const { css } = await getPlaiceholder(src);
 
-		return css;
-	})
-).then((values) => values);
+    return css;
+  })
+);
 ---
 
 <Layout variant="home" title="Astro">
-	<ul role="list" class={exampleList()}>
-		{
-			Object.keys(config.examples.pages).map((example, i) => (
-				<li class={exampleListItem()}>
-					<div
-						aria-hidden="true"
-						class={exampleLQIP()}
-						style={plaiceholders[i]}
-					/>
-					<p class={exampleBody()}>
-						<span class={exampleTitle()}>
-							{
-								config.examples.pages[
-									example as keyof typeof config.examples.pages
-								].title
-							}
-						</span>
-					</p>
+  <ul role="list" class={exampleList()}>
+    {
+      Object.keys(config.examples.pages).map((example, i) => (
+        <li class={exampleListItem()}>
+          <div
+            aria-hidden="true"
+            class={exampleLQIP()}
+            style={plaiceholders[i]}
+          />
+          <p class={exampleBody()}>
+            <span class={exampleTitle()}>
+              {
+                config.examples.pages[
+                  example as keyof typeof config.examples.pages
+                ].title
+              }
+            </span>
+          </p>
 
-					<ul role="list" class={exampleNav()}>
-						{Object.keys(config.examples.variants).map((variant) => {
-							const href = `/${example}/${variant}`;
-							return (
-								<li class={exampleNavItem()}>
-									<a class={exampleLink()} href={href}>
-										{
-											config.examples.variants[
-												variant as keyof typeof config.examples.variants
-											].title
-										}
-									</a>
-								</li>
-							);
-						})}
-					</ul>
-				</li>
-			))
-		}
-	</ul>
+          <ul role="list" class={exampleNav()}>
+            {Object.keys(config.examples.variants).map((variant) => {
+              const href = `/${example}/${variant}`;
+              return (
+                <li class={exampleNavItem()}>
+                  <a href={href} class={exampleLink()}>
+                    {
+                      config.examples.variants[
+                        variant as keyof typeof config.examples.variants
+                      ].title
+                    }
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </li>
+      ))
+    }
+  </ul>
 </Layout>

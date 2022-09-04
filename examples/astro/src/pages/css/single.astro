@@ -1,4 +1,5 @@
 ---
+import { Image } from "@astrojs/image/components";
 import { cx } from "class-variance-authority";
 import { getPlaiceholder } from "plaiceholder";
 import { imageList, imageListItem } from "@plaiceholder/ui";
@@ -33,7 +34,7 @@ const { css, img } = await getPlaiceholder(
         )}
       >
       </div>
-      <img {...img} />
+      <Image {...img} format="jpeg" />
     </li>
   </ul>
 </Layout>

@@ -1,8 +1,8 @@
 ---
 import { cx } from "class-variance-authority";
+import { imageList, imageListItem } from "@plaiceholder/ui";
 import { getPlaiceholder } from "plaiceholder";
 import { extractImgSrc } from "@plaiceholder/tailwindcss/utils";
-import { imageList, imageListItem } from "@plaiceholder/ui";
 import { config } from "@/config";
 import Layout from "@/layouts/Layout.astro";
 
@@ -10,6 +10,7 @@ const title = config.examples.pages.tailwind.title;
 const heading = config.examples.variants.single.title;
 
 const plaiceholder = "plaiceholder-[/assets/images/keila-joa@578.jpg]";
+
 const { img } = await getPlaiceholder(extractImgSrc(plaiceholder));
 ---
 
@@ -31,6 +32,14 @@ const { img } = await getPlaiceholder(extractImgSrc(plaiceholder));
 				)}
 			>
 			</div>
+			{
+				/**
+				 * For now, @plaiceholder/tailwindcss needs the image to be in `/public`,
+				 * which @astrojs/image doesn't support.
+				 *
+				 * So we'll use a regular-ol' `<img>` instead:
+				 */
+			}
 			<img {...img} />
 		</li>
 	</ul>

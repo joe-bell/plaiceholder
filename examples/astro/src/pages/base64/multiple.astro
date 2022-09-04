@@ -4,21 +4,27 @@ import { getPlaiceholder } from "plaiceholder";
 import { imageList, imageListItem } from "@plaiceholder/ui";
 import { config } from "@/config";
 import Layout from "@/layouts/Layout.astro";
-import { getAllUnsplashImagePaths } from "@/lib/images";
+import { getAllPublicUnsplashImagePaths } from "@/lib/images";
 
 const title = config.examples.pages.base64.title;
 const heading = config.examples.variants.multiple.title;
 
+const imagePaths = await getAllPublicUnsplashImagePaths();
+
 const images = await Promise.all(
-  getAllUnsplashImagePaths().map(async (src) => {
+  imagePaths.map(async (src) => {
     const { base64, img } = await getPlaiceholder(src);
 
     return {
+      img: {
+        ...img,
+        alt: "Paint Splashes",
+        title: "Photo from Unsplash",
+      },
       base64,
-      img,
     };
   })
-).then((values) => values);
+);
 ---
 
 <Layout variant="example" title={title} heading={heading}>
@@ -42,7 +48,11 @@ const images = await Promise.all(
               "z-[-1]"
             )}
           />
-          <img {...img} />
+          {/**
+           * It's a little fiddly globbing over directories with the `Image`
+           * component, so we'll use a regular ol' `<img>` instead:
+           */}
+          <img {...img} loading="lazy" />
         </li>
       ))
     }
