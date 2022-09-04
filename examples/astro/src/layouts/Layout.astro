@@ -29,6 +29,8 @@ export interface Props {
 }
 
 const { heading, title, variant } = Astro.props;
+
+const logoImg = "/assets/logo@192px.png";
 ---
 
 <!DOCTYPE html>
@@ -48,9 +50,6 @@ const { heading, title, variant } = Astro.props;
 
     <meta name="generator" content={Astro.generator} />
 
-    <!-- Preload Header Logo -->
-    <link rel="preload" as="image" href="/assets/logo@192px.png" />
-
     <title>
       {
         heading
@@ -60,12 +59,14 @@ const { heading, title, variant } = Astro.props;
     </title>
   </head>
   <body class="[&_*]:!transition-none">
+    <link rel="preload" href={logoImg} as="image" fetch-priority="high" />
+
     <header class={layoutHeader()}>
       <div class={layoutHeaderContainer()}>
         <a href="/" class={logo()}>
           <span class={logoBrand()}>plaiceholder</span>
           <span class={logoIcon()}>
-            <img alt="Plaice Fish" src="/assets/logo@192px.png" />
+            <img alt="Plaice Fish" src={logoImg} />
           </span>
           <span class={logoTitle()}>Astro</span>
         </a>
