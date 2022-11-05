@@ -1,9 +1,12 @@
 import React from "react";
 import Head from "@docusaurus/Head";
 import { useThemeConfig } from "@docusaurus/theme-common";
-import { domain, isProduction, withUrl } from "../utils";
+import { withUrl } from "../utils";
+import { inject } from "@vercel/analytics";
 
 function CustomRoot({ children }) {
+  inject();
+
   const { metaTags } = useThemeConfig();
 
   const title = metaTags.find((item) => item.name === "data-title").content;
@@ -15,15 +18,6 @@ function CustomRoot({ children }) {
 
         <link rel="apple-touch-icon" href="/assets/img/favicon@192px.png" />
         <meta name="apple-mobile-web-app-title" content={title} />
-
-        {isProduction && (
-          <script
-            async
-            defer
-            data-domain={domain}
-            src="https://plausible.io/js/plausible.js"
-          />
-        )}
       </Head>
 
       {children}
