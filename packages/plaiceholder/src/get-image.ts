@@ -121,7 +121,7 @@ const loadImage: ILoadImage = async (imagePath, options) => {
    =========================================== */
 
 type SharpFormatOptions = Parameters<Sharp["toFormat"]>;
-type SharpModulateOptions = Parameters<Sharp["modulate"]>[0];
+type SharpModulateOptions = NonNullable<Parameters<Sharp["modulate"]>[0]>;
 
 interface IOptimizeImageOptions extends SharpModulateOptions {
   size?: number;
