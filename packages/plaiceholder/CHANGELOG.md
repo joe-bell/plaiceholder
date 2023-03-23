@@ -1,5 +1,12 @@
 # Change Log
 
+## 2.5.1
+
+### Patch Changes
+
+- Expose sharp `fit` option
+- Provides an `autoOrient` option that will auto-orient images based on EXIF data
+
 ## 2.5.0
 
 ### Minor Changes
