@@ -2,7 +2,7 @@ import path from "path";
 import NodeCache from "node-cache";
 import fetch from "node-fetch";
 import sizeOf from "image-size";
-import sharp, { type Sharp } from "sharp";
+import sharp, { type Sharp, type FitEnum } from "sharp";
 import { arrayChunk } from "./utils";
 import { defaults } from "./defaults";
 
@@ -131,6 +131,7 @@ interface IOptimizeImageOptions extends SharpModulateOptions {
   removeAlpha?: boolean;
   // Note: `autoOrient` is a no-op for images without EXIF data
   autoOrient?: boolean;
+  fit: keyof FitEnum;
 }
 interface IOptimizeImageReturn
   extends Record<
@@ -166,7 +167,7 @@ const optimizeImage: IOptimizeImage = async (src, options) => {
   const pipelineBeforeAlpha = sharp(src)
     .rotate()
     .resize(size, size, {
-      fit: "inside",
+      fit: options?.fit || defaults?.fit,
     })
     .toFormat(...(options?.format || defaults?.format))
     .modulate({
