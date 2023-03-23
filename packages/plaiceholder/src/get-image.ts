@@ -129,6 +129,8 @@ interface IOptimizeImageOptions extends SharpModulateOptions {
   // Note: `removeAlpha` is a no-op for blurhash
   //        See https://github.com/woltapp/blurhash/issues/100
   removeAlpha?: boolean;
+  // Note: `autoOrient` is a no-op for images without EXIF data
+  autoOrient?: boolean;
 }
 interface IOptimizeImageReturn
   extends Record<
@@ -162,6 +164,7 @@ const optimizeImage: IOptimizeImage = async (src, options) => {
     );
 
   const pipelineBeforeAlpha = sharp(src)
+    .rotate()
     .resize(size, size, {
       fit: "inside",
     })
@@ -173,11 +176,17 @@ const optimizeImage: IOptimizeImage = async (src, options) => {
       ...(options?.lightness ? { lightness: options?.lightness } : {}),
     });
 
-  const pipeline =
+  const pipelineBeforeAutoOrient =
     // Defaults to `true` (as pet defaults.ts)
     options?.removeAlpha === false
       ? pipelineBeforeAlpha
       : pipelineBeforeAlpha.removeAlpha();
+
+  const pipeline =
+    // Defaults to `false` (as pet defaults.ts)
+    options?.autoOrient === false
+      ? pipelineBeforeAutoOrient
+      : pipelineBeforeAutoOrient.rotate();
 
   const getOptimizedForBase64 = pipeline
     .clone()

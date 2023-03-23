@@ -7,4 +7,5 @@ export const defaults: IGetPlaiceholderOptions = {
   brightness: 1,
   saturation: 1.2,
   removeAlpha: true,
+  autoOrient: false,
 };
