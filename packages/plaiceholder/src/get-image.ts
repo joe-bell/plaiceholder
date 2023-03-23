@@ -131,7 +131,7 @@ interface IOptimizeImageOptions extends SharpModulateOptions {
   removeAlpha?: boolean;
   // Note: `autoOrient` is a no-op for images without EXIF data
   autoOrient?: boolean;
-  fit: keyof FitEnum;
+  fit?: keyof FitEnum;
 }
 interface IOptimizeImageReturn
   extends Record<
