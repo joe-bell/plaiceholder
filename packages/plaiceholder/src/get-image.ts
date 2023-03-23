@@ -185,9 +185,9 @@ const optimizeImage: IOptimizeImage = async (src, options) => {
 
   const pipeline =
     // Defaults to `false` (as pet defaults.ts)
-    options?.autoOrient === false
-      ? pipelineBeforeAutoOrient
-      : pipelineBeforeAutoOrient.rotate();
+    options?.autoOrient === true
+      ? pipelineBeforeAutoOrient.rotate()
+      : pipelineBeforeAutoOrient;
 
   const getOptimizedForBase64 = pipeline
     .clone()
