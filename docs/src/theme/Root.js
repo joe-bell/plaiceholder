@@ -18,6 +18,12 @@ function CustomRoot({ children }) {
 
         <link rel="apple-touch-icon" href="/assets/img/favicon@192px.png" />
         <meta name="apple-mobile-web-app-title" content={title} />
+
+        <script
+          defer
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon='{"token": "3faf15e4ce8d46cf9f7c55a06a6a3c5c"}'
+        ></script>
       </Head>
 
       {children}
