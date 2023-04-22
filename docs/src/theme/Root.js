@@ -2,11 +2,8 @@ import React from "react";
 import Head from "@docusaurus/Head";
 import { useThemeConfig } from "@docusaurus/theme-common";
 import { withUrl } from "../utils";
-import { inject } from "@vercel/analytics";
 
 function CustomRoot({ children }) {
-  inject();
-
   const { metaTags } = useThemeConfig();
 
   const title = metaTags.find((item) => item.name === "data-title").content;
