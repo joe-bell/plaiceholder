@@ -7,13 +7,23 @@ import { config } from "@/config";
 import { Layout } from "@/components/layout";
 
 export const getStaticProps = async () => {
-  const { svg, img } = await getPlaiceholder(
-    "https://images.unsplash.com/photo-1621961458348-f013d219b50c?auto=format&fit=crop&w=2850&q=80"
+  const src =
+    "https://images.unsplash.com/photo-1621961458348-f013d219b50c?auto=format&fit=crop&w=2850&q=80";
+
+  const buffer = await fetch(src).then(async (res) =>
+    Buffer.from(await res.arrayBuffer())
   );
+
+  const { svg, img } = await getPlaiceholder(buffer);
 
   return {
     props: {
-      img,
+      img: {
+        ...img,
+        src,
+        alt: "Snowy mountain peaks",
+        title: "Photo from Unsplash",
+      },
       svg,
       title: config.examples.pages.svg.title,
       heading: config.examples.variants.single.title,

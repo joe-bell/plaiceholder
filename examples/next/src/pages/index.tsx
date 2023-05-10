@@ -1,3 +1,5 @@
+import fs from "node:fs/promises";
+import glob from "glob";
 import * as React from "react";
 import { InferGetStaticPropsType } from "next";
 import Link from "next/link";
@@ -15,17 +17,18 @@ import {
 
 import { config } from "@/config";
 import { Layout } from "@/components/layout";
-import { getAllUnsplashImagePaths } from "@/lib/images";
 
 export const getStaticProps = async () => {
-  const imagePaths = getAllUnsplashImagePaths();
-
   const plaiceholders = await Promise.all(
-    imagePaths.map(async (src) => {
-      const { css } = await getPlaiceholder(src);
+    glob
+      .sync("./public/assets/images/unsplash/*.{jpg,png}")
+      .map(async (file) => {
+        const buffer = await fs.readFile(file);
 
-      return css;
-    })
+        const { css } = await getPlaiceholder(buffer);
+
+        return css;
+      })
   ).then((values) => values);
 
   return {
@@ -43,7 +46,7 @@ const Index: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
   <Layout variant="home" title="Next.js">
     <ul role="list" className={exampleList()}>
       {Object.keys(examples.pages).map((example, i) => (
-        <li className={exampleListItem()}>
+        <li key={example} className={exampleListItem()}>
           <div
             aria-hidden="true"
             className={exampleLQIP()}
@@ -60,7 +63,7 @@ const Index: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
             {Object.keys(examples.variants).map((variant) => {
               const href = `/${example}/${variant}`;
               return (
-                <li className={exampleNavItem()}>
+                <li key={variant} className={exampleNavItem()}>
                   <Link href={href}>
                     <a className={exampleLink()}>
                       {examples.variants[variant].title}

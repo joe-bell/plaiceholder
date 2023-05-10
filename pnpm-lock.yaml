@@ -151,6 +151,7 @@ importers:
       '@plaiceholder/tailwindcss': workspace:*
       '@plaiceholder/ui': workspace:*
       '@radix-ui/react-slot': 1.0.0
+      '@types/glob': 8.1.0
       '@types/node': 18.7.13
       '@types/react': 17.0.45
       autoprefixer: 10.4.8
@@ -183,6 +184,7 @@ importers:
       react-dom: 17.0.2_react@17.0.2
       sharp: 0.30.7
     devDependencies:
+      '@types/glob': 8.1.0
       '@types/node': 18.7.13
       '@types/react': 17.0.45
       autoprefixer: 10.4.8_postcss@8.4.16
@@ -202,7 +204,7 @@ importers:
       '@remix-run/react': 1.6.8
       '@remix-run/serve': 1.6.8
       '@remix-run/vercel': 1.6.8
-      '@types/glob': 7.2.0
+      '@types/glob': 8.1.0
       '@types/react': 17.0.45
       '@types/react-dom': 17.0.17
       '@vercel/node': 2.5.10
@@ -241,7 +243,7 @@ importers:
       '@remix-run/dev': 1.6.8_rm6hilvfhbxarrqqulcfevspou
       '@remix-run/eslint-config': 1.6.8_wqzgdjmagot3rzfjzlzjxnzutm
       '@remix-run/serve': 1.6.8_sfoxds7t5ydpegc3knd667wn6m
-      '@types/glob': 7.2.0
+      '@types/glob': 8.1.0
       '@types/react': 17.0.45
       '@types/react-dom': 17.0.17
       autoprefixer: 10.4.8_postcss@8.4.16
@@ -4166,7 +4168,14 @@ packages:
   /@types/glob/7.2.0:
     resolution: {integrity: sha512-ZUxbzKl0IfJILTS6t7ip5fQQM/J3TJYubDm3nMbgubNNYS62eXeUpoLUC8/7fJNiFYHTrGPQn7hspDUzIHX3UA==}
     dependencies:
-      '@types/minimatch': 5.1.0
+      '@types/minimatch': 5.1.2
+      '@types/node': 18.7.13
+    dev: true
+
+  /@types/glob/8.1.0:
+    resolution: {integrity: sha512-IO+MJPVhoqz+28h1qLAcBEH2+xHMK6MTyHJc7MTnnYb6wsoLR29POVGJ7LycmVXIqyy/4/2ShP5sUwTXuOwb/w==}
+    dependencies:
+      '@types/minimatch': 5.1.2
       '@types/node': 18.7.13
     dev: true
 
@@ -4235,8 +4244,8 @@ packages:
     resolution: {integrity: sha512-Klz949h02Gz2uZCMGwDUSDS1YBlTdDDgbWHi+81l29tQALUtvz4rAYi5uoVhE5Lagoq6DeqAUlbrHvW/mXDgdQ==}
     dev: true
 
-  /@types/minimatch/5.1.0:
-    resolution: {integrity: sha512-0RJHq5FqDWo17kdHe+SMDJLfxmLaqHbWnqZ6gNKzDvStUlrmx/eKIY17+ifLS1yybo7X86aUshQMlittDOVNnw==}
+  /@types/minimatch/5.1.2:
+    resolution: {integrity: sha512-K0VQKziLUWkVKiRVrx4a40iPaxTUefQmjtkQofBkYRcoaaL/8rhwDWww9qWbrgicNOgnpIsMxyNIUM4+n6dUIA==}
     dev: true
 
   /@types/minimist/1.2.2:

@@ -9,14 +9,23 @@ import { cx } from "class-variance-authority";
 import { Layout } from "@/components/layout";
 
 export const getStaticProps = async () => {
-  const { blurhash, img } = await getPlaiceholder(
-    "https://images.unsplash.com/photo-1621961458348-f013d219b50c?auto=format&fit=crop&w=2850&q=80",
-    { size: 16 }
+  const src =
+    "https://images.unsplash.com/photo-1621961458348-f013d219b50c?auto=format&fit=crop&w=2850&q=80";
+
+  const buffer = await fetch(src).then(async (res) =>
+    Buffer.from(await res.arrayBuffer())
   );
+
+  const { blurhash, img } = await getPlaiceholder(buffer, { size: 16 });
 
   return {
     props: {
-      img,
+      img: {
+        ...img,
+        src,
+        alt: "Snowy mountain peaks",
+        title: "Photo from Unsplash",
+      },
       blurhash,
       title: config.examples.pages.blurhash.title,
       heading: config.examples.variants.single.title,

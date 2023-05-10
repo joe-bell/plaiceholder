@@ -1,3 +1,5 @@
+import fs from "node:fs/promises";
+import path from "node:path";
 import * as React from "react";
 import { InferGetStaticPropsType } from "next";
 import Image from "next/future/image";
@@ -8,17 +10,20 @@ import { config } from "@/config";
 import { Layout } from "@/components/layout";
 import { cx } from "class-variance-authority";
 
-const getImagesFromPlaiceholders = (...classNames) =>
-  Promise.all(
-    classNames.map(async (className) => {
-      const { img } = await getPlaiceholder(extractImgSrc(className));
-
-      return { className, ...img };
-    })
-  );
-
 export const getStaticProps = async () => {
-  const images = await getImagesFromPlaiceholders(
+  const getImages = (...classNames: string[]) =>
+    Promise.all(
+      classNames.map(async (className) => {
+        const src = extractImgSrc(className);
+        const buffer = await fs.readFile(path.join("./public", src));
+
+        const { img } = await getPlaiceholder(buffer);
+
+        return { ...img, className, src };
+      })
+    );
+
+  const images = await getImages(
     "plaiceholder-[/assets/images/unsplash/alexander-ant-oR7HxvOe2YE.jpg]",
     "plaiceholder-[/assets/images/unsplash/alexander-ant-r7xdS9hjYYE.jpg]",
     "plaiceholder-[/assets/images/unsplash/solen-feyissa-0KXl7T2YU0I.jpg]",
@@ -57,7 +62,7 @@ const PageTailwindMultiple: React.FC<
               "z-[-1]"
             )}
           />
-          <Image {...image} />
+          <Image {...image} alt="Paint Splashes" title="Photo from Unsplash" />
         </li>
       ))}
     </ul>

@@ -35,7 +35,7 @@
     "@remix-run/dev": "1.6.8",
     "@remix-run/eslint-config": "1.6.8",
     "@remix-run/serve": "1.6.8",
-    "@types/glob": "7.2.0",
+    "@types/glob": "8.1.0",
     "@types/react": "17.0.45",
     "@types/react-dom": "17.0.17",
     "autoprefixer": "10.4.8",

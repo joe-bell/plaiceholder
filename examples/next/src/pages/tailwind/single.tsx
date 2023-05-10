@@ -1,3 +1,5 @@
+import fs from "node:fs/promises";
+import path from "node:path";
 import * as React from "react";
 import { InferGetStaticPropsType } from "next";
 import Image from "next/future/image";
@@ -10,11 +12,20 @@ import { cx } from "class-variance-authority";
 
 export const getStaticProps = async () => {
   const plaiceholder = "plaiceholder-[/assets/images/keila-joa@578.jpg]";
-  const { img } = await getPlaiceholder(extractImgSrc(plaiceholder));
+
+  const src = extractImgSrc(plaiceholder);
+  const buffer = await fs.readFile(path.join("./public", src));
+
+  const { img } = await getPlaiceholder(buffer);
 
   return {
     props: {
-      img,
+      img: {
+        ...img,
+        src,
+        alt: "Looking down Keila river, Estonia",
+        title: "Photo by Joe Bell",
+      },
       plaiceholder,
       title: config.examples.pages.tailwind.title,
       heading: config.examples.variants.single.title,

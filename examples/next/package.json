@@ -30,6 +30,7 @@
     "sharp": "0.30.7"
   },
   "devDependencies": {
+    "@types/glob": "8.1.0",
     "@types/node": "18.7.13",
     "@types/react": "17.0.45",
     "autoprefixer": "10.4.8",
