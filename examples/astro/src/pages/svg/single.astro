@@ -9,9 +9,18 @@ import Layout from "@/layouts/Layout.astro";
 const title = config.examples.pages.svg.title;
 const heading = config.examples.variants.single.title;
 
-const { svg, img } = await getPlaiceholder(
-  "https://images.unsplash.com/photo-1621961458348-f013d219b50c?auto=format&fit=crop&w=2850&q=80",
-  { size: 10 }
+const getImage = async (src: string) => {
+  const buffer = await fetch(src).then(async (res) =>
+    Buffer.from(await res.arrayBuffer())
+  );
+
+  const { img, ...plaiceholder } = await getPlaiceholder(buffer, { size: 10 });
+
+  return { ...plaiceholder, img: { ...img, src } };
+};
+
+const { svg, img } = await getImage(
+  "https://images.unsplash.com/photo-1621961458348-f013d219b50c?auto=format&fit=crop&w=2850&q=80"
 );
 
 const [Svg, svgProps, svgChildren] = svg;
@@ -37,7 +46,12 @@ const [Svg, svgProps, svgChildren] = svg;
           })
         }
       </Svg>
-      <Image {...img} format="jpeg" />
+      <Image
+        {...img}
+        alt="Snowy mountain peaks"
+        title="Photo from Unsplash"
+        format="jpeg"
+      />
     </li>
   </ul>
 </Layout>

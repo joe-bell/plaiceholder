@@ -1,4 +1,6 @@
 ---
+import fs from "node:fs/promises";
+import path from "node:path";
 import { cx } from "class-variance-authority";
 import { getPlaiceholder } from "plaiceholder";
 import { extractImgSrc } from "@plaiceholder/tailwindcss/utils";
@@ -9,16 +11,19 @@ import Layout from "@/layouts/Layout.astro";
 const title = config.examples.pages.tailwind.title;
 const heading = config.examples.variants.multiple.title;
 
-const getImagesFromPlaiceholders = (...classNames: string[]) =>
+const getImages = (...classNames: string[]) =>
   Promise.all(
     classNames.map(async (className) => {
-      const { img } = await getPlaiceholder(extractImgSrc(className));
+      const src = extractImgSrc(className);
+      const buffer = await fs.readFile(path.join("./public", src));
 
-      return { className, ...img };
+      const { img } = await getPlaiceholder(buffer);
+
+      return { ...img, className, src };
     })
   );
 
-const images = await getImagesFromPlaiceholders(
+const images = await getImages(
   "plaiceholder-[/assets/images/unsplash/alexander-ant-oR7HxvOe2YE.jpg]",
   "plaiceholder-[/assets/images/unsplash/alexander-ant-r7xdS9hjYYE.jpg]",
   "plaiceholder-[/assets/images/unsplash/solen-feyissa-0KXl7T2YU0I.jpg]",
@@ -53,7 +58,12 @@ const images = await getImagesFromPlaiceholders(
            *
            * So we'll use a regular ol' `<img>` instead:
            */}
-          <img loading="lazy" {...img} />
+          <img
+            {...img}
+            alt="Paint Splashes"
+            title="Photo from Unsplash"
+            loading="lazy"
+          />
         </li>
       ))
     }

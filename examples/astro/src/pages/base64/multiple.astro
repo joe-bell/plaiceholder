@@ -1,30 +1,30 @@
 ---
+import fs from "node:fs/promises";
+import glob from "tiny-glob";
 import { cx } from "class-variance-authority";
 import { getPlaiceholder } from "plaiceholder";
 import { imageList, imageListItem } from "@plaiceholder/ui";
 import { config } from "@/config";
 import Layout from "@/layouts/Layout.astro";
-import { getAllPublicUnsplashImagePaths } from "@/lib/images";
 
 const title = config.examples.pages.base64.title;
 const heading = config.examples.variants.multiple.title;
 
-const imagePaths = await getAllPublicUnsplashImagePaths();
+const getImages = async (pattern: string) =>
+  glob(pattern).then((files) =>
+    Promise.all(
+      files.map(async (file) => {
+        const src = file.replace("public", "");
+        const buffer = await fs.readFile(file);
 
-const images = await Promise.all(
-  imagePaths.map(async (src) => {
-    const { base64, img } = await getPlaiceholder(src);
+        const { img, ...plaiceholder } = await getPlaiceholder(buffer);
 
-    return {
-      img: {
-        ...img,
-        alt: "Paint Splashes",
-        title: "Photo from Unsplash",
-      },
-      base64,
-    };
-  })
-);
+        return { ...plaiceholder, img: { ...img, src } };
+      })
+    )
+  );
+
+const images = await getImages("./public/assets/images/unsplash/*.{jpg,png}");
 ---
 
 <Layout variant="example" title={title} heading={heading}>
@@ -52,7 +52,12 @@ const images = await Promise.all(
            * It's a little fiddly globbing over directories with the `Image`
            * component, so we'll use a regular ol' `<img>` instead:
            */}
-          <img {...img} loading="lazy" />
+          <img
+            {...img}
+            alt="Paint Splashes"
+            title="Photo from Unsplash"
+            loading="lazy"
+          />
         </li>
       ))
     }
