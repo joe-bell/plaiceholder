@@ -9,7 +9,7 @@ import {
 } from "./get-image";
 import { getSVG, TGetSVGReturn } from "./svg";
 
-export type TGetPlaiceholderSrc = TGetImageSrc;
+export type TGetPlaiceholderSrc = Buffer;
 export interface IGetPlaiceholderOptions extends IGetImageOptions {}
 export interface IGetPlaiceholderReturn extends Pick<IGetImageReturn, "img"> {
   base64: TGetBase64Return;
