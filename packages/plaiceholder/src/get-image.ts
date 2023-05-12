@@ -1,136 +1,23 @@
-import path from "path";
-import NodeCache from "node-cache";
-import fetch from "node-fetch";
 import sizeOf from "image-size";
 import sharp, { type Sharp } from "sharp";
 import { arrayChunk } from "./utils";
 import { defaults } from "./defaults";
 
-type TImage = Buffer | string;
-
-/* getImageSize
-   =========================================== */
-
-type TGetImageSizeParam = TImage;
-interface IGetImageSizeReturn {
-  height: number;
-  width: number;
-  type?: string;
-}
-
-interface IGetImageSize {
-  (file: TGetImageSizeParam): IGetImageSizeReturn;
-}
-
-const getImageSize: IGetImageSize = (file) => {
-  const { width, height, type } = sizeOf(file);
-
-  return {
-    width,
-    height,
-    type,
-  };
-};
-
-/* loadImage
-   =========================================== */
-
-const remoteImageCache = new NodeCache();
-
-interface ILoadRemoteImage {
-  (src: string): Promise<Buffer>;
-}
-
-const loadRemoteImage: ILoadRemoteImage = async (src) => {
-  const cachedImage = remoteImageCache.get(src);
-
-  if (typeof cachedImage === "undefined") {
-    const response = await fetch(src);
-    const buffer = await response.buffer();
-
-    remoteImageCache.set(src, buffer);
-
-    return buffer;
-  }
-
-  if (!Buffer.isBuffer(cachedImage))
-    throw Error(`Cached value for ${src} is invalid.`);
-
-  return cachedImage;
-};
-
-interface ILoadImageImg extends IGetImageSizeReturn {
-  src: string;
-}
-interface ILoadImageOptions {
-  dir?: string;
-}
-interface ILoadImageReturn {
-  img: ILoadImageImg;
-  file: TImage;
-}
-
-interface ILoadImage {
-  (imagePath: TImage, options: ILoadImageOptions): Promise<ILoadImageReturn>;
-}
-
-const loadImage: ILoadImage = async (imagePath, options) => {
-  if (Buffer.isBuffer(imagePath)) {
-    const imageSize = getImageSize(imagePath);
-
-    return {
-      file: imagePath,
-      img: {
-        src: null,
-        ...imageSize,
-      },
-    };
-  }
-
-  if (imagePath.startsWith("http")) {
-    const buffer = await loadRemoteImage(imagePath);
-    const imageSize = getImageSize(buffer);
-
-    return {
-      file: buffer,
-      img: {
-        src: imagePath,
-        ...imageSize,
-      },
-    };
-  }
-
-  if (!imagePath.startsWith("/"))
-    throw new Error(
-      `Failed to parse src \"${imagePath}\", if using relative image it must start with a leading slash "/"`
-    );
-
-  const file = path.join(options?.dir || defaults.dir, imagePath);
-  const imageSize = getImageSize(file);
-
-  return {
-    file,
-    img: {
-      src: imagePath,
-      ...imageSize,
-    },
-  };
-};
-
-/* optimizeImage
-   =========================================== */
-
 type SharpFormatOptions = Parameters<Sharp["toFormat"]>;
 type SharpModulateOptions = Parameters<Sharp["modulate"]>[0];
 
-interface IOptimizeImageOptions extends SharpModulateOptions {
+/* getImage
+   =========================================== */
+
+export type TGetImageSrc = Buffer;
+export interface IGetImageOptions extends SharpModulateOptions {
   size?: number;
   format?: SharpFormatOptions;
   // Note: `removeAlpha` is a no-op for blurhash
   //        See https://github.com/woltapp/blurhash/issues/100
   removeAlpha?: boolean;
 }
-interface IOptimizeImageReturn
+export interface IGetImageReturn
   extends Record<
     | "optimizedForBase64"
     | "optimizedForBlurhash"
@@ -142,13 +29,28 @@ interface IOptimizeImageReturn
       rawBuffer: number[];
       rows: number[][][];
     }
-  > {}
-
-interface IOptimizeImage {
-  (src: TImage, options?: IOptimizeImageOptions): Promise<IOptimizeImageReturn>;
+  > {
+  img: {
+    height: number;
+    width: number;
+    type?: string;
+  };
 }
 
-const optimizeImage: IOptimizeImage = async (src, options) => {
+export interface IGetImage {
+  (src: TGetImageSrc, options?: IGetImageOptions): Promise<IGetImageReturn>;
+}
+
+export const getImage: IGetImage = async (src, options) => {
+  /**
+   * `img` attributes
+   */
+  const { height, width, type } = sizeOf(src);
+  const img = { height, width, type };
+
+  /**
+   * Optimize images ready for placeholder creation
+   */
   const size = options?.size || defaults.size;
 
   const sizeMin = 4;
@@ -197,7 +99,7 @@ const optimizeImage: IOptimizeImage = async (src, options) => {
     .raw()
     .toBuffer({ resolveWithObject: true });
 
-  return Promise.all([
+  const optimized = await Promise.all([
     getOptimizedForBase64,
     getOptimizedForBlurhash,
     getOptimizedForPixels,
@@ -228,26 +130,6 @@ const optimizeImage: IOptimizeImage = async (src, options) => {
       console.error("transform failed", err);
       throw err;
     });
-};
-
-/* getImage
-   =========================================== */
-
-export type TGetImageSrc = TImage;
-export interface IGetImageOptions
-  extends ILoadImageOptions,
-    IOptimizeImageOptions {}
-export interface IGetImageReturn
-  extends Omit<ILoadImageReturn, "file">,
-    IOptimizeImageReturn {}
-
-export interface IGetImage {
-  (src: TGetImageSrc, options?: IGetImageOptions): Promise<IGetImageReturn>;
-}
-
-export const getImage: IGetImage = async (src, options) => {
-  const { file, img } = await loadImage(src, options);
-  const optimized = await optimizeImage(file, options);
 
   return {
     img,
