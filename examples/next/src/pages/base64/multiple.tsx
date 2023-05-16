@@ -15,18 +15,15 @@ export const getStaticProps = async () => {
         const src = file.replace("./public", "");
         const buffer = await fs.readFile(file);
 
-        const {
-          // Stubbing out `img` as we don't need dimensions when using
-          // `next/image` with the `fill` prop
-          img,
-          ...plaiceholder
-        } = await getPlaiceholder(buffer);
+        const plaiceholder = await getPlaiceholder(buffer);
 
         return { ...plaiceholder, img: { src } };
       })
     );
 
-  const images = await getImages("./public/assets/images/unsplash/*.{jpg,png}");
+  const images = await getImages("./public/assets/images/unsplash/*.{jpg,png}")
+    // pick essential keys to prevent page bloat
+    .then((images) => images.map(({ base64, img }) => ({ base64, img })));
 
   return {
     props: {

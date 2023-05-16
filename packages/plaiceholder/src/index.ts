@@ -1,5 +1,4 @@
-import sizeOf from "image-size";
-import sharp, { type Sharp } from "sharp";
+import sharp, { type Sharp, type Metadata } from "sharp";
 
 /* Utils
    =========================================== */
@@ -22,14 +21,6 @@ export const ACCEPTED_FILE_TYPES = ["jpeg", "png"] as const;
 
 type SharpFormatOptions = Parameters<Sharp["toFormat"]>;
 type SharpModulateOptions = Parameters<Sharp["modulate"]>[0];
-
-/* getImg
-   =========================================== */
-
-const getImg = (data: Buffer) => {
-  const { height, width, type } = sizeOf(data);
-  return { height, width, type };
-};
 
 /* getPixels
    =========================================== */
@@ -229,11 +220,8 @@ export interface IGetPlaiceholderOptions extends SharpModulateOptions {
   removeAlpha?: boolean;
 }
 export interface IGetPlaiceholderReturn {
-  img: {
-    height: number;
-    width: number;
-    type?: string;
-  };
+  metadata: Omit<Metadata, "width" | "height"> &
+    Required<Pick<Metadata, "width" | "height">>;
   base64: string;
   css: IGetCSSReturn;
   svg: TGetSVGReturn;
@@ -255,10 +243,20 @@ export const getPlaiceholder: IGetPlaiceholder = async (
     saturation = 1.2,
     removeAlpha = true,
     ...options
-  }
+  } = {}
 ) => {
   /* Optimize
    =========================================== */
+
+  const metadata = await sharp(src)
+    .metadata()
+    .then(({ width, height, ...metadata }) => {
+      if (!width || !height) {
+        throw Error("Could not get required image metadata");
+      }
+
+      return { width, height, ...metadata };
+    });
 
   const sizeMin = 4;
   const sizeMax = 64;
@@ -289,16 +287,6 @@ export const getPlaiceholder: IGetPlaiceholder = async (
 
   /* Returns
    =========================================== */
-
-  const img = getImg(src);
-
-  const imgNew = await sharp(src)
-    .metadata()
-    .then(({ height, width, format }) => ({
-      height,
-      width,
-      type: format,
-    }));
 
   const base64 = await pipeline
     .clone()
@@ -332,8 +320,7 @@ export const getPlaiceholder: IGetPlaiceholder = async (
     });
 
   return {
-    img,
-    imgNew,
+    metadata,
     css,
     base64,
     svg,

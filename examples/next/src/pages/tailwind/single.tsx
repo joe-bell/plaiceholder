@@ -11,18 +11,25 @@ import { Layout } from "@/components/layout";
 import { cx } from "class-variance-authority";
 
 export const getStaticProps = async () => {
-  const plaiceholder = "plaiceholder-[/assets/images/keila-joa@578.jpg]";
+  const getImage = async (plaiceholder: string) => {
+    const src = extractImgSrc(plaiceholder);
+    const buffer = await fs.readFile(path.join("./public", src));
 
-  const src = extractImgSrc(plaiceholder);
-  const buffer = await fs.readFile(path.join("./public", src));
+    const {
+      metadata: { height, width },
+    } = await getPlaiceholder(buffer);
 
-  const { img } = await getPlaiceholder(buffer);
+    return { plaiceholder, img: { src, height, width } };
+  };
+
+  const { plaiceholder, img } = await getImage(
+    "plaiceholder-[/assets/images/keila-joa@578.jpg]"
+  );
 
   return {
     props: {
       img: {
         ...img,
-        src,
         alt: "Looking down Keila river, Estonia",
         title: "Photo by Joe Bell",
       },

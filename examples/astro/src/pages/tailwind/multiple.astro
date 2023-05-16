@@ -13,13 +13,15 @@ const heading = config.examples.variants.multiple.title;
 
 const getImages = (...classNames: string[]) =>
   Promise.all(
-    classNames.map(async (className) => {
-      const src = extractImgSrc(className);
+    classNames.map(async (plaiceholder) => {
+      const src = extractImgSrc(plaiceholder);
       const buffer = await fs.readFile(path.join("./public", src));
 
-      const { img } = await getPlaiceholder(buffer);
+      const {
+        metadata: { height, width },
+      } = await getPlaiceholder(buffer);
 
-      return { ...img, className, src };
+      return { plaiceholder, img: { src, height, width } };
     })
   );
 
@@ -36,11 +38,11 @@ const images = await getImages(
 <Layout variant="example" title={title} heading={heading}>
   <ul role="list" class={imageList({ columns: 3, aspect: "5/7" })}>
     {
-      images.map(({ className, ...img }) => (
+      images.map(({ plaiceholder, img }) => (
         <li class={imageListItem()}>
           <div
             class={cx(
-              className,
+              plaiceholder,
               "absolute",
               "inset-0",
               "w-full",

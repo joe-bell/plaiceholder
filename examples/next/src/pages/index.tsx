@@ -19,28 +19,35 @@ import { config } from "@/config";
 import { Layout } from "@/components/layout";
 
 export const getStaticProps = async () => {
-  const plaiceholders = await Promise.all(
-    glob
-      .sync("./public/assets/images/unsplash/*.{jpg,png}")
-      .map(async (file) => {
+  const getImages = async (pattern: string) =>
+    Promise.all(
+      glob.sync(pattern).map(async (file) => {
+        const src = file.replace("./public", "");
         const buffer = await fs.readFile(file);
 
-        const { css } = await getPlaiceholder(buffer);
+        const {
+          metadata: { height, width },
+          ...plaiceholder
+        } = await getPlaiceholder(buffer);
 
-        return css;
+        return { ...plaiceholder, img: { src, height, width } };
       })
-  ).then((values) => values);
+    );
+
+  const images = await getImages("./public/assets/images/unsplash/*.{jpg,png}")
+    // pick essential keys to prevent page bloat
+    .then((images) => images.map(({ css }) => ({ css })));
 
   return {
     props: {
-      plaiceholders,
+      images,
       examples: config.examples,
     },
   };
 };
 
 const Index: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
-  plaiceholders,
+  images,
   examples,
 }) => (
   <Layout variant="home" title="Next.js">
@@ -50,7 +57,7 @@ const Index: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
           <div
             aria-hidden="true"
             className={exampleLQIP()}
-            style={plaiceholders[i]}
+            style={images[i].css}
           />
 
           <p className={exampleBody()}>

@@ -13,13 +13,15 @@ import { cx } from "class-variance-authority";
 export const getStaticProps = async () => {
   const getImages = (...classNames: string[]) =>
     Promise.all(
-      classNames.map(async (className) => {
-        const src = extractImgSrc(className);
+      classNames.map(async (plaiceholder) => {
+        const src = extractImgSrc(plaiceholder);
         const buffer = await fs.readFile(path.join("./public", src));
 
-        const { img } = await getPlaiceholder(buffer);
+        const {
+          metadata: { height, width },
+        } = await getPlaiceholder(buffer);
 
-        return { ...img, className, src };
+        return { plaiceholder, img: { src, height, width } };
       })
     );
 
@@ -46,15 +48,15 @@ const PageTailwindMultiple: React.FC<
 > = ({ images, title, heading }) => (
   <Layout variant="example" title={title} heading={heading}>
     <ul role="list" className={imageList({ columns: 3, aspect: "5/7" })}>
-      {images.map(({ className, ...image }) => (
-        <li key={image.src} className={imageListItem()}>
+      {images.map(({ plaiceholder, img }) => (
+        <li key={img.src} className={imageListItem()}>
           <div
             className={cx(
               "absolute",
               "inset-0",
               "w-full",
               "h-full",
-              className,
+              plaiceholder,
               "transform",
               "scale-150",
               "filter",
@@ -62,7 +64,7 @@ const PageTailwindMultiple: React.FC<
               "z-[-1]"
             )}
           />
-          <Image {...image} alt="Paint Splashes" title="Photo from Unsplash" />
+          <Image {...img} alt="Paint Splashes" title="Photo from Unsplash" />
         </li>
       ))}
     </ul>

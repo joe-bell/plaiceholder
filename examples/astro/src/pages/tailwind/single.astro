@@ -11,18 +11,20 @@ import Layout from "@/layouts/Layout.astro";
 const title = config.examples.pages.tailwind.title;
 const heading = config.examples.variants.single.title;
 
-const getImage = async (className: string) => {
-  const src = extractImgSrc(className);
+const getImage = async (plaiceholder: string) => {
+  const src = extractImgSrc(plaiceholder);
   const buffer = await fs.readFile(path.join("./public", src));
 
-  const { img } = await getPlaiceholder(buffer, { size: 10 });
+  const {
+    metadata: { height, width },
+  } = await getPlaiceholder(buffer);
 
-  return { ...img, src };
+  return { plaiceholder, img: { src, height, width } };
 };
 
-const plaiceholder = "plaiceholder-[/assets/images/keila-joa@578.jpg]";
-
-const img = await getImage(plaiceholder);
+const { plaiceholder, img } = await getImage(
+  "plaiceholder-[/assets/images/keila-joa@578.jpg]"
+);
 ---
 
 <Layout variant="example" title={title} heading={heading}>
