@@ -27,8 +27,6 @@ There is no "one-size-fits-all" LQIP strategy, so we offer them all…
   ~1.2kB when rendered in HTML
 - [**Base64**](/usage#base64)  
   ~300B asset size
-- [**Blurhash**](/usage#blurhash)  
-  Size TBC (but ~3.6kB if using [`react-blurhash`](https://bundlephobia.com/package/react-blurhash))
 
 Give each strategy a try to see what works best for your individual use-case.
 
@@ -42,6 +40,3 @@ Whilst most strategies offer fast `DOMContentLoaded` and `LCP`, it's important t
   Doesn't (yet) leverage [SVG filter primitives](https://developer.mozilla.org/en-US/Web/SVG/Element/feGaussianBlur)
 - [**Base64**](/usage#base64)  
   Not the nicest looking. Even though plaiceholder makes an opinionated choice to slightly increase saturation for base64 images under-the-hood, colors can often appear drab
-- [**Blurhash**](/usage#blurhash)  
-  Uses `canvas`, so it's not ideal to use with above-the-fold content.  
-  [Doesn't account for transparency](https://github.com/woltapp/blurhash/issues/100).

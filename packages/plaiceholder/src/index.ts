@@ -1,17 +1,5 @@
 import sizeOf from "image-size";
 import sharp, { type Sharp } from "sharp";
-import { encode } from "blurhash";
-
-/* Defaults
-   =========================================== */
-
-const defaults: IGetPlaiceholderOptions = {
-  size: 4,
-  format: ["png"],
-  brightness: 1,
-  saturation: 1.2,
-  removeAlpha: true,
-};
 
 /* Utils
    =========================================== */
@@ -43,6 +31,30 @@ const getImg = (data: Buffer) => {
   return { height, width, type };
 };
 
+/* getPixels
+   =========================================== */
+
+const getPixels = ({
+  data,
+  info,
+}: {
+  data: Buffer;
+  info: sharp.OutputInfo;
+}) => {
+  const { channels, width } = info;
+
+  // !@TODO
+  // switch to unit8?
+  const rawBuffer = [].concat(...data) as number[];
+  const allPixels = arrayChunk(rawBuffer, channels) as number[][][];
+  const rows = arrayChunk(allPixels, width) as number[][][];
+
+  return {
+    rawBuffer,
+    rows,
+  };
+};
+
 /* getCSS
    =========================================== */
 
@@ -63,10 +75,12 @@ export interface IGetCSSReturn
   > {}
 
 export interface IGetCSS {
-  (options: IGetCSSOptions): IGetCSSReturn;
+  (options: { data: Buffer; info: sharp.OutputInfo }): IGetCSSReturn;
 }
 
-export const getCSS: IGetCSS = ({ info, rows }) => {
+export const getCSS: IGetCSS = ({ data, info }) => {
+  const { rows } = getPixels({ data, info });
+
   const linearGradients = rows.map((row) => {
     const pixels = row.map((pixel) =>
       pixel.length === 4 ? rgba(pixel) : rgb(pixel)
@@ -119,8 +133,6 @@ type TRects = [
 export interface IGetSVGOptions {
   data: Buffer;
   info: sharp.OutputInfo;
-  rawBuffer: number[];
-  rows: number[][][];
 }
 export type TGetSVGReturn = [
   "svg",
@@ -140,7 +152,9 @@ export interface IGetSVG {
   (options: IGetSVGOptions): TGetSVGReturn;
 }
 
-export const getSVG: IGetSVG = ({ data, info, rawBuffer }) => {
+export const getSVG: IGetSVG = ({ data, info }) => {
+  const { rawBuffer } = getPixels({ data, info });
+
   const { channels, width, height } = info;
 
   const pixels = arrayChunk(rawBuffer, channels).map((value) => {
@@ -212,8 +226,6 @@ export type TGetPlaiceholderSrc = Buffer;
 export interface IGetPlaiceholderOptions extends SharpModulateOptions {
   size?: number;
   format?: SharpFormatOptions;
-  // Note: `removeAlpha` is a no-op for blurhash
-  //        See https://github.com/woltapp/blurhash/issues/100
   removeAlpha?: boolean;
 }
 export interface IGetPlaiceholderReturn {
@@ -223,11 +235,6 @@ export interface IGetPlaiceholderReturn {
     type?: string;
   };
   base64: string;
-  blurhash: {
-    hash: string;
-    height: number;
-    width: number;
-  };
   css: IGetCSSReturn;
   svg: TGetSVGReturn;
 }
@@ -239,11 +246,19 @@ export interface IGetPlaiceholder {
   ): Promise<IGetPlaiceholderReturn>;
 }
 
-export const getPlaiceholder: IGetPlaiceholder = async (src, options) => {
+export const getPlaiceholder: IGetPlaiceholder = async (
+  src,
+  {
+    size = 4,
+    format = ["png"],
+    brightness = 1,
+    saturation = 1.2,
+    removeAlpha = true,
+    ...options
+  }
+) => {
   /* Optimize
    =========================================== */
-
-  const size = options?.size || defaults.size;
 
   const sizeMin = 4;
   const sizeMax = 64;
@@ -259,17 +274,16 @@ export const getPlaiceholder: IGetPlaiceholder = async (src, options) => {
     .resize(size, size, {
       fit: "inside",
     })
-    .toFormat(...(options?.format || defaults?.format))
+    .toFormat(...format)
     .modulate({
-      brightness: options?.brightness || defaults?.brightness,
-      saturation: options?.saturation || defaults?.saturation,
+      brightness,
+      saturation,
       ...(options?.hue ? { hue: options?.hue } : {}),
       ...(options?.lightness ? { lightness: options?.lightness } : {}),
     });
 
   const pipeline =
-    // Defaults to `true` (as pet defaults.ts)
-    options?.removeAlpha === false
+    removeAlpha === false
       ? pipelineBeforeAlpha
       : pipelineBeforeAlpha.removeAlpha();
 
@@ -277,6 +291,14 @@ export const getPlaiceholder: IGetPlaiceholder = async (src, options) => {
    =========================================== */
 
   const img = getImg(src);
+
+  const imgNew = await sharp(src)
+    .metadata()
+    .then(({ height, width, format }) => ({
+      height,
+      width,
+      type: format,
+    }));
 
   const base64 = await pipeline
     .clone()
@@ -291,43 +313,17 @@ export const getPlaiceholder: IGetPlaiceholder = async (src, options) => {
       throw err;
     });
 
-  const blurhash =
-    // See above note about `removeAlpha`
-    await pipelineBeforeAlpha
-      .clone()
-      .raw()
-      .ensureAlpha()
-      .toBuffer({ resolveWithObject: true })
-      .then(({ data, info: { height, width } }) => {
-        const hash = encode(new Uint8ClampedArray(data), width, height, 4, 4);
-
-        return {
-          hash,
-          height,
-          width,
-        };
-      })
-      .catch((err) => {
-        console.error("blurhash generation failed", err);
-        throw err;
-      });
-
-  const pixels = await pipeline
+  const { css, svg } = await pipeline
     .clone()
     .raw()
     .toBuffer({ resolveWithObject: true })
     .then(({ data, info }) => {
-      const { channels, width } = info;
-
-      const rawBuffer = [].concat(...data) as number[];
-      const allPixels = arrayChunk(rawBuffer, channels) as number[][][];
-      const rows = arrayChunk(allPixels, width) as number[][][];
+      const css = getCSS({ data, info });
+      const svg = getSVG({ data, info });
 
       return {
-        data,
-        info,
-        rawBuffer,
-        rows,
+        css,
+        svg,
       };
     })
     .catch((err) => {
@@ -335,15 +331,11 @@ export const getPlaiceholder: IGetPlaiceholder = async (src, options) => {
       throw err;
     });
 
-  const css = getCSS(pixels);
-
-  const svg = getSVG(pixels);
-
   return {
     img,
+    imgNew,
     css,
     base64,
-    blurhash,
     svg,
   };
 };

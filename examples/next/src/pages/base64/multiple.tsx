@@ -18,7 +18,7 @@ export const getStaticProps = async () => {
         const {
           // Stubbing out `img` as we don't need dimensions when using
           // `next/image` with the `fill` prop
-          img: _,
+          img,
           ...plaiceholder
         } = await getPlaiceholder(buffer);
 

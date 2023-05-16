@@ -105,8 +105,6 @@ Copyright © 2013-2022, Lovell Fuller. All Rights Reserved.
 Licensed under the Apache License, Version 2.0 (the "License").
 
 [plaiceholder]: https://plaiceholder.co
-[blurhash]: https://blurha.sh/
-[react-blurhash]: https://github.com/woltapp/react-blurhash
 [next/image]: https://nextjs.org/docs/basic-features/image-optimization
 
 ---

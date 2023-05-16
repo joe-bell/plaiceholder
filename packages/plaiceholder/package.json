@@ -9,7 +9,6 @@
   "homepage": "https://github.com/joe-bell/plaiceholder#readme",
   "keywords": [
     "base64",
-    "blurhash",
     "css",
     "lqip",
     "placeholder",
@@ -34,11 +33,8 @@
     "sharp": ">= 0.30.6"
   },
   "dependencies": {
-    "blurhash": "1.1.5",
     "encoding": "0.1.13",
-    "image-size": "1.0.2",
-    "node-cache": "5.1.2",
-    "node-fetch": "2.6.7"
+    "image-size": "1.0.2"
   },
   "devDependencies": {
     "@types/node": "18.7.13",

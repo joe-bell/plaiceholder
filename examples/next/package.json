@@ -19,13 +19,11 @@
     "@plaiceholder/tailwindcss": "workspace:*",
     "@plaiceholder/ui": "workspace:*",
     "@radix-ui/react-slot": "1.0.0",
-    "blurhash": "1.1.5",
     "class-variance-authority": "0.2.3",
     "glob": "8.0.3",
     "next": "12.2.5",
     "plaiceholder": "workspace:*",
     "react": "17.0.2",
-    "react-blurhash": "0.1.3",
     "react-dom": "17.0.2",
     "sharp": "0.30.7"
   },

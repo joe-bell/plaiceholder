@@ -23,9 +23,6 @@ export const config = {
       base64: {
         title: "Base64",
       },
-      blurhash: {
-        title: "Blurhash",
-      },
     },
   },
 } as const;
