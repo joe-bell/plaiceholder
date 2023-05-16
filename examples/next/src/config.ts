@@ -23,6 +23,9 @@ export const config = {
       base64: {
         title: "Base64",
       },
+      color: {
+        title: "Color",
+      },
     },
   },
 } as const;

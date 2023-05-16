@@ -223,6 +223,12 @@ export interface IGetPlaiceholderReturn {
   metadata: Omit<Metadata, "width" | "height"> &
     Required<Pick<Metadata, "width" | "height">>;
   base64: string;
+  color: {
+    hex: string;
+    r: number;
+    g: number;
+    b: number;
+  };
   css: IGetCSSReturn;
   svg: TGetSVGReturn;
 }
@@ -288,6 +294,19 @@ export const getPlaiceholder: IGetPlaiceholder = async (
   /* Returns
    =========================================== */
 
+  const color = await pipeline
+    .clone()
+    .stats()
+    .then(({ dominant: { r, g, b } }) => {
+      return {
+        r,
+        g,
+        b,
+        hex:
+          "#" + [r, g, b].map((x) => x.toString(16).padStart(2, "0")).join(""),
+      };
+    });
+
   const base64 = await pipeline
     .clone()
     .normalise()
@@ -321,6 +340,7 @@ export const getPlaiceholder: IGetPlaiceholder = async (
 
   return {
     metadata,
+    color,
     css,
     base64,
     svg,

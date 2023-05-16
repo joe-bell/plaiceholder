@@ -1,0 +1,67 @@
+---
+import fs from "node:fs/promises";
+import glob from "tiny-glob";
+import { cx } from "class-variance-authority";
+import { getPlaiceholder } from "plaiceholder";
+import { imageList, imageListItem } from "@plaiceholder/ui";
+import { config } from "@/config";
+import Layout from "@/layouts/Layout.astro";
+
+const title = config.examples.pages.color.title;
+const heading = config.examples.variants.multiple.title;
+
+const getImages = async (pattern: string) =>
+  glob(pattern).then((files) =>
+    Promise.all(
+      files.map(async (file) => {
+        const src = file.replace("public", "");
+        const buffer = await fs.readFile(file);
+
+        const {
+          metadata: { height, width },
+          ...plaiceholder
+        } = await getPlaiceholder(buffer);
+
+        return { ...plaiceholder, img: { src, height, width } };
+      })
+    )
+  );
+
+const images = await getImages("./public/assets/images/unsplash/*.{jpg,png}");
+---
+
+<Layout variant="example" title={title} heading={heading}>
+  <ul role="list" class={imageList({ columns: 3, aspect: "5/7" })}>
+    {
+      images.map(({ img, color }) => (
+        <li class={imageListItem()}>
+          <div
+            aria-hidden
+            style={{ backgroundColor: color.hex }}
+            class={cx(
+              "absolute",
+              "inset-0",
+              "w-full",
+              "h-full",
+              "transform",
+              "scale-150",
+              "filter",
+              "blur-2xl",
+              "z-[-1]"
+            )}
+          />
+          {/**
+           * It's a little fiddly globbing over directories with the `Image`
+           * component, so we'll use a regular ol' `<img>` instead:
+           */}
+          <img
+            {...img}
+            alt="Paint Splashes"
+            title="Photo from Unsplash"
+            loading="lazy"
+          />
+        </li>
+      ))
+    }
+  </ul>
+</Layout>
