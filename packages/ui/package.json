@@ -17,11 +17,11 @@
     "lint:ts": "tsc --noEmit"
   },
   "peerDependencies": {
-    "class-variance-authority": "0.2.3"
+    "class-variance-authority": "0.6.0"
   },
   "devDependencies": {
-    "class-variance-authority": "0.2.3",
-    "typescript": "4.7.4"
+    "class-variance-authority": "0.6.0",
+    "typescript": "5.0.4"
   },
   "sideEffects": false
 }

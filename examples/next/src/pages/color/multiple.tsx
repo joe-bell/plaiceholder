@@ -2,7 +2,7 @@ import fs from "node:fs/promises";
 import glob from "glob";
 import * as React from "react";
 import { InferGetStaticPropsType } from "next";
-import Image from "next/future/image";
+import Image from "next/image";
 import { getPlaiceholder } from "plaiceholder";
 import { imageList, imageListItem } from "@plaiceholder/ui";
 import { config } from "@/config";

@@ -71,10 +71,8 @@ const Index: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
               const href = `/${example}/${variant}`;
               return (
                 <li key={variant} className={exampleNavItem()}>
-                  <Link href={href}>
-                    <a className={exampleLink()}>
-                      {examples.variants[variant].title}
-                    </a>
+                  <Link href={href} className={exampleLink()}>
+                    {examples.variants[variant].title}
                   </Link>
                 </li>
               );

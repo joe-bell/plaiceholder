@@ -1,9 +1,4 @@
----
-sidebar_position: 3
----
-
-import Tabs from "@theme/Tabs";
-import TabItem from "@theme/TabItem";
+import { Callout, Tab, Tabs } from "nextra-theme-docs";
 
 # Usage
 
@@ -25,11 +20,11 @@ getPlaiceholder(src, options);
 
     Under-the-hood, plaiceholder uses [Sharp](https://sharp.pixelplumbing.com) to transform images; a small selection of options have been exposed for further customization:
 
-    :::note
+    <Callout type="info">
 
     Plaiceholder has no plans to expand these options. If you need more control on the ouput, we recommend rolling your own Sharp-based LQIP solution.
 
-    :::
+    </Callout>
 
     - `brightness`: brightness multiplier (default: `1`)
     - `format`: force output to a [specified output](https://sharp.pixelplumbing.com/api-output#toformat) (default: `["png"]`)
@@ -48,16 +43,8 @@ For a "blurred" effect, extend the returned styles with `filter: blur(<value>)` 
 
 #### Example
 
-<Tabs
-  groupId="example"
-  defaultValue="node"
-  values={[
-    { label: "Node.js", value: "node" },
-    { label: "Next.js", value: "next" },
-    { label: "11ty", value: "11ty" },
-  ]}
->
-<TabItem value="node">
+<Tabs items={["Node.js", "Next.js", "11ty"]}>
+<Tab>
 
 ```js
 import { getPlaiceholder } from "plaiceholder";
@@ -79,10 +66,10 @@ try {
 // }
 ```
 
-</TabItem>
-<TabItem value="next">
+</Tab>
+<Tab>
 
-```tsx title="pages/example.tsx"
+```tsx filename="pages/example.tsx"
 import * as React from "react";
 import type { InferGetStaticPropsType } from "next";
 import Image from "next/image";
@@ -126,7 +113,7 @@ const Page: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
 export default Page;
 ```
 
-</TabItem>
+</Tab>
 </Tabs>
 
 ### `svg`
@@ -135,26 +122,16 @@ Converts a specified image into a low-res placeholder, outputted as an SVG.
 
 For a "blurred" effect, extend the returned SVG's styles with `filter: blur(<value>)` and `transform: scale(<value>)`.
 
-:::note
+<Callout type="info">
 
 Although it returns the SVG in the format of [`React.createElement()`](https://reactjs.org/docs/react-api.html#createelement) arguments, you are not constrained to using React.js.
 
-e.g. See the 11ty example.
-
-:::
+</Callout>
 
 #### Example
 
-<Tabs
-  groupId="example"
-  defaultValue="node"
-  values={[
-    { label: "Node.js", value: "node" },
-    { label: "Next.js", value: "next" },
-    { label: "11ty", value: "11ty" },
-  ]}
->
-<TabItem value="node">
+<Tabs items={["Node.js", "Next.js", "11ty"]}>
+<Tab>
 
 ```js
 import { getPlaiceholder } from "plaiceholder";
@@ -181,10 +158,10 @@ try {
 // ]
 ```
 
-</TabItem>
-<TabItem value="next">
+</Tab>
+<Tab>
 
-```tsx title="pages/example.tsx"
+```tsx filename="pages/example.tsx"
 import * as React from "react";
 import type { InferGetStaticPropsType } from "next";
 import Image from "next/image";
@@ -231,7 +208,7 @@ const Page: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
 export default Page;
 ```
 
-</TabItem>
+</Tab>
 </Tabs>
 
 ### `base64`
@@ -242,16 +219,8 @@ For a "blurred" effect, add `filter: blur(<value>)` and `transform: scale(<value
 
 #### Example
 
-<Tabs
-  groupId="example"
-  defaultValue="node"
-  values={[
-    { label: "Node.js", value: "node" },
-    { label: "Next.js", value: "next" },
-    { label: "11ty", value: "11ty" },
-  ]}
->
-<TabItem value="node">
+<Tabs items={["Node.js", "Next.js", "11ty"]}>
+<Tab>
 
 ```js
 import { getPlaiceholder } from "plaiceholder";
@@ -268,10 +237,10 @@ try {
 // data:image/jpeg;base64,/9j/2wBDAAYEBQY…
 ```
 
-</TabItem>
-<TabItem value="next">
+</Tab>
+<Tab>
 
-```tsx title="pages/example.tsx"
+```tsx filename="pages/example.tsx"
 import * as React from "react";
 import type { InferGetStaticPropsType } from "next";
 import Image from "next/image";
@@ -301,7 +270,7 @@ const Page: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
 export default Page;
 ```
 
-</TabItem>
+</Tab>
 </Tabs>
 
 ### `img`

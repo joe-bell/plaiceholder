@@ -34,19 +34,20 @@ export type TLayoutProps =
   | { variant: "home"; title: string; heading?: null }
   | { variant?: null; title?: null; heading?: null };
 
-export const Layout: React.FC<TLayoutProps> = ({ children, ...props }) => (
+export const Layout: React.FC<React.PropsWithChildren<TLayoutProps>> = ({
+  children,
+  ...props
+}) => (
   <React.Fragment>
     <Head />
     <header className={layoutHeader()}>
       <div className={layoutHeaderContainer()}>
-        <NextLink href="/">
-          <a className={logo()}>
-            <span className={logoBrand()}>plaiceholder</span>
-            <span className={logoIcon()}>
-              <img alt="Plaice Fish" src="/assets/logo@192px.png" />
-            </span>
-            <span className={logoTitle()}>Next</span>
-          </a>
+        <NextLink href="/" className={logo()}>
+          <span className={logoBrand()}>plaiceholder</span>
+          <span className={logoIcon()}>
+            <img alt="Plaice Fish" src="/assets/logo@192px.png" />
+          </span>
+          <span className={logoTitle()}>Next</span>
         </NextLink>
 
         <ul role="list" className={socialList()}>
@@ -135,24 +136,22 @@ export const Layout: React.FC<TLayoutProps> = ({ children, ...props }) => (
                 </article>
 
                 <nav className={backBar()}>
-                  <NextLink href="/" passHref>
-                    <a className={backBarLink()}>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className={icon({ size: 4 })}
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M15 19l-7-7 7-7"
-                        />
-                      </svg>
-                      Back to Examples
-                    </a>
+                  <NextLink href="/" className={backBarLink()}>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className={icon({ size: 4 })}
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M15 19l-7-7 7-7"
+                      />
+                    </svg>
+                    Back to Examples
                   </NextLink>
                 </nav>
               </React.Fragment>

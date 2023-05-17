@@ -1,25 +1,27 @@
+import { Callout, Tab, Tabs } from "nextra-theme-docs";
+
 # Tailwind
 
-:::note
+<Callout type="info">
 
 Due to limitations with Tailwind's JIT engine:
 
 1. `@plaiceholder/tailwindcss` only supports **Local** images.
 2. Images must not have an `_` in their name (Tailwind treats this as a space)
 
-:::
+</Callout>
 
 ## Installation
 
 1. Install the package alongside your existing [`tailwindcss`](https://tailwindcss.com/docs/installation) and [`plaiceholder`](/getting-started) installation:
 
-   ```sh npm2yarn
+   ```sh
    npm install @plaiceholder/tailwindcss
    ```
 
 2. Add the plugin to your `tailwind.config.js`:
 
-   ```js title="tailwind.config.js" {2,8}
+   ```js filename="tailwind.config.js" {7}
    module.exports = {
      content: [],
      theme: {
@@ -34,15 +36,6 @@ Due to limitations with Tailwind's JIT engine:
 
 Once installed, pure CSS image LQIPs can be created with the following JIT class format:
 
-<Tabs
-groupId="tailwind-example"
-defaultValue="html"
-values={[
-{ label: "HTML", value: "html" },
-{ label: "React.js", value: "react" },
-]}>
-<TabItem value="html">
-
 ```html
 <!-- 
    returns a pure CSS LQIP for 
@@ -51,30 +44,7 @@ values={[
 <div class="plaiceholder-[/path-to-your-image.jpg]" />
 ```
 
-</TabItem>
-<TabItem value="react">
-
-```jsx
-const Example = () => (
-  // returns a pure CSS LQIP for
-  // `./public/path-to-your-image.jpg`
-  <div className="plaiceholder-[/path-to-your-image.jpg]" />
-);
-```
-
-</TabItem>
-</Tabs>
-
 The class **only** returns the "pixels" (`linear-gradient` values), allowing you to configure your preferred "blur" effect:
-
-<Tabs
-groupId="tailwind-example"
-defaultValue="html"
-values={[
-{ label: "HTML", value: "html" },
-{ label: "React.js", value: "react" },
-]}>
-<TabItem value="html">
 
 ```html
 <!-- 
@@ -85,20 +55,6 @@ values={[
   class="plaiceholder-[/path-to-your-image.jpg] transform scale-150 filter blur-2xl"
 />
 ```
-
-</TabItem>
-<TabItem value="react">
-
-```jsx
-const Example = () => (
-  // returns a pure CSS LQIP for
-  // `./public/path-to-your-image.jpg`
-  <div className="plaiceholder-[/path-to-your-image.jpg] transform scale-150 filter blur-2xl" />
-);
-```
-
-</TabItem>
-</Tabs>
 
 ## Utils
 
@@ -119,14 +75,8 @@ To circumvent this, `@plaiceholder/tailwindcss` offers an additional `utils` ent
 
 For example, in a Next.js setup.
 
-<Tabs
-groupId="example"
-defaultValue="node"
-values={[
-{ label: "Node.js", value: "node" },
-{ label: "Next.js", value: "next" },
-]}>
-<TabItem value="node">
+<Tabs items={["Node.js", "Next.js"]}>
+<Tab>
 
 ```js
 import { getPlaiceholder } from "plaiceholder";
@@ -151,10 +101,10 @@ try {
 // }
 ```
 
-</TabItem>
-<TabItem value="next">
+</Tab>
+<Tab>
 
-```tsx title="pages/example.tsx"
+```tsx filename="pages/example.tsx"
 import * as React from "react";
 import type { InferGetStaticPropsType } from "next";
 import Image from "next/image";
@@ -188,5 +138,5 @@ const Page: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
 export default Page;
 ```
 
-</TabItem>
+</Tab>
 </Tabs>

@@ -6,13 +6,13 @@ An essential plugin for Next.js, ensuring that all Plaiceholder functions start 
 
 1. Add the package alongside your [existing `plaiceholder` installation](/getting-started):
 
-   ```sh npm2yarn
+   ```sh
    npm install @plaiceholder/next
    ```
 
 2. Wrap your Next.js config with `withPlaiceholder`:
 
-   ```js title="next.config.js"
+   ```js filename="next.config.js"
    const { withPlaiceholder } = require("@plaiceholder/next");
 
    module.exports = withPlaiceholder({
