@@ -1,5 +1,5 @@
 ---
-import { Image } from "@astrojs/image/components";
+import { Image } from "astro:assets";
 import { cx } from "class-variance-authority";
 import { getPlaiceholder } from "plaiceholder";
 import { imageList, imageListItem } from "@plaiceholder/ui";
@@ -9,7 +9,7 @@ import Layout from "@/layouts/Layout.astro";
 const title = config.examples.pages.color.title;
 const heading = config.examples.variants.single.title;
 
-const getImage = async (src: string) => {
+const getRemoteImageWithPlaiceholder = async (src: string) => {
   const buffer = await fetch(src).then(async (res) =>
     Buffer.from(await res.arrayBuffer())
   );
@@ -22,7 +22,7 @@ const getImage = async (src: string) => {
   return { ...plaiceholder, img: { src, height, width } };
 };
 
-const { color, img } = await getImage(
+const { color, img } = await getRemoteImageWithPlaiceholder(
   "https://images.unsplash.com/photo-1621961458348-f013d219b50c?auto=format&fit=crop&w=2850&q=80"
 );
 ---

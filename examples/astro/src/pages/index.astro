@@ -1,6 +1,7 @@
 ---
 import fs from "node:fs/promises";
-import glob from "tiny-glob";
+import path from "node:path";
+import { getImage } from "astro:assets";
 import { getPlaiceholder } from "plaiceholder";
 import {
   exampleBody,
@@ -15,24 +16,26 @@ import {
 import { config } from "@/config";
 import Layout from "@/layouts/Layout.astro";
 
-const getImages = async (pattern: string) =>
-  glob(pattern).then((files) =>
-    Promise.all(
-      files.map(async (file) => {
-        const src = file.replace("public", "");
-        const buffer = await fs.readFile(file);
+const imageFiles = await Astro.glob("../assets/images/unsplash/*.{jpg,png}");
 
-        const {
-          metadata: { height, width },
-          ...plaiceholder
-        } = await getPlaiceholder(buffer);
+const getImagesWithPlaiceholder = async (files: Record<string, any>[]) =>
+  Promise.all(
+    files.map(async ({ default: file }) => {
+      const { src, attributes } = await getImage({ src: file });
 
-        return { ...plaiceholder, img: { src, height, width } };
-      })
-    )
+      const original = file.src.split("?")[0];
+      const buffer = await fs.readFile(path.join("./", original));
+
+      const {
+        metadata: { height, width },
+        ...plaiceholder
+      } = await getPlaiceholder(buffer);
+
+      return { ...plaiceholder, img: { ...attributes, src, height, width } };
+    })
   );
 
-const images = await getImages("./public/assets/images/unsplash/*.{jpg,png}");
+const images = await getImagesWithPlaiceholder(imageFiles);
 ---
 
 <Layout variant="home" title="Astro">
@@ -40,7 +43,11 @@ const images = await getImages("./public/assets/images/unsplash/*.{jpg,png}");
     {
       Object.keys(config.examples.pages).map((example, i) => (
         <li class={exampleListItem()}>
-          <div aria-hidden="true" class={exampleLQIP()} style={images[i].css} />
+          <div
+            aria-hidden="true"
+            class={exampleLQIP()}
+            style={images[i]?.css}
+          />
           <p class={exampleBody()}>
             <span class={exampleTitle()}>
               {

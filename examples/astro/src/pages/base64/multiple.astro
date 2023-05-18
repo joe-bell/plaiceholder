@@ -1,6 +1,7 @@
 ---
 import fs from "node:fs/promises";
-import glob from "tiny-glob";
+import path from "node:path";
+import { getImage, Image } from "astro:assets";
 import { cx } from "class-variance-authority";
 import { getPlaiceholder } from "plaiceholder";
 import { imageList, imageListItem } from "@plaiceholder/ui";
@@ -10,24 +11,26 @@ import Layout from "@/layouts/Layout.astro";
 const title = config.examples.pages.base64.title;
 const heading = config.examples.variants.multiple.title;
 
-const getImages = async (pattern: string) =>
-  glob(pattern).then((files) =>
-    Promise.all(
-      files.map(async (file) => {
-        const src = file.replace("public", "");
-        const buffer = await fs.readFile(file);
+const imageFiles = await Astro.glob("../../assets/images/unsplash/*.{jpg,png}");
 
-        const {
-          metadata: { height, width },
-          ...plaiceholder
-        } = await getPlaiceholder(buffer);
+const getImagesWithPlaiceholder = async (files: Record<string, any>[]) =>
+  Promise.all(
+    files.map(async ({ default: file }) => {
+      const { src, attributes } = await getImage({ src: file });
 
-        return { ...plaiceholder, img: { src, height, width } };
-      })
-    )
+      const original = file.src.split("?")[0];
+      const buffer = await fs.readFile(path.join("./", original));
+
+      const {
+        metadata: { height, width },
+        ...plaiceholder
+      } = await getPlaiceholder(buffer);
+
+      return { ...plaiceholder, img: { ...attributes, src, height, width } };
+    })
   );
 
-const images = await getImages("./public/assets/images/unsplash/*.{jpg,png}");
+const images = await getImagesWithPlaiceholder(imageFiles);
 ---
 
 <Layout variant="example" title={title} heading={heading}>
@@ -51,11 +54,7 @@ const images = await getImages("./public/assets/images/unsplash/*.{jpg,png}");
               "z-[-1]"
             )}
           />
-          {/**
-           * It's a little fiddly globbing over directories with the `Image`
-           * component, so we'll use a regular ol' `<img>` instead:
-           */}
-          <img
+          <Image
             {...img}
             alt="Paint Splashes"
             title="Photo from Unsplash"
