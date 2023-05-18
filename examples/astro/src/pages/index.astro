@@ -1,6 +1,7 @@
 ---
 import fs from "node:fs/promises";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { getImage } from "astro:assets";
 import { getPlaiceholder } from "plaiceholder";
 import {
@@ -24,7 +25,9 @@ const getImagesWithPlaiceholder = async (files: Record<string, any>[]) =>
       const { src, attributes } = await getImage({ src: file });
 
       const original = file.src.split("?")[0];
-      const buffer = await fs.readFile(path.join("./", original));
+      const buffer = await fs.readFile(
+        path.join(fileURLToPath(import.meta.url), "../../../", original)
+      );
 
       const {
         metadata: { height, width },
