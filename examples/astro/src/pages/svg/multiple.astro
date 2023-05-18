@@ -1,7 +1,5 @@
 ---
 import fs from "node:fs/promises";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
 import { getImage, Image } from "astro:assets";
 import { cx } from "class-variance-authority";
 import { getPlaiceholder } from "plaiceholder";
@@ -21,7 +19,10 @@ const getImagesWithPlaiceholder = async (files: Record<string, any>[]) =>
 
       const original = file.src.split("?")[0];
       const buffer = await fs.readFile(
-        path.join(fileURLToPath(import.meta.url), "../../../../", original)
+        new URL(
+          import.meta.env.VERCEL ? `../..${original}` : `../../..${original}`,
+          import.meta.url
+        )
       );
 
       const {
