@@ -13,7 +13,7 @@ importers:
       lint-staged: 13.0.3
       npm-run-all: 4.1.5
       prettier: 2.7.1
-      sharp: 0.30.7
+      sharp: 0.32.1
       syncpack: 8.2.4
       typescript: 5.0.4
     devDependencies:
@@ -26,7 +26,7 @@ importers:
       lint-staged: 13.0.3
       npm-run-all: 4.1.5
       prettier: 2.7.1
-      sharp: 0.30.7
+      sharp: 0.32.1
       syncpack: 8.2.4
       typescript: 5.0.4
 
@@ -62,17 +62,17 @@ importers:
       class-variance-authority: 0.6.0
       npm-run-all: 4.1.5
       plaiceholder: workspace:*
-      sharp: 0.30.7
+      sharp: 0.32.1
       tailwindcss: 3.3.2
     devDependencies:
       '@astrojs/tailwind': 3.1.2_ofs77nqcl2aeefy5c2tpvtcin4
       '@plaiceholder/tailwindcss': link:../../packages/tailwindcss
       '@plaiceholder/ui': link:../../packages/ui
-      astro: 2.4.5_sharp@0.30.7
+      astro: 2.4.5_sharp@0.32.1
       class-variance-authority: 0.6.0
       npm-run-all: 4.1.5
       plaiceholder: link:../../packages/plaiceholder
-      sharp: 0.30.7
+      sharp: 0.32.1
       tailwindcss: 3.3.2
 
   examples/next:
@@ -94,7 +94,7 @@ importers:
       react: 18.2.0
       react-dom: 18.2.0
       rimraf: 3.0.2
-      sharp: 0.30.7
+      sharp: 0.32.1
       tailwindcss: 3.3.2
       typescript: 5.0.4
     dependencies:
@@ -108,7 +108,7 @@ importers:
       plaiceholder: link:../../packages/plaiceholder
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      sharp: 0.30.7
+      sharp: 0.32.1
     devDependencies:
       '@types/glob': 8.1.0
       '@types/node': 20.1.7
@@ -128,7 +128,7 @@ importers:
       react: 18.2.0
       react-dom: 18.2.0
       rimraf: 3.0.2
-      sharp: 0.30.7
+      sharp: 0.32.1
       typescript: 5.0.4
     devDependencies:
       '@types/node': 20.1.7
@@ -137,28 +137,28 @@ importers:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       rimraf: 3.0.2
-      sharp: 0.30.7
+      sharp: 0.32.1
       typescript: 5.0.4
 
   packages/plaiceholder:
     specifiers:
       '@types/node': 20.1.7
-      '@types/sharp': 0.30.2
+      '@types/sharp': 0.32.0
       encoding: 0.1.13
       image-size: 1.0.2
       microbundle: 0.15.1
       rimraf: 3.0.2
-      sharp: 0.30.7
+      sharp: 0.32.1
       typescript: 5.0.4
     dependencies:
       encoding: 0.1.13
       image-size: 1.0.2
     devDependencies:
       '@types/node': 20.1.7
-      '@types/sharp': 0.30.2
+      '@types/sharp': 0.32.0
       microbundle: 0.15.1
       rimraf: 3.0.2
-      sharp: 0.30.7
+      sharp: 0.32.1
       typescript: 5.0.4
 
   packages/tailwindcss:
@@ -169,7 +169,7 @@ importers:
       plaiceholder: workspace:*
       postcss: 8.4.23
       rimraf: 3.0.2
-      sharp: 0.30.7
+      sharp: 0.32.1
       tailwindcss: 3.3.2
       typescript: 5.0.4
     dependencies:
@@ -180,7 +180,7 @@ importers:
       microbundle: 0.15.1
       postcss: 8.4.23
       rimraf: 3.0.2
-      sharp: 0.30.7
+      sharp: 0.32.1
       tailwindcss: 3.3.2
       typescript: 5.0.4
 
@@ -236,7 +236,7 @@ packages:
       astro: ^2.4.0
     dependencies:
       '@astrojs/prism': 2.1.1
-      astro: 2.4.5_sharp@0.30.7
+      astro: 2.4.5_sharp@0.32.1
       github-slugger: 1.4.0
       import-meta-resolve: 2.2.2
       rehype-raw: 6.1.1
@@ -267,7 +267,7 @@ packages:
       tailwindcss: ^3.0.24
     dependencies:
       '@proload/core': 0.3.3
-      astro: 2.4.5_sharp@0.30.7
+      astro: 2.4.5_sharp@0.32.1
       autoprefixer: 10.4.14_postcss@8.4.23
       postcss: 8.4.23
       postcss-load-config: 4.0.1_postcss@8.4.23
@@ -2812,10 +2812,11 @@ packages:
     resolution: {integrity: sha512-KQf+QAMWKMrtBMsB8/24w53tEsxllMj6TuA80TT/5igJalLI/zm0L3oXRbIAl4Ohfc85gyHX/jhMwsVkmhLU4A==}
     dev: true
 
-  /@types/sharp/0.30.2:
-    resolution: {integrity: sha512-uLCBwjDg/BTcQit0dpNGvkIjvH3wsb8zpaJePCjvONBBSfaKHoxXBIuq1MT8DMQEfk2fKYnpC9QExCgFhkGkMQ==}
+  /@types/sharp/0.32.0:
+    resolution: {integrity: sha512-OOi3kL+FZDnPhVzsfD37J88FNeZh6gQsGcLc95NbeURRGvmSjeXiDcyWzF2o3yh/gQAUn2uhh/e+CPCa5nwAxw==}
+    deprecated: This is a stub types definition. sharp provides its own type definitions, so you do not need this installed.
     dependencies:
-      '@types/node': 20.1.7
+      sharp: 0.32.1
     dev: true
 
   /@types/unist/2.0.6:
@@ -3022,7 +3023,7 @@ packages:
     hasBin: true
     dev: false
 
-  /astro/2.4.5_sharp@0.30.7:
+  /astro/2.4.5_sharp@0.32.1:
     resolution: {integrity: sha512-osxLnuLXaOX0FjWOVQH8cmK4N/Gdj/ZdEkeyMJWsUss7xQU4Q64tAxB/dAv75f/XZiu+PprmndJkyQ4sYLOv1g==}
     engines: {node: '>=16.12.0', npm: '>=6.14.0'}
     hasBin: true
@@ -3072,7 +3073,7 @@ packages:
       rehype: 12.0.1
       semver: 7.5.1
       server-destroy: 1.0.1
-      sharp: 0.30.7
+      sharp: 0.32.1
       shiki: 0.14.2
       slash: 4.0.0
       string-width: 5.1.2
@@ -6787,10 +6788,10 @@ packages:
     resolution: {integrity: sha512-YPG3Co0luSu6GwOBsmIdGW6Wx0NyNDLg/hriIyDllVsNwnI6UeqaWShxC3lbH4LtEQUgoLP3XR1ndXiDAWvmRw==}
     engines: {node: '>=10'}
     dependencies:
-      semver: 7.3.7
+      semver: 7.5.1
 
-  /node-addon-api/5.0.0:
-    resolution: {integrity: sha512-CvkDw2OEnme7ybCykJpVcKH+uAOLV2qLqiyla128dN9TkEWfrYmxG6C2boDe5KcNQqZF3orkqzGgOMvZ/JNekA==}
+  /node-addon-api/6.1.0:
+    resolution: {integrity: sha512-+eawOlIgy680F0kBzPUNFhMZGtJ1YmqM6l4+Crf4IkImjYrO/mqPwRMh352g23uIaQKFItcQ64I7KMaJxHgAVA==}
 
   /node-releases/2.0.10:
     resolution: {integrity: sha512-5GFldHPXVG/YZmFzJvKK2zDSzPKhEp0+ZR5SVaoSag9fsL5YgHbUHDfnG5494ISANDcK4KwPXAx2xqVEydmd7w==}
@@ -8395,6 +8396,7 @@ packages:
     hasBin: true
     dependencies:
       lru-cache: 6.0.0
+    dev: true
 
   /semver/7.5.1:
     resolution: {integrity: sha512-Wvss5ivl8TMRZXXESstBA4uR5iXgEN/VC5/sOcuXdVLzcdkz4HWetIoRfG5gb5X+ij/G9rw9YoGn3QoQ8OCSpw==}
@@ -8402,7 +8404,6 @@ packages:
     hasBin: true
     dependencies:
       lru-cache: 6.0.0
-    dev: true
 
   /serialize-javascript/4.0.0:
     resolution: {integrity: sha512-GaNA54380uFefWghODBWEGisLZFj00nS5ACs6yHa9nLqlLpVLO8ChDGeKRjZnV4Nh4n0Qi7nhYZD/9fCPzEqkw==}
@@ -8418,16 +8419,16 @@ packages:
     resolution: {integrity: sha512-KiKBS8AnWGEyLzofFfmvKwpdPzqiy16LvQfK3yv/fVH7Bj13/wl3JSR1J+rfgRE9q7xUJK4qvgS8raSOeLUehw==}
     dev: true
 
-  /sharp/0.30.7:
-    resolution: {integrity: sha512-G+MY2YW33jgflKPTXXptVO28HvNOo9G3j0MybYAHeEmby+QuD2U98dT6ueht9cv/XDqZspSpIhoSW+BAKJ7Hig==}
-    engines: {node: '>=12.13.0'}
+  /sharp/0.32.1:
+    resolution: {integrity: sha512-kQTFtj7ldpUqSe8kDxoGLZc1rnMFU0AO2pqbX6pLy3b7Oj8ivJIdoKNwxHVQG2HN6XpHPJqCSM2nsma2gOXvOg==}
+    engines: {node: '>=14.15.0'}
     requiresBuild: true
     dependencies:
       color: 4.2.3
       detect-libc: 2.0.1
-      node-addon-api: 5.0.0
+      node-addon-api: 6.1.0
       prebuild-install: 7.1.1
-      semver: 7.3.7
+      semver: 7.5.1
       simple-get: 4.0.1
       tar-fs: 2.1.1
       tunnel-agent: 0.6.0
