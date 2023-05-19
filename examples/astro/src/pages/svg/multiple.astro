@@ -10,7 +10,7 @@ import Layout from "@/layouts/Layout.astro";
 const title = config.examples.pages.svg.title;
 const heading = config.examples.variants.multiple.title;
 
-const imageFiles = await Astro.glob("../../assets/images/unsplash/*.{jpg,png}");
+const imageFiles = await Astro.glob("../../assets/images/unsplash-*.{jpg,png}");
 
 const getImagesWithPlaiceholder = async (files: Record<string, any>[]) =>
   Promise.all(

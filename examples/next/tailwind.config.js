@@ -1,3 +1,5 @@
+const plaiceholder = require("@plaiceholder/tailwindcss");
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -8,5 +10,14 @@ module.exports = {
     extend: {},
   },
   variants: {},
-  plugins: [require("@plaiceholder/tailwindcss")],
+  plugins: [
+    plaiceholder({
+      resolver: (url) => {
+        const fs = require("node:fs");
+        const path = require("node:path");
+
+        return fs.readFileSync(path.join("./public", url));
+      },
+    }),
+  ],
 };

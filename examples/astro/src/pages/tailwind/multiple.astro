@@ -1,8 +1,6 @@
 ---
-import fs from "node:fs/promises";
-import path from "node:path";
+import { getImage, Image } from "astro:assets";
 import { cx } from "class-variance-authority";
-import { getPlaiceholder } from "plaiceholder";
 import { extractImgSrc } from "@plaiceholder/tailwindcss/utils";
 import { imageList, imageListItem } from "@plaiceholder/ui";
 import { config } from "@/config";
@@ -11,27 +9,29 @@ import Layout from "@/layouts/Layout.astro";
 const title = config.examples.pages.tailwind.title;
 const heading = config.examples.variants.multiple.title;
 
-const getImages = (...classNames: string[]) =>
+const getImagesWithPlaiceholder = (...classNames: string[]) =>
   Promise.all(
     classNames.map(async (plaiceholder) => {
-      const src = extractImgSrc(plaiceholder);
-      const buffer = await fs.readFile(path.join("./public", src));
+      const filename = extractImgSrc(plaiceholder);
 
-      const {
-        metadata: { height, width },
-      } = await getPlaiceholder(buffer);
+      const { default: file } = await import(
+        /* vite-ignore */
+        `../../../src/assets/images/${filename}.jpg`
+      );
 
-      return { plaiceholder, img: { src, height, width } };
+      const { src, attributes } = await getImage({ src: file });
+
+      return { plaiceholder, img: { ...attributes, src } };
     })
   );
 
-const images = await getImages(
-  "plaiceholder-[/assets/images/unsplash/alexander-ant-oR7HxvOe2YE.jpg]",
-  "plaiceholder-[/assets/images/unsplash/alexander-ant-r7xdS9hjYYE.jpg]",
-  "plaiceholder-[/assets/images/unsplash/solen-feyissa-0KXl7T2YU0I.jpg]",
-  "plaiceholder-[/assets/images/unsplash/solen-feyissa-ju3ZBdiXzmA.jpg]",
-  "plaiceholder-[/assets/images/unsplash/solen-feyissa-tek55norwaQ.jpg]",
-  "plaiceholder-[/assets/images/unsplash/solen-feyissa-WX1siNmyR4.jpg]"
+const images = await getImagesWithPlaiceholder(
+  "plaiceholder-[unsplash-alexander-ant-oR7HxvOe2YE]",
+  "plaiceholder-[unsplash-alexander-ant-r7xdS9hjYYE]",
+  "plaiceholder-[unsplash-solen-feyissa-0KXl7T2YU0I]",
+  "plaiceholder-[unsplash-solen-feyissa-ju3ZBdiXzmA]",
+  "plaiceholder-[unsplash-solen-feyissa-tek55norwaQ]",
+  "plaiceholder-[unsplash-solen-feyissa-WX1siNmyR4]"
 );
 ---
 
@@ -54,17 +54,21 @@ const images = await getImages(
               "z-[-1]"
             )}
           />
-          {/**
-           * For now, @plaiceholder/tailwindcss needs the image to be in `/public`,
-           * which @astrojs/image doesn't support.
-           *
-           * So we'll use a regular ol' `<img>` instead:
-           */}
-          <img
+
+          {/* `getImage()` *does* provide width/height, but `Image` disagrees */}
+          <Image
             {...img}
             alt="Paint Splashes"
             title="Photo from Unsplash"
             loading="lazy"
+            width={
+              // @ts-expect-error
+              img.width
+            }
+            height={
+              // @ts-expect-error
+              img.height
+            }
           />
         </li>
       ))

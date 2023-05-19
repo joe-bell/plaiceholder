@@ -15,7 +15,7 @@ import {
 import { config } from "@/config";
 import Layout from "@/layouts/Layout.astro";
 
-const imageFiles = await Astro.glob("../assets/images/unsplash/*.{jpg,png}");
+const imageFiles = await Astro.glob("../assets/images/unsplash-*.{jpg,png}");
 
 const getImagesWithPlaiceholder = async (files: Record<string, any>[]) =>
   Promise.all(

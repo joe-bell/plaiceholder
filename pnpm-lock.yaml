@@ -163,6 +163,7 @@ importers:
 
   packages/tailwindcss:
     specifiers:
+      '@types/node': 20.1.7
       autoprefixer: 10.4.14
       make-synchronous: 0.1.1
       microbundle: 0.15.1
@@ -176,6 +177,7 @@ importers:
       make-synchronous: 0.1.1
       plaiceholder: link:../plaiceholder
     devDependencies:
+      '@types/node': 20.1.7
       autoprefixer: 10.4.14_postcss@8.4.23
       microbundle: 0.15.1
       postcss: 8.4.23

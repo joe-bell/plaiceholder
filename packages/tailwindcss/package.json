@@ -59,6 +59,7 @@
     "plaiceholder": "workspace:*"
   },
   "devDependencies": {
+    "@types/node": "20.1.7",
     "autoprefixer": "10.4.14",
     "microbundle": "0.15.1",
     "postcss": "8.4.23",

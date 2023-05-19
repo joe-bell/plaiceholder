@@ -3,7 +3,7 @@ import sharp, { type Sharp, type Metadata } from "sharp";
 /* Utils
    =========================================== */
 
-export const arrayChunk = (arr, size) =>
+const arrayChunk = (arr, size) =>
   arr.length > size
     ? [arr.slice(0, size), ...arrayChunk(arr.slice(size), size)]
     : [arr];
@@ -16,8 +16,6 @@ const alphaToOpacity = (alpha: number) => ((alpha / 255) * 100) / 100;
 
 /* Types
    =========================================== */
-
-export const ACCEPTED_FILE_TYPES = ["jpeg", "png"] as const;
 
 type SharpFormatOptions = Parameters<Sharp["toFormat"]>;
 type SharpModulateOptions = Parameters<Sharp["modulate"]>[0];
@@ -49,14 +47,14 @@ const getPixels = ({
 /* getCSS
    =========================================== */
 
-export interface IGetCSSOptions {
+interface IGetCSSOptions {
   data: Buffer;
   info: sharp.OutputInfo;
   rawBuffer: number[];
   rows: number[][][];
 }
 
-export interface IGetCSSReturn
+interface IGetCSSReturn
   extends Record<
     | "backgroundImage"
     | "backgroundPosition"
@@ -65,11 +63,11 @@ export interface IGetCSSReturn
     string
   > {}
 
-export interface IGetCSS {
+interface IGetCSS {
   (options: { data: Buffer; info: sharp.OutputInfo }): IGetCSSReturn;
 }
 
-export const getCSS: IGetCSS = ({ data, info }) => {
+const getCSS: IGetCSS = ({ data, info }) => {
   const { rows } = getPixels({ data, info });
 
   const linearGradients = rows.map((row) => {
@@ -121,11 +119,11 @@ type TRects = [
     Record<"fill", {} & string>
 ];
 
-export interface IGetSVGOptions {
+interface IGetSVGOptions {
   data: Buffer;
   info: sharp.OutputInfo;
 }
-export type TGetSVGReturn = [
+type TGetSVGReturn = [
   "svg",
   {
     viewBox: string;
@@ -139,11 +137,11 @@ export type TGetSVGReturn = [
   TRects[]
 ];
 
-export interface IGetSVG {
+interface IGetSVG {
   (options: IGetSVGOptions): TGetSVGReturn;
 }
 
-export const getSVG: IGetSVG = ({ data, info }) => {
+const getSVG: IGetSVG = ({ data, info }) => {
   const { rawBuffer } = getPixels({ data, info });
 
   const { channels, width, height } = info;
@@ -213,13 +211,13 @@ export const getSVG: IGetSVG = ({ data, info }) => {
 /* getPlaiceholder
    =========================================== */
 
-export type TGetPlaiceholderSrc = Buffer;
-export interface IGetPlaiceholderOptions extends SharpModulateOptions {
+export type PlaiceholderSrc = Buffer;
+export interface PlaiceholderOptions extends SharpModulateOptions {
   size?: number;
   format?: SharpFormatOptions;
   removeAlpha?: boolean;
 }
-export interface IGetPlaiceholderReturn {
+export interface PlaiceholderReturn {
   metadata: Omit<Metadata, "width" | "height"> &
     Required<Pick<Metadata, "width" | "height">>;
   base64: string;
@@ -233,15 +231,8 @@ export interface IGetPlaiceholderReturn {
   svg: TGetSVGReturn;
 }
 
-export interface IGetPlaiceholder {
-  (
-    src: TGetPlaiceholderSrc,
-    options?: IGetPlaiceholderOptions
-  ): Promise<IGetPlaiceholderReturn>;
-}
-
-export const getPlaiceholder: IGetPlaiceholder = async (
-  src,
+export const getPlaiceholder = async (
+  src: PlaiceholderSrc,
   {
     size = 4,
     format = ["png"],
@@ -249,7 +240,7 @@ export const getPlaiceholder: IGetPlaiceholder = async (
     saturation = 1.2,
     removeAlpha = true,
     ...options
-  } = {}
+  }: PlaiceholderOptions = {}
 ) => {
   /* Optimize
    =========================================== */
