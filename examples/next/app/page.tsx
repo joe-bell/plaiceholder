@@ -3,11 +3,6 @@ import glob from "glob";
 import Link from "next/link";
 import { getPlaiceholder } from "plaiceholder";
 import {
-  article,
-  articleContent,
-  articleHeader,
-  articleHeaderSubtitle,
-  articleHeaderTitle,
   exampleBody,
   exampleLink,
   exampleList,

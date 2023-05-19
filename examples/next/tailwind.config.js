@@ -1,10 +1,12 @@
+// @ts-check
 const plaiceholder = require("@plaiceholder/tailwindcss");
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     "./node_modules/@plaiceholder/ui/**/*.{ts,tsx}",
-    "./src/**/*.{ts,tsx}",
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {},
