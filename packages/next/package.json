@@ -14,9 +14,11 @@
     "plaiceholder"
   ],
   "exports": {
-    "types": "./dist/index.d.ts",
-    "import": "./dist/next.esm.js",
-    "default": "./dist/next.esm.js"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/next.esm.js",
+      "default": "./dist/next.esm.js"
+    }
   },
   "files": [
     "dist",
