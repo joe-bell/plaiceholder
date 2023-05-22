@@ -13,16 +13,17 @@
     "placeholder",
     "plaiceholder"
   ],
-  "source": "src/index.ts",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "typings": "dist/index.d.ts",
+  "exports": {
+    "types": "./dist/index.d.ts",
+    "import": "./dist/next.esm.js",
+    "default": "./dist/next.esm.js"
+  },
   "files": [
     "dist",
     "README.md"
   ],
   "scripts": {
-    "build": "microbundle --no-compress --tsconfig tsconfig.json --external sharp --format cjs,esm",
+    "build": "microbundle src/index.ts --no-compress --tsconfig tsconfig.json --external sharp --format esm",
     "clean": "rimraf {dist,.rts2*}",
     "dev": "pnpm build -- watch",
     "lint:ts": "tsc --noEmit"
@@ -40,5 +41,7 @@
     "rimraf": "3.0.2",
     "sharp": "0.32.1",
     "typescript": "5.0.4"
-  }
+  },
+  "type": "module",
+  "types": "./dist/index.d.ts"
 }

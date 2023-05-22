@@ -1,8 +1,7 @@
+import "sharp";
 import type { NextConfig } from "next";
 
-export const withPlaiceholder = (nextConfig: NextConfig): NextConfig => {
-  require("sharp");
-
+export default function withPlaiceholder(nextConfig: NextConfig): NextConfig {
   const sharp = "commonjs sharp";
 
   return Object.assign({}, nextConfig, {
@@ -20,4 +19,4 @@ export const withPlaiceholder = (nextConfig: NextConfig): NextConfig => {
       return config;
     },
   });
-};
+}
