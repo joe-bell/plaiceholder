@@ -1,4 +1,4 @@
-import sharp, { type Sharp, type Metadata } from "sharp";
+import sharp, { type Sharp, type Metadata, OutputInfo } from "sharp";
 
 /* Utils
    =========================================== */
@@ -8,78 +8,70 @@ const arrayChunk = (arr, size) =>
     ? [arr.slice(0, size), ...arrayChunk(arr.slice(size), size)]
     : [arr];
 
-const rgb = (channels: string[] | number[]) =>
-  `rgb(${channels.slice(0, 3).join(",")})`;
-const rgba = (channels: number[]) =>
-  `rgba(${channels.slice(0, 3).join(",")},${(channels[3] / 255).toFixed(3)})`;
-const alphaToOpacity = (alpha: number) => ((alpha / 255) * 100) / 100;
+type ToRGBAStringOptions = { r: number; g: number; b: number; a?: number };
 
-/* Types
-   =========================================== */
+const toRGBAString = ({ r, g, b, a }: ToRGBAStringOptions) => {
+  if (typeof a === "undefined") return `rgb(${[r, g, b].join(",")})`;
 
-type SharpFormatOptions = Parameters<Sharp["toFormat"]>;
-type SharpModulateOptions = Parameters<Sharp["modulate"]>[0];
+  return `rgba(${[r, g, b, a].join(",")})`;
+};
 
 /* getPixels
    =========================================== */
 
-const getPixels = ({
-  data,
-  info,
-}: {
+interface GetPixelsOptions {
   data: Buffer;
   info: sharp.OutputInfo;
-}) => {
+}
+
+type GetPixelsReturn = ReturnType<typeof getPixels>;
+
+const getPixels = ({ data, info }: GetPixelsOptions) => {
   const { channels, width } = info;
 
-  // !@TODO
-  // switch to unit8?
   const rawBuffer = [].concat(...data) as number[];
   const allPixels = arrayChunk(rawBuffer, channels) as number[][][];
   const rows = arrayChunk(allPixels, width) as number[][][];
 
-  return {
-    rawBuffer,
-    rows,
-  };
+  const pixels = rows.map((row) =>
+    row.map((pixel) => {
+      const [r, g, b, a] = pixel;
+
+      return {
+        r,
+        g,
+        b,
+        ...(typeof a === "undefined"
+          ? {}
+          : { a: Math.round((a / 255) * 1000) / 1000 }),
+      };
+    })
+  );
+
+  return pixels;
 };
 
 /* getCSS
    =========================================== */
 
-interface IGetCSSOptions {
-  data: Buffer;
-  info: sharp.OutputInfo;
-  rawBuffer: number[];
-  rows: number[][][];
+interface GetCSSOptions {
+  info: OutputInfo;
+  pixels: GetPixelsReturn;
 }
 
-interface IGetCSSReturn
-  extends Record<
-    | "backgroundImage"
-    | "backgroundPosition"
-    | "backgroundSize"
-    | "backgroundRepeat",
-    string
-  > {}
+type GetCSSReturn = ReturnType<typeof getCSS>;
 
-interface IGetCSS {
-  (options: { data: Buffer; info: sharp.OutputInfo }): IGetCSSReturn;
-}
+const getCSS = ({ pixels, info }: GetCSSOptions) => {
+  const linearGradients = pixels.map((row) => {
+    const rowPixels = row.map((pixel) => toRGBAString(pixel));
 
-const getCSS: IGetCSS = ({ data, info }) => {
-  const { rows } = getPixels({ data, info });
-
-  const linearGradients = rows.map((row) => {
-    const pixels = row.map((pixel) =>
-      pixel.length === 4 ? rgba(pixel) : rgb(pixel)
-    );
-
-    const gradient = pixels
+    const gradient = rowPixels
       .map((pixel, i) => {
-        const start = i === 0 ? "" : ` ${(i / pixels.length) * 100}%`;
+        const start = i === 0 ? "" : ` ${(i / rowPixels.length) * 100}%`;
         const end =
-          i === pixels.length ? "" : ` ${((i + 1) / pixels.length) * 100}%`;
+          i === rowPixels.length
+            ? ""
+            : ` ${((i + 1) / rowPixels.length) * 100}%`;
 
         return `${pixel}${start}${end}`;
       })
@@ -120,10 +112,11 @@ type TRects = [
 ];
 
 interface IGetSVGOptions {
-  data: Buffer;
-  info: sharp.OutputInfo;
+  info: OutputInfo;
+  pixels: GetPixelsReturn;
 }
-type TGetSVGReturn = [
+
+type GetSVGReturn = [
   "svg",
   {
     viewBox: string;
@@ -138,46 +131,31 @@ type TGetSVGReturn = [
 ];
 
 interface IGetSVG {
-  (options: IGetSVGOptions): TGetSVGReturn;
+  (options: IGetSVGOptions): GetSVGReturn;
 }
 
-const getSVG: IGetSVG = ({ data, info }) => {
-  const { rawBuffer } = getPixels({ data, info });
+const getSVG: IGetSVG = ({ pixels, info }) => {
+  const chunkRects = pixels.map((row, y) =>
+    row.map(({ a, ...rgb }, x) => {
+      const colorProps =
+        typeof a !== "undefined"
+          ? { fill: toRGBAString(rgb), "fill-opacity": a }
+          : { fill: toRGBAString(rgb), "fill-opacity": 1 };
 
-  const { channels, width, height } = info;
-
-  const pixels = arrayChunk(rawBuffer, channels).map((value) => {
-    const channelToProps = {
-      3: { fill: rgb(value), fillOpacity: 1 },
-      4: {
-        fill: rgb(value),
-        fillOpacity: alphaToOpacity(value[3]),
-      },
-    };
-
-    if (!channelToProps.hasOwnProperty(channels)) {
-      throw new Error(
-        `Images with ${channels} channels aren't currently supported`
-      );
-    }
-
-    return channelToProps[channels];
-  });
-
-  const chunkRects = arrayChunk(pixels, width).map((row, y) =>
-    row.map((col, x): TRects[] => [
-      "rect",
-      {
-        ...col,
-        width: 1,
-        height: 1,
-        x,
-        y,
-      },
-    ])
+      return [
+        "rect",
+        {
+          ...colorProps,
+          width: 1,
+          height: 1,
+          x,
+          y,
+        },
+      ];
+    })
   );
 
-  if (chunkRects.length !== height) {
+  if (chunkRects.length !== info.height) {
     console.error(
       "Woops! Something went wrong here and caused the color height to differ from the source height."
     );
@@ -193,7 +171,7 @@ const getSVG: IGetSVG = ({ data, info }) => {
       height: "100%",
       shapeRendering: "crispEdges",
       preserveAspectRatio: "none",
-      viewBox: `0 0 ${width} ${height}`,
+      viewBox: `0 0 ${info.width} ${info.height}`,
       style: {
         position: "absolute",
         top: "50%",
@@ -211,12 +189,17 @@ const getSVG: IGetSVG = ({ data, info }) => {
 /* getPlaiceholder
    =========================================== */
 
+type SharpFormatOptions = Parameters<Sharp["toFormat"]>;
+type SharpModulateOptions = Parameters<Sharp["modulate"]>[0];
+
 export type PlaiceholderSrc = Buffer;
+
 export interface PlaiceholderOptions extends SharpModulateOptions {
   size?: number;
   format?: SharpFormatOptions;
   removeAlpha?: boolean;
 }
+
 export interface PlaiceholderReturn {
   metadata: Omit<Metadata, "width" | "height"> &
     Required<Pick<Metadata, "width" | "height">>;
@@ -227,8 +210,9 @@ export interface PlaiceholderReturn {
     g: number;
     b: number;
   };
-  css: IGetCSSReturn;
-  svg: TGetSVGReturn;
+  pixels: GetPixelsReturn;
+  css: GetCSSReturn;
+  svg: GetSVGReturn;
 }
 
 export const getPlaiceholder = async (
@@ -243,7 +227,7 @@ export const getPlaiceholder = async (
   }: PlaiceholderOptions = {}
 ) => {
   /* Optimize
-   =========================================== */
+    ---------------------------------- */
 
   const metadata = await sharp(src)
     .metadata()
@@ -282,8 +266,8 @@ export const getPlaiceholder = async (
       ? pipelineBeforeAlpha
       : pipelineBeforeAlpha.removeAlpha();
 
-  /* Returns
-   =========================================== */
+  /* Return
+    ---------------------------------- */
 
   const color = await pipeline
     .clone()
@@ -311,15 +295,17 @@ export const getPlaiceholder = async (
       throw err;
     });
 
-  const { css, svg } = await pipeline
+  const { pixels, css, svg } = await pipeline
     .clone()
     .raw()
     .toBuffer({ resolveWithObject: true })
     .then(({ data, info }) => {
-      const css = getCSS({ data, info });
-      const svg = getSVG({ data, info });
+      const pixels = getPixels({ data, info });
+      const css = getCSS({ pixels, info });
+      const svg = getSVG({ pixels, info });
 
       return {
+        pixels,
         css,
         svg,
       };
@@ -330,10 +316,11 @@ export const getPlaiceholder = async (
     });
 
   return {
-    metadata,
     color,
     css,
     base64,
+    metadata,
+    pixels,
     svg,
   };
 };
