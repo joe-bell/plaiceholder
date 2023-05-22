@@ -11,9 +11,6 @@ export const config = {
       multiple: { title: "Multiple" },
     },
     pages: {
-      tailwind: {
-        title: "Tailwind",
-      },
       css: {
         title: "CSS",
       },

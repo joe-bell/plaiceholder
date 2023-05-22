@@ -110,9 +110,6 @@ importers:
       '@plaiceholder/next':
         specifier: workspace:*
         version: link:../../packages/next
-      '@plaiceholder/tailwindcss':
-        specifier: workspace:*
-        version: link:../../packages/tailwindcss
       '@plaiceholder/ui':
         specifier: workspace:*
         version: link:../../packages/ui
