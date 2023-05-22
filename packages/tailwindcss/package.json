@@ -64,7 +64,7 @@
     "microbundle": "0.15.1",
     "plaiceholder": "workspace:*",
     "postcss": "8.4.23",
-    "rimraf": "3.0.2",
+    "rimraf": "5.0.1",
     "sharp": "0.32.1",
     "tailwindcss": "3.3.2",
     "typescript": "5.0.4"

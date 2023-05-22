@@ -17,24 +17,15 @@
     "prepare:packages": "if-env VERCEL=1 && echo 'Skipping package build' || pnpm build"
   },
   "devDependencies": {
-    "@changesets/cli": "2.24.3",
-    "@commitlint/cli": "17.0.3",
-    "@commitlint/config-conventional": "17.0.3",
-    "commitizen": "4.2.5",
-    "cz-conventional-changelog": "3.3.0",
-    "husky": "8.0.1",
+    "@changesets/cli": "2.26.1",
+    "husky": "8.0.3",
     "if-env": "1.0.4",
-    "lint-staged": "13.0.3",
+    "lint-staged": "13.2.2",
     "npm-run-all": "4.1.5",
     "prettier": "2.8.8",
     "sharp": "0.32.1",
     "syncpack": "8.2.4",
     "typescript": "5.0.4"
-  },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
   },
   "engines": {
     "node": "18",

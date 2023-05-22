@@ -36,15 +36,11 @@
   "peerDependencies": {
     "sharp": ">= 0.30.6"
   },
-  "dependencies": {
-    "encoding": "0.1.13",
-    "image-size": "1.0.2"
-  },
   "devDependencies": {
     "@types/node": "20.1.7",
     "@types/sharp": "0.32.0",
     "microbundle": "0.15.1",
-    "rimraf": "3.0.2",
+    "rimraf": "5.0.1",
     "sharp": "0.32.1",
     "typescript": "5.0.4"
   },
