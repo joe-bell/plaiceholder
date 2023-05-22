@@ -1,4 +1,4 @@
-import { classNamePrefix } from "./config";
+import { classNamePrefix } from "./config.js";
 
 export const extractImgSrc = (plaiceholderClass: string) =>
   plaiceholderClass

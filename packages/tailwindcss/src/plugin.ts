@@ -1,7 +1,6 @@
-import plugin from "tailwindcss/plugin";
-
+import plugin from "tailwindcss/plugin.js";
 import makeSynchronous from "make-synchronous";
-import { classNamePrefix } from "./config";
+import { classNamePrefix } from "./config.js";
 
 const getPlaiceholder = makeSynchronous(async (buffer) => {
   const { css } = await require("plaiceholder").getPlaiceholder(buffer);
@@ -9,7 +8,7 @@ const getPlaiceholder = makeSynchronous(async (buffer) => {
   return css;
 });
 
-interface PlaiceholderTailwindCSSOptions {
+export interface PlaiceholderTailwindCSSOptions {
   resolver: (url: string) => Buffer;
 }
 

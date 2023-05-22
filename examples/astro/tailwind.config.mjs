@@ -1,8 +1,10 @@
 // @ts-check
-const plaiceholder = require("@plaiceholder/tailwindcss");
+import fs from "node:fs";
+import path from "node:path";
+import plaiceholder from "@plaiceholder/tailwindcss";
 
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   content: [
     "./node_modules/@plaiceholder/ui/**/*.{ts,tsx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
@@ -14,12 +16,7 @@ module.exports = {
   variants: {},
   plugins: [
     plaiceholder({
-      resolver: (url) => {
-        const fs = require("node:fs");
-        const path = require("node:path");
-
-        return fs.readFileSync(path.join("./public", url));
-      },
+      resolver: (url) => fs.readFileSync(path.join("./public", url)),
     }),
   ],
 };

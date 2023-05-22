@@ -13,23 +13,23 @@
     "plaiceholder",
     "tailwindcss"
   ],
-  "main": "dist/plugin.js",
-  "module": "dist/plugin.mjs",
   "exports": {
     ".": {
-      "import": "./dist/plugin.mjs",
-      "require": "./dist/plugin.js"
+      "types": "./dist/plugin.d.ts",
+      "import": "./dist/plugin.esm.js",
+      "default": "./dist/plugin.esm.js"
     },
     "./plugin": {
-      "import": "./dist/plugin.mjs",
-      "require": "./dist/plugin.js"
+      "types": "./dist/plugin.d.ts",
+      "import": "./dist/plugin.esm.js",
+      "default": "./dist/plugin.esm.js"
     },
     "./utils": {
-      "import": "./dist/utils.mjs",
-      "require": "./dist/utils.js"
+      "types": "./dist/utils.d.ts",
+      "import": "./dist/utils.esm.js",
+      "default": "./dist/utils.esm.js"
     }
   },
-  "typings": "./dist/plugin.d.ts",
   "typesVersions": {
     "*": {
       "plugin": [
@@ -45,7 +45,7 @@
     "README.md"
   ],
   "scripts": {
-    "build": "microbundle src/*.ts --external sharp --no-compress --target node --tsconfig tsconfig.json --format cjs,esm",
+    "build": "microbundle src/*.ts --external sharp --no-compress --target node --tsconfig tsconfig.json --format esm",
     "clean": "rimraf {dist,.rts2*}",
     "dev": "pnpm build -- --watch",
     "lint:ts": "tsc --noEmit"
@@ -67,5 +67,7 @@
     "sharp": "0.32.1",
     "tailwindcss": "3.3.2",
     "typescript": "5.0.4"
-  }
+  },
+  "type": "module",
+  "types": "./dist/plugin.d.ts"
 }
