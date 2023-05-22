@@ -7,8 +7,7 @@ import plaiceholder from "@plaiceholder/tailwindcss";
 export default {
   content: [
     "./node_modules/@plaiceholder/ui/**/*.{ts,tsx}",
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/**/*.{astro,html,js,jsx,svelte,ts,tsx,vue}",
   ],
   theme: {
     extend: {},
@@ -16,7 +15,8 @@ export default {
   variants: {},
   plugins: [
     plaiceholder({
-      resolver: (url) => fs.readFileSync(path.join("./public", url)),
+      resolver: (url) =>
+        fs.readFileSync(path.join("./src/assets/images", `${url}.jpg`)),
     }),
   ],
 };
