@@ -195,6 +195,7 @@ type SharpModulateOptions = Parameters<Sharp["modulate"]>[0];
 export type PlaiceholderSrc = Buffer;
 
 export interface PlaiceholderOptions extends SharpModulateOptions {
+  autoOrient?: boolean;
   size?: number;
   format?: SharpFormatOptions;
   removeAlpha?: boolean;
@@ -218,6 +219,7 @@ export interface PlaiceholderReturn {
 export const getPlaiceholder = async (
   src: PlaiceholderSrc,
   {
+    autoOrient = false,
     size = 4,
     format = ["png"],
     brightness = 1,
@@ -249,7 +251,8 @@ export const getPlaiceholder = async (
       ["Please enter a `size` value between", sizeMin, "and", sizeMax].join(" ")
     );
 
-  const pipelineBeforeAlpha = sharp(src)
+  // initial optimization
+  const pipelineStage1 = sharp(src)
     .resize(size, size, {
       fit: "inside",
     })
@@ -261,10 +264,15 @@ export const getPlaiceholder = async (
       ...(options?.lightness ? { lightness: options?.lightness } : {}),
     });
 
-  const pipeline =
-    removeAlpha === false
-      ? pipelineBeforeAlpha
-      : pipelineBeforeAlpha.removeAlpha();
+  // alpha
+  const pipelineStage2 =
+    removeAlpha === false ? pipelineStage1 : pipelineStage1.removeAlpha();
+
+  // autoOrientation
+  const pipelineStage3 =
+    autoOrient === false ? pipelineStage2 : pipelineStage2.rotate();
+
+  const pipeline = pipelineStage3;
 
   /* Return
     ---------------------------------- */
