@@ -226,9 +226,6 @@ importers:
       make-synchronous:
         specifier: 0.1.1
         version: 0.1.1
-      plaiceholder:
-        specifier: workspace:*
-        version: link:../plaiceholder
     devDependencies:
       '@types/node':
         specifier: 20.1.7
@@ -239,6 +236,9 @@ importers:
       microbundle:
         specifier: 0.15.1
         version: 0.15.1
+      plaiceholder:
+        specifier: workspace:*
+        version: link:../plaiceholder
       postcss:
         specifier: 8.4.23
         version: 8.4.23

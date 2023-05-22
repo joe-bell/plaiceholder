@@ -15,16 +15,20 @@
     "plaiceholder",
     "svg"
   ],
-  "source": "src/index.ts",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "typings": "dist/index.d.ts",
+  "module": "./dist/plaiceholder.esm.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/plaiceholder.esm.js",
+      "default": "./dist/plaiceholder.esm.js"
+    }
+  },
   "files": [
     "dist",
     "README.md"
   ],
   "scripts": {
-    "build": "microbundle --external sharp --no-compress --tsconfig tsconfig.json --format cjs,esm",
+    "build": "microbundle src/index.ts --external sharp --no-compress --tsconfig tsconfig.json --format esm",
     "clean": "rimraf {dist,.rts2*}",
     "dev": "pnpm build -- watch",
     "lint:ts": "tsc --noEmit"
@@ -43,5 +47,7 @@
     "rimraf": "3.0.2",
     "sharp": "0.32.1",
     "typescript": "5.0.4"
-  }
+  },
+  "type": "module",
+  "types": "./dist/index.d.ts"
 }

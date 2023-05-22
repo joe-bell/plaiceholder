@@ -45,23 +45,24 @@
     "README.md"
   ],
   "scripts": {
-    "build": "microbundle src/*.ts --external sharp --no-compress --target node --tsconfig tsconfig.json --format esm",
+    "build": "microbundle src/*.ts --external sharp plaiceholder --no-compress --target node --tsconfig tsconfig.json --format esm",
     "clean": "rimraf {dist,.rts2*}",
     "dev": "pnpm build -- --watch",
     "lint:ts": "tsc --noEmit"
   },
   "peerDependencies": {
+    "plaiceholder": ">= 2.5.0",
     "sharp": ">= 0.30.6",
     "tailwindcss": ">=3"
   },
   "dependencies": {
-    "make-synchronous": "0.1.1",
-    "plaiceholder": "workspace:*"
+    "make-synchronous": "0.1.1"
   },
   "devDependencies": {
     "@types/node": "20.1.7",
     "autoprefixer": "10.4.14",
     "microbundle": "0.15.1",
+    "plaiceholder": "workspace:*",
     "postcss": "8.4.23",
     "rimraf": "3.0.2",
     "sharp": "0.32.1",
