@@ -2,6 +2,14 @@ import { Callout } from "nextra-theme-docs";
 
 # Upgrading to 3.0
 
+`3.0` marks the end of the `plaiceholder` project, with this major release focussing on making the project feature complete and as future-proof as possible.
+
+Once the `peerDependency` `sharp` [enables support for Non-Node.js projects](https://github.com/lovell/sharp/pull/3522), `plaiceholder` _should_ work seamlessly on all supported runtimes.
+
+Preparing for wider support meant dropping some of the "magic" features that `plaiceholder` previously offered.
+
+There is **no obligation** to upgrade to `3.0` if you would prefer to keep using the previous API!
+
 ## Migrate to ESM
 
 <Callout type="info">
