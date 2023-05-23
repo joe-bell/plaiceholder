@@ -10,7 +10,7 @@ const getPlaiceholder = makeSynchronous(async (buffer) => {
 });
 
 export interface PlaiceholderTailwindCSSOptions {
-  resolver: (url: string) => Buffer;
+  resolver: (src: string) => Buffer;
 }
 
 export default plugin.withOptions<PlaiceholderTailwindCSSOptions>(function (
@@ -18,8 +18,8 @@ export default plugin.withOptions<PlaiceholderTailwindCSSOptions>(function (
 ) {
   return function ({ matchUtilities }) {
     matchUtilities({
-      [classNamePrefix]: function (url) {
-        const file = options.resolver(url);
+      [classNamePrefix]: function (src) {
+        const file = options.resolver(src);
 
         return getPlaiceholder(file);
       },

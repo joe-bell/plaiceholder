@@ -15,8 +15,8 @@ export default {
   variants: {},
   plugins: [
     plaiceholder({
-      resolver: (url) =>
-        fs.readFileSync(path.join("./src/assets/images", `${url}.jpg`)),
+      resolver: (src) =>
+        fs.readFileSync(path.join("./src/assets/images", `${src}.jpg`)),
     }),
   ],
 };
