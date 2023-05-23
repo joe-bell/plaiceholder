@@ -9,13 +9,9 @@
     "title": "Documentation"
   },
   "sponsors": {
+    "type": "page",
     "title": "Sponsors",
-    "type": "menu",
-    "items": {
-      "tips": {
-        "title": "Tips & Donations",
-        "href": "/sponsors/tips"
-      }
-    }
+    "href": "https://joebell.co.uk/sponsors",
+    "newWindow": true
   }
 }
