@@ -155,6 +155,10 @@ importers:
         version: 5.0.4
 
   packages/next:
+    dependencies:
+      plaiceholder:
+        specifier: '>= 2.5.0'
+        version: link:../plaiceholder
     devDependencies:
       '@types/node':
         specifier: 20.1.7
