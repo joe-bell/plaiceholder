@@ -224,7 +224,7 @@ export const getPlaiceholder = async (
     format = ["png"],
     brightness = 1,
     saturation = 1.2,
-    removeAlpha = true,
+    removeAlpha = false,
     ...options
   }: PlaiceholderOptions = {}
 ) => {
