@@ -1,0 +1,46 @@
+import { Callout } from "nextra-theme-docs";
+
+# Next.js
+
+<Callout type="info">
+
+**`plaiceholder` packages are [ESM only](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c).**
+
+</Callout>
+
+An **essential** plugin for Next.js, ensuring that all Plaiceholder functions start in the main thread.
+
+## Installation
+
+1. Add the package alongside your [existing `plaiceholder` installation](/getting-started):
+
+   ```sh
+   npm install @plaiceholder/next
+   ```
+
+2. Wrap your Next.js config with `withPlaiceholder`:
+
+   <Callout type="info">
+
+   Your Next.js config **must** use the `.mjs` extension.  
+   _(or `.ts` when supported)_
+
+   </Callout>
+
+   ```js filename="next.config.mjs"
+   // @ts-check
+   import withPlaiceholder from "@plaiceholder/next";
+
+   /**
+    * @type {import('next').NextConfig}
+    */
+   const config = {
+     // your Next.js config
+   };
+
+   export default withPlaiceholder(config);
+   ```
+
+## Usage
+
+…and that's it! Use Next.js and [plaiceholder](/usage) as you would expect.

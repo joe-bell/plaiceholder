@@ -4,15 +4,7 @@ import { Callout, Tab, Tabs } from "nextra-theme-docs";
 
 <Callout type="info">
 
-**Limitations**
-
-1. Supports **only** ESM/TypeScript Tailwind config files.  
-   _i.e. `tailwind.config.mjs` or `tailwind.config.ts`_
-2. Images must **not** have an `_` in their name  
-   _Tailwind treats this as a space._
-
-3. Only Node.js environments are supported  
-   _Tailwind doesn't support asynchrnous configuration, so this plugin depends on `make-synchronous` to work; a library that uses Node.js internals._
+**`plaiceholder` packages are [ESM only](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c).**
 
 </Callout>
 
@@ -25,6 +17,12 @@ import { Callout, Tab, Tabs } from "nextra-theme-docs";
    ```
 
 2. Add the plugin to your Tailwind config:
+
+   <Callout type="info">
+
+   Your Tailwind config **must** use the `.mjs` or `.ts` extension.
+
+   </Callout>
 
    ```js filename="tailwind.config.mjs" {2,11}
    // @ts-check
@@ -117,3 +115,13 @@ console.log(src);
 // Logs
 // "image-slug"
 ```
+
+## Limitations
+
+1. Supports **only** ESM/TypeScript Tailwind config files.  
+   _i.e. `tailwind.config.mjs` or `tailwind.config.ts`_
+2. Images must **not** have an `_` in their name  
+   _Tailwind treats this as a space._
+
+3. Only Node.js environments are supported  
+   _Tailwind doesn't support asynchrnous configuration, so this plugin depends on `make-synchronous` to work; a library that uses Node.js internals._
