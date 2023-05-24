@@ -1,0 +1,127 @@
+import { Callout, Tab, Tabs } from "nextra-theme-docs";
+
+# Tailwind
+
+<Callout type="info">
+
+**`plaiceholder` packages are [ESM only](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c).**
+
+</Callout>
+
+## Installation
+
+1. Install the package alongside your existing [`tailwindcss`](https://tailwindcss.com/docs/installation) and [`plaiceholder`](/getting-started) installation:
+
+   ```sh
+   npm install @plaiceholder/tailwindcss
+   ```
+
+2. Add the plugin to your Tailwind config:
+
+   <Callout type="info">
+
+   Your Tailwind config **must** use the `.mjs` or `.ts` extension.
+
+   </Callout>
+
+   ```js filename="tailwind.config.mjs" {2,11}
+   // @ts-check
+   import plaiceholder from "@plaiceholder/tailwindcss";
+
+   /** @type {import('tailwindcss').Config} */
+   export default {
+     content: [],
+     theme: {
+       extend: {},
+     },
+     variants: {},
+     plugins: [plaiceholder()],
+   };
+   ```
+
+3. Implement a `resolver` to control how the plugin converts a specified image path (the content within the class square brackets `[]`) into a `Buffer`.
+
+   For example:
+
+   ```js filename="tailwind.config.mjs" {15-16}
+   // @ts-check
+   import fs from "node:fs";
+   import path from "node:path";
+   import plaiceholder from "@plaiceholder/tailwindcss";
+
+   /** @type {import('tailwindcss').Config} */
+   export default {
+     content: [],
+     theme: {
+       extend: {},
+     },
+     variants: {},
+     plugins: [
+       plaiceholder({
+         resolver: (src) =>
+           fs.readFileSync(path.join("./public", `${src}.jpg`)),
+       }),
+     ],
+   };
+   ```
+
+## Usage
+
+Once installed, pure CSS image LQIPs can be created with the following class format:
+
+```html
+<!-- 
+   based on the config above, returns a pure CSS LQIP for:
+   `./public/image-slug.jpg`
+-->
+<div class="plaiceholder-[image-slug]" />
+```
+
+The class **only** returns the "pixels" (`linear-gradient` values), allowing you to configure your preferred "blur" effect:
+
+```html
+<!-- 
+   based on the config above, returns a pure CSS LQIP for:
+   `./public/image-slug.jpg`
+-->
+<div class="plaiceholder-[image-slug] transform scale-150 filter blur-2xl" />
+```
+
+## Utils
+
+[Dynamic values aren't supported](https://tailwindcss.com/docs/just-in-time-mode#known-limitations) by JIT mode, meaning arbitrary LQIPs can't be computed.
+
+The values **must** exist at build-time.
+
+```jsx
+// ❌ NOT POSSIBLE
+const Example = ({ src }) => (
+  <div
+    className={`plaiceholder-[{src}] transform scale-150 filter blur-2xl`}
+  />;
+);
+```
+
+To circumvent this, `@plaiceholder/tailwindcss` offers an additional `utils` entry point to extract image paths from the classes on the server-side.
+
+```js
+import { extractImgSrc } from "@plaiceholder/tailwindcss/utils";
+
+const plaiceholder = "plaiceholder-[image-slug]";
+const src = extractImgSrc(plaiceholder);
+
+console.log(src);
+
+// Logs
+// "image-slug"
+```
+
+## Limitations
+
+1. Supports **only** ESM/TypeScript Tailwind config files.  
+   _i.e. `tailwind.config.mjs` or `tailwind.config.ts`_
+2. Images must **not** have an `_` in their name  
+   _Tailwind treats this as a space._
+
+3. Only Node.js environments are supported  
+   _Tailwind doesn't support asynchrnous configuration, so this plugin depends on `make-synchronous` to work; a library that uses Node.js internals._

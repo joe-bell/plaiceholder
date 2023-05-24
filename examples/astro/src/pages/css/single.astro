@@ -1,5 +1,5 @@
 ---
-import { Image } from "@astrojs/image/components";
+import { Image } from "astro:assets";
 import { cx } from "class-variance-authority";
 import { getPlaiceholder } from "plaiceholder";
 import { imageList, imageListItem } from "@plaiceholder/ui";
@@ -9,9 +9,21 @@ import Layout from "@/layouts/Layout.astro";
 const title = config.examples.pages.css.title;
 const heading = config.examples.variants.single.title;
 
-const { css, img } = await getPlaiceholder(
-  "https://images.unsplash.com/photo-1621961458348-f013d219b50c?auto=format&fit=crop&w=2850&q=80",
-  { size: 10 }
+const getRemoteImageWithPlaiceholder = async (src: string) => {
+  const buffer = await fetch(src).then(async (res) =>
+    Buffer.from(await res.arrayBuffer())
+  );
+
+  const {
+    metadata: { height, width },
+    ...plaiceholder
+  } = await getPlaiceholder(buffer, { size: 10 });
+
+  return { ...plaiceholder, img: { src, height, width } };
+};
+
+const { css, img } = await getRemoteImageWithPlaiceholder(
+  "https://images.unsplash.com/photo-1621961458348-f013d219b50c?auto=format&fit=crop&w=2850&q=80"
 );
 ---
 
@@ -34,7 +46,12 @@ const { css, img } = await getPlaiceholder(
         )}
       >
       </div>
-      <Image {...img} format="jpeg" />
+      <Image
+        {...img}
+        alt="Snowy mountain peaks"
+        title="Photo from Unsplash"
+        format="jpeg"
+      />
     </li>
   </ul>
 </Layout>

@@ -10,31 +10,26 @@
     "lint:packages": "syncpack list-mismatches --config .config/.syncpackrc",
     "lint:prettier": "prettier --check .",
     "lint:ts": "pnpm --parallel --stream --workspace-concurrency=0 lint:ts",
-    "postinstall": "[[ \"$CI\" -ne \"1\" ]] && [[ \"CI\" != 'true' ]] && husky install || echo 'Skipping postinstall'",
-    "pre-commit": "lint-staged --config .config/lint-staged.config.mjs",
-    "preinstall": "npx only-allow pnpm",
-    "prepare": "[[ \"$CI\" -ne \"1\" ]] && [[ \"CI\" != 'true' ]] && pnpm build || echo 'Skipping prepare'"
+    "precommit": "lint-staged --config .config/lint-staged.config.mjs",
+    "preinstall": "npx only-allow pnpm && corepack enable",
+    "prepare": "run-p -s prepare:*",
+    "prepare:husky": "if-env VERCEL=1 && echo 'Skipping husky installation' || husky install",
+    "prepare:packages": "if-env VERCEL=1 && echo 'Skipping package build' || pnpm build"
   },
   "devDependencies": {
-    "@changesets/cli": "2.24.3",
-    "@commitlint/cli": "17.0.3",
-    "@commitlint/config-conventional": "17.0.3",
-    "commitizen": "4.2.5",
-    "cz-conventional-changelog": "3.3.0",
-    "husky": "8.0.1",
-    "lint-staged": "13.0.3",
+    "@changesets/cli": "2.26.1",
+    "husky": "8.0.3",
+    "if-env": "1.0.4",
+    "lint-staged": "13.2.2",
     "npm-run-all": "4.1.5",
-    "prettier": "2.7.1",
-    "sharp": "0.30.7",
+    "prettier": "2.8.8",
+    "sharp": "0.32.1",
     "syncpack": "8.2.4",
-    "typescript": "4.7.4"
-  },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
+    "typescript": "5.0.4"
   },
   "engines": {
-    "pnpm": "^7"
-  }
+    "node": "18",
+    "pnpm": "8"
+  },
+  "packageManager": "pnpm@8.1.1"
 }

@@ -9,23 +9,26 @@
   "homepage": "https://github.com/joe-bell/plaiceholder#readme",
   "keywords": [
     "base64",
-    "blurhash",
     "css",
     "lqip",
     "placeholder",
     "plaiceholder",
     "svg"
   ],
-  "source": "src/index.ts",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "typings": "dist/index.d.ts",
+  "module": "./dist/plaiceholder.esm.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/plaiceholder.esm.js",
+      "default": "./dist/plaiceholder.esm.js"
+    }
+  },
   "files": [
     "dist",
     "README.md"
   ],
   "scripts": {
-    "build": "microbundle --external sharp --no-compress --target node --tsconfig tsconfig.json --format cjs,esm",
+    "build": "microbundle src/index.ts --external sharp --no-compress --tsconfig tsconfig.json --format esm",
     "clean": "rimraf {dist,.rts2*}",
     "dev": "pnpm build -- watch",
     "lint:ts": "tsc --noEmit"
@@ -33,19 +36,14 @@
   "peerDependencies": {
     "sharp": ">= 0.30.6"
   },
-  "dependencies": {
-    "blurhash": "1.1.5",
-    "encoding": "0.1.13",
-    "image-size": "1.0.2",
-    "node-cache": "5.1.2",
-    "node-fetch": "2.6.7"
-  },
   "devDependencies": {
-    "@types/node": "18.7.13",
-    "@types/sharp": "0.30.2",
+    "@types/node": "20.1.7",
+    "@types/sharp": "0.32.0",
     "microbundle": "0.15.1",
-    "rimraf": "3.0.2",
-    "sharp": "0.30.7",
-    "typescript": "4.7.4"
-  }
+    "rimraf": "5.0.1",
+    "sharp": "0.32.1",
+    "typescript": "5.0.4"
+  },
+  "type": "module",
+  "types": "./dist/index.d.ts"
 }

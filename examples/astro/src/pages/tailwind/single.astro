@@ -1,7 +1,7 @@
 ---
+import { getImage, Image } from "astro:assets";
 import { cx } from "class-variance-authority";
 import { imageList, imageListItem } from "@plaiceholder/ui";
-import { getPlaiceholder } from "plaiceholder";
 import { extractImgSrc } from "@plaiceholder/tailwindcss/utils";
 import { config } from "@/config";
 import Layout from "@/layouts/Layout.astro";
@@ -9,38 +9,48 @@ import Layout from "@/layouts/Layout.astro";
 const title = config.examples.pages.tailwind.title;
 const heading = config.examples.variants.single.title;
 
-const plaiceholder = "plaiceholder-[/assets/images/keila-joa@578.jpg]";
+const getImageWithPlaiceholder = async (plaiceholder: string) => {
+  const filename = extractImgSrc(plaiceholder);
 
-const { img } = await getPlaiceholder(extractImgSrc(plaiceholder));
+  const { default: file } = await import(
+    `../../../src/assets/images/${filename}.jpg`
+  );
+
+  const { src, attributes } = await getImage({ src: file });
+
+  return { plaiceholder, img: { ...attributes, src } };
+};
+
+const { plaiceholder, img } = await getImageWithPlaiceholder(
+  "plaiceholder-[keila-joa@578]"
+);
 ---
 
 <Layout variant="example" title={title} heading={heading}>
-	<ul role="list" class={imageList({ columns: 2 })}>
-		<li class={imageListItem()}>
-			<div
-				class={cx(
-					plaiceholder,
-					"absolute",
-					"inset-0",
-					"w-full",
-					"h-full",
-					"transform",
-					"scale-150",
-					"filter",
-					"blur-2xl",
-					"z-[-1]"
-				)}
-			>
-			</div>
-			{
-				/**
-				 * For now, @plaiceholder/tailwindcss needs the image to be in `/public`,
-				 * which @astrojs/image doesn't support.
-				 *
-				 * So we'll use a regular-ol' `<img>` instead:
-				 */
-			}
-			<img {...img} />
-		</li>
-	</ul>
+  <ul role="list" class={imageList({ columns: 2 })}>
+    <li class={imageListItem()}>
+      <div
+        class={cx(
+          plaiceholder,
+          "absolute",
+          "inset-0",
+          "w-full",
+          "h-full",
+          "transform",
+          "scale-150",
+          "filter",
+          "blur-2xl",
+          "z-[-1]"
+        )}
+      >
+      </div>
+      <!-- `getImage()` *does* provide width/height, but `Image` disagrees -->
+      <!-- @ts-expect-error -->
+      <Image
+        {...img}
+        alt="Looking down Keila river, Estonia"
+        title="Photo by Joe Bell"
+      />
+    </li>
+  </ul>
 </Layout>

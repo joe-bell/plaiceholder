@@ -1,4 +1,6 @@
 ---
+import fs from "node:fs/promises";
+import { getImage } from "astro:assets";
 import { getPlaiceholder } from "plaiceholder";
 import {
   exampleBody,
@@ -12,17 +14,29 @@ import {
 } from "@plaiceholder/ui";
 import { config } from "@/config";
 import Layout from "@/layouts/Layout.astro";
-import { getAllPublicUnsplashImagePaths } from "@/lib/images";
 
-const imagePaths = await getAllPublicUnsplashImagePaths();
+const imageFiles = await Astro.glob("../assets/images/unsplash-*.{jpg,png}");
 
-const plaiceholders = await Promise.all(
-  imagePaths.map(async (src) => {
-    const { css } = await getPlaiceholder(src);
+const getImagesWithPlaiceholder = async (files: Record<string, any>[]) =>
+  Promise.all(
+    files.map(async ({ default: file }) => {
+      const { src, attributes } = await getImage({ src: file });
 
-    return css;
-  })
-);
+      const original = file.src.split("?")[0];
+      const buffer = await fs.readFile(
+        new URL(`../..${original}`, import.meta.url)
+      );
+
+      const {
+        metadata: { height, width },
+        ...plaiceholder
+      } = await getPlaiceholder(buffer);
+
+      return { ...plaiceholder, img: { ...attributes, src, height, width } };
+    })
+  );
+
+const images = await getImagesWithPlaiceholder(imageFiles);
 ---
 
 <Layout variant="home" title="Astro">
@@ -33,7 +47,7 @@ const plaiceholders = await Promise.all(
           <div
             aria-hidden="true"
             class={exampleLQIP()}
-            style={plaiceholders[i]}
+            style={images[i]?.css}
           />
           <p class={exampleBody()}>
             <span class={exampleTitle()}>

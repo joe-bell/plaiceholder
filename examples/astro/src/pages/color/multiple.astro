@@ -1,0 +1,70 @@
+---
+import fs from "node:fs/promises";
+import { getImage, Image } from "astro:assets";
+import { cx } from "class-variance-authority";
+import { getPlaiceholder } from "plaiceholder";
+import { imageList, imageListItem } from "@plaiceholder/ui";
+import { config } from "@/config";
+import Layout from "@/layouts/Layout.astro";
+
+const title = config.examples.pages.color.title;
+const heading = config.examples.variants.multiple.title;
+
+const imageFiles = await Astro.glob("../../assets/images/unsplash-*.{jpg,png}");
+
+const getImagesWithPlaiceholder = async (files: Record<string, any>[]) =>
+  Promise.all(
+    files.map(async ({ default: file }) => {
+      const { src, attributes } = await getImage({ src: file });
+
+      const original = file.src.split("?")[0];
+      const buffer = await fs.readFile(
+        new URL(
+          import.meta.env.VERCEL ? `../..${original}` : `../../..${original}`,
+          import.meta.url
+        )
+      );
+
+      const {
+        metadata: { height, width },
+        ...plaiceholder
+      } = await getPlaiceholder(buffer);
+
+      return { ...plaiceholder, img: { ...attributes, src, height, width } };
+    })
+  );
+
+const images = await getImagesWithPlaiceholder(imageFiles);
+---
+
+<Layout variant="example" title={title} heading={heading}>
+  <ul role="list" class={imageList({ columns: 3, aspect: "5/7" })}>
+    {
+      images.map(({ img, color }) => (
+        <li class={imageListItem()}>
+          <div
+            aria-hidden
+            style={{ backgroundColor: color.hex }}
+            class={cx(
+              "absolute",
+              "inset-0",
+              "w-full",
+              "h-full",
+              "transform",
+              "scale-150",
+              "filter",
+              "blur-2xl",
+              "z-[-1]"
+            )}
+          />
+          <Image
+            {...img}
+            alt="Paint Splashes"
+            title="Photo from Unsplash"
+            loading="lazy"
+          />
+        </li>
+      ))
+    }
+  </ul>
+</Layout>

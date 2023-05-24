@@ -1,0 +1,122 @@
+import { Callout } from "nextra-theme-docs";
+
+# Upgrading to 3.0
+
+`3.0` marks the end of the `plaiceholder` project, with this major release focussing on making the project feature complete and as future-proof as possible.
+
+Once the `peerDependency` `sharp` [enables support for Non-Node.js projects](https://github.com/lovell/sharp/pull/3522), `plaiceholder` _should_ work seamlessly on all supported runtimes.
+
+Preparing for wider support meant dropping some of the "magic" features that `plaiceholder` previously offered.
+There is **no obligation** to upgrade to `3.0` if you would prefer to keep using the previous API!
+
+If this project has been useful to you, please consider [sponsoring my work](https://joebell.co.uk/sponsors).
+
+## Migrate to ESM
+
+<Callout type="info">
+
+**`plaiceholder` packages are [ESM only](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c).**
+
+</Callout>
+
+If you're using any of the `plaiceholder` packages in a CommonJS project, you'll need to migrate to ESM before continuing.
+
+## Update Your Dependencies
+
+Ensure all `plaiceholder` and `@plaiceholder/*` packages are set to at least `3.0.0`.
+
+## Update Your Code
+
+### `plaiceholder`
+
+1. **Implement your own image resolver**
+
+   Previously, `plaiceholder` would automatically resolve your image based on a specified file path or URL, e.g. `getPlaiceholder('./path-to-image')`.
+
+   To enable future adoption within other non-Node.js runtimes, this feature has been removed.
+
+   Instead, **you will need to pass a `Buffer`** to `getPlaiceholder()`, based on your own use-case.
+
+   In the case of Node.js, for local images in `/public`:
+
+   ```js
+   import path from "node:path";
+   import fs from "node:fs/promises";
+
+   const getImage = async (src: string) => {
+     const file = await fs.readFile(path.join("./public", src));
+     const buffer = await fs.readFile(file);
+
+     const {
+       metadata: { height, width },
+       ...plaiceholder
+     } = await getPlaiceholder(buffer, { size: 10 });
+
+     return {
+       ...plaiceholder,
+       img: { src, height, width },
+     };
+   };
+
+   // Usage
+   const { base64, img } = await getImage("/assets/image/example.jpg");
+   ```
+
+   In the case of Node.js, for remote images:
+
+   ```js
+   const getImage = async (src: string) => {
+     const buffer = await fetch(src).then(async (res) =>
+       Buffer.from(await res.arrayBuffer())
+     );
+
+     const {
+       metadata: { height, width },
+       ...plaiceholder
+     } = await getPlaiceholder(buffer, { size: 10 });
+
+     return {
+       ...plaiceholder,
+       img: { src, height, width },
+     };
+   };
+
+   // Usage
+   const { base64, img } = await getImage(
+     "https://images.unsplash.com/photo-1621961458348-f013d219b50c?auto=format&fit=crop&w=2850&q=80"
+   );
+   ```
+
+1. **`blurhash` is no longer returned**
+
+   Switch any `blurhash` consumers to an alternative LQIP strategy, or use the `blurhash` package directly.
+
+1. **`img` → `metadata`**
+
+   Update any `img` consumers to make use of the new `metadata` object.
+
+   Instead, use `metadata` to [create your **own** `<img />` attributes](/docs/usage#generating-img--attributes).
+
+   _Note: `img.type` has moved to `metadata.format`._
+
+1. **No longer `removeAlpha` by default**
+
+   To preserve previous behaviour, you can specify `removeAlpha: true` within `getPlaiceholder()`'s options.
+
+1. **Update Your Types**
+
+   - `TGetPlaiceholderSrc` → `GetPlaiceholderSrc`
+   - `IGetPlaiceholderOptions` → `GetPlaiceholderOptions`
+   - `IGetPlaiceholderReturn` → `GetPlaiceholderReturn`
+   - `IGetPlaiceholder` → `typeof getPlaiceholder`
+
+### `@plaiceholder/next`
+
+1. Migrate your `next.config.js` to `next.config.mjs`  
+   _(or `.ts` when supported)_
+1. Ensure your config matches the [configuration steps](/docs/plugins/next).
+
+### `@plaiceholder/tailwindcss`
+
+1. Migrate your `tailwind.config.js` to `tailwind.config.mjs` or `tailwind.config.ts`
+1. Follow the [configuration steps to add a `resolver`](/docs/plugins/tailwind).

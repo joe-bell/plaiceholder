@@ -5,23 +5,24 @@
   "description": "Private UI styles for plaiceholder examples",
   "author": "Joe Bell (https://joebell.co.uk)",
   "license": "Apache-2.0",
-  "main": "src/index.ts",
-  "module": "src/index.ts",
   "exports": {
     ".": {
+      "types": "./src/index.ts",
       "import": "./src/index.ts",
-      "require": "./src/index.ts"
+      "default": "./src/index.ts"
     }
   },
   "scripts": {
     "lint:ts": "tsc --noEmit"
   },
   "peerDependencies": {
-    "class-variance-authority": "0.2.3"
+    "class-variance-authority": "0.6.0"
   },
   "devDependencies": {
-    "class-variance-authority": "0.2.3",
-    "typescript": "4.7.4"
+    "class-variance-authority": "0.6.0",
+    "typescript": "5.0.4"
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "type": "module",
+  "types": "./src/index.ts"
 }

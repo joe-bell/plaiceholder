@@ -1,0 +1,48 @@
+.navbar__brand {
+  --brand-padding: 0.5rem;
+  --brand-margin: calc(var(--brand-padding) * -1);
+  display: inline-flex;
+  padding: var(--brand-padding);
+  margin: var(--brand-margin);
+  margin-right: calc(var(--brand-margin) + 1rem);
+  border-radius: 0.25rem;
+  flex-direction: row-reverse;
+  text-transform: lowercase;
+  align-items: center;
+}
+
+.navbar__title {
+  font-weight: 700;
+  font-size: 0;
+}
+
+.navbar__logo {
+  max-width: 2.875rem;
+  flex-shrink: 0;
+  margin-right: 0;
+}
+
+@media (min-width: 420px) {
+  .navbar__title {
+    font-size: 1.25rem;
+  }
+
+  .navbar__logo {
+    margin-left: 0.5rem;
+  }
+}
+
+.footer-text {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .footer-text {
+    justify-content: space-between;
+    flex-direction: row;
+  }
+}

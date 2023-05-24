@@ -13,23 +13,23 @@
     "plaiceholder",
     "tailwindcss"
   ],
-  "main": "dist/plugin.js",
-  "module": "dist/plugin.mjs",
   "exports": {
     ".": {
-      "import": "./dist/plugin.mjs",
-      "require": "./dist/plugin.js"
+      "types": "./dist/plugin.d.ts",
+      "import": "./dist/plugin.esm.js",
+      "default": "./dist/plugin.esm.js"
     },
     "./plugin": {
-      "import": "./dist/plugin.mjs",
-      "require": "./dist/plugin.js"
+      "types": "./dist/plugin.d.ts",
+      "import": "./dist/plugin.esm.js",
+      "default": "./dist/plugin.esm.js"
     },
     "./utils": {
-      "import": "./dist/utils.mjs",
-      "require": "./dist/utils.js"
+      "types": "./dist/utils.d.ts",
+      "import": "./dist/utils.esm.js",
+      "default": "./dist/utils.esm.js"
     }
   },
-  "typings": "./dist/plugin.d.ts",
   "typesVersions": {
     "*": {
       "plugin": [
@@ -45,26 +45,30 @@
     "README.md"
   ],
   "scripts": {
-    "build": "microbundle src/*.ts --external sharp --no-compress --target node --tsconfig tsconfig.json --format cjs,esm",
+    "build": "microbundle src/*.ts --external sharp plaiceholder --no-compress --target node --tsconfig tsconfig.json --format esm",
     "clean": "rimraf {dist,.rts2*}",
     "dev": "pnpm build -- --watch",
     "lint:ts": "tsc --noEmit"
   },
   "peerDependencies": {
+    "plaiceholder": ">= 2.5.0",
     "sharp": ">= 0.30.6",
     "tailwindcss": ">=3"
   },
   "dependencies": {
-    "make-synchronous": "0.1.1",
-    "plaiceholder": "workspace:*"
+    "make-synchronous": "0.1.1"
   },
   "devDependencies": {
-    "autoprefixer": "10.4.8",
+    "@types/node": "20.1.7",
+    "autoprefixer": "10.4.14",
     "microbundle": "0.15.1",
-    "postcss": "8.4.16",
-    "rimraf": "3.0.2",
-    "sharp": "0.30.7",
-    "tailwindcss": "3.1.8",
-    "typescript": "4.7.4"
-  }
+    "plaiceholder": "workspace:*",
+    "postcss": "8.4.23",
+    "rimraf": "5.0.1",
+    "sharp": "0.32.1",
+    "tailwindcss": "3.3.2",
+    "typescript": "5.0.4"
+  },
+  "type": "module",
+  "types": "./dist/plugin.d.ts"
 }

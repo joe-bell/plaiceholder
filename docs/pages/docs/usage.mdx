@@ -1,0 +1,278 @@
+import { Callout, Tab, Tabs } from "nextra-theme-docs";
+
+# Usage
+
+<Callout type="info">
+
+**`plaiceholder` packages are [ESM only](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c).**
+
+</Callout>
+
+```js
+getPlaiceholder(input, options);
+```
+
+## Parameters
+
+- `input`: raw `Buffer` image source.
+
+- `options`: _(optional)_
+
+  - `size`: an integer (between `4` and `64`)
+    to adjust the returned placeholder size (default: `4`)
+  - `autoOrient`: automatically orient image based on its EXIF data (default: `false`)
+  - Sharp Configuration
+
+    Under-the-hood, plaiceholder uses [Sharp](https://sharp.pixelplumbing.com) to transform images; a small selection of options have been exposed for further customization:
+
+    <Callout type="info">
+
+    Plaiceholder has no plans to expand these options. If you need more control on the ouput, we recommend rolling your own Sharp-based LQIP solution.
+
+    </Callout>
+
+    - `brightness`: brightness multiplier (default: `1`)
+    - `format`: force output to a [specified output](https://sharp.pixelplumbing.com/api-output#toformat) (default: `["png"]`)
+    - `hue`: degrees for hue rotation (no default)
+    - `lightness`: lightness addend (no default)
+    - `removeAlpha`: remove alpha channel for transparent images (default: `false`)
+    - `saturation`: saturation multiplier (default: `1.2`)
+
+## Return Values
+
+### `base64`
+
+Converts a specified image into a low-res image, encoded as Base64 string.
+
+For a "blurred" effect, add `filter: blur(<value>)` and `transform: scale(<value>)` styles to the image.
+
+```js
+import fs from "node:fs/promises";
+import { getPlaiceholder } from "plaiceholder";
+
+try {
+  const file = await fs.readFile("/path-to-your-image.jpg");
+
+  const { base64 } = await getPlaiceholder(file);
+
+  console.log(base64);
+} catch (err) {
+  err;
+}
+
+// Logs
+// data:image/jpeg;base64,/9j/2wBDAAYEBQY…
+```
+
+### `color`
+
+Gets the dominant color from a specified image, as individual `r`, `g`,`b` values and as a `hex` code.
+
+```js
+import fs from "node:fs/promises";
+import { getPlaiceholder } from "plaiceholder";
+
+try {
+  const file = await fs.readFile("/path-to-your-image.jpg");
+
+  const { color } = await getPlaiceholder(file);
+
+  console.log(color);
+} catch (err) {
+  err;
+}
+
+// Logs
+// {
+//   r: …,
+//   g: …,
+//   b: …,
+//   hex: '…' },
+// }
+```
+
+### `css`
+
+Converts a specified image into a low-res placeholder, outputted as a set of `linear-gradient`s (in the form of a JavaScript style object).
+
+For a "blurred" effect, extend the returned styles with `filter: blur(<value>)` and `transform: scale(<value>)`.
+
+```js
+import fs from "node:fs/promises";
+import { getPlaiceholder } from "plaiceholder";
+
+try {
+  const file = await fs.readFile("/path-to-your-image.jpg");
+
+  const { css } = await getPlaiceholder(file);
+
+  console.log(css);
+} catch (err) {
+  err;
+}
+
+// Logs
+// {
+//   backgroundImage: "…"
+//   backgroundPosition: "…"
+//   backgroundSize: "…"
+//   backgroundRepeat: "…"
+// }
+```
+
+### `metadata`
+
+Returns all input metadata ([via `sharp`](https://sharp.pixelplumbing.com/api-input#metadata)).
+
+```js
+import fs from "node:fs/promises";
+import { getPlaiceholder } from "plaiceholder";
+
+try {
+  const file = await fs.readFile("/path-to-your-image.jpg");
+
+  const { metadata } = await getPlaiceholder(file);
+
+  console.log(metadata);
+} catch (err) {
+  err;
+}
+
+// Logs
+// {
+//   width: …,
+//   height: …,
+//   format: '…',
+//   size: …,
+//   space: '…',
+//   channels: …,
+//   depth: '…',
+//   density: …,
+//   chromaSubsampling: '…',
+//   isProgressive: …,
+//   resolutionUnit: '…',
+//   hasProfile: …,
+//   hasAlpha: …,
+//   orientation: …,
+//   exif: …,
+//   icc: …,
+//   iptc: …,
+//   xmp: …
+// }
+```
+
+#### Generating `<img />` Attributes
+
+A common use-case for `metadata` would be to generate all essential attributes for your source `<img />`:
+
+```js
+import fs from "node:fs/promises";
+import { getPlaiceholder } from "plaiceholder";
+
+try {
+  const src = "/path-to-your-image.jpg";
+  const file = await fs.readFile(src);
+
+  const {
+    metadata: { height, width },
+  } = await getPlaiceholder(file);
+
+  const img = { src, height, width };
+
+  console.log(img);
+} catch (err) {
+  err;
+}
+
+// Logs
+// {
+//   src: '…',
+//   width: …,
+//   height: …,
+// }
+```
+
+### `pixels`
+
+Returns the raw output pixel values as an array of rows, where each row item corresponds to a column.
+
+Each pixel is represented by individual `r`, `g` and`b` values.
+
+For images with transparency, an `a` value represents the pixel's alpha value.
+
+```js
+import fs from "node:fs/promises";
+import { getPlaiceholder } from "plaiceholder";
+
+try {
+  const file = await fs.readFile("/path-to-your-image.jpg");
+
+  const { color } = await getPlaiceholder(file);
+
+  console.log(color);
+} catch (err) {
+  err;
+}
+
+// Logs
+// [
+//   // Row 1
+//   [
+//     // Row 1, Column 1
+//     { r: 179, g: 155, b: 178 },
+//     // Row 1, Column 2
+//     { r: 246, g: 152, b: 170 },
+//     // Row 1, Column 3
+//     { r: 145, g: 106, b: 123 }
+//   ],
+//   // Row 2
+//   [
+//     // Row 2, Column 1
+//     { r: 179, g: 155, b: 178 },
+//     // Row 2, Column 2
+//     { r: 246, g: 152, b: 170 },
+//     // Row 2, Column 3
+//     { r: 145, g: 106, b: 123 }
+//   ],
+// ]
+```
+
+### `svg`
+
+Converts a specified image into a low-res placeholder, outputted as an SVG.
+
+For a "blurred" effect, extend the returned SVG's styles with `filter: blur(<value>)` and `transform: scale(<value>)`.
+
+<Callout type="info">
+
+Although it returns the SVG in the format of [`React.createElement()`](https://reactjs.org/docs/react-api.html#createelement) arguments, you are not constrained to using React.js.
+
+</Callout>
+
+```js
+import fs from "node:fs/promises";
+import { getPlaiceholder } from "plaiceholder";
+
+try {
+  const file = await fs.readFile("/path-to-your-image.jpg");
+
+  const { svg } = await getPlaiceholder(file);
+
+  console.log(svg);
+} catch (err) {
+  err;
+}
+
+// Logs
+// [
+//   "svg",
+//   { ...svgProps }
+//   [
+//     [
+//       "rect",
+//       { ...rectProps }
+//     ],
+//     ...etc
+//   ]
+// ]
+```
