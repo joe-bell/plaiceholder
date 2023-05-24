@@ -1,6 +1,6 @@
 {
   "name": "@plaiceholder/tailwindcss",
-  "version": "2.5.0",
+  "version": "3.0.0",
   "description": "Roll-you-own placeholders for Tailwind.",
   "author": "Joe Bell (https://joebell.co.uk)",
   "license": "Apache-2.0",
@@ -51,7 +51,7 @@
     "lint:ts": "tsc --noEmit"
   },
   "peerDependencies": {
-    "plaiceholder": ">= 2.5.0",
+    "plaiceholder": ">=3.0.0",
     "sharp": ">= 0.30.6",
     "tailwindcss": ">=3"
   },

@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0
+
+### Major Changes
+
+- af07a60: Visit [plaiceholder.co/docs/upgrading-to-3](https://plaiceholder.co/docs/upgrading-to-3)
+
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 

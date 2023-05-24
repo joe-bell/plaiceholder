@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@plaiceholder/ui",
-  "version": "2.5.0",
+  "version": "3.0.0",
   "description": "Private UI styles for plaiceholder examples",
   "author": "Joe Bell (https://joebell.co.uk)",
   "license": "Apache-2.0",

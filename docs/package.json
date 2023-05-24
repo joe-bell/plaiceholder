@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "docs",
-  "version": "2.2.0",
+  "version": "3.0.0",
   "author": "Joe Bell (https://joebell.co.uk)",
   "license": "Apache-2.0",
   "scripts": {
