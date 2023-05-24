@@ -45,8 +45,7 @@ Ensure all `plaiceholder` and `@plaiceholder/*` packages are set to at least `3.
    import fs from "node:fs/promises";
 
    const getImage = async (src: string) => {
-     const file = await fs.readFile(path.join("./public", src));
-     const buffer = await fs.readFile(file);
+     const buffer = await fs.readFile(path.join("./public", src));
 
      const {
        metadata: { height, width },
