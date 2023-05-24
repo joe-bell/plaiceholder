@@ -1,10 +1,10 @@
-<p align="center">
-  <strong>
-    <a href="ACQUISITION.md">
-      Open to Acquisition 🟢
-    </a>
-  </strong>
-</p>
+> **Note**
+>
+> The `plaiceholder` project is feature complete and will now be kept in maintenance mode.
+>
+> [**Read the migration guide**](https://plaiceholder.co/docs/upgrading-to-3) for further information.
+>
+> If this project has been useful to you, please consider [sponsoring my work](https://joebell.co.uk/sponsors).
 
 ---
 
@@ -47,19 +47,7 @@
 
 <br />
 
-## Documentation 📖
-
-Visit **[plaiceholder.co][plaiceholder]** to get started with the open-source free-to-use packages.
-
-### Migrating from `1.0`?
-
-See the [migration guide](https://github.com/joe-bell/plaiceholder/releases/tag/v2.0.0) for further details.
-
-## Sponsors
-
-We're still working on a process for supporting Plaiceholder – check back soon for more details.
-
-### Long-term Supporters
+## Supporters
 
 Thanks go to these wondeful people for their long-standing support.
 
@@ -105,12 +93,3 @@ Copyright © 2013-2022, Lovell Fuller. All Rights Reserved.
 Licensed under the Apache License, Version 2.0 (the "License").
 
 [plaiceholder]: https://plaiceholder.co
-[next/image]: https://nextjs.org/docs/basic-features/image-optimization
-
----
-
-<p align="center">
-  <a href="https://vercel.com?utm_source=plaiceholder&utm_campaign=oss">
-    <img alt="Powered by Vercel"  src="./.github/assets/powered-by-vercel.svg" />
-  <a>
-</p>

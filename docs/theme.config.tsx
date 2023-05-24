@@ -1,4 +1,4 @@
-import { useConfig, type DocsThemeConfig, useTheme } from "nextra-theme-docs";
+import { useConfig, type DocsThemeConfig } from "nextra-theme-docs";
 import { useRouter } from "next/router";
 
 export const config = {
