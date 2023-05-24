@@ -24,11 +24,13 @@ If this project has been useful to you, please consider [sponsoring my work](htt
 
 There is no "one-size-fits-all" LQIP strategy, so we offer them all…
 
-- [**CSS**](/usage#css)  
+- [**Color**](/docs/usage#color)  
+  It's just a color
+- [**CSS**](/docs/usage#css)  
   ~600B when rendered as CSS
-- [**SVG**](/usage#svg)  
+- [**SVG**](/docs/usage#svg)  
   ~1.2kB when rendered in HTML
-- [**Base64**](/usage#base64)  
+- [**Base64**](/docs/usage#base64)  
   ~300B asset size
 
 Give each strategy a try to see what works best for your individual use-case.
@@ -37,9 +39,11 @@ Give each strategy a try to see what works best for your individual use-case.
 
 Whilst most strategies offer fast `DOMContentLoaded` and `LCP`, it's important to consider the caveats of each:
 
-- [**CSS**](/usage#css)  
+- [**Color**](/docs/usage#color)  
+  Plain; not the most exciting.
+- [**CSS**](/docs/usage#css)  
   Won't maintain ratio for images that use `object-fit`
-- [**SVG**](/usage#svg)  
+- [**SVG**](/docs/usage#svg)  
   Doesn't (yet) leverage [SVG filter primitives](https://developer.mozilla.org/en-US/Web/SVG/Element/feGaussianBlur)
-- [**Base64**](/usage#base64)  
+- [**Base64**](/docs/usage#base64)  
   Not the nicest looking. Even though plaiceholder makes an opinionated choice to slightly increase saturation for base64 images under-the-hood, colors can often appear drab

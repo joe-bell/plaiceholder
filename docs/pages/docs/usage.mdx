@@ -46,6 +46,10 @@ Converts a specified image into a low-res image, encoded as Base64 string.
 
 For a "blurred" effect, add `filter: blur(<value>)` and `transform: scale(<value>)` styles to the image.
 
+<Tabs items={["Node.js: Local Image", "Node.js: Remote Image"]}>
+
+<Tab>
+
 ```js
 import fs from "node:fs/promises";
 import { getPlaiceholder } from "plaiceholder";
@@ -64,9 +68,42 @@ try {
 // data:image/jpeg;base64,/9j/2wBDAAYEBQY…
 ```
 
+</Tab>
+
+<Tab>
+
+```js
+import { getPlaiceholder } from "plaiceholder";
+
+try {
+  const src = "https://images.unsplash.com/photo-1621961458348-f013d219b50c";
+
+  const buffer = await fetch(src).then(async (res) =>
+    Buffer.from(await res.arrayBuffer())
+  );
+
+  const { base64 } = await getPlaiceholder(buffer);
+
+  console.log(base64);
+} catch (err) {
+  err;
+}
+
+// Logs
+// data:image/jpeg;base64,/9j/2wBDAAYEBQY…
+```
+
+</Tab>
+
+</Tabs>
+
 ### `color`
 
 Gets the dominant color from a specified image, as individual `r`, `g`,`b` values and as a `hex` code.
+
+<Tabs items={["Node.js: Local Image", "Node.js: Remote Image"]}>
+
+<Tab>
 
 ```js
 import fs from "node:fs/promises";
@@ -91,11 +128,49 @@ try {
 // }
 ```
 
+</Tab>
+
+<Tab>
+
+```js
+import { getPlaiceholder } from "plaiceholder";
+
+try {
+  const src = "https://images.unsplash.com/photo-1621961458348-f013d219b50c";
+
+  const buffer = await fetch(src).then(async (res) =>
+    Buffer.from(await res.arrayBuffer())
+  );
+
+  const { color } = await getPlaiceholder(buffer);
+
+  console.log(color);
+} catch (err) {
+  err;
+}
+
+// Logs
+// {
+//   r: …,
+//   g: …,
+//   b: …,
+//   hex: '…' },
+// }
+```
+
+</Tab>
+
+</Tabs>
+
 ### `css`
 
 Converts a specified image into a low-res placeholder, outputted as a set of `linear-gradient`s (in the form of a JavaScript style object).
 
 For a "blurred" effect, extend the returned styles with `filter: blur(<value>)` and `transform: scale(<value>)`.
+
+<Tabs items={["Node.js: Local Image", "Node.js: Remote Image"]}>
+
+<Tab>
 
 ```js
 import fs from "node:fs/promises";
@@ -120,9 +195,47 @@ try {
 // }
 ```
 
+</Tab>
+
+<Tab>
+
+```js
+import { getPlaiceholder } from "plaiceholder";
+
+try {
+  const src = "https://images.unsplash.com/photo-1621961458348-f013d219b50c";
+
+  const buffer = await fetch(src).then(async (res) =>
+    Buffer.from(await res.arrayBuffer())
+  );
+
+  const { css } = await getPlaiceholder(buffer);
+
+  console.log(css);
+} catch (err) {
+  err;
+}
+
+// Logs
+// {
+//   backgroundImage: "…"
+//   backgroundPosition: "…"
+//   backgroundSize: "…"
+//   backgroundRepeat: "…"
+// }
+```
+
+</Tab>
+
+</Tabs>
+
 ### `metadata`
 
 Returns all input metadata ([via `sharp`](https://sharp.pixelplumbing.com/api-input#metadata)).
+
+<Tabs items={["Node.js: Local Image", "Node.js: Remote Image"]}>
+
+<Tab>
 
 ```js
 import fs from "node:fs/promises";
@@ -160,6 +273,54 @@ try {
 //   xmp: …
 // }
 ```
+
+</Tab>
+
+<Tab>
+
+```js
+import { getPlaiceholder } from "plaiceholder";
+
+try {
+  const src = "https://images.unsplash.com/photo-1621961458348-f013d219b50c";
+
+  const buffer = await fetch(src).then(async (res) =>
+    Buffer.from(await res.arrayBuffer())
+  );
+
+  const { metadata } = await getPlaiceholder(buffer);
+
+  console.log(metadata);
+} catch (err) {
+  err;
+}
+
+// Logs
+// {
+//   width: …,
+//   height: …,
+//   format: '…',
+//   size: …,
+//   space: '…',
+//   channels: …,
+//   depth: '…',
+//   density: …,
+//   chromaSubsampling: '…',
+//   isProgressive: …,
+//   resolutionUnit: '…',
+//   hasProfile: …,
+//   hasAlpha: …,
+//   orientation: …,
+//   exif: …,
+//   icc: …,
+//   iptc: …,
+//   xmp: …
+// }
+```
+
+</Tab>
+
+</Tabs>
 
 #### Generating `<img />` Attributes
 
@@ -200,6 +361,10 @@ Each pixel is represented by individual `r`, `g` and`b` values.
 
 For images with transparency, an `a` value represents the pixel's alpha value.
 
+<Tabs items={["Node.js: Local Image", "Node.js: Remote Image"]}>
+
+<Tab>
+
 ```js
 import fs from "node:fs/promises";
 import { getPlaiceholder } from "plaiceholder";
@@ -207,9 +372,9 @@ import { getPlaiceholder } from "plaiceholder";
 try {
   const file = await fs.readFile("/path-to-your-image.jpg");
 
-  const { color } = await getPlaiceholder(file);
+  const { pixels } = await getPlaiceholder(file);
 
-  console.log(color);
+  console.log(pixels);
 } catch (err) {
   err;
 }
@@ -237,6 +402,54 @@ try {
 // ]
 ```
 
+</Tab>
+
+<Tab>
+
+```js
+import { getPlaiceholder } from "plaiceholder";
+
+try {
+  const src = "https://images.unsplash.com/photo-1621961458348-f013d219b50c";
+
+  const buffer = await fetch(src).then(async (res) =>
+    Buffer.from(await res.arrayBuffer())
+  );
+
+  const { pixels } = await getPlaiceholder(buffer);
+
+  console.log(pixels);
+} catch (err) {
+  err;
+}
+
+// Logs
+// [
+//   // Row 1
+//   [
+//     // Row 1, Column 1
+//     { r: 179, g: 155, b: 178 },
+//     // Row 1, Column 2
+//     { r: 246, g: 152, b: 170 },
+//     // Row 1, Column 3
+//     { r: 145, g: 106, b: 123 }
+//   ],
+//   // Row 2
+//   [
+//     // Row 2, Column 1
+//     { r: 179, g: 155, b: 178 },
+//     // Row 2, Column 2
+//     { r: 246, g: 152, b: 170 },
+//     // Row 2, Column 3
+//     { r: 145, g: 106, b: 123 }
+//   ],
+// ]
+```
+
+</Tab>
+
+</Tabs>
+
 ### `svg`
 
 Converts a specified image into a low-res placeholder, outputted as an SVG.
@@ -248,6 +461,10 @@ For a "blurred" effect, extend the returned SVG's styles with `filter: blur(<val
 Although it returns the SVG in the format of [`React.createElement()`](https://reactjs.org/docs/react-api.html#createelement) arguments, you are not constrained to using React.js.
 
 </Callout>
+
+<Tabs items={["Node.js: Local Image", "Node.js: Remote Image"]}>
+
+<Tab>
 
 ```js
 import fs from "node:fs/promises";
@@ -276,3 +493,42 @@ try {
 //   ]
 // ]
 ```
+
+</Tab>
+
+<Tab>
+
+```js
+import { getPlaiceholder } from "plaiceholder";
+
+try {
+  const src = "https://images.unsplash.com/photo-1621961458348-f013d219b50c";
+
+  const buffer = await fetch(src).then(async (res) =>
+    Buffer.from(await res.arrayBuffer())
+  );
+
+  const { svg } = await getPlaiceholder(buffer);
+
+  console.log(svg);
+} catch (err) {
+  err;
+}
+
+// Logs
+// [
+//   "svg",
+//   { ...svgProps }
+//   [
+//     [
+//       "rect",
+//       { ...rectProps }
+//     ],
+//     ...etc
+//   ]
+// ]
+```
+
+</Tab>
+
+</Tabs>
