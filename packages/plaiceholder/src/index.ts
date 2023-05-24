@@ -190,7 +190,7 @@ const getSVG: IGetSVG = ({ pixels, info }) => {
    =========================================== */
 
 type SharpFormatOptions = Parameters<Sharp["toFormat"]>;
-type SharpModulateOptions = Parameters<Sharp["modulate"]>[0];
+type SharpModulateOptions = NonNullable<Parameters<Sharp["modulate"]>[0]>;
 
 export type GetPlaiceholderSrc = Buffer;
 
