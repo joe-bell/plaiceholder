@@ -4,7 +4,8 @@ import { Callout } from "nextra-theme-docs";
 
 `3.0` marks the end of the `plaiceholder` project, with this major release focussing on making the project feature complete and as future-proof as possible.
 
-Once the `peerDependency` `sharp` [enables support for Non-Node.js projects](https://github.com/lovell/sharp/pull/3522), `plaiceholder` _should_ work seamlessly on all supported runtimes.
+`plaiceholder` continues to work on all runtimes supported by [`sharp`](https://sharp.pixelplumbing.com/).  
+[`sharp`](https://sharp.pixelplumbing.com/) is currently limited to Node.js, but there is a [pull request](https://github.com/lovell/sharp/pull/3522) to expand support.
 
 Preparing for wider support meant dropping some of the "magic" features that `plaiceholder` previously offered.
 There is **no obligation** to upgrade to `3.0` if you would prefer to keep using the previous API!
