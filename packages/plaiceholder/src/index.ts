@@ -192,16 +192,16 @@ const getSVG: IGetSVG = ({ pixels, info }) => {
 type SharpFormatOptions = Parameters<Sharp["toFormat"]>;
 type SharpModulateOptions = Parameters<Sharp["modulate"]>[0];
 
-export type PlaiceholderSrc = Buffer;
+export type GetPlaiceholderSrc = Buffer;
 
-export interface PlaiceholderOptions extends SharpModulateOptions {
+export interface GetPlaiceholderOptions extends SharpModulateOptions {
   autoOrient?: boolean;
   size?: number;
   format?: SharpFormatOptions;
   removeAlpha?: boolean;
 }
 
-export interface PlaiceholderReturn {
+export interface GetPlaiceholderReturn {
   metadata: Omit<Metadata, "width" | "height"> &
     Required<Pick<Metadata, "width" | "height">>;
   base64: string;
@@ -217,7 +217,7 @@ export interface PlaiceholderReturn {
 }
 
 export const getPlaiceholder = async (
-  src: PlaiceholderSrc,
+  src: GetPlaiceholderSrc,
   {
     autoOrient = false,
     size = 4,
@@ -226,7 +226,7 @@ export const getPlaiceholder = async (
     saturation = 1.2,
     removeAlpha = false,
     ...options
-  }: PlaiceholderOptions = {}
+  }: GetPlaiceholderOptions = {}
 ) => {
   /* Optimize
     ---------------------------------- */
