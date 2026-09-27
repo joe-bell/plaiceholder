@@ -1,0 +1,6 @@
+/*
+  Strict-Transport-Security: max-age=63072000
+  Access-Control-Allow-Origin: *
+
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
