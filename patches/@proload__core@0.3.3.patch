@@ -1,0 +1,14 @@
+diff --git a/lib/esm/index.mjs b/lib/esm/index.mjs
+index 2e4cce03ed3c358ff75a93123cf54d4253d35a09..c540a8aafc3a784fd06e05af633506730188e68c 100644
+--- a/lib/esm/index.mjs
++++ b/lib/esm/index.mjs
+@@ -267,7 +267,8 @@ const defaultPlugins = [
+   {
+     name: "@proload/extract-default",
+     transform(mdl) {
+-      if (mdl.default && Object.keys(mdl).length === 1) {
++      // Node 22.12+ require(esm) namespaces also carry `__esModule`
++      if (mdl.default && Object.keys(mdl).filter((k) => k !== "__esModule").length === 1) {
+         return mdl.default;
+       };
+ 

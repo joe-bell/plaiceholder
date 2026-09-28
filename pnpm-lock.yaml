@@ -1,5 +1,10 @@
 lockfileVersion: '6.0'
 
+patchedDependencies:
+  '@proload/core@0.3.3':
+    hash: x4ohq7v76yttxhnv6ehu7tjcve
+    path: patches/@proload__core@0.3.3.patch
+
 importers:
 
   .:
@@ -322,7 +327,7 @@ packages:
       astro: ^2.3.3
       tailwindcss: ^3.0.24
     dependencies:
-      '@proload/core': 0.3.3
+      '@proload/core': 0.3.3(patch_hash=x4ohq7v76yttxhnv6ehu7tjcve)
       astro: 2.4.5(sharp@0.32.1)
       autoprefixer: 10.4.14(postcss@8.4.23)
       postcss: 8.4.23
@@ -2383,12 +2388,13 @@ packages:
     resolution: {integrity: sha512-Cr4OjIkipTtcXKjAsm8agyleBuDHvxzeBoa1v543lbv1YaIwQjESsVcmjiWiPEbC1FIeHOG/Op9kdCmAmiS3Kw==}
     dev: false
 
-  /@proload/core@0.3.3:
+  /@proload/core@0.3.3(patch_hash=x4ohq7v76yttxhnv6ehu7tjcve):
     resolution: {integrity: sha512-7dAFWsIK84C90AMl24+N/ProHKm4iw0akcnoKjRvbfHifJZBLhaDsDus1QJmhG12lXj4e/uB/8mB/0aduCW+NQ==}
     dependencies:
       deepmerge: 4.2.2
       escalade: 3.1.1
     dev: true
+    patched: true
 
   /@radix-ui/react-compose-refs@1.0.0(react@18.2.0):
     resolution: {integrity: sha512-0KaSv6sx787/hK3eF53iOkiSLwAGlFMx5lotrqD2pTjB18KbybKoEIgkNZTKC60YECDQTKGTRcDBILwZVqVKvA==}
