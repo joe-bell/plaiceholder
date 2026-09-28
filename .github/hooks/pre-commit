@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# Ensure node/pnpm are on PATH — the hook inherits the (often non-interactive)
+# env of whatever invoked the commit, which may not have sourced fnm or nvm.
+. "$(git rev-parse --show-toplevel)/scripts/setup-node.sh"
+
+pnpm precommit

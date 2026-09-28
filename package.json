@@ -13,12 +13,11 @@
     "precommit": "lint-staged --config .config/lint-staged.config.mjs",
     "preinstall": "npx only-allow pnpm && corepack enable",
     "prepare": "run-p -s prepare:*",
-    "prepare:husky": "if-env VERCEL=1 && echo 'Skipping husky installation' || husky install",
+    "prepare:hooks": "git config core.hooksPath .github/hooks",
     "prepare:packages": "if-env VERCEL=1 && echo 'Skipping package build' || pnpm build"
   },
   "devDependencies": {
     "@changesets/cli": "2.26.1",
-    "husky": "8.0.3",
     "if-env": "1.0.4",
     "lint-staged": "13.2.2",
     "npm-run-all": "4.1.5",
@@ -28,8 +27,13 @@
     "typescript": "5.0.4"
   },
   "engines": {
-    "node": "18",
+    "node": "24",
     "pnpm": "8"
   },
-  "packageManager": "pnpm@8.1.1"
+  "packageManager": "pnpm@8.15.9",
+  "pnpm": {
+    "patchedDependencies": {
+      "@proload/core@0.3.3": "patches/@proload__core@0.3.3.patch"
+    }
+  }
 }

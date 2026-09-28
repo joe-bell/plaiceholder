@@ -7,18 +7,14 @@ const withNextra = nextra({
 });
 
 /**
+ * Static export for Cloudflare Workers static assets.
+ * The `/` → `/docs` redirect lives in `public/_redirects`.
+ *
  * @type {import('next').NextConfig}
  */
 const nextConfig = {
-  async redirects() {
-    return [
-      {
-        source: "/",
-        destination: "/docs",
-        permanent: false,
-      },
-    ];
-  },
+  output: "export",
+  images: { unoptimized: true },
 };
 
 export default withNextra(nextConfig);
