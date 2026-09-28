@@ -24,7 +24,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           cache: "pnpm"
-          node-version-file: ".nvmrc"
+          node-version-file: ".node-version"
       - run: pnpm i
       - name: ${{ matrix.script }}
         run: pnpm ${{ matrix.script }}
