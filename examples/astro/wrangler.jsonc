@@ -8,4 +8,5 @@
   },
   "workers_dev": true,
   "preview_urls": true,
+  "previews": {},
 }
