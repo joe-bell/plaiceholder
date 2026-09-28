@@ -24,7 +24,7 @@
     "plaiceholder": "workspace:*",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "sharp": "0.32.1"
+    "sharp": "0.35.4"
   },
   "devDependencies": {
     "@types/glob": "8.1.0",
